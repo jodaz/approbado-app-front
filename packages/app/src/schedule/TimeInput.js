@@ -11,7 +11,7 @@ const formatTime = value => {
     return formatString('99:99 am', formatter);
 }
 
-const DateInput = ({ submitting }) => (
+const TimeInput = ({ submitting }) => (
     <InputContainer
         disabled={submitting}
         label="Hora"
@@ -33,4 +33,4 @@ const DateInput = ({ submitting }) => (
     </InputContainer>
 )
 
-export default DateInput
+export default TimeInput

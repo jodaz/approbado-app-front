@@ -1,4 +1,4 @@
-let timeRegex = /^([0-1]\d):([0-5]\d)\s(?:AM|PM)?$/i;
+// let timeRegex = /^([0-1]\d):([0-5]\d)\s(?:AM|PM)?$/i;
 
 export default function(values) {
     const errors = {};
@@ -18,7 +18,7 @@ export default function(values) {
     if (!values.users_ids) {
         errors.users_ids = "Seleccione un participante.";
     }
-    if (!timeRegex.test(values.time)) {
+    if (!values.time) {
         errors.time = "Formato incorrecto.";
     }
 

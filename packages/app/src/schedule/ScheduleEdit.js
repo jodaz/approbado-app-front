@@ -5,6 +5,7 @@ import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { useParams } from 'react-router-dom'
 import ScheduleForm from './ScheduleForm'
+import { format, parseISO } from 'date-fns'
 
 const ScheduleEdit = () => {
     const { id } = useParams();
@@ -23,7 +24,7 @@ const ScheduleEdit = () => {
                 ...rest
             })
 
-            setRecord(data)
+            formatAndSetRecord(data);
             setOpenDialog(true)
             fetchSchedules(user.id)
         } catch (error) {
@@ -33,16 +34,25 @@ const ScheduleEdit = () => {
         }
     }, [id])
 
-    console.log(record)
-
     const fetchRecord = React.useCallback(async (scheduleID) => {
         const { data } = await axios.get(`/schedules/${scheduleID}`);
 
-        setRecord({
-            ...data,
-            trivia_id: data.subtheme.trivia_id
-        });
+        formatAndSetRecord(data);
     }, []);
+
+    const formatAndSetRecord = data => {
+        const { starts_at, notify_before, subtheme, ...rest } = data
+        const time = format(parseISO(starts_at), 'p');
+        const date = format(parseISO(starts_at), 'MM-dd-uuuu')
+
+        setRecord({
+            ...rest,
+            time: time,
+            trivia_id: subtheme.trivia_id,
+            starts_at: date,
+            notify_before: notify_before ? ['notify_before'] : undefined
+        });
+    }
 
     React.useEffect(async () => {
         if (id) {

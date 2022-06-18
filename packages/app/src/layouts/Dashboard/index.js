@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box';
 import { useMediaQuery } from '@material-ui/core'

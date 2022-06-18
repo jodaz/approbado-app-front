@@ -18,7 +18,15 @@ const CalendarInput = ({ name, input, input: { value, onChange }, items, ...rest
         renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => {
             const isSelected = items.filter(i => i.startsAt == format(day, 'MM-dd-yyyy'))
 
-            return <Badge badgeContent={isSelected.length} variant="dot" color="secondary">{dayComponent}</Badge>;
+            return (
+                <Badge
+                    badgeContent={isSelected.length}
+                    variant="dot"
+                    color="secondary"
+                >
+                    {dayComponent}
+                </Badge>
+            );
         }}
         name={name}
         onChange={date => {
