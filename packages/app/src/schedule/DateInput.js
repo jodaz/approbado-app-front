@@ -24,7 +24,7 @@ const DateInput = ({ submitting }) => {
         <InputContainer
             disabled={submitting}
             label="Día"
-            md={6}
+            md={7}
             xs={6}
         >
             <TextInput

@@ -15,94 +15,113 @@ import SubthemesInput from './SubthemesInput'
 import DateInput from './DateInput'
 import TimeInput from './TimeInput'
 import SelectUsersInput from './SelectUsersInput'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        marginBottom: '2rem'
+    },
+    datePickerContainer: {
+        display: 'flex',
+        justifyContent: 'start',
+        [theme.breakpoints.up('xs')]: {
+            justifyContent: 'center'
+        }
+    }
+}))
 
 const ScheduleForm = ({
     handleSubmit,
     record = {}
 }) => {
     const schedules = useSchedulesState();
+    const classes = useStyles();
 
     return (
-        <Form
-            onSubmit={handleSubmit}
-            validate={validateSchedule}
-            initialValues={record}
-            render={({ handleSubmit, submitting, form }) => (
-                <form onSubmit={handleSubmit} noValidate>
-                    <Grid container>
-                        <Grid item md={6}>
-                            <MuiDatepicker data={schedules} name="starts_at" />
-                        </Grid>
-                        <Grid item sm={6}>
-                            <Grid container>
-                                <Box sx={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '1rem' }}>
-                                    Agendar una trivia
-                                </Box>
-                                <InputContainer
-                                    disabled={submitting}
-                                    label='Título de la reunión'
-                                    sm={12}
-                                    md={12}
-                                >
-                                    <TextInput
-                                        name='title'
-                                        placeholder='Ingrese un título'
-                                        fullWidth
-                                    />
-                                </InputContainer>
-                                <DateInput name="starts_at" submitting={submitting} />
-                                <TimeInput submitting={submitting} />
-                                <SelectUsersInput />
-                                <SelectTriviasInput />
-                                <SelectLevelsInput />
-                                <SubthemesInput submitting={submitting} />
-                                <InputContainer disabled={submitting} label='Descripción' sm={12} md={12}>
-                                    <TextInput
-                                        name='description'
-                                        placeholder='Añadir una descripción'
-                                        fullWidth
-                                        multiline
-                                    />
-                                </InputContainer>
-                                <Field
-                                    name="notify_before"
-                                    type="checkbox"
-                                    value="notify_before"
-                                    component={Checkbox}
-                                >
-                                    <label style={{
-                                        display: 'flex',
-                                        alignItems: 'center'
-                                    }}>
-                                        Enviar recordatorio 30 minutos antes de la reunión
-                                    </label>
-                                </Field>
+        <Grid container className={classes.root}>
+            <Form
+                onSubmit={handleSubmit}
+                validate={validateSchedule}
+                initialValues={record}
+                render={({ handleSubmit, submitting, form }) => (
+                    <form onSubmit={handleSubmit} noValidate>
+                        <Grid container>
+                            <Grid item md={6} classNames={classes.datePickerContainer}>
+                                <MuiDatepicker data={schedules} name="starts_at" />
+                            </Grid>
+                            <Grid item sm={6}>
                                 <Grid container>
-                                    <Grid item xs='6'>
-                                        <Button
-                                            variant='outlined'
-                                            size='large'
-                                            onClick={form.reset}
-                                            unresponsive
-                                        >
-                                            Descartar
-                                        </Button>
+                                    <Box sx={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '1rem' }}>
+                                        Agendar una trivia
+                                    </Box>
+                                    <InputContainer
+                                        disabled={submitting}
+                                        label='Título de la reunión'
+                                        sm={12}
+                                        md={12}
+                                    >
+                                        <TextInput
+                                            name='title'
+                                            placeholder='Ingrese un título'
+                                            fullWidth
+                                        />
+                                    </InputContainer>
+                                    <Grid container spacing={1}>
+                                        <DateInput name="starts_at" submitting={submitting} />
+                                        <TimeInput submitting={submitting} />
                                     </Grid>
-                                    <Grid item xs='6'>
-                                        <Button disabled={submitting} onClick={() => {
-                                            handleSubmit();
-                                            form.reset()
-                                        }} size='large' unresponsive>
-                                            Guardar
-                                        </Button>
+                                    <SelectUsersInput />
+                                    <SelectTriviasInput />
+                                    <SelectLevelsInput />
+                                    <SubthemesInput submitting={submitting} />
+                                    <InputContainer disabled={submitting} label='Descripción' sm={12} md={12}>
+                                        <TextInput
+                                            name='description'
+                                            placeholder='Añadir una descripción'
+                                            fullWidth
+                                            multiline
+                                        />
+                                    </InputContainer>
+                                    <Field
+                                        name="notify_before"
+                                        type="checkbox"
+                                        value="notify_before"
+                                        component={Checkbox}
+                                    >
+                                        <label style={{
+                                            display: 'flex',
+                                            alignItems: 'center'
+                                        }}>
+                                            Enviar recordatorio 30 minutos antes de la reunión
+                                        </label>
+                                    </Field>
+                                    <Grid container>
+                                        <Grid item xs='6'>
+                                            <Button
+                                                variant='outlined'
+                                                size='large'
+                                                onClick={form.reset}
+                                                unresponsive
+                                            >
+                                                Descartar
+                                            </Button>
+                                        </Grid>
+                                        <Grid item xs='6'>
+                                            <Button disabled={submitting} onClick={() => {
+                                                handleSubmit();
+                                                form.reset()
+                                            }} size='large' unresponsive>
+                                                Guardar
+                                            </Button>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
-                </form>
-            )}
-        />
+                    </form>
+                )}
+            />
+        </Grid>
     )
 }
 

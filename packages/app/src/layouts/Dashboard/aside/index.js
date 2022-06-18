@@ -3,37 +3,12 @@ import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box';
 import EmptySchedule from './EmptySchedule'
 import ScheduledTriviaCard from './ScheduledTriviaCard'
-import Spinner from '@approbado/lib/components/Spinner'
-import { useSchedulesState, useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
-import useFetch from '@approbado/lib/hooks/useFetch'
+import { useSchedulesState } from '@approbado/lib/hooks/useSchedules'
 
-const Schedule = ({ isSmall, user }) => {
-    const data = useSchedulesState();
-    const {
-        loading,
-        error,
-        data: fetchedData
-    } = useFetch(`/schedules/user/${user.id}`);
-    const { setSchedules } = useSchedulesDispatch();
-
-    React.useEffect(() => {
-        if (fetchedData.length) {
-            setSchedules(fetchedData);
-        }
-    }, [fetchedData])
+const ScheduleNavbar = ({ isSmall }) => {
+    const schedules = useSchedulesState();
 
     if (isSmall) return null;
-
-    const renderer = () => (
-        <>
-            {(data.length)
-            ? (
-                <>
-                    {data.map((schedule, key) => <ScheduledTriviaCard key={key} {...schedule} />)}
-                </>
-            ) : <EmptySchedule />}
-        </>
-    )
 
     return (
         <Box sx={{
@@ -47,13 +22,19 @@ const Schedule = ({ isSmall, user }) => {
             }}>
                 Agenda mensual
             </Box>
-            {(loading) ? <Spinner /> : renderer()}
+            {(schedules.length)
+                ? (
+                    <>
+                        {schedules.map((schedule, key) => <ScheduledTriviaCard key={key} {...schedule} />)}
+                    </>
+                ) : <EmptySchedule />
+            }
         </Box>
     );
 }
 
-Schedule.propTypes = {
+ScheduleNavbar.propTypes = {
     isSmall: PropTypes.bool
 }
 
-export default Schedule
+export default ScheduleNavbar

@@ -39,6 +39,66 @@ const theme = {
         borderRadius: 10,
     },
     overrides: {
+        MuiPickersCalendarHeader: {
+            switchHeader: {
+                textTransform: 'capitalize',
+                padding: '0 1rem'
+            },
+            daysHeader: {
+                textTransform: 'uppercase',
+                '& > *': {
+                    fontWeight: '600 !important'
+                }
+            },
+            iconButton: {
+                borderRadius: '50%'
+            }
+        },
+        MuiPickersSlideTransition: {
+            transitionContainer: {
+                '& > *': {
+                    fontWeight: 600
+                }
+            }
+        },
+        MuiPickersToolbar: {
+            toolbar: {
+                backgroundColor: '#fff',
+            },
+        },
+        MuiPickersDay: {
+            day: {
+                color: '#000',
+                fontWeight: '600 !important',
+                borderRadius: '50%',
+                '&:hover': {
+                    backgroundColor: "rgba(63, 60, 251, 0.5)",
+                    borderRadius: '50%'
+                }
+            },
+            daySelected: {
+                color: '#1D70D0',
+                backgroundColor: "rgba(63, 60, 251, 0.3)",
+                borderRadius: '50%',
+                '&:hover': {
+                    backgroundColor: "rgba(63, 60, 251, 0.3)",
+                }
+            },
+            hidden: {
+                opacity: 1,
+                color: '#A6A6A6',
+            },
+            current: {
+                color: '#1D70D0',
+                background: "rgba(63, 60, 251, 0.1) !important",
+                borderRadius: '50%'
+            },
+        },
+        MuiPickersModal: {
+            dialogAction: {
+                color: '#fff',
+            },
+        },
         RaLayout: {
             content: {
                 marginTop: '4em',

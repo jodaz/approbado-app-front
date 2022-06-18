@@ -15,7 +15,7 @@ const TimeInput = ({ submitting }) => (
     <InputContainer
         disabled={submitting}
         label="Hora"
-        md={6}
+        md={5}
         xs={6}
     >
         <TextInput

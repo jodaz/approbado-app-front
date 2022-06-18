@@ -113,7 +113,7 @@ const AsideBar = ({ isXSmall }) => {
                                 <Emoji symbol="😔" />
                             </Typography>
                         </Box>
-                    )};
+                    )}
                 </Box>
             )}
         </Box>

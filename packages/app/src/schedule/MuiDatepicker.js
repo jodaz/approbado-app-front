@@ -8,7 +8,7 @@ import { ReactComponent as RightAngleIcon } from '@approbado/lib/icons/RightAngl
 
 const convertDateFromUTC = date => format(new Date(date), 'MM-dd-yyyy')
 
-const CalendarInput = ({ name, input, input: { value, onChange }, items, ...rest }) => (
+const CalendarInput = ({ name, input: { value, onChange }, items }) => (
     <DatePicker
         disableToolbar
         value={value}
@@ -22,7 +22,7 @@ const CalendarInput = ({ name, input, input: { value, onChange }, items, ...rest
                 <Badge
                     badgeContent={isSelected.length}
                     variant="dot"
-                    color="secondary"
+                    color='secondary'
                 >
                     {dayComponent}
                 </Badge>
@@ -53,7 +53,7 @@ const ControlledCalendarInput = ({ data, ...rest }) => {
 
             setDates(dates)
         }
-    }, [])
+    }, [data])
 
     return (
         <Field

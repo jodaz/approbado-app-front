@@ -43,13 +43,12 @@ const ListActions = () => (
     </TopToolbar>
 );
 
-const TriviaList = props => (
+const TriviaList = () => (
     <ListBase
         basePath='trivias'
         resource='trivias'
         perPage={10}
         sort={{ field: 'created_at', order: 'DESC' }}
-        {...props}
     >
         <TriviaListView />
     </ListBase>

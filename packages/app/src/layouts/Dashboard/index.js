@@ -5,6 +5,8 @@ import { useMediaQuery } from '@material-ui/core'
 import Aside from './aside'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import Default from '../Default'
+import useFetch from '@approbado/lib/hooks/useFetch'
+import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 
 const tags = [
     {
@@ -30,6 +32,14 @@ export default function Dashboard({ children }) {
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
     )
+    const { data } = useFetch(`/schedules/user/${user.id}`);
+    const { fetchSchedules } = useSchedulesDispatch();
+
+    React.useEffect(() => {
+        if (data.length) {
+            fetchSchedules(data);
+        }
+    }, [data])
 
     return (
         <Default>

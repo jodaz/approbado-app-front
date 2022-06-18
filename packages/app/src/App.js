@@ -175,11 +175,11 @@ const App = () => (
             {/**
              * Trivias
              */}
-            <ProtectedRoute layout={DefaultLayout} exact path='/trivias' component={(routeProps) =>
-                <TriviaList
-                    resource="trivias"
-                    basePath={routeProps.match.url}
-                />}
+            <ProtectedRoute
+                layout={DefaultLayout}
+                exact
+                path='/trivias'
+                component={() => <TriviaList />}
             />
             <ProtectedRoute exact path="/trivias/start" component={() => <StartTrivia />} layout={DefaultLayout} />
         </Switch>
