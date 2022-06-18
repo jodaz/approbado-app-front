@@ -1,9 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { FETCH_SCHEDULES, SET_SCHEDULE, unsetSchedule } from '../actions';
+import {
+    FETCH_SCHEDULES,
+    SET_SCHEDULE,
+    DELETE_SCHEDULE,
+    UPDATE_SCHEDULE
+} from '../actions';
 
 export const useSchedulesState = () => {
     const store = useSelector(state => state);
-    console.log(store.schedules)
+
     return store.schedules;
 };
 
@@ -15,10 +20,17 @@ export const useSchedulesDispatch = () => {
             type: SET_SCHEDULE,
             payload: data
         }),
+        editSchedule: data => dispatch({
+            type: UPDATE_SCHEDULE,
+            payload: data
+        }),
         fetchSchedules: data => dispatch({
             type: FETCH_SCHEDULES,
             payload: data
         }),
-        unsetSchedule: data => dispatch(unsetSchedule(data))
+        unsetSchedule: data => dispatch({
+            type: DELETE_SCHEDULE,
+            payload: data
+        })
     }
 }

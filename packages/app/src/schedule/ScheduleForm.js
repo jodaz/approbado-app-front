@@ -24,9 +24,12 @@ const useStyles = makeStyles(theme => ({
     datePickerContainer: {
         display: 'flex',
         justifyContent: 'start',
-        [theme.breakpoints.up('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             justifyContent: 'center'
         }
+    },
+    actions: {
+        marginTop: '2rem'
     }
 }))
 
@@ -46,10 +49,10 @@ const ScheduleForm = ({
                 render={({ handleSubmit, submitting, form }) => (
                     <form onSubmit={handleSubmit} noValidate>
                         <Grid container>
-                            <Grid item md={6} classNames={classes.datePickerContainer}>
+                            <Grid item md={6} className={classes.datePickerContainer}>
                                 <MuiDatepicker data={schedules} name="starts_at" />
                             </Grid>
-                            <Grid item sm={6}>
+                            <Grid item md={6}>
                                 <Grid container>
                                     <Box sx={{ fontSize: '1.1rem', fontWeight: 600, marginBottom: '1rem' }}>
                                         Agendar una trivia
@@ -95,7 +98,7 @@ const ScheduleForm = ({
                                             Enviar recordatorio 30 minutos antes de la reunión
                                         </label>
                                     </Field>
-                                    <Grid container>
+                                    <Grid container className={classes.actions}>
                                         <Grid item xs='6'>
                                             <Button
                                                 variant='outlined'

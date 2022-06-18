@@ -12,8 +12,7 @@ import NoContent from '@approbado/lib/components/NoContent'
 import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
 import { axios } from '@approbado/lib/providers'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
-import { unsetSchedule } from '@approbado/lib/actions'
-import { useDispatch } from 'react-redux';
+import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -51,8 +50,8 @@ export default function({ onClick, id }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const ref = React.useRef(null);
-    const dispatch = useDispatch();
     const [deleteDialog, setDeleteDialog] = React.useState(false)
+    const { unsetSchedule } = useSchedulesDispatch();
 
     const handleClickOpen = e => {
         setOpen(true);
@@ -77,7 +76,7 @@ export default function({ onClick, id }) {
 
             if (data) {
                 await setDeleteDialog(true)
-                await dispatch(unsetSchedule(data))
+                await unsetSchedule(data)
                 handleClose();
             }
         } catch (error) {

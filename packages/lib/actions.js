@@ -32,16 +32,7 @@ export const SET_SCHEDULE = 'SET_SCHEDULE';
 export const UNSET_CHAT = 'UNSET_CHAT';
 export const SET_CHAT = 'SET_CHAT';
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
-
-export const unsetSchedule = data => ({
-    type: DELETE_SCHEDULE,
-    payload: data
-});
-
-export const fetchSchedules = data => ({
-    type: FETCH_SCHEDULES,
-    payload: data
-});
+export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,
