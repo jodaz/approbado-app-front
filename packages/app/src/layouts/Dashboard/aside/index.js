@@ -7,7 +7,7 @@ import { useSchedulesState } from '@approbado/lib/hooks/useSchedules'
 
 const ScheduleNavbar = ({ isSmall }) => {
     const schedules = useSchedulesState();
-    console.log(schedules)
+
     if (isSmall) return null;
 
     return (

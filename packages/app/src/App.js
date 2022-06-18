@@ -166,7 +166,7 @@ const App = () => (
                 />
                 <ProtectedRoute
                     exact
-                    path="/comments/:id/show"
+                    path="/comments/:id"
                     component={() => <CommentShow />}
                     layout={DefaultLayout}
                 />

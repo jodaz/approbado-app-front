@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as ActionDelete } from '@approbado/lib/icons/Trash.svg';
-import { useMutation, useNotify, useRefresh } from 'react-admin';
+import { useMutation, useNotify } from 'react-admin';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
@@ -23,7 +23,6 @@ const DeleteButton = (
     const [mutate, { data, loading, loaded }] = useMutation();
     const [open, setOpen] = React.useState(false);
     const notify = useNotify();
-    const refresh = useRefresh();
     const ref = React.useRef(null);
 
     const handleDelete = React.useCallback(async () => {
@@ -51,8 +50,6 @@ const DeleteButton = (
 
             if (customAction) {
                 customAction();
-            } else {
-                refresh();
             }
 
             setOpen(!open);

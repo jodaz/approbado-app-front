@@ -7,7 +7,7 @@ import ReplyIcon from '@approbado/lib/icons/ReplyIcon';
 import { useConvertPostgresDate } from '@approbado/lib/hooks/useConvertPostgresDate'
 import LikeButton from './LikeButton';
 import Dot from '@approbado/lib/components/Dot'
-import Report from './Report';
+import Report from '../forums/ReportDialog';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Button from '@material-ui/core/Button'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
@@ -113,7 +113,7 @@ const CommentShow = comment => {
     return (
         <Box className={classes.root} key={comment.id}>
             <Link
-                to={`/users/${comment.owner.id}/show`}
+                to={`/users/${comment.owner.id}`}
                 color='info'
                 underline='none'
                 component={LinkBehavior}
@@ -126,7 +126,7 @@ const CommentShow = comment => {
             <Box className={classes.content}>
                 <Box component="div" className={classes.header}>
                     <Link
-                        to={`/users/${comment.owner.id}/show`}
+                        to={`/users/${comment.owner.id}`}
                         color='info'
                         underline='hover'
                         component={LinkBehavior}
@@ -136,7 +136,7 @@ const CommentShow = comment => {
                     </Link>
                     {!(isXSmall) && <Dot />}
                     <Link
-                        to={`/comments/${comment.id}/show`}
+                        to={`/comments/${comment.id}`}
                         color='info'
                         underline='hover'
                         component={LinkBehavior}
@@ -150,7 +150,7 @@ const CommentShow = comment => {
                 </Box>
                 <Box className={classes.actions}>
                     <Link
-                        to={`/comments/${comment.id}/show`}
+                        to={`/comments/${comment.id}`}
                         color='info'
                         underline='hover'
                         component={LinkBehavior}
@@ -166,10 +166,7 @@ const CommentShow = comment => {
                         {(!isXSmall) && <> likes </> }
                     </Box>
                     {(is_registered) && (
-                        <Button className={classes.actionButton}>
-                            <Report {...comment} />
-                            {(!isXSmall) && <> reportar </> }
-                        </Button>
+                        <Report post_id={comment.id} />
                     )}
                 </Box>
             </Box>

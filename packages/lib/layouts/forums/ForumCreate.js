@@ -26,7 +26,7 @@ const ForumCreate = () => {
 
             if (data) {
                 notify('¡Ha realizado una publicación!', 'success');
-                history.push(`/forums/${data.id}/show`);
+                history.push(`/forums/${data.id}`);
                 unsetDialog();
                 fetchUser();
             }

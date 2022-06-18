@@ -18,6 +18,7 @@ import { es } from 'date-fns/locale'
 import DeleteEvent from './DeleteEvent'
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import EditEvent from './EditEvent';
+import { useUserState } from '@approbado/lib/hooks/useUserState'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -71,10 +72,20 @@ const Description = ({ title, children }) => (
 )
 
 const ScheduledTriviaCard = props => {
-    const { description, starts_at, level, participants, subtheme, title } = props
+    const {
+        description,
+        starts_at,
+        level,
+        participants,
+        subtheme,
+        title,
+        created_by
+    } = props
     const classes = useStyles({ color: level.color });
     const [expanded, setExpanded] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const { user } = useUserState();
+    const isOwner = user.id == created_by
 
     const handleExpandClick = e => {
         if (anchorRef.current && anchorRef.current.contains(e.target)) {
@@ -92,12 +103,12 @@ const ScheduledTriviaCard = props => {
             <Card ref={anchorRef} className={classes.root} onClick={handleExpandClick}>
                 <CardHeader
                     className={classes.header}
-                    action={
+                    action={(isOwner) && (
                         <OptionsCardMenu icon={<MoreIcon />}>
                             <EditEvent {...props} />
                             <DeleteEvent {...props} />
                         </OptionsCardMenu>
-                    }
+                    )}
                     title={
                         <Typography className={classes.title}>
                             Trivia Grupal

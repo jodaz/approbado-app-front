@@ -63,6 +63,7 @@ const ForumEdit = () => {
             save={save}
             record={record}
             validate={validate}
+            formName='Editar foro'
         >
             <InputContainer label='Título' sx={12} md={6}>
                 <TextInput

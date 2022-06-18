@@ -1,24 +1,18 @@
 import * as React from 'react';
-import { Query, useMutation, useNotify, useRefresh } from 'react-admin';
+import { useNotify } from 'react-admin';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import Typography from '@material-ui/core/Typography';
-import Spinner from '@approbado/lib/components/Spinner'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem'
 import InformationIcon from '@approbado/lib/icons/InformationIcon'
+import Box from '@material-ui/core/Box'
+import { axios } from '@approbado/lib/providers'
+import ListReportReasons from './ListReportReasons'
 import { makeStyles } from '@material-ui/core/styles';
-import useSpinnerStyles from '@approbado/lib/styles/useSpinnerStyles'
-import Button from '@approbado/lib/components/Button'
-
-const payload = {
-    pagination: { page: 1, perPage: 5 },
-    sort: { field: 'created_at', order: 'DESC'}
-};
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(
     () => ({
@@ -43,30 +37,20 @@ const useStyles = makeStyles(
         padding: {
             padding: '0.5rem 1rem',
             borderRadius: '6px'
-        },
-        icon: {
-            fontSize: '1.15rem',
-            color: 'inherit',
-            marginRight: '0.5rem',
-            '&:hover': {
-                cursor: 'pointer'
-            }
         }
     }),
     { name: 'RaDialog' }
 );
 
-export default function ReportDialog({ id }) {
+export default function ReportDialog({ post_id }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [selectedIndex, setSelectedIndex] = React.useState(null);
-    const spinnerStyles = useSpinnerStyles();
-    const [mutate, { loading, data, loaded }] = useMutation();
+    const [reasonID, setReasonID] = React.useState(null);
+    const [loading, setLoading] = React.useState(false)
     const notify = useNotify();
-    const refresh = useRefresh();
 
     const handleListItemClick = (event, index) => {
-        setSelectedIndex(index);
+        setReasonID(index);
         event.stopPropagation();
     };
 
@@ -75,37 +59,42 @@ export default function ReportDialog({ id }) {
     };
     const handleClose = e => {
         setOpen(false);
-        setSelectedIndex(null);
+        setReasonID(null);
     };
 
     const handleSubmit = React.useCallback(async () => {
         try {
-            await mutate({
-                type: 'create',
-                resource: 'reports',
-                payload: { data: { reason_id: selectedIndex, post_id: id } }
-            }, { returnPromise: true })
+            setLoading(true)
+            const { data } = await axios.post('/reports', {
+                reason_id: reasonID,
+                post_id: post_id
+            })
+
+            if (data) {
+                notify('¡Ha reportado la publicación exitosamente!', 'success');
+                refresh();
+                handleClose();
+            }
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;
             }
         }
-    }, [mutate, selectedIndex]);
-
-    React.useEffect(() => {
-        if (loaded) {
-            notify('¡Ha reportado la publicación exitosamente!', 'success');
-            refresh();
-            handleClose();
-        }
-    }, [data, loaded])
+        setLoading(false);
+    }, [reasonID, post_id]);
 
     return (
         <div>
-            <InformationIcon
-                className={classes.icon}
-                onClick={handleClickOpen}
-            />
+            <MenuItem onClick={handleClickOpen}>
+                <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginRight: '10px'
+                }}>
+                    <InformationIcon />
+                </Box>
+                    Reportar
+            </MenuItem>
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -127,30 +116,12 @@ export default function ReportDialog({ id }) {
                     <Typography variant="subtitle1" className={classes.padding}>
                         {'Ayúdanos a entender el problema'}
                     </Typography>
-                    <Query type='getList' resource='report-reasons' payload={payload}>
-                        {({ data, total, loading, error }) => {
-                            if (loading) { return <Spinner classes={spinnerStyles} /> }
-                            if (error) { return null; }
-
-                            return (
-                                <List component="nav" aria-label="secondary mailbox folder" style={{ width: '100%', marginBottom: '1rem' }}>
-                                    {data.map(reason => (
-                                        <ListItem
-                                            button
-                                            selected={selectedIndex === reason.id}
-                                            onClick={(event) => handleListItemClick(event, reason.id)}
-                                            disableGutters
-                                            className={classes.padding}
-                                        >
-                                            <ListItemText primary={reason.item} />
-                                        </ListItem>
-                                    ))}
-                                </List>
-                            );
-                        }}
-                    </Query>
-                    {(selectedIndex) && (
-                        <Button disabled={loading} onClick={handleSubmit} unresponsive>
+                    <ListReportReasons
+                        handleClick={handleListItemClick}
+                        reasonID={reasonID}
+                    />
+                    {(reasonID) && (
+                        <Button disabled={loading} onClick={handleSubmit} color="primary">
                             {'Enviar'}
                         </Button>
                     )}
