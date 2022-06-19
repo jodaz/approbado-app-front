@@ -106,7 +106,7 @@ const PremiumMembershipMessage = () => (
     </Box>
 )
 
-const AboutMe = () => {
+const UserPlan = () => {
     const { plan, membership } = usePlan();
     const currDate = new Date();
     const membershipStartDate = parseISO(membership.created_at)
@@ -135,4 +135,4 @@ const AboutMe = () => {
     );
 }
 
-export default AboutMe;
+export default UserPlan;

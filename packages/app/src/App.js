@@ -10,6 +10,7 @@ import ChatLayout from './layouts/Chat'
 import DashboardLayout from './layouts/Dashboard'
 import ForumLayout from './layouts/Forum'
 import SettingsLayout from './layouts/Settings'
+import ProfileEditLayout from './layouts/EditProfile'
 
 // Views
 import NotificationsView from './notifications'
@@ -19,7 +20,6 @@ import PreparingRoom from './trivias/games/PreparingRoom'
 import StartTrivia from './trivias/startTrivia'
 import ErrorLayout from '@approbado/lib/layouts/Error'
 import UserProfile from '@approbado/lib/layouts/profile/UserProfile'
-import ProfileEdit from './profile/EditProfile';
 import TestList from './tests'
 import UserRanking from './ranking'
 import CompletedGames from './completedGames'
@@ -37,6 +37,9 @@ import DeleteAccount from './deleteAccount'
 import NotificationSettings from './notificationSettings'
 import UpdatePassword from '@approbado/lib/layouts/UpdatePassword'
 import ScheduleEdit from './schedule/ScheduleEdit';
+import UserPlan from './userPlan';
+import SessionEdit from './sessionsEdit'
+import AboutForm from './aboutForm'
 // Utils
 import { format } from "date-fns";
 import DateFnsUtils from '@date-io/date-fns';
@@ -117,11 +120,27 @@ const App = () => (
                 component={() => <UpdatePassword />}
                 layout={SettingsLayout}
             />
+
+            {/**
+             * Profile edit
+             */}
             <ProtectedRoute
                 exact
                 path="/profile/edit"
-                component={() => <ProfileEdit />}
-                layout={DefaultLayout}
+                component={() => <AboutForm />}
+                layout={ProfileEditLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/profile/sessions"
+                component={() => <SessionEdit />}
+                layout={ProfileEditLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/profile/plans"
+                component={() => <UserPlan />}
+                layout={ProfileEditLayout}
             />
             <ProtectedRoute
                 exact

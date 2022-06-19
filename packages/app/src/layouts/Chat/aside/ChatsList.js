@@ -36,9 +36,15 @@ const ChatsList = ({ total, items, loading, error, lastItemRef }) => {
                     return <UserMessageCard index={index} data={item} />
                 }
             }) : (
-                <ErrorMessage>
-                    No tiene mensajes disponibles.
-                </ErrorMessage>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    paddingTop: '5rem'
+                }}>
+                    <ErrorMessage>
+                        No tiene mensajes disponibles.
+                    </ErrorMessage>
+                </Box>
             )}
             <Box sx={{
                 display: 'flex',

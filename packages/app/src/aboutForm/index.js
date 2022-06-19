@@ -7,7 +7,7 @@ import DefaultLinkBehavior from '@approbado/lib/components/LinkBehavior'
 import TextInput from '@approbado/lib/components/TextInput'
 import formatString from "format-string-by-pattern";
 
-const AboutMe = ({ submitting, handleSubmit }) => (
+const AboutMeForm = ({ submitting, handleSubmit }) => (
     <Grid container spacing={1}>
         <InputContainer disabled={submitting} label='Nombres' sm={12} md={6}>
             <TextInput name='names' placeholder='Nombre(s)' fullWidth />
@@ -55,4 +55,4 @@ const AboutMe = ({ submitting, handleSubmit }) => (
     </Grid>
 );
 
-export default AboutMe;
+export default AboutMeForm;

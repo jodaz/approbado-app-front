@@ -4,14 +4,13 @@ import { makeStyles } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import ProfileSidebar from '@approbado/lib/layouts/profile/ProfileSidebar'
 import { useUserDispatch, useUserState } from '@approbado/lib/hooks/useUserState'
-import PersonalDataForm from './PersonalDataForm'
 import TabbedList from '@approbado/lib/components/TabbedList'
 import { Form } from 'react-final-form'
-import Sessions from './Sessions'
-import UserPlan from './UserPlan'
 import isEmpty from 'is-empty'
 import { fileProvider } from '@approbado/lib/providers'
 import { useFileProvider } from '@jodaz_/file-provider'
+import DefaultLayout from '../Default'
+import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,25 +25,22 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const tags = props => ([
+const tags = [
     {
         name: 'Datos personales',
-        pathname: 'about',
-        component: <PersonalDataForm {...props} />
+        pathname: '/profile/edit'
     },
     {
         name: 'Inicio de sesión',
-        pathname: 'sessions',
-        component: <Sessions {...props} />
+        pathname: '/profile/sessions'
     },
     {
         name: 'Planes',
-        pathname: 'plans',
-        component: <UserPlan {...props} />
+        pathname: '/profile/plans'
     }
-])
+]
 
-const EditProfile = () => {
+const EditProfileLayout = ({ children }) => {
     const classes = useStyles();
     const [provider, { loading, data }] = useFileProvider(fileProvider);
     const { user, isAuth } = useUserState();
@@ -75,27 +71,32 @@ const EditProfile = () => {
     if (!isAuth) return null;
 
     return (
-        <Form
-            onSubmit={handleSubmit}
-            initialValues={user}
-            render={({ handleSubmit, submitting }) => (
-                <form onSubmit={handleSubmit} noValidate>
-                    <Grid container className={classes.root}>
-                        <Grid item md='3' sm='12'>
-                            <ProfileSidebar {...user} />
-                        </Grid>
-                        <span style={{ width: '4rem'}} />
-                        <Grid item md='8' sm='12'>
-                            <TabbedList tags={tags({
-                                submitting: submitting,
-                                handleSubmit: handleSubmit
-                            })} />
-                        </Grid>
-                    </Grid>
-                </form>
-            )}
-        />
+        <DefaultLayout>
+            <Box marginTop='2rem'>
+                <Form
+                    onSubmit={handleSubmit}
+                    initialValues={user}
+                    render={({ handleSubmit, submitting }) => (
+                        <form onSubmit={handleSubmit} noValidate>
+                            <Grid container className={classes.root}>
+                                <Grid item md='3' sm='12'>
+                                    <ProfileSidebar {...user} />
+                                </Grid>
+                                <span style={{ width: '4rem'}} />
+                                <Grid item md='8' sm='12'>
+                                    <TabbedList tags={tags} />
+                                    {React.cloneElement(children, {
+                                        ...user,
+                                        submitting: submitting
+                                    })}
+                                </Grid>
+                            </Grid>
+                        </form>
+                    )}
+                />
+            </Box>
+        </DefaultLayout>
     )
 }
 
-export default EditProfile
+export default EditProfileLayout

@@ -6,7 +6,7 @@ import { ReactComponent as FacebookIcon } from "@approbado/lib/icons/FacebookIco
 import Box from '@material-ui/core/Box'
 import { ReactComponent as GoogleIcon } from "@approbado/lib/icons/GoogleIcon.svg"
 
-const Sessions = () => (
+const SessionsEdit = () => (
     <Grid container spacing={1}>
         <InputContainer label='Email de acceso' sm={12} md={6}>
             <TextInput name='email' placeholder='hola@email.com' fullWidth />
@@ -37,4 +37,4 @@ const Sessions = () => (
     </Grid>
 );
 
-export default Sessions;
+export default SessionsEdit;
