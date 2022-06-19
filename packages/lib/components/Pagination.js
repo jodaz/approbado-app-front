@@ -3,8 +3,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
 // Icons
-import { ReactComponent as LeftAngleIcon } from '@approbado/lib/icons/LeftAngle.svg'
-import { ReactComponent as RightAngleIcon } from '@approbado/lib/icons/RightAngle.svg'
+import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon.js'import { ReactComponent as RightAngleIcon } from '@approbado/lib/icons/RightAngle.svg'
 
 const Pagination = () => {
     const { page, perPage, total, setPage } = useListContext();

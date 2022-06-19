@@ -3,8 +3,8 @@ import { DatePicker } from "@material-ui/pickers";
 import Badge from "@material-ui/core/Badge";
 import { format, isValid } from "date-fns";
 import { Field } from 'react-final-form'
-import { ReactComponent as LeftAngleIcon } from '@approbado/lib/icons/LeftAngle.svg'
-import { ReactComponent as RightAngleIcon } from '@approbado/lib/icons/RightAngle.svg'
+import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
+import RightAngleIcon from '@approbado/lib/icons/RightAngleIcon'
 
 const convertDateFromUTC = date => format(new Date(date), 'MM-dd-yyyy')
 

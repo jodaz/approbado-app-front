@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { ReactComponent as LeftAngleIcon } from '@approbado/lib/icons/LeftAngle.svg'
-import { useHistory } from 'react-router-dom'
+import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core'

@@ -1,11 +1,9 @@
 import * as React from 'react'
-import {
-    TextInput,
-    useNotify
-} from 'react-admin'
+import { useNotify } from 'react-admin'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { axios } from '@approbado/lib/providers'
+import TextInput from '@approbado/lib/components/TextInput'
 
 const validate = values => {
     const errors = {};
@@ -15,6 +13,9 @@ const validate = values => {
     }
     if (!values.email) {
         errors.email = "Ingrese su correo electrónico.";
+    }
+    if (!values.user_name) {
+        errors.user_name = 'Ingrese su nombre de usuario.'
     }
 
     return errors;
@@ -61,70 +62,61 @@ const UpdateProfile = () => {
         >
             <InputContainer label='Nombre' md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='names'
+                    name='names'
                     placeholder='Ingresar nombres'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Apellido'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='surnames'
+                    name='surnames'
                     placeholder='Ingresar apellidos'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Usuario'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='username'
+                    name='user_name'
                     placeholder='Ingrese un nombre de usuario'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Correo electrónico'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='email'
+                    name='email'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Ocupación'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='profession'
+                    name='profession'
                     placeholder='Ingrese una ocupación'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Teléfono'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='phone'
+                    name='phone'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Linkedin'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='linkedin'
+                    name='linkedin'
                     placeholder='https://linkedin.com/in/usuario'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Twitter'  md={6} sm={12}>
                 <TextInput
-                    label={false}
-                    source='twitter'
+                    name='twitter'
                     placeholder='@usuario'
                     fullWidth
                 />
             </InputContainer>
             <InputContainer label='Biografía' xs={12} sm={12} md={12}>
                 <TextInput
-                    label={false}
-                    source='twitter'
+                    name='twitter'
                     fullWidth
                     multiline
                     placeholder='Escribe un poco sobre ti'

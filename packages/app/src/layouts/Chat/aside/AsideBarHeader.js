@@ -2,26 +2,32 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box';
 import SearchIcon from '@approbado/lib/icons/SearchIcon'
 import TextField from '@material-ui/core/TextField'
+import SelectMessagesType from './components/SelectMessagesType'
 
 const AsideBarHeader = ({ onChange }) => (
     <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        padding: '1rem 0',
         width: '100%',
-        boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.18)'
+        padding: '1rem 0.5rem',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '6rem'
     }}>
-        <TextField
-            onChange={onChange}
-            InputProps={{
-                startAdornment: (
-                    <Box marginLeft='6px' display='flex'>
-                        <SearchIcon />
-                    </Box>
-                )
-            }}
-            placeholder='Buscar a un usuario'
-        />
+        <SelectMessagesType />
+        <Box sx={{
+        }}>
+            <TextField
+                onChange={onChange}
+                InputProps={{
+                    startAdornment: (
+                        <Box marginLeft='6px' display='flex'>
+                            <SearchIcon />
+                        </Box>
+                    )
+                }}
+                placeholder='Buscar a un usuario'
+            />
+        </Box>
     </Box>
 );
 

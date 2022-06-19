@@ -4,9 +4,9 @@ import {
     IconButton,
     styled
 } from '@material-ui/core';
-import { ReactComponent as LeftAngleIcon } from '@approbado/lib/icons/LeftAngle.svg'
-import { useHistory, useRouteMatch } from 'react-router-dom'
+import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
 import { useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
+import { useHistory, useRouteMatch } from 'react-router-dom'
 
 const CustomIconButton = styled(IconButton)(({ theme }) => ({
     color: `${theme.palette.primary.main} !important`,

@@ -7,9 +7,9 @@ import {
 } from 'react-admin';
 import { useMediaQuery, makeStyles  } from '@material-ui/core'
 import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg';
-import { ReactComponent as LeftAngleIcon } from '@approbado/lib/icons/LeftAngle.svg'
-import GridList from '@approbado/lib/components/GridList';
+import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
 import TriviaCard from './TriviaCard'
+import GridList from '@approbado/lib/components/GridList'
 import Drawer from '@material-ui/core/Drawer'
 import Temary from './temary'
 import SelectTrivia from './components/SelectTrivia'
