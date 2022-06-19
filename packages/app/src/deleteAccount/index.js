@@ -1,11 +1,10 @@
 import * as React from 'react'
-import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useMeda } from '@material-ui/core/styles';
 import { alpha } from '@material-ui/core/styles/colorManipulator';
 import { ReactComponent as DeleteIllustration } from '@approbado/lib/illustrations/delete.svg';
-import Box from '@material-ui/core/Box';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import Button from '@material-ui/core/Button';
 import { axios } from '@approbado/lib/providers'
@@ -35,7 +34,7 @@ const DeleteAccount = () => {
     };
 
     return (
-        <Grid container>
+        <Box className={classes.root}>
             <Typography variant="subtitle1">
                 Al realizar el proceso de eliminar tu cuenta de Approbado, tu nombre visible dentro
                 de la plataforma, tu @usuario y toda la información relacionada dentro de la plataforma
@@ -43,13 +42,13 @@ const DeleteAccount = () => {
             </Typography>
             <Typography variant="subtitle1">
                 Si solo quieres cambiar tu correo electrónico, no es necesario eliminar tu cuenta
-                cámbialo en tu <Link to="profile">perfil</Link>.
+                cámbialo en tu <Link to="/profile/about">perfil</Link>.
             </Typography>
             <Typography variant="subtitle1">
                 Para usar tu usuario u otra dirección de correo electrónico en otra cuenta de approbado,
-                <Link to="profile">cámbialos</Link> antes de eliminar esta cuenta.
+                <Link to="/profile/about">cámbialos</Link> antes de eliminar esta cuenta.
             </Typography>
-            <Grid item xs={12}>
+            <Box>
                 <Button
                     onClick={handleDialog}
                     className={classes.deleteButton}
@@ -61,7 +60,7 @@ const DeleteAccount = () => {
                         {'Eliminar cuenta'}
                     </Typography>
                 </Button>
-            </Grid>
+            </Box>
             <Confirm
                 isOpen={open}
                 loading={loading}
@@ -81,7 +80,7 @@ const DeleteAccount = () => {
                 onClose={handleDialog}
                 confirmColor='warning'
             />
-        </Grid>
+        </Box>
     )
 }
 
@@ -100,6 +99,21 @@ const useStyles = makeStyles(
                 },
             },
         },
+        root: {
+            width: '100%',
+            '& > *': {
+                marginBottom: '1rem'
+            },
+            [theme.breakpoints.up('md')]: {
+                width: '50%'
+            },
+            [theme.breakpoints.up('sm')]: {
+                width: '80%'
+            },
+            [theme.breakpoints.up('xs')]: {
+                width: '90%'
+            }
+        }
     }),
     { name: 'RaDeleteWithConfirmButton' }
 );

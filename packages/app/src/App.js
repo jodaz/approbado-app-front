@@ -9,6 +9,7 @@ import GameLayout from './layouts/Game'
 import ChatLayout from './layouts/Chat'
 import DashboardLayout from './layouts/Dashboard'
 import ForumLayout from './layouts/Forum'
+import SettingsLayout from './layouts/Settings'
 
 // Views
 import NotificationsView from './notifications'
@@ -24,7 +25,6 @@ import UserRanking from './ranking'
 import CompletedGames from './completedGames'
 import ScheduleCreate from './schedule/ScheduleCreate'
 import Authenticate from '@approbado/lib/layouts/Authenticate'
-import Account from './account';
 import Profile from './profile';
 import ForumShow from '@approbado/lib/layouts/forums/ForumShow'
 import ForumEdit from '@approbado/lib/layouts/forums/ForumEdit'
@@ -32,12 +32,16 @@ import CommentShow from '@approbado/lib/layouts/comments/CommentShow'
 import SelectMessageAlert from './layouts/Chat/SelectMessageAlert'
 import Chatbox from './chatbox'
 import ForumList from '@approbado/lib/layouts/forums/ForumList';
-
+import PrivacySettings from './privacy';
+import DeleteAccount from './deleteAccount'
+import NotificationSettings from './notificationSettings'
+import UpdatePassword from '@approbado/lib/layouts/UpdatePassword'
+import ScheduleEdit from './schedule/ScheduleEdit';
+// Utils
 import { format } from "date-fns";
 import DateFnsUtils from '@date-io/date-fns';
 import esLocale from "date-fns/locale/es";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import ScheduleEdit from './schedule/ScheduleEdit';
 
 class LocalizedUtils extends DateFnsUtils {
     getDatePickerHeaderText(date) {
@@ -88,11 +92,30 @@ const App = () => (
             {/**
              * Account
              */}
+            <Redirect exact from='/settings' to='/settings/privacy' />
             <ProtectedRoute
                 exact
-                path="/account"
-                component={() => <Account />}
-                layout={DefaultLayout}
+                path="/settings/privacy"
+                component={() => <PrivacySettings />}
+                layout={SettingsLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/settings/notifications"
+                component={() => <NotificationSettings />}
+                layout={SettingsLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/settings/delete-account"
+                component={() => <DeleteAccount />}
+                layout={SettingsLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/settings/security"
+                component={() => <UpdatePassword />}
+                layout={SettingsLayout}
             />
             <ProtectedRoute
                 exact

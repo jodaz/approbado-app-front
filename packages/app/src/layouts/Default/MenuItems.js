@@ -62,7 +62,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
             exact
         />
         <MenuItemLink
-            to="/account"
+            to="/settings"
             primaryText='Configuraciones'
             leftIcon={<SettingsIcon />}
             onClick={onMenuClick}
