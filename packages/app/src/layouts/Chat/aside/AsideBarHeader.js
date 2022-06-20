@@ -3,19 +3,25 @@ import Box from '@material-ui/core/Box';
 import SearchIcon from '@approbado/lib/icons/SearchIcon'
 import TextField from '@material-ui/core/TextField'
 import SelectMessagesType from './components/SelectMessagesType'
+import ChatPreferencesMenu from './components/ChatPreferencesMenu'
 
 const AsideBarHeader = ({ onChange }) => (
     <Box sx={{
-        width: '100%',
         padding: '1rem 0.5rem',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        height: '6rem'
+        height: '6rem',
+        boxShadow: '0px 1px 0px rgba(0, 0, 0, 0.18)'
     }}>
-        <SelectMessagesType />
         <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
         }}>
+            <SelectMessagesType />
+            <ChatPreferencesMenu />
+        </Box>
+        <Box>
             <TextField
                 onChange={onChange}
                 InputProps={{
