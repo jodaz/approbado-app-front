@@ -8,22 +8,29 @@ import { useHistory } from 'react-router-dom'
 import { useChatDispatch, useChatState } from '@approbado/lib/hooks/useChat';
 import { axios } from '@approbado/lib/providers'
 import { makeStyles, alpha } from '@material-ui/core'
+import ChatMenu from './ChatMenu';
 
 const useStyles = makeStyles(theme => ({
     root: {
         height: '4rem',
         cursor: 'pointer',
         display: 'flex',
-        padding: '0 1rem',
+        padding: '0 0.5rem',
+        borderRadius: '6px',
         alignItems: 'center',
+        transition: '0.1s',
+        margin: '0.6rem 0.4rem',
         backgroundColor: props =>
             props.isSelected ? `${alpha('#8AAEE4', 0.24)}`
             : theme.palette.background.default,
+        '&:hover': {
+            backgroundColor: '#EAEAEA'
+        }
     },
     container: {
         display: 'flex',
         flexDirection: 'column',
-        width: '100%'
+        width: '75%'
     },
     names: {
         fontWeight: 700,
@@ -48,6 +55,7 @@ const UserMessageCard = ({ rootRef, index, data }) => {
     const classes = useStyles({
         isSelected: selected
     });
+    const [visible, setVisible] = React.useState(false);
 
     const fetchChat = React.useCallback(async () => {
         try {
@@ -79,8 +87,10 @@ const UserMessageCard = ({ rootRef, index, data }) => {
             className={classes.root}
             ref={rootRef}
             index={index}
+            onMouseEnter={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
         >
-            <Box sx={{ marginRight: '1rem' }}>
+            <Box sx={{ width: '10%', paddingRight: '1rem' }}>
                 {loading ? (
                     <Skeleton
                         animation="wave"
@@ -124,6 +134,9 @@ const UserMessageCard = ({ rootRef, index, data }) => {
                         12 minutos
                     </Box>
                 )}
+            </Box>
+            <Box>
+                {(visible) && <ChatMenu />}
             </Box>
         </Box>
     );

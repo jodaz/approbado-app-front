@@ -6,13 +6,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles, alpha } from '@material-ui/core/styles';
-import Button from '@approbado/lib/components/Button'
+import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box';
-import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
 import { axios } from '@approbado/lib/providers'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
+import { useNotify } from 'react-admin'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -43,6 +42,12 @@ const useStyles = makeStyles(theme => ({
         '&:hover': {
             backgroundColor: alpha(theme.palette.error.main, 0.9)
         }
+    },
+    menuItem: {
+        padding: '0.8rem 1rem',
+        '& :nth-child(1)': {
+            marginRight: '1rem'
+        }
     }
 }));
 
@@ -50,8 +55,8 @@ export default function({ onClick, id }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const ref = React.useRef(null);
-    const [deleteDialog, setDeleteDialog] = React.useState(false)
     const { unsetChat } = useChatDispatch();
+    const notify = useNotify();
 
     const handleClickOpen = e => {
         setOpen(true);
@@ -60,25 +65,17 @@ export default function({ onClick, id }) {
 
     const handleClose = e => {
         setOpen(false);
-        e.preventDefault();
         e.stopPropagation();
     };
-
-    const handleCloseDeleteDialog = e => {
-        setDeleteDialog(false)
-        e.preventDefault();
-        e.stopPropagation();
-        onClick();
-    }
 
     const handleDelete = React.useCallback(async () => {
         try {
             const { data } = await axios.delete(`/chats/${id}`)
 
             if (data) {
-                await setDeleteDialog(true)
+                notify('¡Chat eliminado!', 'success')
                 await unsetChat(data)
-                handleClose();
+                await handleClose();
             }
         } catch (error) {
             console.log(error)
@@ -87,11 +84,8 @@ export default function({ onClick, id }) {
 
     return (
         <>
-
-            <MenuItem onClick={handleClickOpen}>
-                <Box marginRight='0.5rem' display='flex'>
-                    <TrashIcon />
-                </Box>
+            <MenuItem ref={ref} onClick={handleClickOpen} className={classes.menuItem}>
+                <TrashIcon />
                 Eliminar chat
             </MenuItem>
             <Dialog open={open} onClose={handleClose}>
@@ -106,25 +100,25 @@ export default function({ onClick, id }) {
                 </DialogTitle>
                 <DialogContent className={classes.content}>
                     <Box width='20rem' display='flex' justifyContent="center" flexDirection='column'>
-                        <NoContent
-                            icon={<QuizIllustration />}
-                            title={
-                                <Box textAlign='center'>
-                                    <Box sx={{ fontWeight: 600 }}>
-                                        ¿Quieres eliminar esta trivia?
-                                    </Box>
-                                    <Box sx={{ fontWeight: 400 }}>
-                                        Si eliminas tu trivia, afectará a todos los participantes involucrados
-¿Quieres continuar?
-                                    </Box>
-                                </Box>
-                            }
-                        />
+                        <Box sx={{
+                            width: '100%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            minHeight: 'inherit'
+                        }}>
+                            <Box sx={{ fontWeight: 600 }}>
+                                ¿Estás seguro que deseas eliminar este chat?
+                            </Box>
+                            <Box sx={{ fontWeight: 400 }}>
+                                Si eliminas este chat, ya no podrás acceder a los mensajes.
+                            </Box>
+                        </Box>
                         <Box sx={{
                             display: 'flex',
                             justifyContent: 'space-between',
-                            flexDirection: 'column',
-                            height: '5.5rem',
+                            height: '2rem',
                             padding: '1rem 0',
                             width: '100%'
                         }}>
@@ -139,50 +133,6 @@ export default function({ onClick, id }) {
                                 onClick={handleDelete}
                             >
                                 Sí, quiero continuar
-                            </Button>
-                        </Box>
-                    </Box>
-                </DialogContent>
-            </Dialog>
-
-            <Dialog open={deleteDialog} onClose={handleCloseDeleteDialog}>
-                <DialogTitle className={classes.title}>
-                    <IconButton
-                        aria-label="close"
-                        onClick={handleCloseDeleteDialog}
-                        unresponsive
-                    >
-                        <CloseIcon />
-                    </IconButton>
-                </DialogTitle>
-                <DialogContent className={classes.content}>
-                    <Box
-                        width='20rem'
-                        display='flex'
-                        justifyContent="center"
-                        flexDirection='column'
-                    >
-                        <NoContent
-                            icon={<QuizIllustration />}
-                            title={
-                                <Box textAlign='center'>
-                                    <Box sx={{ fontWeight: 600 }}>
-                                        La trivia ha sido eliminada
-                                    </Box>
-                                </Box>
-                            }
-                        />
-                        <Box sx={{
-                            display: 'flex',
-                            padding: '1rem 0',
-                            justifyContent: 'center',
-                            width: '100%'
-                        }}>
-                            <Button
-                                onClick={handleCloseDeleteDialog}
-                                className={classes.cancelButton}
-                            >
-                                De acuerdo.
                             </Button>
                         </Box>
                     </Box>

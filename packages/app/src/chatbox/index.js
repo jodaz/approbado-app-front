@@ -9,7 +9,7 @@ import { axios } from '@approbado/lib/providers'
 
 const Chatbox = () => {
     const { chat_id } = useParams();
-    const { status, data } = useChatState();
+    const { status } = useChatState();
     const { setChat } = useChatDispatch();
 
     const fetchChat = React.useCallback(async () => {

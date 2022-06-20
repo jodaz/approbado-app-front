@@ -14,10 +14,9 @@ import RightArrowIcon from '@approbado/lib/icons/RightArrowIcon';
 import { NavLink } from 'react-router-dom';
 import { useChatState } from '@approbado/lib/hooks/useChat';
 import Divider from '@material-ui/core/Divider';
-import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import DeleteChat from './DeleteChat';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
     },
@@ -41,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function ChatboxMenu() {
+export default function ChatMenu() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);

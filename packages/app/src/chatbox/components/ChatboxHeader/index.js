@@ -6,7 +6,7 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import configs from '@approbado/lib/configs';
 import BookmarkInput from './BookmarkInput'
 import SearchInput from './SearchInput'
-import ChatboxMenu from './ChatboxMenu'
+import ChatMenu from '../../../layouts/Chat/aside/components/ChatMenu'
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -76,7 +76,7 @@ const ChatboxHeader = () => {
             <Box className={classes.buttons}>
                 <SearchInput />
                 <BookmarkInput />
-                <ChatboxMenu />
+                <ChatMenu />
             </Box>
         </Box>
     );
