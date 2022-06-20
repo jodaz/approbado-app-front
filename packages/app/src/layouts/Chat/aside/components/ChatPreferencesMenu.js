@@ -11,17 +11,19 @@ import SettingsIcon from '@approbado/lib/icons/SettingsIcon'
 import PreferenceIcon from '@approbado/lib/icons/PreferenceIcon';
 import NewChatIcon from '@approbado/lib/icons/NewChatIcon';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
-    },
-    paper: {
-        marginRight: theme.spacing(2)
     },
     popper: {
         zIndex: 1000
     },
+    paper: {
+        boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.12)',
+        borderRadius: '8px !important'
+    },
     menuItem: {
+        padding: '0.8rem 1rem',
         '& :nth-child(1)': {
             marginRight: '1rem'
         }
@@ -91,6 +93,7 @@ export default function ChatPreferencesMenu() {
                     role={undefined}
                     transition
                     disablePortal
+                    placement='bottom-start'
                 >
                     {({ TransitionProps, placement }) => (
                         <Grow

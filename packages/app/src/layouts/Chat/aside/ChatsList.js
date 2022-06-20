@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import UserMessageCard from './UserMessageCard'
+import UserMessageCard from './components/UserMessageCard'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 import Spinner from '@approbado/lib/components/Spinner'
 
@@ -11,7 +11,8 @@ const ChatsList = ({ total, items, loading, error, lastItemRef }) => {
             sx={{
                 width: 'inherit',
                 overflowY: 'auto',
-                height: 'calc(100vh - 9rem)',
+                height: 'inherit',
+                overflowX: 'hidden',
                 scrollbarWidth: 10,
                 scrollbarColor: '#6D6D6D',
                 "&::-webkit-scrollbar": {
@@ -27,6 +28,13 @@ const ChatsList = ({ total, items, loading, error, lastItemRef }) => {
                 }
             }}
         >
+            {/* <UserMessageCard />
+            <UserMessageCard />
+            <UserMessageCard />
+            <UserMessageCard />
+            <UserMessageCard />
+            <UserMessageCard />
+            <UserMessageCard /> */}
             {total ? items.map((item, index) => {
                 if (items.length === index + 1) {
                     return (
@@ -46,16 +54,18 @@ const ChatsList = ({ total, items, loading, error, lastItemRef }) => {
                     </ErrorMessage>
                 </Box>
             )}
-            <Box sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                width: '100%',
-                padding: '2rem 0'
-            }}>
-                {(loading) && <Spinner />}
+            {(loading || error) && (
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    width: '100%',
+                    padding: '2rem 0'
+                }}>
+                    {(loading) && <Spinner />}
 
-                {(error) && <ErrorMessage />}
-            </Box>
+                    {(error) && <ErrorMessage />}
+                </Box>
+            )}
         </Box>
     );
 }

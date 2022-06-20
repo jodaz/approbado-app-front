@@ -3,6 +3,7 @@ import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     root: {

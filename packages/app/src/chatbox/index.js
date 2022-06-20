@@ -1,9 +1,33 @@
+import * as React from 'react'
 import Box from '@material-ui/core/Box'
-import ChatboxHeader from './ChatboxHeader'
-import ChatboxInput from './ChatboxInput'
-import ChatboxMessages from './ChatboxMessages'
+import ChatboxHeader from './components/ChatboxHeader'
+import ChatboxInput from './components/ChatboxInput'
+import ChatboxMessages from './components/ChatboxMessages'
+import { useParams } from 'react-router-dom'
+import { useChatState, useChatDispatch } from '@approbado/lib/hooks/useChat'
+import { axios } from '@approbado/lib/providers'
 
 const Chatbox = () => {
+    const { chat_id } = useParams();
+    const { status, data } = useChatState();
+    const { setChat } = useChatDispatch();
+
+    const fetchChat = React.useCallback(async () => {
+        try {
+            const res = await axios.get(`/chats/${chat_id}`)
+
+            setChat(res.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }, [chat_id])
+
+    React.useState(() => {
+        if (!status) {
+            fetchChat();
+        }
+    }, [status, chat_id])
+
     return (
         <Box sx={{
             display: 'flex',

@@ -2,7 +2,7 @@ import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import MenuList from '@material-ui/core/MenuList';
-import { ReactComponent as MoreMenuIcon } from '@approbado/lib/icons/MoreMenu.svg'
+import MoreMenuIcon from '@approbado/lib/icons/MoreMenuIcon'
 import Menu from "@material-ui/core/Menu";
 
 const OptionsCardMenu = ({ children, icon }) => {

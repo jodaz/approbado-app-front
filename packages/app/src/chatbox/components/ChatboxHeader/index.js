@@ -2,13 +2,13 @@ import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box';
 import { useChatState } from '@approbado/lib/hooks/useChat'
 import Skeleton from '@material-ui/lab/Skeleton';
-import { useHistory } from 'react-router-dom';
 import makeStyles from '@material-ui/styles/makeStyles'
 import configs from '@approbado/lib/configs';
 import BookmarkInput from './BookmarkInput'
 import SearchInput from './SearchInput'
+import ChatboxMenu from './ChatboxMenu'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
         width: '100%',
@@ -37,9 +37,6 @@ const useStyles = makeStyles(theme => ({
 const ChatboxHeader = () => {
     const { status, data } = useChatState();
     const classes = useStyles();
-    const history = useHistory();
-
-    const handleClick = () => history.push(`/chats/${data.id}`)
 
     return (
         <Box
@@ -79,6 +76,7 @@ const ChatboxHeader = () => {
             <Box className={classes.buttons}>
                 <SearchInput />
                 <BookmarkInput />
+                <ChatboxMenu />
             </Box>
         </Box>
     );

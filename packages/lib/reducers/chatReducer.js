@@ -2,6 +2,7 @@ import { UNSET_CHAT, SET_CHAT } from '../actions';
 
 const initialState = {
     status: false,
+    chats: [],
     data: {}
 }
 
@@ -12,7 +13,7 @@ const chatReducer = (
     switch (action.type) {
         case SET_CHAT:
             return {
-                status: !previousState.status,
+                status: true,
                 data: action.payload
             }
         case UNSET_CHAT:

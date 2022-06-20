@@ -1,19 +1,24 @@
+import * as React from 'react'
 import Avatar from '@material-ui/core/Avatar'
-import makeStyles from '@material-ui/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import Dot from '@approbado/lib/components/Dot'
 import Skeleton from "@material-ui/lab/Skeleton";
 import configs from '@approbado/lib/configs'
 import { useHistory } from 'react-router-dom'
-import { useChatDispatch } from '@approbado/lib/hooks/useChat';
+import { useChatDispatch, useChatState } from '@approbado/lib/hooks/useChat';
+import { axios } from '@approbado/lib/providers'
+import { makeStyles, alpha } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
     root: {
-        width: '100%',
         height: '4rem',
         cursor: 'pointer',
         display: 'flex',
-        padding: '1rem 0'
+        padding: '0 1rem',
+        alignItems: 'center',
+        backgroundColor: props =>
+            props.isSelected ? `${alpha('#8AAEE4', 0.24)}`
+            : theme.palette.background.default,
     },
     container: {
         display: 'flex',
@@ -35,15 +40,38 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UserMessageCard = ({ rootRef, index, data }) => {
-    const classes = useStyles();
     const loading = data == null;
     const history = useHistory();
+    const { data: selectedChat, status } = useChatState();
     const { setChat } = useChatDispatch();
+    const [selected, setSelected] = React.useState(false);
+    const classes = useStyles({
+        isSelected: selected
+    });
+
+    const fetchChat = React.useCallback(async () => {
+        try {
+            const res = await axios.get(`/chats/${data.id}`)
+
+            setChat(res.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }, [data])
 
     const handleClick = () => {
         history.push(`/chats/${data.id}`)
-        setChat(data)
+        fetchChat()
     }
+
+    React.useEffect(() => {
+        if (status && !loading) {
+            console.log(loading, data)
+            if (selectedChat.id == data.id) {
+                setSelected(true)
+            }
+        }
+    }, [status, selectedChat, loading])
 
     return (
         <Box

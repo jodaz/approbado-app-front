@@ -156,7 +156,7 @@ const App = () => (
             />
             <ProtectedRoute
                 exact
-                path="/users/:id/show"
+                path="/users/:id"
                 component={() => <UserProfile />}
                 layout={DefaultLayout}
             />

@@ -11,8 +11,10 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             width: 300
         },
-        height: 'inherit',
-        boxShadow: '1px 0px 0px rgba(0, 0, 0, 0.24)'
+        height: '100%',
+        boxShadow: '1px 0px 0px rgba(0, 0, 0, 0.24)',
+        display: 'flex',
+        flexDirection: 'column'
     }
 }))
 
