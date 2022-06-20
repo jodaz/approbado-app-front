@@ -46,97 +46,103 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const UserMessageCard = ({ rootRef, index, data }) => {
+const UserMessageCard = ({
+    rootRef,
+    data,
+    index
+}) => {
     const loading = data == null;
     const history = useHistory();
-    const { data: selectedChat, status } = useChatState();
-    const { setChat } = useChatDispatch();
-    const [selected, setSelected] = React.useState(false);
+    const { selected } = useChatState();
+    const { setChat, setChatID } = useChatDispatch();
     const classes = useStyles({
         isSelected: selected
     });
     const [visible, setVisible] = React.useState(false);
+    const anchorRef = React.useRef(null)
 
-    const fetchChat = React.useCallback(async () => {
+    const fetchChat = async (id) => {
         try {
-            const res = await axios.get(`/chats/${data.id}`)
+            const res = await axios.get(`/chats/${id}`)
 
-            setChat(res.data);
+            if (res.status >= 200 || res.status < 300) {
+                setChat(res.data);
+                history.push(`/chats/${data.id}`)
+            }
         } catch (error) {
             console.log(error)
         }
-    }, [data])
-
-    const handleClick = () => {
-        history.push(`/chats/${data.id}`)
-        fetchChat()
     }
 
-    React.useEffect(() => {
-        if (status && !loading) {
-            console.log(loading, data)
-            if (selectedChat.id == data.id) {
-                setSelected(true)
-            }
+    const handleClick = async (e) => {
+        if (!selected && anchorRef.current && anchorRef.current.contains(e.target)) {
+            setChatID(data.id)
+            await fetchChat(data.id)
         }
-    }, [status, selectedChat, loading])
+        e.preventDefault();
+    };
 
     return (
         <Box
-            onClick={handleClick}
-            className={classes.root}
             ref={rootRef}
-            index={index}
-            onMouseEnter={() => setVisible(true)}
-            onMouseLeave={() => setVisible(false)}
+            key={index}
+            component='div'
         >
-            <Box sx={{ width: '10%', paddingRight: '1rem' }}>
-                {loading ? (
-                    <Skeleton
-                        animation="wave"
-                        variant="circle"
-                        width={40}
-                        height={40}
-                    />
-                ) : (
-                    <Box className={classes.names}>
-                        <Avatar src={`${configs.SOURCE}/${data.participants[0].picture}`} />
-                    </Box>
-                )}
-            </Box>
-            <Box className={classes.container}>
-                {loading ? (
-                    <Skeleton
-                        animation="wave"
-                        height={10}
-                        width="80%"
-                        style={{ marginBottom: 6 }}
-                    />
-                ) : (
-                    <Box className={classes.names}>
-                        {data.is_private
-                            ? data.participants[0]['names']
-                            : data.name
-                        }
-                    </Box>
-                )}
-                {loading ? (
-                    <Skeleton
-                        animation="wave"
-                        height={10}
-                        width="40%"
-                        style={{ marginBottom: 6 }}
-                    />
-                ) : (
-                    <Box className={classes.message}>
-                        Último mensaje
-                        <Dot />
-                        12 minutos
-                    </Box>
-                )}
-            </Box>
-            <Box>
-                {(visible) && <ChatMenu />}
+            <Box
+                onClick={handleClick}
+                className={classes.root}
+                onMouseEnter={() => setVisible(true)}
+                onMouseLeave={() => setVisible(false)}
+                ref={anchorRef}
+            >
+                <Box sx={{ width: '10%', paddingRight: '1rem' }}>
+                    {loading ? (
+                        <Skeleton
+                            animation="wave"
+                            variant="circle"
+                            width={40}
+                            height={40}
+                        />
+                    ) : (
+                        <Box className={classes.names}>
+                            <Avatar src={`${configs.SOURCE}/${data.participants[0].picture}`} />
+                        </Box>
+                    )}
+                </Box>
+                <Box className={classes.container}>
+                    {loading ? (
+                        <Skeleton
+                            animation="wave"
+                            height={10}
+                            width="80%"
+                            style={{ marginBottom: 6 }}
+                        />
+                    ) : (
+                        <Box className={classes.names}>
+                            {data.is_private
+                                ? data.participants[0]['names']
+                                : data.name
+                            }
+                        </Box>
+                    )}
+                    {loading ? (
+                        <Skeleton
+                            animation="wave"
+                            height={10}
+                            width="40%"
+                            style={{ marginBottom: 6 }}
+                        />
+                    ) : (
+                        <Box className={classes.message}>
+                            Último mensaje
+                            <Dot />
+                            12 minutos
+                        </Box>
+                    )}
+                </Box>
+                <Box>
+                    {(visible) && <ChatMenu chat={data} />}
+                </Box>
             </Box>
         </Box>
     );

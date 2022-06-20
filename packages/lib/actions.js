@@ -29,10 +29,12 @@ export const CLEAR_NOTIFICATIONS = 'CLEAR_NOTIFICATIONS';
 export const DELETE_NOTIFICATION = 'DELETE_NOTIFICATION';
 export const SET_ROOM = 'SET_ROOM';
 export const SET_SCHEDULE = 'SET_SCHEDULE';
-export const UNSET_CHAT = 'UNSET_CHAT';
-export const SET_CHAT = 'SET_CHAT';
+export const DELETE_CHAT = 'DELETE_CHAT';
+export const SET_CURRENT_CHAT = 'SET_CURRENT_CHAT';
 export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
+export const SET_CHATLIST = 'SET_CHATLIST';
+export const SET_CHAT_ID = 'SET_CHAT_ID';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,

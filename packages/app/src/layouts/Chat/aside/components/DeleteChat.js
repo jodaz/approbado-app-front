@@ -12,6 +12,7 @@ import { axios } from '@approbado/lib/providers'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 import { useNotify } from 'react-admin'
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -55,8 +56,9 @@ export default function({ onClick, id }) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const ref = React.useRef(null);
-    const { unsetChat } = useChatDispatch();
+    const { deleteChat } = useChatDispatch();
     const notify = useNotify();
+    const history = useHistory();
 
     const handleClickOpen = e => {
         setOpen(true);
@@ -73,8 +75,9 @@ export default function({ onClick, id }) {
             const { data } = await axios.delete(`/chats/${id}`)
 
             if (data) {
+                await history.push('/chats')
                 notify('¡Chat eliminado!', 'success')
-                await unsetChat(data)
+                await deleteChat(data)
                 await handleClose();
             }
         } catch (error) {

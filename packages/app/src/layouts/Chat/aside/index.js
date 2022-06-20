@@ -4,6 +4,7 @@ import AsideBarHeader from './AsideBarHeader';
 import useFetch from '@approbado/lib/hooks/useFetch'
 import ChatsList from './ChatsList';
 import makeStyles from '@material-ui/styles/makeStyles';
+import { useChatDispatch, useChatState } from '@approbado/lib/hooks/useChat';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -30,15 +31,15 @@ const Aside = () => {
         loading,
         error,
         data,
-        hasMore,
-        total
+        hasMore
     } = useFetch('/chats', {
         perPage: perPage,
         page: 1,
         filter: filter
     })
-    const [items, setItems] = React.useState([])
     const observer = React.useRef()
+    const { chats, total } = useChatState();
+    const { setChatlist } = useChatDispatch();
 
     const handleChange = e => {
         if (e.currentTarget.value) {
@@ -55,7 +56,7 @@ const Aside = () => {
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && hasMore) {
-                setItems(prevItems => {
+                setChatlist(prevItems => {
                     return [...prevItems, ...generateNullData(results)]
                 })
                 setPerPage(prevPerPage => prevPerPage + results)
@@ -66,16 +67,16 @@ const Aside = () => {
 
     React.useEffect(() => {
         if (data.length) {
-            setItems(data)
+            setChatlist(data)
         }
 
         if (data.length == 0 && !loading) {
-            setItems([])
+            setChatlist([])
         }
     }, [data, loading])
 
     React.useEffect(() => {
-        setItems(generateNullData(results))
+        setChatlist(generateNullData(results))
     }, [])
 
     return (
@@ -85,7 +86,7 @@ const Aside = () => {
                 total={total}
                 error={error}
                 loading={loading}
-                items={items}
+                items={chats}
                 lastItemRef={lastItemRef}
             />
         </Box>

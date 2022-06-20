@@ -9,24 +9,25 @@ import { axios } from '@approbado/lib/providers'
 
 const Chatbox = () => {
     const { chat_id } = useParams();
-    const { status } = useChatState();
-    const { setChat } = useChatDispatch();
+    const { isChatSelected } = useChatState();
+    const { setChat, setChatID } = useChatDispatch();
 
     const fetchChat = React.useCallback(async () => {
         try {
             const res = await axios.get(`/chats/${chat_id}`)
 
             setChat(res.data);
+            setChatID(res.data.id)
         } catch (error) {
             console.log(error)
         }
     }, [chat_id])
 
     React.useState(() => {
-        if (!status) {
+        if (!isChatSelected) {
             fetchChat();
         }
-    }, [status, chat_id])
+    }, [isChatSelected, chat_id])
 
     return (
         <Box sx={{

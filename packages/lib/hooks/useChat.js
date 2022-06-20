@@ -1,5 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { SET_CHAT, UNSET_CHAT } from '../actions';
+import {
+    SET_CHATLIST,
+    SET_CURRENT_CHAT,
+    DELETE_CHAT,
+    SET_CHAT_ID
+} from '../actions';
 
 export const useChatState = () => {
     const store = useSelector(state => state);
@@ -12,11 +17,20 @@ export const useChatDispatch = () => {
 
     return {
         setChat: data => dispatch({
-            type: SET_CHAT,
+            type: SET_CURRENT_CHAT,
             payload: data
         }),
-        unsetChat: () => dispatch({
-            type: UNSET_CHAT
+        setChatlist: data => dispatch({
+            type: SET_CHATLIST,
+            payload: data
+        }),
+        deleteChat: model => dispatch({
+            type: DELETE_CHAT,
+            payload: model
+        }),
+        setChatID: id => dispatch({
+            type: SET_CHAT_ID,
+            payload: id
         })
     }
 }

@@ -28,20 +28,22 @@ const ChatsList = ({ total, items, loading, error, lastItemRef }) => {
                 }
             }}
         >
-            {/* <UserMessageCard />
-            <UserMessageCard />
-            <UserMessageCard />
-            <UserMessageCard />
-            <UserMessageCard />
-            <UserMessageCard />
-            <UserMessageCard /> */}
             {total ? items.map((item, index) => {
                 if (items.length === index + 1) {
                     return (
-                        <UserMessageCard data={item} rootRef={lastItemRef} />
+                        <UserMessageCard
+                            data={item}
+                            index={index}
+                            rootRef={lastItemRef}
+                        />
                     );
                 } else {
-                    return <UserMessageCard index={index} data={item} />
+                    return (
+                        <UserMessageCard
+                            index={index}
+                            data={item}
+                        />
+                    )
                 }
             }) : (
                 <Box sx={{

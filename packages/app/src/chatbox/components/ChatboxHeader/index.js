@@ -35,15 +35,13 @@ const useStyles = makeStyles(() => ({
 }))
 
 const ChatboxHeader = () => {
-    const { status, data } = useChatState();
+    const { isChatSelected, current } = useChatState();
     const classes = useStyles();
 
     return (
-        <Box
-            className={classes.root}
-        >
+        <Box className={classes.root}>
             <Box sx={{ marginRight: '1rem' }}>
-                {!status ? (
+                {!isChatSelected ? (
                     <Skeleton
                         animation="wave"
                         variant="circle"
@@ -52,12 +50,12 @@ const ChatboxHeader = () => {
                     />
                 ) : (
                     <Box className={classes.names}>
-                        <Avatar src={`${configs.SOURCE}/${data.participants[0].picture}`} />
+                        <Avatar src={`${configs.SOURCE}/${current.participants[0].picture}`} />
                     </Box>
                 )}
             </Box>
             <Box className={classes.container}>
-                {!status ? (
+                {!isChatSelected ? (
                     <Skeleton
                         animation="wave"
                         height={10}
@@ -66,9 +64,9 @@ const ChatboxHeader = () => {
                     />
                 ) : (
                     <Box className={classes.names}>
-                        {data.is_private
-                            ? data.participants[0]['names']
-                            : data.name
+                        {current.is_private
+                            ? current.participants[0]['names']
+                            : current.name
                         }
                     </Box>
                 )}
@@ -76,7 +74,7 @@ const ChatboxHeader = () => {
             <Box className={classes.buttons}>
                 <SearchInput />
                 <BookmarkInput />
-                <ChatMenu />
+                {isChatSelected && <ChatMenu  chat={current} />}
             </Box>
         </Box>
     );
