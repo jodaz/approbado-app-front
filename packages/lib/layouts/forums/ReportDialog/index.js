@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNotify } from 'react-admin';
+import { useUiDispatch } from '@approbado/lib/hooks/useUI';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -47,7 +47,7 @@ export default function ReportDialog({ post_id }) {
     const [open, setOpen] = React.useState(false);
     const [reasonID, setReasonID] = React.useState(null);
     const [loading, setLoading] = React.useState(false)
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const handleListItemClick = (event, index) => {
         setReasonID(index);
@@ -71,7 +71,7 @@ export default function ReportDialog({ post_id }) {
             })
 
             if (data) {
-                notify('¡Ha reportado la publicación exitosamente!', 'success');
+                showNotification('¡Ha reportado la publicación exitosamente!');
                 refresh();
                 handleClose();
             }

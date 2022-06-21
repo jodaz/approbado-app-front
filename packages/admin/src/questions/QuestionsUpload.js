@@ -1,7 +1,5 @@
 import * as React from 'react'
-import {
-    useNotify
-} from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { fileProvider } from '@approbado/lib/providers'
 import { useFileProvider } from '@jodaz_/file-provider'
 import { useParams, useHistory } from 'react-router-dom'
@@ -28,7 +26,7 @@ const QuestionsUpload = () => {
     const { trivia_id, subtheme_id } = useParams()
     const [provider, { data: fileDataResponse, loading }] = useFileProvider(fileProvider);
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         const data = { trivia_id: trivia_id, subtheme_id: subtheme_id, ...values };
@@ -48,7 +46,7 @@ const QuestionsUpload = () => {
 
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
-            notify('¡Ha subido nuevas preguntas a la trivia!', 'success')
+            showNotification('¡Ha subido nuevas preguntas a la trivia!')
             history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/show`)
         }
     }, [fileDataResponse])

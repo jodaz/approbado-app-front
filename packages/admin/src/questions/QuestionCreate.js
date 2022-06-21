@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify, BooleanInput } from 'react-admin'
+import { BooleanInput } from 'react-admin'
 import { axios } from '@approbado/lib/providers'
 import { useParams, useHistory } from 'react-router-dom'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -18,6 +18,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import useFetch from '@approbado/lib/hooks/useFetch'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 
 const OPTIONS = [
     { id: '1', name: 'Respuesta correcta' },
@@ -94,7 +95,7 @@ const SelectLevelInput = () => {
 const QuestionCreate = () => {
     const { subtheme_id, trivia_id } = useParams()
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const initialFormState = { options: [{}] };
     const classes = useStyles();
 
@@ -103,7 +104,7 @@ const QuestionCreate = () => {
             const { data } = await axios.post('/questions', values)
 
             if (data) {
-                notify('¡Has creado una nueva pregunta!', 'success')
+                showNotification('¡Has creado una nueva pregunta!')
                 history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions`)
             }
         } catch (error) {

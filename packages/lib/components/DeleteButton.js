@@ -1,10 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as ActionDelete } from '@approbado/lib/icons/Trash.svg';
-import { useMutation, useNotify } from 'react-admin';
+import { useMutation } from 'react-admin';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 
 const DeleteButton = (
     props
@@ -22,7 +23,7 @@ const DeleteButton = (
     } = props;
     const [mutate, { data, loading, loaded }] = useMutation();
     const [open, setOpen] = React.useState(false);
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const ref = React.useRef(null);
 
     const handleDelete = React.useCallback(async () => {
@@ -46,7 +47,7 @@ const DeleteButton = (
 
     React.useEffect(() => {
         if (loaded) {
-            notify(`Se ha eliminado el registro con éxito`, 'success')
+            showNotification(`Se ha eliminado el registro con éxito`)
 
             if (customAction) {
                 customAction();

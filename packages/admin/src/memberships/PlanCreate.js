@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { validatePlan } from './plansValidations';
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -16,7 +16,7 @@ const ACCESS_TYPES = [
 
 const PlanCreate = () => {
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         try {
@@ -24,7 +24,7 @@ const PlanCreate = () => {
 
             if (data) {
                 history.push(`/memberships/plans`)
-                notify(`¡Ha registrado el plan "${data.name}"!`, 'success')
+                showNotification(`¡Ha registrado el plan "${data.name}"!`)
             }
         } catch (error) {
             if (error.response.data.errors) {

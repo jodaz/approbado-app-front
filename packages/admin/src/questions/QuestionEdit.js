@@ -2,7 +2,6 @@ import * as React from 'react'
 import {
     useMutation,
     SelectInput,
-    useNotify,
     useEditController,
     ReferenceInput,
     BooleanInput
@@ -22,6 +21,7 @@ import { makeStyles } from '@material-ui/core'
 import { unmarkOptions, validate } from './questionsFormUtils'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '@approbado/lib/components/TextInput'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 
 const OPTIONS = [
     { id: '1', name: 'Respuesta correcta' },
@@ -54,7 +54,7 @@ const QuestionEdit = props => {
     });
     const [mutate, { data, loaded }] = useMutation();
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const classes = useStyles();
 
     const save = React.useCallback(async (values) => {
@@ -75,7 +75,7 @@ const QuestionEdit = props => {
 
     React.useEffect(() => {
         if (loaded) {
-            notify(`¡Actualizó la pregunta "${data.description}" exitosamente!`, 'success')
+            showNotification(`¡Actualizó la pregunta "${data.description}" exitosamente!`)
             history.push(`/trivias/${subtheme_id}/subthemes/${data.subtheme_id}/questions`)
         }
     }, [loaded])

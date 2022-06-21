@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { axios } from '@approbado/lib/providers'
@@ -24,7 +24,7 @@ const validate = values => {
 const UpdateProfile = () => {
     const [record, setRecord] = React.useState({})
     const [loading, setLoading] = React.useState(false)
-    const notify = useNotify()
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         setLoading(true)
@@ -32,7 +32,7 @@ const UpdateProfile = () => {
         try {
             await axios.post('profile', values);
 
-            notify('Hemos actualizado tu perfil con éxito.', 'success')
+            showNotification('Hemos actualizado tu perfil con éxito.')
             setLoading(false)
         } catch (error) {
             setLoading(false)

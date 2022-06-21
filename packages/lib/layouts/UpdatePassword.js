@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import PasswordInput from '@approbado/lib/components/PasswordInput'
@@ -28,12 +28,12 @@ const validate = values => {
 };
 
 const UpdatePassword = () => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         try {
             await axios.post('update-password', values);
-            notify('Hemos cambiado tu contraseña con éxito', 'success')
+            showNotification('Hemos cambiado tu contraseña con éxito')
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;

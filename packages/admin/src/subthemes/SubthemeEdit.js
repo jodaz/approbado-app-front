@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { useHistory } from 'react-router-dom'
 import TextInput from '@approbado/lib/components/TextInput'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -9,7 +9,7 @@ import validate from './subthemeValidations'
 import SelectAwardInput from './SelectAwardInput'
 
 const SubthemeEdit = ({ record }) => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -18,7 +18,7 @@ const SubthemeEdit = ({ record }) => {
 
             if (data) {
                 history.push(`/trivias/${record.trivia_id}/subthemes/${data.id}`)
-                notify(`¡Ha actualizado el subtema "${data.name}"!`, 'success')
+                showNotification(`¡Ha actualizado el subtema "${data.name}"!`)
             }
         } catch (error) {
             if (error.response.data.errors) {

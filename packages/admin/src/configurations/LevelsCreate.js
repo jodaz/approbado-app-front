@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { validateLevel } from './configurationsValidations';
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -9,7 +9,7 @@ import { axios } from '@approbado/lib/providers'
 import { useHistory } from 'react-router-dom'
 
 const LevelCreate = () => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -18,7 +18,7 @@ const LevelCreate = () => {
 
             if (data) {
                 history.push(`/configurations/levels`)
-                notify(`¡Ha registrado el nivel "${data.name}"!`, 'success')
+                showNotification(`¡Ha registrado el nivel "${data.name}"!`)
             }
         } catch (error) {
             if (error.response.data.errors) {

@@ -1,8 +1,5 @@
 import * as React from 'react'
-import {
-    BooleanInput,
-    useNotify
-} from 'react-admin'
+import { BooleanInput } from 'react-admin'
 import { Grid } from '@material-ui/core'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -11,6 +8,7 @@ import SelectInput from '@approbado/lib/components/SelectInput'
 import { axios } from '@approbado/lib/providers'
 import { useHistory } from 'react-router-dom'
 import CustomPasswordInput from './CustomPasswordInput'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 
 const ACCESS_TYPES = [
     { id: 'Administrador', name: 'Administrador' },
@@ -35,7 +33,7 @@ const validate = (values) => {
 };
 
 const UserCreate = () => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -44,7 +42,7 @@ const UserCreate = () => {
 
             if (data) {
                 history.push('/users?tab=admins')
-                notify('Se ha completado el registro con éxito', 'success');
+                showNotification('Se ha completado el registro con éxito');
             }
         } catch (error) {
             if (error.response.data.errors) {

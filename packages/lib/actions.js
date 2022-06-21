@@ -35,6 +35,8 @@ export const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 export const SET_CHATLIST = 'SET_CHATLIST';
 export const SET_CHAT_ID = 'SET_CHAT_ID';
+export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
+export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,

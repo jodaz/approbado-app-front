@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { fileProvider } from '@approbado/lib/providers'
 import { useFileProvider } from '@jodaz_/file-provider'
 import { useParams, useHistory } from 'react-router-dom'
@@ -15,7 +15,7 @@ const FileCreate = () => {
     const { trivia_id } = useParams()
     const [provider, { data: fileDataResponse, loading }] = useFileProvider(fileProvider);
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         const data = { trivia_id: trivia_id, ...values };
@@ -35,7 +35,7 @@ const FileCreate = () => {
 
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
-            notify(`¡Ha registrado el archivo "${fileDataResponse.title}" exitosamente!`, 'success')
+            showNotification(`¡Ha registrado el archivo "${fileDataResponse.title}" exitosamente!`)
             history.push(`/trivias/${trivia_id}/files`)
         }
     }, [fileDataResponse])

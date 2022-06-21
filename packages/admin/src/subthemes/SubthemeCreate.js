@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { useHistory } from 'react-router-dom'
 import TextInput from '@approbado/lib/components/TextInput'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom'
 
 const SubthemeCreate = () => {
     const { trivia_id } = useParams()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -23,7 +23,7 @@ const SubthemeCreate = () => {
 
             if (data) {
                 history.push(`/trivias/${data.trivia_id}/subthemes/${data.id}`)
-                notify(`¡Ha creado el subtema "${data.name}"!`, 'success')
+                showNotification(`¡Ha creado el subtema "${data.name}"!`)
             }
         } catch (error) {
             if (error.response.data.errors) {

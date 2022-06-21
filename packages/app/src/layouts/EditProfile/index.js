@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { makeStyles } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
 import ProfileSidebar from '@approbado/lib/layouts/profile/ProfileSidebar'
@@ -44,7 +44,7 @@ const EditProfileLayout = ({ children }) => {
     const classes = useStyles();
     const [provider, { loading, data }] = useFileProvider(fileProvider);
     const { user, isAuth } = useUserState();
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const { fetchUser } = useUserDispatch();
 
     const handleSubmit = React.useCallback(async values => {
@@ -63,7 +63,7 @@ const EditProfileLayout = ({ children }) => {
 
     React.useEffect(() => {
         if (!isEmpty(data)) {
-            notify('¡Su perfil ha sido actualizado!', 'success')
+            showNotification('¡Su perfil ha sido actualizado!')
             fetchUser();
         }
     }, [data])

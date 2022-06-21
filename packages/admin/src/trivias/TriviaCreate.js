@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { axios } from '@approbado/lib/providers'
 import { useHistory } from 'react-router-dom'
 import BaseForm from '@approbado/lib/components/BaseForm'
@@ -16,7 +16,7 @@ const ACCESS_TYPES = [
 ]
 
 const TriviaCreate = () => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -25,7 +25,7 @@ const TriviaCreate = () => {
 
             if (data) {
                 history.push(`/trivias/${data.id}`)
-                notify(`¡Ha registrado la trivia "${data.name}"!`, 'success')
+                showNotification(`¡Ha registrado la trivia "${data.name}"!`)
             }
         } catch (error) {
             if (error.response.data.errors) {

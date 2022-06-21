@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { fileProvider } from '@approbado/lib/providers'
@@ -19,7 +19,7 @@ const ACCESS_TYPES = [
 ]
 
 const TriviaEdit = ({ record }) => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const [provider, { data, loading }] = useFileProvider(fileProvider);
 
     const save = React.useCallback(async values => {
@@ -42,7 +42,7 @@ const TriviaEdit = ({ record }) => {
 
     React.useEffect(() => {
         if (!isEmpty(data)) {
-            notify('Se ha completado la actualización con éxito', 'success')
+            showNotification('Se ha completado la actualización con éxito')
         }
     }, [data])
 

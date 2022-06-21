@@ -11,7 +11,7 @@ import { Field, Form } from 'react-final-form';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Box from '@material-ui/core/Box'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { useParams } from 'react-router-dom'
 import { axios } from '@approbado/lib/providers';
 
@@ -85,7 +85,7 @@ const CommentContainer = () => {
     const classes = useStyles({
         focused: focused
     });
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const { id } = useParams()
 
     const handleSubmit = React.useCallback(async (values) => {
@@ -96,7 +96,7 @@ const CommentContainer = () => {
             })
 
             if (data) {
-                notify('¡Ha publicado un nuevo comentario!', 'success');
+                showNotification('¡Ha publicado un nuevo comentario!');
                 unsetDialog();
                 fetchUser();
             }

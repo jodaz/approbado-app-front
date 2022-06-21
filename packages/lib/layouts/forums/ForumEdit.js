@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { useHistory, useParams } from 'react-router-dom'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -29,14 +29,14 @@ const ForumEdit = () => {
     const { id } = useParams();
     const [record, setRecord] = React.useState({})
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         try {
             const { data } = await axios.put(`forums/${record.id}`, values)
 
             if (data) {
-                notify('Se ha completado la actualización con éxito', 'success')
+                showNotification('Se ha completado la actualización con éxito')
                 history.push(`/forums/${record.id}/show`)
             }
         } catch (error) {
