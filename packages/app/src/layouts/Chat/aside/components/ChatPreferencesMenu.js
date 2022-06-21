@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SettingsIcon from '@approbado/lib/icons/SettingsIcon'
 import PreferenceIcon from '@approbado/lib/icons/PreferenceIcon';
 import NewChatIcon from '@approbado/lib/icons/NewChatIcon';
+import { NavLink } from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -29,17 +30,6 @@ const useStyles = makeStyles(() => ({
         }
     }
 }));
-
-const options = [
-    {
-        name: 'Preferencias',
-        icon: <PreferenceIcon />
-    },
-    {
-        name: 'Solicitud de mensajes',
-        icon: <NewChatIcon />
-    }
-];
 
 export default function ChatPreferencesMenu() {
     const classes = useStyles();
@@ -110,16 +100,22 @@ export default function ChatPreferencesMenu() {
                                         id="menu-list-grow"
                                         onKeyDown={handleListKeyDown}
                                     >
-                                        {options.map((option, index) => (
-                                            <MenuItem
-                                                onClick={handleClose}
-                                                key={index}
-                                                className={classes.menuItem}
-                                            >
-                                                {option.icon}
-                                                {option.name}
-                                            </MenuItem>
-                                        ))}
+                                        <MenuItem
+                                            onClick={handleClose}
+                                            className={classes.menuItem}
+                                            component={NavLink}
+                                            to='/settings/privacy'
+                                        >
+                                            <PreferenceIcon />
+                                            Preferencias
+                                        </MenuItem>
+                                        <MenuItem
+                                            onClick={handleClose}
+                                            className={classes.menuItem}
+                                        >
+                                            <NewChatIcon />
+                                            Solicitud de mensajes
+                                        </MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

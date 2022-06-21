@@ -37,7 +37,7 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const ChatMenu = ({ chat }) => {
+const ChatMenu = ({ chat = null }) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -75,7 +75,7 @@ const ChatMenu = ({ chat }) => {
     }, [open]);
 
     React.useEffect(() => {
-        if (chat.id) {
+        if (chat) {
             if (chat.is_private) {
                 setReceptor(chat.participants.find(participant => participant.id != user.id))
             } else {
@@ -84,7 +84,7 @@ const ChatMenu = ({ chat }) => {
                 ))
             }
         }
-    }, [chat.id])
+    }, [chat])
 
     return (
         <>
