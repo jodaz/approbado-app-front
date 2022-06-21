@@ -16,14 +16,10 @@ import { makeStyles } from '@material-ui/core'
 import { unmarkOptions, validate } from './questionsFormUtils'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '@approbado/lib/components/TextInput'
-import SelectInput from '@approbado/lib/components/SelectInput'
-import useFetch from '@approbado/lib/hooks/useFetch'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-
-const OPTIONS = [
-    { id: '1', name: 'Respuesta correcta' },
-    { id: '0', name: 'Respuesta incorrecta' }
-]
+import SelectLevelInput from './SelectQuestionLevelInput'
+import SelectFileInput from './SelectQuestionFileInput'
+import SelectAclaratoryInput from './SelectAclaratoryInput'
 
 const useStyles = makeStyles(theme => ({
     arrayRootField: {
@@ -43,55 +39,6 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const SelectFileInput = ({ trivia_id }) => {
-    const {
-        total,
-        data
-    } = useFetch('/files', {
-        filter: { trivia_id: trivia_id }
-    })
-
-    if (!total) return null;
-
-    return (
-        <InputContainer
-            sm='12'
-            md='6'
-            label='Archivo de referencia'
-        >
-            <SelectInput
-                name='file_id'
-                placeholder='Seleccione'
-                options={data}
-                property='title'
-            />
-        </InputContainer>
-    )
-}
-
-const SelectLevelInput = () => {
-    const {
-        total,
-        data
-    } = useFetch('/configurations/levels')
-
-    if (!total) return null;
-
-    return (
-        <InputContainer
-            sm='12'
-            md='6'
-            label='Nivel'
-        >
-            <SelectInput
-                name='level_id'
-                placeholder='Seleccione'
-                options={data}
-            />
-        </InputContainer>
-    )
-}
-
 const QuestionCreate = () => {
     const { subtheme_id, trivia_id } = useParams()
     const history = useHistory()
@@ -104,8 +51,8 @@ const QuestionCreate = () => {
             const { data } = await axios.post('/questions', values)
 
             if (data) {
-                showNotification('¡Has creado una nueva pregunta!')
                 history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions`)
+                showNotification('¡Has creado una nueva pregunta!')
             }
         } catch (error) {
             if (error.response.data.errors) {
@@ -207,14 +154,7 @@ const QuestionCreate = () => {
                                             {'Aclaratorias'}
                                         </Typography>
                                     </Box>
-                                    <InputContainer sm='12' md='6' label='Mostrar cuando'>
-                                        <SelectInput
-                                            name="explanation_type"
-                                            options={OPTIONS}
-                                            disabled={submitting}
-                                            fullWidth
-                                        />
-                                    </InputContainer>
+                                    <SelectAclaratoryInput disabled={submitting } />
                                     <InputContainer sm='12' md='6' label='Aclaratoria'>
                                         <TextInput
                                             name="explanation"
