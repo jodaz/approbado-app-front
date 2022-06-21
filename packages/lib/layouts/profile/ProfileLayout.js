@@ -3,9 +3,6 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core'
 import ProfileSidebar from './ProfileSidebar'
 import TabbedList from '@approbado/lib/components/TabbedList'
-import AboutMe from './AboutMe'
-import Certifications from './Certifications'
-import Publications from './Publications'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -20,25 +17,23 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const tags = user => ([
+const tags = id => ([
     {
         name: 'Sobre mí',
-        pathname: 'about',
-        component: <AboutMe {...user} />
+        pathname: `/users/${id}/about`
     },
     {
         name: 'Publicaciones',
-        pathname: 'publications',
-        component: <Publications {...user} />
+        pathname: `/users/${id}/publications`
     },
     {
         name: 'Certificaciones',
-        pathname: 'certifications',
-        component: <Certifications {...user} />
+        pathname: `/users/${id}/certifications`
     }
 ])
 
-const Profile = ({ data }) => {
+const Profile = ({ data, children }) => {
+    const { id } = data
     const classes = useStyles();
 
     return (
@@ -48,7 +43,14 @@ const Profile = ({ data }) => {
             </Grid>
             <span style={{ width: '4rem'}} />
             <Grid item md='8' sm='12'>
-                <TabbedList tags={tags(data)} />
+                <TabbedList tags={tags(id)} />
+                {
+                    React.Children.map(children, (child) =>
+                        React.cloneElement(child, {
+                            data: data
+                        })
+                    )
+                }
             </Grid>
         </Grid>
     );

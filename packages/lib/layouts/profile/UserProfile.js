@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import Spinner from '../../components/Spinner'
 import { axios } from '@approbado/lib/providers';
 
-const UserProfile = () => {
+const UserProfile = ({ children }) => {
     const { id } = useParams();
     const [record, setRecord] = React.useState({})
 
@@ -20,7 +20,11 @@ const UserProfile = () => {
 
     if (!Object.entries(record).length) return <Spinner />;
 
-    return <ProfileLayout data={record} />;
+    return (
+        <ProfileLayout data={record}>
+            {children}
+        </ProfileLayout>
+    );
 }
 
 export default UserProfile

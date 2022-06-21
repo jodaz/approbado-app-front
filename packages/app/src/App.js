@@ -40,6 +40,9 @@ import ScheduleEdit from './schedule/ScheduleEdit';
 import UserPlan from './userPlan';
 import SessionEdit from './sessionsEdit'
 import AboutForm from './aboutForm'
+import AboutMe from '@approbado/lib/layouts/profile/AboutMe'
+import Certifications from '@approbado/lib/layouts/profile/Certifications'
+import Publications from '@approbado/lib/layouts/profile/Publications'
 // Utils
 import { format } from "date-fns";
 import DateFnsUtils from '@date-io/date-fns';
@@ -156,63 +159,95 @@ const App = () => (
             />
             <ProtectedRoute
                 exact
-                path="/users/:id"
-                component={() => <UserProfile />}
+                path="/notifications"
+                component={() => <NotificationsView />}
+                layout={DefaultLayout}
+            />
+            {/**
+             * Users
+             */}
+            <Redirect exact from='/users/:id' to='/users/:id/about' />
+            <ProtectedRoute
+                exact
+                path="/users/:id/about"
+                component={() => (
+                    <UserProfile>
+                        <AboutMe />
+                    </UserProfile>
+                )}
                 layout={DefaultLayout}
             />
             <ProtectedRoute
                 exact
-                path="/notifications"
-                component={() => <NotificationsView />}
+                path="/users/:id/about"
+                component={() => (
+                    <UserProfile>
+                        <AboutMe />
+                    </UserProfile>
+                )}
+                layout={DefaultLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/users/:id/certifications"
+                component={() => (
+                    <UserProfile>
+                        <Certifications />
+                    </UserProfile>
+                )}
+                layout={DefaultLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/users/:id/publications"
+                component={() => (
+                    <UserProfile>
+                        <Publications />
+                    </UserProfile>
+                )}
                 layout={DefaultLayout}
             />
 
             {/**
              * Forum
              */}
-
-            <Switch>
-                {/**
-                 * Forums
-                 */}
-                <Redirect exact from='/forums' to='/forums/top' />
-                <ProtectedRoute
-                    exact
-                    path="/forums/top"
-                    component={() => <ForumList sort={{ field: 'comments', order: 'DESC' }} />}
-                    layout={ForumLayout}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/forums/new"
-                    component={() => <ForumList sort={{ field: 'created_at', order: 'DESC' }} />}
-                    layout={ForumLayout}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/forums/unanswered"
-                    component={() => <ForumList filter={{ unanswered: true }} />}
-                    layout={ForumLayout}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/forums/:id"
-                    component={() => <ForumShow  />}
-                    layout={DefaultLayout}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/forums/:id/edit"
-                    component={() => <ForumEdit />}
-                    layout={DefaultLayout}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/comments/:id"
-                    component={() => <CommentShow />}
-                    layout={DefaultLayout}
-                />
-            </Switch>
+            <Redirect exact from='/forums' to='/forums/top' />
+            <ProtectedRoute
+                exact
+                path="/forums/top"
+                component={() => <ForumList sort={{ field: 'comments', order: 'DESC' }} />}
+                layout={ForumLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/forums/new"
+                component={() => <ForumList sort={{ field: 'created_at', order: 'DESC' }} />}
+                layout={ForumLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/forums/unanswered"
+                component={() => <ForumList filter={{ unanswered: true }} />}
+                layout={ForumLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/forums/:id"
+                component={() => <ForumShow  />}
+                layout={DefaultLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/forums/:id/edit"
+                component={() => <ForumEdit />}
+                layout={DefaultLayout}
+            />
+            <ProtectedRoute
+                exact
+                path="/comments/:id"
+                component={() => <CommentShow />}
+                layout={DefaultLayout}
+            />
 
             {/**
              * Trivias
