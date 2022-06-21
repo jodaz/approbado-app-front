@@ -24,8 +24,8 @@ const LevelEdit = () => {
             setLoading(false)
 
             if (data) {
-                showNotification(`¡Ha editado el nivel "${data.name}!`);
                 history.push('/configurations?tab=levels')
+                showNotification(`¡Ha editado el nivel "${data.name}!`);
             }
         } catch (error) {
             setLoading(false)

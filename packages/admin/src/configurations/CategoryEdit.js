@@ -23,8 +23,8 @@ const CategoryEdit = () => {
             setLoading(false)
 
             if (data) {
-                showNotification(`¡Ha editado la categoría "${data.name}!`);
                 history.push('/configurations?tab=categories')
+                showNotification(`¡Ha editado la categoría "${data.name}!`);
             }
         } catch (error) {
             setLoading(false)

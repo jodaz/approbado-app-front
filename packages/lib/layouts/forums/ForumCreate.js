@@ -6,7 +6,6 @@ import InputContainer from '@approbado/lib/components/InputContainer'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import { useUserDispatch } from '@approbado/lib/hooks/useUserState'
 import TextInput from '@approbado/lib/components/TextInput'
 import { useHistory } from 'react-router-dom'
 import SelectCategoriesInput from './SelectCategoriesInput';
@@ -16,7 +15,6 @@ import { axios } from '@approbado/lib/providers'
 const ForumCreate = () => {
     const status = useDialogState('forums.create');
     const { unsetDialog } = useDialogDispatch('forums.create')
-    const { fetchUser } = useUserDispatch();
     const { showNotification } = useUiDispatch();
     const history = useHistory()
 
@@ -25,10 +23,9 @@ const ForumCreate = () => {
             const { data } = await axios.post('/forums', values)
 
             if (data) {
-                await showNotification('¡Ha realizado una publicación!');
                 history.push(`/forums/${data.id}`);
                 unsetDialog();
-                fetchUser();
+                await showNotification('¡Ha realizado una publicación!');
             }
         } catch (error) {
             console.log(error)

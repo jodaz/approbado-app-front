@@ -38,8 +38,8 @@ const FileEdit = () => {
 
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
-            showNotification(`¡Ha actualizado el archivo "${fileDataResponse.title}" exitosamente!`)
             history.push(`/trivias/${trivia_id}/files`)
+            showNotification(`¡Ha actualizado el archivo "${fileDataResponse.title}" exitosamente!`)
         }
     }, [fileDataResponse])
 

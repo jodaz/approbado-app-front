@@ -36,8 +36,8 @@ const AwardsCreate = () => {
 
     React.useEffect(() => {
         if (!isEmpty(data)) {
-            showNotification(`¡Ha registrado el premio "${data.title}" exitosamente!`)
             history.push(`/trivias/${trivia_id}/awards`)
+            showNotification(`¡Ha registrado el premio "${data.title}" exitosamente!`)
         }
     }, [data])
 

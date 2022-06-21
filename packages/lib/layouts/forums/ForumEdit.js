@@ -36,8 +36,8 @@ const ForumEdit = () => {
             const { data } = await axios.put(`forums/${record.id}`, values)
 
             if (data) {
-                showNotification('Se ha completado la actualización con éxito')
                 history.push(`/forums/${record.id}/show`)
+                showNotification('Se ha completado la actualización con éxito')
             }
         } catch (error) {
             if (error.response.data.errors) {

@@ -37,8 +37,8 @@ const AwardsEdit = () => {
 
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
-            showNotification(`¡Ha actualizado el premio "${fileDataResponse.title}" exitosamente!`)
             history.push(`/trivias/${trivia_id}/awards`)
+            showNotification(`¡Ha actualizado el premio "${fileDataResponse.title}" exitosamente!`)
         }
     }, [fileDataResponse])
 
