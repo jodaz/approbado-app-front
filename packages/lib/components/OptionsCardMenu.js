@@ -3,12 +3,37 @@ import IconButton from '@material-ui/core/IconButton';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import MenuList from '@material-ui/core/MenuList';
 import MoreMenuIcon from '@approbado/lib/icons/MoreMenuIcon'
-import Menu from "@material-ui/core/Menu";
+import { makeStyles } from '@material-ui/core/styles';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+
+const useStyles = makeStyles(() => ({
+    popper: {
+        zIndex: 1000
+    },
+    paper: {
+        boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.12)',
+        borderRadius: '8px !important'
+    },
+    menuList: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    menuItem: {
+        padding: '0.8rem 1rem',
+        display: 'flex',
+        alignItems: 'center'
+    }
+}));
 
 const OptionsCardMenu = ({ children, icon }) => {
     const arrayChildren = React.Children.toArray(children)
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const classes = useStyles();
 
     const handleToggle = event => {
         setOpen((prevOpen) => !prevOpen);
@@ -54,51 +79,39 @@ const OptionsCardMenu = ({ children, icon }) => {
             >
                 {React.cloneElement(icon, {})}
             </IconButton>
-            <Menu
+            <Popper
                 open={open}
+                className={classes.popper}
                 anchorEl={anchorRef.current}
-                PaperProps={{
-                    elevation: 0,
-                    sx: {
-                        overflow: 'visible',
-                        filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                        mt: 1.5,
-                        '& .MuiAvatar-root': {
-                            width: 32,
-                            height: 32,
-                            ml: -0.5,
-                            mr: 1,
-                        },
-                        '&:before': {
-                            content: '""',
-                            display: 'block',
-                            position: 'absolute',
-                            top: 0,
-                            right: 14,
-                            width: 10,
-                            height: 10,
-                            bgcolor: 'background.paper',
-                            transform: 'translateY(-50%) rotate(45deg)',
-                            zIndex: 0,
-                        },
-                    },
-                }}
+                role={undefined}
+                transition
+                disablePortal
+                placement='bottom-end'
             >
-                <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList
-                        autoFocusItem={open}
-                        id="composition-menu"
-                        aria-labelledby="composition-button"
-                        onKeyDown={handleListKeyDown}
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        style={{ transformOrigin: 'right', zIndex: 1000 }}
                     >
-                        {React.Children.map(arrayChildren, (child, i) =>
-                            React.cloneElement(child, {
-                                onClick: handleToggle
-                            })
-                        )}
-                    </MenuList>
-                </ClickAwayListener>
-            </Menu>
+                        <Paper className={classes.paper}>
+                            <ClickAwayListener onClickAway={handleClose}>
+                                <MenuList
+                                    autoFocusItem={open}
+                                    id="composition-menu"
+                                    aria-labelledby="composition-button"
+                                    onKeyDown={handleListKeyDown}
+                                >
+                                    {React.Children.map(arrayChildren, (child, i) =>
+                                        React.cloneElement(child, {
+                                            onClick: handleToggle
+                                        })
+                                    )}
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
+            </Popper>
         </>
     );
 }

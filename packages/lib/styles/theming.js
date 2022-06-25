@@ -33,7 +33,7 @@ const palette = {
 const theme = {
     palette: palette,
     typography: {
-        fontFamily: ['"Noto Sans Display"', 'sans-serif'].join(','),
+        fontFamily: "'SegoeUI', 'sans-serif'",
     },
     shape: {
         borderRadius: 10,

@@ -50,7 +50,7 @@ const ClipboardCopyField = props => {
                 endAdornment: (
                     <Box marginRight='6px' display='flex'>
                         <Tooltip
-                            title="¡Copiado!"
+                            title="¡Enlace copiado!"
                             open={isCopied}
                             arrow
                             placement='right'

@@ -12,10 +12,13 @@ import PlusCircleIcon from '@approbado/lib/icons/PlusCircleIcon'
 import { Form } from 'react-final-form'
 import Link from '@material-ui/core/Link';
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
-import AutocompleteSelectInput from '@approbado/lib/components/AutocompleteSelectInput'
+import SelectInput from '@approbado/lib/components/SelectInput'
 import { axios, history } from '@approbado/lib/providers'
 import ClipboardCopyField from './ClipboardCopyField'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
+import configs from '@approbado/lib/configs'
+import Chip from '@material-ui/core/Chip';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
     dialogRoot: {
@@ -68,6 +71,24 @@ const useStyles = makeStyles(theme => ({
         textDecoration: 'underline',
         color: theme.palette.info.main,
         cursor: 'pointer'
+    },
+    userCard: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%'
+    },
+    userInfo: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start'
+    },
+    chip: {
+        padding: '4px 4px 4px 8px !important',
+        backgroundColor: '#EAEAEA !important',
+        borderRadius: '6px',
+        fontWeight: 600,
+        color: theme.palette.info.dark
     }
 }));
 
@@ -192,18 +213,55 @@ const AddFriendsModal = () => {
                                     md={12}
                                     xs={12}
                                 >
-                                    <AutocompleteSelectInput
+                                    <SelectInput
                                         name='user_ids'
                                         options={users}
+                                        multiple
                                         placeholder='Ingresar jugadores (máx: 5)'
                                         noOptionsText='Sin opciones'
+                                        property='names'
+                                        renderOption={(option, { selected }) => (
+                                            <Box className={classes.userCard}>
+                                                <Avatar
+                                                    src={`${configs.SOURCE}/${option.picture}`}
+                                                    alt='photo_profile'
+                                                />
+                                                <Box className={classes.userInfo}>
+                                                    <Box sx={{
+                                                        fontSize: '0.9rem',
+                                                        fontSize: '1rem',
+                                                        fontWeight: 600
+                                                    }}>
+                                                        {option.names}
+                                                    </Box>
+                                                    <Box sx={{
+                                                        fontSize: '0.8rem',
+                                                        fontWeight: 600,
+                                                        color: '#6D6D6D'
+                                                    }}>
+                                                        {option.email}
+                                                    </Box>
+                                                </Box >
+                                            </Box>
+                                        )}
+                                        renderTags={(value, getTagProps) =>
+                                            value.map((option, index) => (
+                                                <Chip
+                                                    label={option.names}
+                                                    size="small"
+                                                    classes={{ root: classes.chip }}
+                                                    deleteIcon={<CloseIcon />}
+                                                    {...getTagProps({ index })}
+                                                />
+                                            ))
+                                        }
                                     />
                                 </InputContainer>
                                 <InputContainer sx='12' md='12' label="Compartir link">
                                     <ClipboardCopyField name="link" disabled />
                                 </InputContainer>
                                 <Link
-                                    to='/?tab=calendar'
+                                    to='/dashboard/schedules'
                                     className={classes.link}
                                     component={LinkBehavior}
                                 >
