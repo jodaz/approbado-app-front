@@ -15,9 +15,11 @@ const CustomIconButton = styled(IconButton)(({ theme }) => ({
 const ToggleSidebarButton = () => {
     const { sidebarOpen } = useUiState();
     const { toggleSidebar } = useUiDispatch()
+    const ref = React.useRef();
 
     return (
         <Tooltip
+            ref={ref}
             title={sidebarOpen ? 'Cerrar menú' : 'Abrir menú'}
             enterDelay={500}
         >

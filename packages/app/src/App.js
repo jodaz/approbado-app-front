@@ -2,6 +2,7 @@ import * as React from 'react'
 // Other resources
 import { Switch, Route, Redirect } from 'react-router-dom'
 import ProtectedRoute from '@approbado/lib/components/ProtectedRoute';
+import { useMediaQuery } from '@material-ui/core'
 
 // Layouts
 import DefaultLayout from './layouts/Default'
@@ -33,6 +34,7 @@ import SelectMessageAlert from './layouts/Chat/SelectMessageAlert'
 import Chatbox from './chatbox'
 import ForumList from '@approbado/lib/layouts/forums/ForumList';
 import PrivacySettings from './privacy';
+import ScheduleNavbar from './layouts/Dashboard/aside';
 import DeleteAccount from './deleteAccount'
 import NotificationSettings from './notificationSettings'
 import UpdatePassword from '@approbado/lib/layouts/UpdatePassword'
@@ -55,238 +57,263 @@ class LocalizedUtils extends DateFnsUtils {
     }
 }
 
-const App = () => (
-    <MuiPickersUtilsProvider utils={LocalizedUtils} locale={esLocale}>
-        <Route path='/auth' render={() => <Authenticate />} />
+const App = () => {
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
 
-        <Switch>
-            {/**
-             * Dashboard
-             */}
-            <Redirect exact from='/' to='/dashboard' />
-            <ProtectedRoute
-                exact
-                path="/dashboard"
-                component={() => <TestList />}
-                layout={DashboardLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/dashboard/schedules"
-                component={() => <ScheduleCreate />}
-                layout={DashboardLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/dashboard/schedules/:id"
-                component={() => <ScheduleEdit />}
-                layout={DashboardLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/dashboard/ranking"
-                component={() => <UserRanking />}
-                layout={DashboardLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/dashboard/completed"
-                component={() => <CompletedGames />}
-                layout={DashboardLayout}
-            />
+    return (
+        <MuiPickersUtilsProvider utils={LocalizedUtils} locale={esLocale}>
+            <Route path='/auth' render={() => <Authenticate />} />
+
+            <Switch>
+                {/**
+                 * Dashboard
+                 */}
+                <Redirect exact from='/' to='/dashboard' />
+                <ProtectedRoute
+                    exact
+                    path="/dashboard"
+                    component={() => <TestList />}
+                    layout={DashboardLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/dashboard/schedules"
+                    component={() => <ScheduleCreate />}
+                    layout={DashboardLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/dashboard/schedules/:id"
+                    component={() => <ScheduleEdit />}
+                    layout={DashboardLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/dashboard/ranking"
+                    component={() => <UserRanking />}
+                    layout={DashboardLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/dashboard/completed"
+                    component={() => <CompletedGames />}
+                    layout={DashboardLayout}
+                />
+
+                {/**
+                 * Account
+                 */}
+                <Redirect exact from='/settings' to='/settings/privacy' />
+                <ProtectedRoute
+                    exact
+                    path="/settings/privacy"
+                    component={() => <PrivacySettings />}
+                    layout={SettingsLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/settings/notifications"
+                    component={() => <NotificationSettings />}
+                    layout={SettingsLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/settings/delete-account"
+                    component={() => <DeleteAccount />}
+                    layout={SettingsLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/settings/security"
+                    component={() => <UpdatePassword />}
+                    layout={SettingsLayout}
+                />
+
+                {/**
+                 * Profile edit
+                 */}
+                <ProtectedRoute
+                    exact
+                    path="/profile/edit"
+                    component={() => <AboutForm />}
+                    layout={ProfileEditLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/profile/sessions"
+                    component={() => <SessionEdit />}
+                    layout={ProfileEditLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/profile/plans"
+                    component={() => <UserPlan />}
+                    layout={ProfileEditLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/profile"
+                    component={() => <Profile />}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/error"
+                    component={() => <ErrorLayout />}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/notifications"
+                    component={() => <NotificationsView />}
+                    layout={DefaultLayout}
+                />
+                {/**
+                 * Users
+                 */}
+                <Redirect exact from='/users/:id' to='/users/:id/about' />
+                <ProtectedRoute
+                    exact
+                    path="/users/:id/about"
+                    component={() => (
+                        <UserProfile>
+                            <AboutMe />
+                        </UserProfile>
+                    )}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/users/:id/about"
+                    component={() => (
+                        <UserProfile>
+                            <AboutMe />
+                        </UserProfile>
+                    )}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/users/:id/certifications"
+                    component={() => (
+                        <UserProfile>
+                            <Certifications />
+                        </UserProfile>
+                    )}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/users/:id/publications"
+                    component={() => (
+                        <UserProfile>
+                            <Publications />
+                        </UserProfile>
+                    )}
+                    layout={DefaultLayout}
+                />
+
+                {/**
+                 * Forum
+                 */}
+                <Redirect exact from='/forums' to='/forums/top' />
+                <ProtectedRoute
+                    exact
+                    path="/forums/top"
+                    component={() => <ForumList sort={{ field: 'comments', order: 'DESC' }} />}
+                    layout={ForumLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/forums/new"
+                    component={() => <ForumList sort={{ field: 'created_at', order: 'DESC' }} />}
+                    layout={ForumLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/forums/unanswered"
+                    component={() => <ForumList filter={{ unanswered: true }} />}
+                    layout={ForumLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/forums/:id"
+                    component={() => <ForumShow  />}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/forums/:id/edit"
+                    component={() => <ForumEdit />}
+                    layout={DefaultLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/comments/:id"
+                    component={() => <CommentShow />}
+                    layout={DefaultLayout}
+                />
+
+                {/**
+                 * Trivias
+                 */}
+                <ProtectedRoute
+                    layout={DefaultLayout}
+                    exact
+                    path='/trivias'
+                    component={() => <TriviaList />}
+                />
+                <ProtectedRoute exact path="/trivias/start" component={() => <StartTrivia />} layout={DefaultLayout} />
+            </Switch>
 
             {/**
-             * Account
+             * Game
              */}
-            <Redirect exact from='/settings' to='/settings/privacy' />
-            <ProtectedRoute
-                exact
-                path="/settings/privacy"
-                component={() => <PrivacySettings />}
-                layout={SettingsLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/settings/notifications"
-                component={() => <NotificationSettings />}
-                layout={SettingsLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/settings/delete-account"
-                component={() => <DeleteAccount />}
-                layout={SettingsLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/settings/security"
-                component={() => <UpdatePassword />}
-                layout={SettingsLayout}
-            />
+            <Switch>
+                <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
+                <ProtectedRoute exact path="/room/:token" component={() => <PreparingRoom />} layout={GameLayout} />
+            </Switch>
+
+            <Switch>
+                {/**
+                 * Chats
+                 */}
+                <ProtectedRoute
+                    exact
+                    path="/chats"
+                    component={() => <SelectMessageAlert />}
+                    layout={ChatLayout}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/chats/:chat_id"
+                    component={() => <Chatbox />}
+                    layout={ChatLayout}
+                />
+            </Switch>
 
             {/**
-             * Profile edit
+             * Responsive routes
              */}
-            <ProtectedRoute
-                exact
-                path="/profile/edit"
-                component={() => <AboutForm />}
-                layout={ProfileEditLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/profile/sessions"
-                component={() => <SessionEdit />}
-                layout={ProfileEditLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/profile/plans"
-                component={() => <UserPlan />}
-                layout={ProfileEditLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/profile"
-                component={() => <Profile />}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/error"
-                component={() => <ErrorLayout />}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/notifications"
-                component={() => <NotificationsView />}
-                layout={DefaultLayout}
-            />
-            {/**
-             * Users
-             */}
-            <Redirect exact from='/users/:id' to='/users/:id/about' />
-            <ProtectedRoute
-                exact
-                path="/users/:id/about"
-                component={() => (
-                    <UserProfile>
-                        <AboutMe />
-                    </UserProfile>
-                )}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/users/:id/about"
-                component={() => (
-                    <UserProfile>
-                        <AboutMe />
-                    </UserProfile>
-                )}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/users/:id/certifications"
-                component={() => (
-                    <UserProfile>
-                        <Certifications />
-                    </UserProfile>
-                )}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/users/:id/publications"
-                component={() => (
-                    <UserProfile>
-                        <Publications />
-                    </UserProfile>
-                )}
-                layout={DefaultLayout}
-            />
-
-            {/**
-             * Forum
-             */}
-            <Redirect exact from='/forums' to='/forums/top' />
-            <ProtectedRoute
-                exact
-                path="/forums/top"
-                component={() => <ForumList sort={{ field: 'comments', order: 'DESC' }} />}
-                layout={ForumLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/forums/new"
-                component={() => <ForumList sort={{ field: 'created_at', order: 'DESC' }} />}
-                layout={ForumLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/forums/unanswered"
-                component={() => <ForumList filter={{ unanswered: true }} />}
-                layout={ForumLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/forums/:id"
-                component={() => <ForumShow  />}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/forums/:id/edit"
-                component={() => <ForumEdit />}
-                layout={DefaultLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/comments/:id"
-                component={() => <CommentShow />}
-                layout={DefaultLayout}
-            />
-
-            {/**
-             * Trivias
-             */}
-            <ProtectedRoute
-                layout={DefaultLayout}
-                exact
-                path='/trivias'
-                component={() => <TriviaList />}
-            />
-            <ProtectedRoute exact path="/trivias/start" component={() => <StartTrivia />} layout={DefaultLayout} />
-        </Switch>
-
-        {/**
-         * Game
-         */}
-        <Switch>
-            <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
-            <ProtectedRoute exact path="/room/:token" component={() => <PreparingRoom />} layout={GameLayout} />
-        </Switch>
-
-        <Switch>
-            {/**
-             * Chats
-             */}
-            <ProtectedRoute
-                exact
-                path="/chats"
-                component={() => <SelectMessageAlert />}
-                layout={ChatLayout}
-            />
-            <ProtectedRoute
-                exact
-                path="/chats/:chat_id"
-                component={() => <Chatbox />}
-                layout={ChatLayout}
-            />
-        </Switch>
-    </MuiPickersUtilsProvider>
-)
+            {isSmall ? (
+                <Switch>
+                    <ProtectedRoute
+                        exact
+                        path="/schedules"
+                        component={() => <ScheduleNavbar />}
+                        layout={DefaultLayout}
+                    />
+                    <Redirect from='/schedules' to='/schedules' />
+                </Switch>
+            ) : (
+                <Switch>
+                    <Redirect from='/schedules' to='/dashboard/schedules' />
+                </Switch>
+            )}
+        </MuiPickersUtilsProvider>
+    )
+}
 
 export default App;

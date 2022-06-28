@@ -15,13 +15,11 @@ export default ({
     customReducers = {},
     customSagas = []
 }) => {
-    const reducer = combineReducers({
+    const rootReducer = combineReducers({
         admin: adminReducer,
         router: connectRouter(history),
         ...customReducers,
     });
-    const resettableAppReducer = (state, action) =>
-        reducer(action.type !== USER_LOGOUT ? state : undefined, action);
 
     const saga = function* rootSaga() {
         yield all(
@@ -50,7 +48,7 @@ export default ({
     }
 
     const store = createStore(
-        resettableAppReducer,
+        rootReducer,
         persistedState,
         composeEnhancers(
             applyMiddleware(

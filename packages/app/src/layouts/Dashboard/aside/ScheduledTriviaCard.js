@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
         marginBottom: '2rem',
         padding: '1rem',
         boxShadow: '0px 2px 12px rgba(0, 0, 0, 0.08)',
-        width: '100%',
         marginBottom: '1rem'
     },
     expand: {

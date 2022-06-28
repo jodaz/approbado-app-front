@@ -16,7 +16,7 @@ import { useMediaQuery } from '@material-ui/core'
 
 const GoToProfileButtonLink = ({ id }) => (
     <Link
-        to={`/users/${id}/show`}
+        to={`/users/${id}`}
         color='info'
         underline='hover'
         component={LinkBehavior}

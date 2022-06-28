@@ -1,12 +1,14 @@
 import * as React from 'react';
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box';
-import { useMediaQuery } from '@material-ui/core'
+import { useMediaQuery, Button } from '@material-ui/core'
 import Aside from './aside'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import Default from '../Default'
 import useFetch from '@approbado/lib/hooks/useFetch'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
+import CalendarIcon from '@approbado/lib/icons/CalendarIcon'
+import LinkBehavior from '@approbado/lib/components/LinkBehavior';
 
 const tags = [
     {
@@ -49,10 +51,25 @@ export default function Dashboard({ children }) {
                     flexDirection: 'column',
                     width: '100%'
                 }}>
-                    <TabbedList tags={tags} name='Home' />
+                    <Box sx={{
+                        margin: '1rem 0',
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center'
+                    }}>
+                        <Box sx={{
+                            fontWeight: 600,
+                            fontSize: '2rem',
+                        }}>
+                            Home
+                        </Box>
+
+                        {isSmall && <Button component={LinkBehavior} to='/schedules'><CalendarIcon /></Button>}
+                    </Box>
+                    <TabbedList tags={tags} />
                     {children}
                 </Box>
-                {isAuth && <Aside isSmall={isSmall} user={user} />}
+                {(isAuth && !isSmall) && <Aside isSmall={isSmall} user={user} />}
             </Box>
         </Default>
     )

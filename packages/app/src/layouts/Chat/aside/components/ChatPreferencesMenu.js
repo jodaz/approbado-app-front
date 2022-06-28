@@ -83,13 +83,13 @@ export default function ChatPreferencesMenu() {
                     role={undefined}
                     transition
                     disablePortal
-                    placement='bottom-start'
+                    placement='bottom-end'
                 >
                     {({ TransitionProps, placement }) => (
                         <Grow
                             {...TransitionProps}
                             style={{
-                                transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
+                                transformOrigin: 'bottom',
                                 zIndex: 1000
                             }}
                         >
