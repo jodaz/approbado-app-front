@@ -6,12 +6,12 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import configs from '@approbado/lib/configs';
 import BookmarkInput from './BookmarkInput'
 import SearchInput from './SearchInput'
-import ChatMenu from '../../../layouts/Chat/aside/components/ChatMenu'
+import ChatMenu from '../../../layouts/Chat/AsideChatList/components/ChatMenu'
+import { useMediaQuery } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
-        width: '100%',
         height: '4rem',
         alignItems: 'center',
         padding: '0 1rem',
@@ -37,6 +37,9 @@ const useStyles = makeStyles(() => ({
 const ChatboxHeader = () => {
     const { isChatSelected, current } = useChatState();
     const classes = useStyles();
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
 
     return (
         <Box className={classes.root}>
@@ -72,9 +75,13 @@ const ChatboxHeader = () => {
                 )}
             </Box>
             <Box className={classes.buttons}>
-                <SearchInput />
-                <BookmarkInput />
-                {isChatSelected && <ChatMenu  chat={current} />}
+                {!isSmall && (
+                    <>
+                        <SearchInput />
+                        <BookmarkInput />
+                    </>
+                )}
+                {isChatSelected && <ChatMenu chat={current} />}
             </Box>
         </Box>
     );

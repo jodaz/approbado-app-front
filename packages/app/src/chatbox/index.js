@@ -9,7 +9,7 @@ import { axios } from '@approbado/lib/providers'
 
 const Chatbox = () => {
     const { chat_id } = useParams();
-    const { isChatSelected } = useChatState();
+    const { isChatSelected, current } = useChatState();
     const { setChat, setChatID } = useChatDispatch();
 
     const fetchChat = React.useCallback(async () => {
@@ -37,7 +37,7 @@ const Chatbox = () => {
         }}>
             <ChatboxHeader />
             <ChatboxMessages />
-            <ChatboxInput />
+            {!current.notification && <ChatboxInput />}
         </Box>
     );
 }

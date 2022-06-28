@@ -8,7 +8,10 @@ import {
 const initialState = {
     isChatSelected: false,
     chats: [],
-    current: null,
+    current: {
+        messages: null,
+        notification: null
+    },
     total: 0,
     selected: null
 }

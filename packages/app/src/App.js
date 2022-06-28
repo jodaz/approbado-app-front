@@ -45,6 +45,7 @@ import AboutForm from './aboutForm'
 import AboutMe from '@approbado/lib/layouts/profile/AboutMe'
 import Certifications from '@approbado/lib/layouts/profile/Certifications'
 import Publications from '@approbado/lib/layouts/profile/Publications'
+import AsideChatList from './layouts/Chat/AsideChatList'
 // Utils
 import { format } from "date-fns";
 import DateFnsUtils from '@date-io/date-fns';
@@ -283,13 +284,23 @@ const App = () => {
                 <ProtectedRoute
                     exact
                     path="/chats"
-                    component={() => <SelectMessageAlert />}
+                    component={() => (
+                        <>
+                            <AsideChatList />
+                            {!isSmall && <SelectMessageAlert />}
+                        </>
+                    )}
                     layout={ChatLayout}
                 />
                 <ProtectedRoute
                     exact
                     path="/chats/:chat_id"
-                    component={() => <Chatbox />}
+                    component={() => (
+                        <>
+                            {!isSmall && <AsideChatList />}
+                            <Chatbox />
+                        </>
+                    )}
                     layout={ChatLayout}
                 />
             </Switch>

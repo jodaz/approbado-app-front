@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
 import { axios } from '@approbado/lib/providers'
 // Components
 import TestCard from './TestCard'
@@ -28,9 +29,13 @@ const TestList = () => {
 
     const renderer = ({ data }) => (
         <Box margin='1rem 0'>
-            {data.map((trivia, i) => (
-                <TestCard key={i} {...trivia} />
-            ))}
+            <Grid container>
+                {data.map((trivia, i) => (
+                    <Grid item md={4}>
+                        <TestCard key={i} {...trivia} />
+                    </Grid>
+                ))}
+            </Grid>
         </Box>
     )
 

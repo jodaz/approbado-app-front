@@ -63,8 +63,14 @@ export default function Dashboard({ children }) {
                         }}>
                             Home
                         </Box>
-
-                        {isSmall && <Button component={LinkBehavior} to='/schedules'><CalendarIcon /></Button>}
+                        {isSmall && (
+                            <Button
+                                component={LinkBehavior}
+                                to='/schedules'
+                            >
+                                <CalendarIcon />
+                            </Button>
+                        )}
                     </Box>
                     <TabbedList tags={tags} />
                     {children}

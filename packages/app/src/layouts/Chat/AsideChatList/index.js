@@ -23,7 +23,7 @@ const results = 10
 
 const generateNullData = results => Array.from({ length: results }).map(_ => null)
 
-const Aside = () => {
+const AsideChatList = () => {
     const classes = useStyles();
     const [perPage, setPerPage] = React.useState(results)
     const [filter, setFilter] = React.useState({})
@@ -93,4 +93,4 @@ const Aside = () => {
     );
 }
 
-export default Aside;
+export default AsideChatList;
