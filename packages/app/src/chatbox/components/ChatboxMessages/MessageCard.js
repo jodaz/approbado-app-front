@@ -30,7 +30,7 @@ const MessageCard = ({ id, message, user_id, currUserId, ...rest }) => {
     const classes = useStyles();
 
     return (
-        <Box className={clsx(classes.root, {
+        <Box key={id} className={clsx(classes.root, {
             [classes.received]: currUserId != user_id,
             [classes.sent]: currUserId == user_id
         })}>

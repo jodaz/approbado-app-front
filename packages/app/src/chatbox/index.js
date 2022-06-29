@@ -5,12 +5,15 @@ import ChatboxInput from './components/ChatboxInput'
 import ChatboxMessages from './components/ChatboxMessages'
 import { useParams } from 'react-router-dom'
 import { useChatState, useChatDispatch } from '@approbado/lib/hooks/useChat'
+import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { axios } from '@approbado/lib/providers'
+import AcceptMessageDialog from './AcceptMessageDialog'
 
 const Chatbox = () => {
     const { chat_id } = useParams();
     const { isChatSelected, current } = useChatState();
     const { setChat, setChatID } = useChatDispatch();
+    const { user } = useUserState();
 
     const fetchChat = React.useCallback(async () => {
         try {
@@ -36,8 +39,32 @@ const Chatbox = () => {
             flexDirection: 'column'
         }}>
             <ChatboxHeader />
-            <ChatboxMessages />
-            {!current.notification && <ChatboxInput />}
+            <ChatboxMessages
+                chat={current}
+                loggedUser={user}
+            />
+            {(current.chatStatus == 'accepted') &&  <ChatboxInput />}
+            {(current.chatStatus == 'pending') && (
+                <AcceptMessageDialog
+                    {...current}
+                    currUserId={user.id}
+                />
+            )}
+            {(current.chatStatus == 'rejected') && (
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    padding: '2rem',
+                    height: '5%',
+                    textAlign: 'center',
+                    fontWeight: 600,
+                    fontSize: '0.9rem',
+                    color: '#6D6D6D'
+                }}>
+                    Haz rechazado esta solicitud de mensajes.
+                </Box>
+            )}
         </Box>
     );
 }

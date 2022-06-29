@@ -3,12 +3,13 @@ import {
     SET_CHATLIST,
     SET_CURRENT_CHAT,
     DELETE_CHAT,
-    SET_CHAT_ID
+    SET_CHAT_ID,
+    ACCEPT_CHAT_INVITING
 } from '../actions';
 
 export const useChatState = () => {
     const store = useSelector(state => state);
-
+    console.log(store.chat)
     return store.chat
 };
 
@@ -31,6 +32,10 @@ export const useChatDispatch = () => {
         setChatID: id => dispatch({
             type: SET_CHAT_ID,
             payload: id
+        }),
+        acceptChat: status => dispatch({
+            type: ACCEPT_CHAT_INVITING,
+            payload: status
         })
     }
 }
