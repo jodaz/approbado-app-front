@@ -5,7 +5,7 @@ import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import Button from '@approbado/lib/components/Button'
-import { useDialogDispatch } from "@approbado/lib/hooks/useDialogStatus"
+import { useDialogDispatch } from "@approbado/lib/hooks/useDialog"
 import ForumCreate from './ForumCreate'
 import TopContributors from './TopContributors'
 import ForumWarning from './ForumWarning'

@@ -36,6 +36,7 @@ export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 export const SET_CHATLIST = 'SET_CHATLIST';
 export const SET_CHAT_ID = 'SET_CHAT_ID';
 export const ACCEPT_CHAT_INVITING = 'ACCEPT_CHAT_INVITING';
+export const REQUEST_CHAT = 'REQUEST_CHAT';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,
@@ -110,16 +111,6 @@ export const getResults = () => ({
 export const setUser = data => ({
     type: SET_USER,
     payload: data
-});
-
-export const unsetDialog = (name) => ({
-    type: UNSET_DIALOG,
-    payload: name
-});
-
-export const setDialog = (name) => ({
-    type: SET_DIALOG,
-    payload: name
 });
 
 export const fetchUser = () => ({

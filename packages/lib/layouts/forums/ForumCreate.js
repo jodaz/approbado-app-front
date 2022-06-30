@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Confirm from '@approbado/lib/layouts/Confirm';
-import { useDialogState, useDialogDispatch } from "@approbado/lib/hooks/useDialogStatus"
+import { useDialogState, useDialogDispatch } from "@approbado/lib/hooks/useDialog"
 import { Form } from 'react-final-form'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { useNotify } from 'react-admin'
@@ -14,7 +14,7 @@ import SelectTriviaInput from './SelectTriviaInput'
 import { axios } from '@approbado/lib/providers'
 
 const ForumCreate = () => {
-    const status = useDialogState('forums.create');
+    const { status } = useDialogState('forums.create');
     const { unsetDialog } = useDialogDispatch('forums.create')
     const { fetchUser } = useUserDispatch();
     const notify = useNotify();

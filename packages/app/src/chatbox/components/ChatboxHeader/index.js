@@ -35,7 +35,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const ChatboxHeader = () => {
-    const { isChatSelected, current } = useChatState();
+    const { selected, current } = useChatState();
     const classes = useStyles();
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
@@ -44,7 +44,7 @@ const ChatboxHeader = () => {
     return (
         <Box className={classes.root}>
             <Box sx={{ marginRight: '1rem' }}>
-                {!isChatSelected ? (
+                {!selected ? (
                     <Skeleton
                         animation="wave"
                         variant="circle"
@@ -58,7 +58,7 @@ const ChatboxHeader = () => {
                 )}
             </Box>
             <Box className={classes.container}>
-                {!isChatSelected ? (
+                {!selected ? (
                     <Skeleton
                         animation="wave"
                         height={10}
@@ -68,7 +68,7 @@ const ChatboxHeader = () => {
                 ) : (
                     <Box className={classes.names}>
                         {current.is_private
-                            ? current.participants[0]['names']
+                            ? current.participants[0].names
                             : current.name
                         }
                     </Box>
@@ -81,7 +81,7 @@ const ChatboxHeader = () => {
                         <BookmarkInput />
                     </>
                 )}
-                {isChatSelected && <ChatMenu chat={current} />}
+                {selected && <ChatMenu chat={current} />}
             </Box>
         </Box>
     );

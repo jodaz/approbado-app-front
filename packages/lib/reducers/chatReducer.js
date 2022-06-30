@@ -3,18 +3,19 @@ import {
     DELETE_CHAT,
     SET_CHAT_ID,
     SET_CURRENT_CHAT,
-    ACCEPT_CHAT_INVITING
+    ACCEPT_CHAT_INVITING,
+    REQUEST_CHAT
 } from '../actions';
 
 const initialState = {
-    isChatSelected: false,
-    chats: [],
+    isChatSelected: false, // If user selected a chat
+    chats: [], // Chat list
     current: {
         chatStatus: null,
         messages: null
     },
     total: 0,
-    selected: null
+    selected: null // ID of chat selected
 }
 
 const chatReducer = (
@@ -22,6 +23,13 @@ const chatReducer = (
     action
 ) => {
     switch (action.type) {
+        case REQUEST_CHAT:
+            return {
+                ...previousState,
+                current: action.payload,
+                selected: action.payload.id,
+                isChatSelected: false
+            }
         case SET_CHATLIST:
             return {
                 ...previousState,
@@ -44,8 +52,8 @@ const chatReducer = (
             return {
                 ...previousState,
                 isChatSelected: false,
-                chats: [...previousState.chats.filter(({ id }) => id != action.payload.id)],
-                current: null,
+                chats: previousState.chats.filter(chat => chat.id != action.payload.chat),
+                current: action.payload.is_current ? null : previousState.current,
                 total: previousState.total - 1,
                 selected: null
             };

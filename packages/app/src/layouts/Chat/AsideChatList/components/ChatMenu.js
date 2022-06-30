@@ -12,9 +12,10 @@ import MoreMenuIcon from '@approbado/lib/icons/MoreMenuIcon'
 import ProfileIcon from '@approbado/lib/icons/ProfileIcon'
 import RightArrowIcon from '@approbado/lib/icons/RightArrowIcon';
 import { NavLink } from 'react-router-dom';
-import { useUserState } from '@approbado/lib/hooks/useUserState';
 import Divider from '@material-ui/core/Divider';
 import DeleteChat from './DeleteChat';
+import OutIcon from '@approbado/lib/icons/OutIcon';
+import { useDialogDispatch } from '@approbado/lib/hooks/useDialog'
 
 const useStyles = makeStyles(() => ({
     popper: {
@@ -31,9 +32,9 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center'
     },
     menuItem: {
-        padding: '0.8rem 1rem',
         display: 'flex',
-        alignItems: 'center'
+        width: '100%',
+        padding: '0.6rem 0.8rem',
     }
 }));
 
@@ -42,7 +43,8 @@ const ChatMenu = ({ chat = null, children }) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [receptor, setReceptor] = React.useState(null);
-    const { user } = useUserState();
+    const { setDialog: openProfilesModal } = useDialogDispatch('profiles.modal')
+    const { setDialog: openLeaveGroupDialog } = useDialogDispatch('leavegroup.dialog', chat)
 
     const handleToggle = event => {
         setOpen((prevOpen) => !prevOpen);
@@ -76,13 +78,7 @@ const ChatMenu = ({ chat = null, children }) => {
 
     React.useEffect(() => {
         if (chat) {
-            if (chat.is_private) {
-                setReceptor(chat.participants.find(participant => participant.id != user.id))
-            } else {
-                setReceptor(chat.participants.filter(participant =>
-                    participant.id !== user.id
-                ))
-            }
+            setReceptor(chat.is_private ? chat.participants[0] : chat.participants)
         }
     }, [chat])
 
@@ -112,33 +108,60 @@ const ChatMenu = ({ chat = null, children }) => {
                     >
                         <Paper className={classes.paper}>
                             <ClickAwayListener onClickAway={handleClose}>
-                            <MenuList
-                                className={classes.menuList}
-                                autoFocusItem={open}
-                                id="menu-list-grow"
-                                onKeyDown={handleListKeyDown}
-                            >
-                                {(chat.is_private) && (
-                                    <MenuItem
-                                        onClick={handleClose}
-                                        className={classes.menuItem}
-                                        component={NavLink}
-                                        to={`/users/${receptor.id}`}
-                                    >
-                                        <Box marginRight='0.5rem' display='flex'>
-                                            <ProfileIcon />
-                                        </Box>
-                                        Ver perfil
-                                        <Box marginLeft='0.5rem' display='flex'>
-                                            <RightArrowIcon />
-                                        </Box>
-                                    </MenuItem>
-                                )}
-                                <Box width='80%'>
-                                    <Divider />
-                                </Box>
-                                <DeleteChat onClick={handleClose} id={chat.id} />
-                            </MenuList>
+                                <MenuList
+                                    className={classes.menuList}
+                                    autoFocusItem={open}
+                                    id="menu-list-grow"
+                                    onKeyDown={handleListKeyDown}
+                                >
+                                    {(chat.is_private) ? (
+                                        <MenuItem
+                                            onClick={handleClose}
+                                            className={classes.menuItem}
+                                            component={NavLink}
+                                            to={`/users/${receptor.id}`}
+                                        >
+                                            <Box marginRight='0.5rem' display='flex'>
+                                                <ProfileIcon />
+                                            </Box>
+                                            Ver perfil
+                                            <Box marginLeft='0.5rem' display='flex'>
+                                                <RightArrowIcon />
+                                            </Box>
+                                        </MenuItem>
+                                    ) : (
+                                        <MenuItem
+                                            onClick={(e) => {
+                                                openProfilesModal();
+                                                handleClose(e)
+                                            }}
+                                            className={classes.menuItem}
+                                        >
+                                            <Box marginRight='0.5rem' display='flex'>
+                                                <ProfileIcon />
+                                            </Box>
+                                            Ver perfiles
+                                        </MenuItem>
+                                    )}
+                                    <Box width='80%'>
+                                        <Divider />
+                                    </Box>
+                                    {!chat.is_private && (
+                                        <MenuItem
+                                            onClick={(e) => {
+                                                openLeaveGroupDialog();
+                                                handleClose(e)
+                                            }}
+                                            className={classes.menuItem}
+                                        >
+                                            <Box marginRight='0.5rem' display='flex'>
+                                                <OutIcon />
+                                            </Box>
+                                            Salir del grupo
+                                        </MenuItem>
+                                    )}
+                                    <DeleteChat onClick={handleClose} id={chat.id} />
+                                </MenuList>
                             </ClickAwayListener>
                         </Paper>
                     </Grow>

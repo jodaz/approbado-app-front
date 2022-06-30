@@ -2,7 +2,8 @@ import { UNSET_DIALOG, SET_DIALOG } from '../actions';
 
 const initialState = {
     status: false,
-    name: ''
+    name: '',
+    data: null
 }
 
 const dialogReducer = (
@@ -13,7 +14,8 @@ const dialogReducer = (
         case SET_DIALOG:
             return {
                 status: !previousState.status,
-                name: action.payload
+                name: action.payload.name,
+                data: action.payload.data
             }
         case UNSET_DIALOG:
             return initialState;

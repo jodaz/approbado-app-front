@@ -54,12 +54,13 @@ const UserMessageCard = ({
     const loading = data == null;
     const history = useHistory();
     const { selected } = useChatState();
+    const isThisSelected = data != null ? selected == data.id : null
     const { setChat, setChatID } = useChatDispatch();
-    const classes = useStyles({
-        isSelected: selected
-    });
     const [visible, setVisible] = React.useState(false);
     const anchorRef = React.useRef(null)
+    const classes = useStyles({
+        isSelected: isThisSelected
+    });
 
     const fetchChat = async (id) => {
         try {
@@ -75,7 +76,8 @@ const UserMessageCard = ({
     }
 
     const handleClick = async (e) => {
-        if (!selected && anchorRef.current && anchorRef.current.contains(e.target)) {
+        if (!isThisSelected && anchorRef.current && anchorRef.current.contains(e.target)) {
+            console.log("IS HERE")
             setChatID(data.id)
             await fetchChat(data.id)
         }
@@ -86,10 +88,10 @@ const UserMessageCard = ({
         <Box
             ref={rootRef}
             key={index}
+            onClick={handleClick}
             component='div'
         >
             <Box
-                onClick={handleClick}
                 className={classes.root}
                 onMouseEnter={() => setVisible(true)}
                 onMouseLeave={() => setVisible(false)}
@@ -105,7 +107,7 @@ const UserMessageCard = ({
                         />
                     ) : (
                         <Box className={classes.names}>
-                            <Avatar src={`${configs.SOURCE}/${data.participants[0].picture}`} />
+                            <Avatar src={`${configs.SOURCE}/${data.participants[1].picture}`} />
                         </Box>
                     )}
                 </Box>
@@ -120,7 +122,7 @@ const UserMessageCard = ({
                     ) : (
                         <Box className={classes.names}>
                             {data.is_private
-                                ? data.participants[0]['names']
+                                ? data.participants[1]['names']
                                 : data.name
                             }
                         </Box>

@@ -9,8 +9,8 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import SettingsIcon from '@approbado/lib/icons/SettingsIcon'
 import PreferenceIcon from '@approbado/lib/icons/PreferenceIcon';
-import NewChatIcon from '@approbado/lib/icons/NewChatIcon';
 import { NavLink } from 'react-router-dom'
+import MessageRequestModal from './MessageRequestModal';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -109,13 +109,7 @@ export default function ChatPreferencesMenu() {
                                             <PreferenceIcon />
                                             Preferencias
                                         </MenuItem>
-                                        <MenuItem
-                                            onClick={handleClose}
-                                            className={classes.menuItem}
-                                        >
-                                            <NewChatIcon />
-                                            Solicitud de mensajes
-                                        </MenuItem>
+                                        <MessageRequestModal handleCloseMenu={handleClose} />
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

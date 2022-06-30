@@ -8,17 +8,16 @@ import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
 import InputContainer from '@approbado/lib/components/InputContainer'
-import PlusCircleIcon from '@approbado/lib/icons/PlusCircleIcon'
 import { Form } from 'react-final-form'
-import Link from '@material-ui/core/Link';
-import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import { axios, history } from '@approbado/lib/providers'
-import ClipboardCopyField from './ClipboardCopyField'
-import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import NewChatIcon from '@approbado/lib/icons/NewChatIcon';
+import MenuItem from '@material-ui/core/MenuItem';
+import ChatNameInput from './ChatNameInput'
+import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 
 const useStyles = makeStyles(theme => ({
     dialogRoot: {
@@ -90,79 +89,103 @@ const useStyles = makeStyles(theme => ({
         borderRadius: '6px',
         fontWeight: 600,
         color: theme.palette.info.dark
+    },
+    menuItem: {
+        padding: '0.8rem 1rem',
+        '& :nth-child(1)': {
+            marginRight: '1rem'
+        }
     }
 }));
 
 const validate = (values) => {
     const errors = {};
 
-    if (!values.user_ids) {
-        errors.user_ids = "Ingrese al menos un participante.";
+    if (!values.users_ids) {
+        errors.users_ids = "Ingrese al menos un participante.";
+    } else {
+        if (values.users_ids.length > 1 && !values.name) {
+            errors.name = "Ingrese un nombre para el chat grupal.";
+        }
     }
-
+    console.log(errors)
     return errors;
 }
 
-const AddFriendsModal = () => {
+
+const MessageRequestModal = ({ handleCloseMenu }) => {
     const classes = useStyles();
-    const [addFriends, setAddFriends] = React.useState(false)
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
     const [users, setUsers] = React.useState([])
-    const [link, setLink] = React.useState({ token: '', link: '' })
-    const {
-        configs: {
-            level, type
-        },
-        selectedSubthemes
-    } = useTriviaState()
-    const { setRoom } = useTriviaDispatch()
+    const anchorRef = React.useRef(null);
+    const { requestChat } = useChatDispatch();
 
     const fetchUsers = React.useCallback(async () => {
         const { data: { data } } = await axios.get('/users?filter[is_registered]=true')
         setUsers(data)
     }, []);
 
-    const fetchLink = React.useCallback(async () => {
-        const { data } = await axios.get('/trivias/grupal/link')
-
-        setLink(data)
-    }, [])
-
-    const handleClickOpen = () => {
-        setOpen(true);
-        fetchUsers();
+    const handleToggle = () => {
+        setOpen((prevOpen) => !prevOpen);
     };
 
-    const handleClose = e => {
+    const handleClose = (event) => {
+        if (anchorRef.current && anchorRef.current.contains(event.target)) {
+            return;
+        }
+
         setOpen(false);
     };
 
-    const handleSubmit = React.useCallback(async (values) => {
+    function handleListKeyDown(event) {
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            setOpen(false);
+        }
+    }
+
+    // return focus to the button when we transitioned from !open -> open
+    const prevOpen = React.useRef(open);
+    React.useEffect(() => {
+        if (prevOpen.current === true && open === false) {
+            anchorRef.current.focus();
+        }
+
+        prevOpen.current = open;
+    }, [open]);
+
+    const handleSubmit = async (values) => {
         try {
-            const { data } = await axios.post('/trivias/grupal', values)
-            await history.push(`/room/${link.token}`)
-            await setRoom(data)
+            const submmitData = {
+                ...values,
+                is_private: values.users_ids.length < 2
+            }
+            const { data } = await axios.post('/chats', submmitData)
+
+            history.push(`/chats/${data.id}`)
+            requestChat(data)
+            handleToggle();
+            handleCloseMenu();
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;
             }
         }
-    }, [link]);
-
-    React.useEffect(() => {
-        fetchLink();
-    }, [])
+    };
 
     return (
         <>
-            <Box className={classes.test} onClick={handleClickOpen}>
-                <Box>
-                    <PlusCircleIcon />
-                </Box>
-                <Box className={classes.link} onClick={() => setAddFriends(!addFriends)}>
-                    Agregar amigos
-                </Box>
-            </Box>
+            <MenuItem
+                ref={anchorRef}
+                onClick={(e) => {
+                    handleToggle()
+                    fetchUsers();
+                }}
+                className={classes.menuItem}
+            >
+                <NewChatIcon />
+                Solicitud de mensajes
+            </MenuItem>
             <Dialog
                 onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
@@ -170,10 +193,11 @@ const AddFriendsModal = () => {
                 classes={{
                     paperWidthSm: classes.dialogRoot
                 }}
+                onKeyDown={handleListKeyDown}
             >
                 <DialogTitle className={classes.title}>
                     <Box sx={{ fontWeight: 600, padding: '0.5rem 0' }}>
-                        Trivia grupal
+                        Nueva solicitud de mensaje
                     </Box>
                     <IconButton
                         aria-label="close"
@@ -192,12 +216,6 @@ const AddFriendsModal = () => {
                     <Form
                         onSubmit={handleSubmit}
                         validate={validate}
-                        initialValues={{
-                            link: link.link,
-                            level_id: level,
-                            type: type,
-                            subtheme_id: selectedSubthemes[0].id
-                        }}
                         render={ ({ handleSubmit, submitting }) => (
                             <Box
                                 width='100%'
@@ -205,6 +223,7 @@ const AddFriendsModal = () => {
                                 justifyContent="center"
                                 flexDirection='column'
                             >
+                                <ChatNameInput />
                                 <InputContainer
                                     disabled={submitting}
                                     label="Añadir participantes"
@@ -212,7 +231,7 @@ const AddFriendsModal = () => {
                                     xs={12}
                                 >
                                     <SelectInput
-                                        name='user_ids'
+                                        name='users_ids'
                                         options={users}
                                         multiple
                                         placeholder='Ingresar jugadores (máx: 5)'
@@ -255,16 +274,6 @@ const AddFriendsModal = () => {
                                         }
                                     />
                                 </InputContainer>
-                                <InputContainer sx='12' md='12' label="Compartir link">
-                                    <ClipboardCopyField name="link" disabled />
-                                </InputContainer>
-                                <Link
-                                    to='/dashboard/schedules'
-                                    className={classes.link}
-                                    component={LinkBehavior}
-                                >
-                                    Agendar una trivia grupal
-                                </Link>
                                 <Box sx={{
                                     display: 'flex',
                                     justifyContent: 'space-between',
@@ -284,7 +293,7 @@ const AddFriendsModal = () => {
                                         unresponsive
                                         onClick={handleSubmit}
                                     >
-                                        Crear sala
+                                        Invitar
                                     </Button>
                                 </Box>
                             </Box>
@@ -296,4 +305,4 @@ const AddFriendsModal = () => {
     );
 }
 
-export default AddFriendsModal;
+export default MessageRequestModal;

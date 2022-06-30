@@ -17,7 +17,7 @@ import { useParams } from 'react-router-dom'
 import LinkButton from '@approbado/lib/components/LinkButton'
 // Hooks
 import { useUserState } from '@approbado/lib/hooks/useUserState'
-import { useDialogDispatch } from "@approbado/lib/hooks/useDialogStatus"
+import { useDialogDispatch } from "@approbado/lib/hooks/useDialog"
 import configs from '@approbado/lib/configs'
 import Spinner from '../../components/Spinner';
 

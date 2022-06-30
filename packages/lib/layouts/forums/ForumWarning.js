@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import { makeStyles, alpha } from '@material-ui/core/styles';
-import { useDialogState, useDialogDispatch } from "@approbado/lib/hooks/useDialogStatus"
+import { useDialogState, useDialogDispatch } from "@approbado/lib/hooks/useDialog"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
 
 const ForumWarning = () => {
     const classes = useStyles();
-    const status = useDialogState('forums.warning');
+    const { status } = useDialogState('forums.warning');
     const { unsetDialog } = useDialogDispatch('forums.warning');
     const { setDialog: setCreateForumDialog } = useDialogDispatch('forums.create')
 

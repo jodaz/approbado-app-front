@@ -12,7 +12,7 @@ import { axios } from '@approbado/lib/providers'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 import { useNotify } from 'react-admin'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
     menuItem: {
         padding: '0.8rem 1rem',
+        width: '100%',
         '& :nth-child(1)': {
             marginRight: '1rem'
         }
@@ -58,7 +59,9 @@ export default function({ onClick, id }) {
     const ref = React.useRef(null);
     const { deleteChat } = useChatDispatch();
     const notify = useNotify();
+    const { id: paramsId } = useParams();
     const history = useHistory();
+    const isCurrentChat = paramsId == id;
 
     const handleClickOpen = e => {
         setOpen(true);
@@ -67,7 +70,6 @@ export default function({ onClick, id }) {
 
     const handleClose = e => {
         setOpen(false);
-        e.stopPropagation();
     };
 
     const handleDelete = React.useCallback(async () => {
@@ -75,9 +77,9 @@ export default function({ onClick, id }) {
             const { data } = await axios.delete(`/chats/${id}`)
 
             if (data) {
-                await history.push('/chats')
+                await deleteChat(data, isCurrentChat)
+                // await history.push('/chats')
                 notify('¡Chat eliminado!', 'success')
-                await deleteChat(data)
                 await handleClose();
             }
         } catch (error) {
@@ -134,6 +136,7 @@ export default function({ onClick, id }) {
                             <Button
                                 className={classes.submitButton}
                                 onClick={handleDelete}
+                                fullWidth
                             >
                                 Sí, quiero continuar
                             </Button>
