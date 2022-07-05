@@ -43,7 +43,7 @@ const ChatMenu = ({ chat = null, children }) => {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const [receptor, setReceptor] = React.useState(null);
-    const { setDialog: openProfilesModal } = useDialogDispatch('profiles.modal')
+    const { setDialog: openProfilesModal } = useDialogDispatch('profiles.modal', chat)
     const { setDialog: openLeaveGroupDialog } = useDialogDispatch('leavegroup.dialog', chat)
 
     const handleToggle = event => {

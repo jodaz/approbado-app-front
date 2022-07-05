@@ -60,7 +60,6 @@ export default function({ onClick, id }) {
     const { deleteChat } = useChatDispatch();
     const notify = useNotify();
     const { id: paramsId } = useParams();
-    const history = useHistory();
     const isCurrentChat = paramsId == id;
 
     const handleClickOpen = e => {
@@ -136,7 +135,6 @@ export default function({ onClick, id }) {
                             <Button
                                 className={classes.submitButton}
                                 onClick={handleDelete}
-                                fullWidth
                             >
                                 Sí, quiero continuar
                             </Button>

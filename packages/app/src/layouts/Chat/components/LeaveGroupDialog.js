@@ -1,5 +1,4 @@
 import * as React from 'react';
-import MenuItem from '@material-ui/core/MenuItem'
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,8 +10,7 @@ import Box from '@material-ui/core/Box';
 import { axios } from '@approbado/lib/providers'
 import { useDialogDispatch, useDialogState } from '@approbado/lib/hooks/useDialog'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
-import { useNotify } from 'react-admin'
-import { useHistory, useParams } from 'react-router-dom'
+import { useUserState } from '@approbado/lib/hooks/useUserState'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -56,26 +54,25 @@ const useStyles = makeStyles(theme => ({
 export default function() {
     const classes = useStyles();
     const ref = React.useRef(null);
-    const { deleteChat } = useChatDispatch();
-    const notify = useNotify();
-    const history = useHistory();
+    const { acceptChat } = useChatDispatch();
+    const [isLoading, setIsLoading] = React.useState(false)
     const { status, data } = useDialogState('leavegroup.dialog')
     const { unsetDialog } = useDialogDispatch('leavegroup.dialog')
+    const { user } = useUserState();
 
-    const handleDelete = React.useCallback(async () => {
-        // try {
-        //     // const { data } = await axios.delete(`/chats/${id}`)
+    const handleLeave = async () => {
+        setIsLoading(true)
 
-        //     if (data) {
-        //         await deleteChat(data, isCurrentChat)
-        //         // await history.push('/chats')
-        //         notify('¡Chat eliminado!', 'success')
-        //         await unsetDialog();
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        // }
-    }, []);
+        const res = await axios.put(`/chats/status/${data.id}/${user.id}`, {
+            status: 'leaved'
+        })
+
+        if (res.status >= 200 && res.status <= 300) {
+            acceptChat('leaved')
+            unsetDialog();
+        }
+        setIsLoading(false)
+    }
 
     if (!status) return null;
 
@@ -91,43 +88,40 @@ export default function() {
                 </IconButton>
             </DialogTitle>
             <DialogContent className={classes.content}>
-                <Box width='20rem' display='flex' justifyContent="center" flexDirection='column'>
-                    <Box sx={{
-                        width: '100%',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        minHeight: 'inherit'
-                    }}>
-                        <Box sx={{ fontWeight: 600 }}>
-                            ¿Estás seguro que deseas salir del grupo "{data.name}"?
-                        </Box>
-                        <Box sx={{ fontWeight: 400 }}>
-                            Si sales del grupo, ya no podrás publicar mensajes en él.
-                        </Box>
+                <Box sx={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minHeight: 'inherit'
+                }}>
+                    <Box sx={{ fontWeight: 600 }}>
+                        ¿Estás seguro que deseas salir del grupo "{data.name}"?
                     </Box>
-                    <Box sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        height: '2rem',
-                        padding: '1rem 0',
-                        width: '100%'
-                    }}>
-                        <Button
-                            onClick={unsetDialog}
-                            className={classes.cancelButton}
-                        >
-                            Cancelar
-                        </Button>
-                        <Button
-                            className={classes.submitButton}
-                            onClick={handleDelete}
-                            fullWidth
-                        >
-                            Sí, quiero continuar
-                        </Button>
+                    <Box sx={{ fontWeight: 400 }}>
+                        Si sales del grupo, ya no podrás publicar mensajes en él.
                     </Box>
+                </Box>
+                <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    height: '2rem',
+                    padding: '1rem 0',
+                    width: '100%'
+                }}>
+                    <Button
+                        onClick={unsetDialog}
+                        className={classes.cancelButton}
+                    >
+                        Cancelar
+                    </Button>
+                    <Button
+                        className={classes.submitButton}
+                        onClick={handleLeave}
+                    >
+                        Sí, quiero continuar
+                    </Button>
                 </Box>
             </DialogContent>
         </Dialog>
