@@ -19,7 +19,7 @@ const results = 5
 const Index = () => {
     const [perPage, setPerPage] = React.useState(results)
     const isXSmall = useMediaQuery(theme =>
-        theme.breakpoints.down('xs'))
+        theme.breakpoints.down('sm'))
     const {
         loading,
         error,

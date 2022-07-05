@@ -14,6 +14,8 @@ import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import Skeleton from "@material-ui/lab/Skeleton";
 import DeleteNotification from './DeleteNotification'
+import { axios } from '@approbado/lib/providers'
+import { useChatDispatch } from '@approbado/lib/hooks/useChat'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -62,6 +64,21 @@ const NotificationCard = ({ data, rootRef, index }) => {
     const [expanded, setExpanded] = React.useState(false);
     const anchorRef = React.useRef(null);
     const ref = React.useRef(null)
+    const [isLoading, setIsLoading] = React.useState(false)
+    const { acceptChat } = useChatDispatch()
+
+    const handleAccept = async (status) => {
+        setIsLoading(true)
+
+        // const res = await axios.put(`/chats/status/${chat_id}/${currUserId}`, {
+        //     status: status
+        // })
+
+        // if (res.status >= 200 && res.status <= 300) {
+        //     acceptChat(status);
+        // }
+        setIsLoading(false)
+    }
 
     const handleExpandClick = e => {
         if (anchorRef.current && anchorRef.current.contains(e.target)) {
@@ -134,18 +151,28 @@ const NotificationCard = ({ data, rootRef, index }) => {
             />
             <>
                 {!loading && (
+                (data.type == 'request') && (
                     <Collapse in={!loading && expanded} timeout="auto" unmountOnExit>
                         <CardContent>
                             <CardActions className={classes.actions} disableSpacing>
-                                <Button variant="outlined" color="secondary">
+                                <Button
+                                    variant="outlined"
+                                    color="secondary"
+                                    onClick={() => handleAccept('rejected')}
+                                >
                                     Rechazar
                                 </Button>
-                                <Button variant="contained" color="primary">
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => handleAccept('accepted')}
+                                >
                                     Aceptar
                                 </Button>
                             </CardActions>
                         </CardContent>
                     </Collapse>
+                )
                 )}
             </>
         </Card>
