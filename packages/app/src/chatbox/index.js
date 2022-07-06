@@ -50,7 +50,7 @@ const Chatbox = () => {
                     currUserId={user.id}
                 />
             )}
-            {(current.chatStatus == 'rejected') && (
+            {(current.chatStatus == 'rejected' || current.chatStatus == 'leaved') && (
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -62,7 +62,7 @@ const Chatbox = () => {
                     fontSize: '0.9rem',
                     color: '#6D6D6D'
                 }}>
-                    Haz rechazado esta solicitud de mensajes.
+                    {(current.chatStatus == 'rejected') ? <>Haz rechazado esta solicitud de mensajes.</> : <>Has abandonado este grupo.</>}
                 </Box>
             )}
         </Box>
