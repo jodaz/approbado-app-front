@@ -16,6 +16,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import DeleteNotification from './DeleteNotification'
 import { axios } from '@approbado/lib/providers'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat'
+import { useUserState } from '@approbado/lib/hooks/useUserState'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -58,6 +59,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+const getStatus = (models, userID) => {
+    const model = models.find(model => model.user_id == userID);
+
+    if (!model) return null;
+
+    return model.status;
+}
+
 const NotificationCard = ({ data, rootRef, index }) => {
     const loading = data == null;
     const classes = useStyles();
@@ -66,17 +75,18 @@ const NotificationCard = ({ data, rootRef, index }) => {
     const ref = React.useRef(null)
     const [isLoading, setIsLoading] = React.useState(false)
     const { acceptChat } = useChatDispatch()
+    const { user } = useUserState()
 
     const handleAccept = async (status) => {
         setIsLoading(true)
 
-        // const res = await axios.put(`/chats/status/${chat_id}/${currUserId}`, {
-        //     status: status
-        // })
+        const res = await axios.put(`/chats/status/${data.chat.id}/${user.id}`, {
+            status: status
+        })
 
-        // if (res.status >= 200 && res.status <= 300) {
-        //     acceptChat(status);
-        // }
+        if (res.status >= 200 && res.status <= 300) {
+            acceptChat(status);
+        }
         setIsLoading(false)
     }
 
@@ -151,7 +161,7 @@ const NotificationCard = ({ data, rootRef, index }) => {
             />
             <>
                 {!loading && (
-                (data.type == 'request') && (
+                (data.type == 'request' && getStatus(data.chat.chatUser, user.id) == 'pending') && (
                     <Collapse in={!loading && expanded} timeout="auto" unmountOnExit>
                         <CardContent>
                             <CardActions className={classes.actions} disableSpacing>
