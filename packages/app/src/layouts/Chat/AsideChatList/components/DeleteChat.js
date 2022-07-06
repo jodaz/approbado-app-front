@@ -44,6 +44,17 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: alpha(theme.palette.error.main, 0.9)
         }
     },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        height: '2rem',
+        padding: '1rem 0',
+        alignSelf: 'center',
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '60%'
+        }
+    },
     menuItem: {
         padding: '0.8rem 1rem',
         width: '100%',
@@ -103,42 +114,28 @@ export default function({ onClick, id }) {
                     </IconButton>
                 </DialogTitle>
                 <DialogContent className={classes.content}>
-                    <Box width='20rem' display='flex' justifyContent="center" flexDirection='column'>
-                        <Box sx={{
-                            width: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            minHeight: 'inherit'
-                        }}>
-                            <Box sx={{ fontWeight: 600 }}>
-                                ¿Estás seguro que deseas eliminar este chat?
-                            </Box>
-                            <Box sx={{ fontWeight: 400 }}>
-                                Si eliminas este chat, ya no podrás acceder a los mensajes.
-                            </Box>
+                    <Box sx={{
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        minHeight: 'inherit'
+                    }}>
+                        <Box sx={{ fontWeight: 600 }}>
+                            ¿Estás seguro que deseas eliminar este chat?
                         </Box>
-                        <Box sx={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            height: '2rem',
-                            padding: '1rem 0',
-                            width: '100%'
-                        }}>
-                            <Button
-                                onClick={handleClose}
-                                className={classes.cancelButton}
-                            >
-                                Cancelar
-                            </Button>
-                            <Button
-                                className={classes.submitButton}
-                                onClick={handleDelete}
-                            >
-                                Sí, quiero continuar
-                            </Button>
+                        <Box sx={{ fontWeight: 400 }}>
+                            Si eliminas este chat, ya no podrás acceder a los mensajes.
                         </Box>
+                    </Box>
+                    <Box className={classes.buttonContainer}>
+                        <Button onClick={handleClose} className={classes.cancelButton}>
+                            Cancelar
+                        </Button>
+                        <Button className={classes.submitButton} onClick={handleDelete}>
+                            Sí, quiero continuar
+                        </Button>
                     </Box>
                 </DialogContent>
             </Dialog>

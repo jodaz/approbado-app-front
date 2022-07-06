@@ -5,7 +5,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles, alpha } from '@material-ui/core/styles';
-import Button from '@approbado/lib/components/Button'
+import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { Form } from 'react-final-form'
@@ -95,7 +95,20 @@ const useStyles = makeStyles(theme => ({
         '& :nth-child(1)': {
             marginRight: '1rem'
         }
-    }
+    },
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'space-evenly',
+        height: '2rem',
+        padding: '1rem 0',
+        alignSelf: 'center',
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: '30%',
+            alignSelf: 'end',
+            justifyContent: 'space-between'
+        }
+    },
 }));
 
 const validate = (values) => {
@@ -108,7 +121,7 @@ const validate = (values) => {
             errors.name = "Ingrese un nombre para el chat grupal.";
         }
     }
-    console.log(errors)
+
     return errors;
 }
 
@@ -163,9 +176,9 @@ const MessageRequestModal = ({ handleCloseMenu }) => {
             const { data } = await axios.post('/chats', submmitData)
 
             history.push(`/chats/${data.id}`)
+            handleCloseMenu();
             requestChat(data)
             handleToggle();
-            handleCloseMenu();
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;
@@ -274,24 +287,18 @@ const MessageRequestModal = ({ handleCloseMenu }) => {
                                         }
                                     />
                                 </InputContainer>
-                                <Box sx={{
-                                    display: 'flex',
-                                    justifyContent: 'space-between',
-                                    width: '100%',
-                                    paddingTop: '1rem'
-                                }}>
+                                <Box className={classes.buttonContainer}>
                                     <Button
                                         onClick={handleClose}
                                         disabled={submitting}
                                         className={classes.cancelButton}
-                                        unresponsive
                                     >
                                         Cancelar
                                     </Button>
                                     <Button
                                         disabled={submitting}
-                                        unresponsive
                                         onClick={handleSubmit}
+                                        color='primary'
                                     >
                                         Invitar
                                     </Button>
