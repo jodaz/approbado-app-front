@@ -173,12 +173,15 @@ const MessageRequestModal = ({ handleCloseMenu }) => {
                 ...values,
                 is_private: values.users_ids.length < 2
             }
-            const { data } = await axios.post('/chats', submmitData)
+            const res = await axios.post('/chats', submmitData)
 
-            history.push(`/chats/${data.id}`)
-            handleCloseMenu();
-            requestChat(data)
-            handleToggle();
+
+            if (res.status >= 200 && res.status <= 300) {
+                history.push(`/chats/${res.data.id}`)
+                handleCloseMenu();
+                requestChat(res.data)
+                handleToggle();
+            }
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;

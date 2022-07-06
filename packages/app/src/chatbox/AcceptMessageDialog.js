@@ -5,7 +5,7 @@ import Spinner from '@approbado/lib/components/Spinner'
 import { axios } from '@approbado/lib/providers'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat'
 
-const AcceptMessageDialog = ({ id: chat_id, receptor, currUserId }) => {
+const AcceptMessageDialog = ({ id: chat_id, is_private, receptor, notification, currUserId }) => {
     const [isLoading, setIsLoading] = React.useState(false)
     const { acceptChat } = useChatDispatch()
 
@@ -44,15 +44,21 @@ const AcceptMessageDialog = ({ id: chat_id, receptor, currUserId }) => {
         }}>
             <Box
                 sx={{ fontWeight: 600 }}
-                dangerouslySetInnerHTML={{ __html:`@${receptor.user_name} quiere enviarte un mensaje` }}
+                dangerouslySetInnerHTML={{ __html: notification.long_data }}
             />
             <Box sx={{
                 fontWeight: 400,
                 color: '#6D6D6D'
             }}>
-                Si aceptas contestar el mensaje, <strong>@{receptor.user_name}</strong> podrá enviarte mensajes.
-                Tanto tú como el usuario podrán visualizar su información de perfil
-                y ver el estado de sus mensajes.
+                {is_private ? (
+                    <>
+                        Si aceptas contestar el mensaje, <strong>@{receptor.user_name}</strong> podrá enviarte mensajes. Tanto tú como el usuario podrán visualizar su información de perfil y ver el estado de sus mensajes.
+                    </>
+                ) : (
+                    <>
+                        Si aceptas contestar el mensaje, tanto tú como los integrantes del grupo podrán visualizar su información de perfil y ver el estado de sus mensajes.
+                    </>
+                )}
             </Box>
             <Box sx={{
                 display: 'flex',

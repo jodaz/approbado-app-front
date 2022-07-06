@@ -4,7 +4,6 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import { makeStyles, alpha, styled } from '@material-ui/core'
-import configs from '@approbado/lib/configs'
 import SendIcon from '@approbado/lib/icons/SendIcon'
 import { Field, Form } from 'react-final-form';
 import Box from '@material-ui/core/Box'
@@ -12,6 +11,7 @@ import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { useParams } from 'react-router-dom'
 import AddFileInput from './AddFileInput'
 import AddImageInput from './AddImageInput'
+import { axios } from '@approbado/lib/providers'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -69,15 +69,20 @@ const CustomFormControl = styled(FormControl)(() => ({
 }));
 
 const CommentContainer = () => {
-    const { user } = useUserState();
     const { focused } = useFormControl() || {};
     const classes = useStyles({
         focused: focused
     });
     const loading = false;
+    const { chat_id } = useParams();
 
     const handleSubmit = React.useCallback(async (values) => {
-    }, []);
+        const res = await axios.post(`/chats/${chat_id}/messages`, values)
+
+        if (res.status >= 200 && res.status < 300) {
+
+        }
+    }, [chat_id]);
 
     return (
         <Form
@@ -88,7 +93,7 @@ const CommentContainer = () => {
                         <AddFileInput />
                         <AddImageInput />
                     </Box>
-                    <Field name='summary'>
+                    <Field name='message'>
                         {({
                             meta: { touched, error } = { touched, error },
                             input: { ...inputProps },

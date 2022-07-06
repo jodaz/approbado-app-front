@@ -14,7 +14,7 @@ import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import Skeleton from "@material-ui/lab/Skeleton";
 import DeleteNotification from './DeleteNotification'
-import { axios } from '@approbado/lib/providers'
+import { axios, history } from '@approbado/lib/providers'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 
@@ -86,6 +86,7 @@ const NotificationCard = ({ data, rootRef, index }) => {
 
         if (res.status >= 200 && res.status <= 300) {
             acceptChat(status);
+            history.push(`/chats/${data.chat.id}`)
         }
         setIsLoading(false)
     }
