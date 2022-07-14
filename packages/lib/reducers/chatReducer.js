@@ -4,7 +4,8 @@ import {
     SET_CHAT_ID,
     SET_CURRENT_CHAT,
     ACCEPT_CHAT_INVITING,
-    REQUEST_CHAT
+    REQUEST_CHAT,
+    SEND_MESSAGE
 } from '../actions';
 
 const initialState = {
@@ -40,6 +41,18 @@ const chatReducer = (
             return {
                 ...previousState,
                 selected: action.payload
+            }
+        }
+        case SEND_MESSAGE: {
+            return {
+                ...previousState,
+                current: {
+                    ...previousState.current,
+                    messages: [
+                        ...previousState.current.messages,
+                        action.payload
+                    ]
+                }
             }
         }
         case SET_CURRENT_CHAT:

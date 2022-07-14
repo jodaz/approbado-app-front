@@ -5,7 +5,8 @@ import {
     DELETE_CHAT,
     SET_CHAT_ID,
     ACCEPT_CHAT_INVITING,
-    REQUEST_CHAT
+    REQUEST_CHAT,
+    SEND_MESSAGE
 } from '../actions';
 
 export const useChatState = () => {
@@ -20,6 +21,10 @@ export const useChatDispatch = () => {
     return {
         requestChat: data => dispatch({
             type: REQUEST_CHAT,
+            payload: data
+        }),
+        sendMessage: data => dispatch({
+            type: SEND_MESSAGE,
             payload: data
         }),
         setChat: data => dispatch({

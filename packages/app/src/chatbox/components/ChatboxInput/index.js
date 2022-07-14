@@ -7,11 +7,11 @@ import { makeStyles, alpha, styled } from '@material-ui/core'
 import SendIcon from '@approbado/lib/icons/SendIcon'
 import { Field, Form } from 'react-final-form';
 import Box from '@material-ui/core/Box'
-import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { useParams } from 'react-router-dom'
 import AddFileInput from './AddFileInput'
 import AddImageInput from './AddImageInput'
 import { axios } from '@approbado/lib/providers'
+import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -68,27 +68,31 @@ const CustomFormControl = styled(FormControl)(() => ({
     borderRadius: 6
 }));
 
-const CommentContainer = () => {
+const ChatInput = () => {
     const { focused } = useFormControl() || {};
     const classes = useStyles({
         focused: focused
     });
     const loading = false;
     const { chat_id } = useParams();
+    const { sendMessage } = useChatDispatch();
 
-    const handleSubmit = React.useCallback(async (values) => {
+    const handleSubmit = async (values) => {
         const res = await axios.post(`/chats/${chat_id}/messages`, values)
 
-        if (res.status >= 200 && res.status < 300) {
-
+        if (res.status >= 200 || res.status < 300) {
+            await sendMessage(res.data)
         }
-    }, [chat_id]);
+    };
 
     return (
         <Form
             onSubmit={handleSubmit}
-            render={({ handleSubmit }) => (
-                <Paper component="form" className={classes.root}>
+            render={({ handleSubmit, form }) => (
+                <Paper component="form" className={classes.root} onSubmit={async event => {
+                    await handleSubmit(event)
+                    form.reset()
+                }}>
                     <Box className={classes.containerButtons}>
                         <AddFileInput />
                         <AddImageInput />
@@ -114,7 +118,7 @@ const CommentContainer = () => {
                     <IconButton
                         className={classes.icon}
                         aria-label="send"
-                        onClick={handleSubmit}
+                        type='submit'
                         disabled={loading}
                     >
                         <SendIcon />
@@ -125,10 +129,10 @@ const CommentContainer = () => {
     )
 }
 
-export default function CommentInput() {
+export default function () {
     return (
         <CustomFormControl>
-            <CommentContainer />
+            <ChatInput />
         </CustomFormControl>
     );
 }

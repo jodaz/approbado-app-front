@@ -82,13 +82,36 @@ const AsideChatList = () => {
     return (
         <Box className={classes.root}>
             <AsideBarHeader onChange={handleChange} />
-            <ChatsList
-                total={total}
-                error={error}
-                loading={loading}
-                items={chats}
-                lastItemRef={lastItemRef}
-            />
+            <Box
+                component='div'
+                sx={{
+                    width: 'inherit',
+                    overflowY: 'auto',
+                    height: 'inherit',
+                    overflowX: 'hidden',
+                    scrollbarWidth: 10,
+                    scrollbarColor: '#6D6D6D',
+                    "&::-webkit-scrollbar": {
+                        width: 10
+                    },
+                    "&::-webkit-scrollbar-track": {
+                        backgroundColor: "#D9D9D9",
+                        borderRadius: 5
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#6D6D6D",
+                        borderRadius: 5
+                    }
+                }}
+            >
+                <ChatsList
+                    total={total}
+                    error={error}
+                    loading={loading}
+                    items={chats}
+                    lastItemRef={lastItemRef}
+                />
+            </Box>
         </Box>
     );
 }

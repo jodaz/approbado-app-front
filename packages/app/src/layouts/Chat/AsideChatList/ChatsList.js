@@ -6,28 +6,7 @@ import Spinner from '@approbado/lib/components/Spinner'
 
 const ChatsList = ({ total, items, loading, error, lastItemRef }) => {
     return (
-        <Box
-            component='div'
-            sx={{
-                width: 'inherit',
-                overflowY: 'auto',
-                height: 'inherit',
-                overflowX: 'hidden',
-                scrollbarWidth: 10,
-                scrollbarColor: '#6D6D6D',
-                "&::-webkit-scrollbar": {
-                    width: 10
-                },
-                "&::-webkit-scrollbar-track": {
-                    backgroundColor: "#D9D9D9",
-                    borderRadius: 5
-                },
-                "&::-webkit-scrollbar-thumb": {
-                    backgroundColor: "#6D6D6D",
-                    borderRadius: 5
-                }
-            }}
-        >
+        <Box>
             {total ? items.map((item, index) => {
                 if (items.length === index + 1) {
                     return (

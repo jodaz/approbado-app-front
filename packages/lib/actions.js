@@ -37,6 +37,7 @@ export const SET_CHATLIST = 'SET_CHATLIST';
 export const SET_CHAT_ID = 'SET_CHAT_ID';
 export const ACCEPT_CHAT_INVITING = 'ACCEPT_CHAT_INVITING';
 export const REQUEST_CHAT = 'REQUEST_CHAT';
+export const SEND_MESSAGE = 'SEND_MESSAGE';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,
