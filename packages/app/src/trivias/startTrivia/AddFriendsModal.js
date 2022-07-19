@@ -258,13 +258,15 @@ const AddFriendsModal = () => {
                                 <InputContainer sx='12' md='12' label="Compartir link">
                                     <ClipboardCopyField name="link" disabled />
                                 </InputContainer>
-                                <Link
-                                    to='/dashboard/schedules'
-                                    className={classes.link}
-                                    component={LinkBehavior}
-                                >
-                                    Agendar una trivia grupal
-                                </Link>
+                                <Box sx={{ marginTop: '1rem' }}>
+                                    <Link
+                                        to='/dashboard/schedules'
+                                        className={classes.link}
+                                        component={LinkBehavior}
+                                    >
+                                        Agendar una trivia grupal
+                                    </Link>
+                                </Box>
                                 <Box sx={{
                                     display: 'flex',
                                     justifyContent: 'space-between',

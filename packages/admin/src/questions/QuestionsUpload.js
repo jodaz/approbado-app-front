@@ -49,7 +49,7 @@ const QuestionsUpload = () => {
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
             notify('¡Ha subido nuevas preguntas a la trivia!', 'success')
-            history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/show`)
+            history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}`)
         }
     }, [fileDataResponse])
 

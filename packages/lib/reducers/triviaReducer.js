@@ -37,6 +37,7 @@ const initialState = {
         loaded: false,
         id: '',
         token: '',
+        usersIds: [],
         participants: [],
         subtheme: ''
     }

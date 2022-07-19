@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 const getMaxTime = subthemes => subthemes.map(({ duration }) => duration).reduce((a, b) => a + b, 0)
 
 const BeforeStarting = props => {
-    const { questions, selectedSubthemes, type, level } = props
+    const { questions, selectedSubthemes } = props
     const [maxTime, setMaxTime] = React.useState(false)
     const classes = useStyles();
     const { setConfigs, startCounter } = useTriviaDispatch();
@@ -43,8 +43,6 @@ const BeforeStarting = props => {
 
     const handleClick = () => {
         setConfigs({
-            level: level,
-            type: type,
             view: 'playing',
             duration: maxTime
         })
