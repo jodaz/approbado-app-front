@@ -1,30 +1,6 @@
 import * as React from 'react'
 import { axios } from '@approbado/lib/providers'
-
-const getQueryFromParams = (params = {}) => {
-    const query = {};
-
-    if (params["page"] != undefined) {
-        query.page = params.page + (-1)
-    }
-    if ("perPage" in params) {
-        query.perPage = params.perPage
-    }
-    if ("filter" in params) {
-        // Add all filter params to query.
-        Object.keys(params.filter || {}).forEach((key) => {
-            query[`filter[${key}]`] = params.filter[key];
-        });
-    }
-
-    // Add sort parameter
-    if (params.sort && params.sort.field) {
-        query.sort = params.sort.field;
-        query.order = params.sort.order === 'ASC' ? 'asc' : 'desc';
-    }
-
-    return query;
-}
+import getQueryFromParams from '../utils/getQueryFromParams'
 
 const useFetch = (url, params = {}) => {
     const [loading, setLoading] = React.useState(true)

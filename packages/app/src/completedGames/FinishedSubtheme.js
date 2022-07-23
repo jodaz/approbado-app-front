@@ -56,21 +56,19 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const TestCard = trivia => {
-    const { id, name, subthemesCount, subthemesFinishedCount } = trivia
+const FinishedSubtheme = ({ id, name, questionsCount, trivia }) => {
     const classes = useStyles({
         cover: trivia.cover
     })
-    const total = subthemesCount - subthemesFinishedCount;
     const { setTrivia } = useTriviaDispatch();
 
     return (
         <Box
             className={classes.root}
-            to='/trivias'
-            component={LinkBehavior}
+            // to='/trivias'
+            // component={LinkBehavior}
             key={id}
-            onClick={() => setTrivia(trivia)}
+            // onClick={() => setTrivia(trivia)}
         >
             <Box component='div' className={classes.bar} />
             <Box display='flex' flexDirection='column' alignSelf='end' padding='1rem'>
@@ -78,11 +76,11 @@ const TestCard = trivia => {
                     {name}
                 </Box>
                 <Box sx={{ color: '#232730' }}>
-                    {`Te faltan ${total} subtemas`}
+                    {`${questionsCount} preguntas`}
                 </Box>
             </Box>
         </Box>
     );
 }
 
-export default TestCard
+export default FinishedSubtheme

@@ -75,7 +75,6 @@ const StartTrivia = () => {
     const { selectedSubthemes, trivia } = state
     const {
         loading,
-        total,
         data,
         error
     } = useFetch('/configurations/levels', {
