@@ -8,7 +8,6 @@ import SendIcon from '@approbado/lib/icons/SendIcon'
 import { Field, Form } from 'react-final-form';
 import Box from '@material-ui/core/Box'
 import { useParams } from 'react-router-dom'
-import AddFileInput from './AddFileInput'
 import AddImageInput from './AddImageInput'
 import { axios } from '@approbado/lib/providers'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
@@ -58,7 +57,8 @@ const useStyles = makeStyles(theme => ({
     containerButtons: {
         display: 'flex',
         alignItems: 'center',
-        flexGrow: '1'
+        flexGrow: '1',
+        paddingLeft: '0.5rem'
     }
 }))
 
@@ -94,8 +94,7 @@ const ChatInput = () => {
                     form.reset()
                 }}>
                     <Box className={classes.containerButtons}>
-                        <AddFileInput />
-                        <AddImageInput />
+                        <AddImageInput name="file" className={classes.icon} />
                     </Box>
                     <Field name='message'>
                         {({

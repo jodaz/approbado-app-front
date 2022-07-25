@@ -4,7 +4,6 @@ import { useInput, InputHelperText } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
 import { ReactComponent as UploadIcon } from '@approbado/lib/icons/Upload.svg'
 import Typography from '@material-ui/core/Typography'
-import FormHelperText from '@material-ui/core/FormHelperText';
 
 const useStyles = makeStyles(
     theme => ({
@@ -103,8 +102,7 @@ const ProfilePhotoInput = props => {
 
     const {
         id,
-        input: { onChange, value, ...inputProps },
-        meta
+        input: { onChange, value, ...inputProps }
     } = useInput({
         format: format || transformFile,
         parse: parse || transformFile,
@@ -113,7 +111,6 @@ const ProfilePhotoInput = props => {
         validate,
         ...rest,
     });
-    const { touched, error, submitError } = meta;
 
     const onDrop = (newFiles, rejectedFiles, event) => {
         const updatedFiles = [...newFiles];
