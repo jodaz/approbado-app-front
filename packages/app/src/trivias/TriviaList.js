@@ -1,10 +1,4 @@
 import * as React from 'react';
-import {
-    FilterContext,
-    ListBase,
-    FilterLiveSearch,
-    TopToolbar,
-} from 'react-admin';
 import { useMediaQuery, makeStyles  } from '@material-ui/core'
 import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg';
 import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
@@ -19,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { useTriviaState, useTriviaDispatch } from "@approbado/lib/hooks/useTriviaSelect"
 import { usePlan } from '@approbado/lib/hooks/useUserState';
 import useDetectOutsideClick from '@approbado/lib/hooks/useDetectOutsideClick';
+import { axios } from '@approbado/lib/providers'
+import TextField from '@material-ui/core/TextField'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 
 const drawerWidth = 300;
 
@@ -37,24 +34,14 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-const ListActions = () => (
-    <TopToolbar>
-        <FilterLiveSearch label='' source="name" label='Buscar trivia' />
-    </TopToolbar>
-);
+// const ListActions = () => (
+//     <TopToolbar>
+//         <FilterLiveSearch label='' source="name" label='Buscar trivia' />
+//     </TopToolbar>
+// );
 
-const TriviaList = () => (
-    <ListBase
-        basePath='trivias'
-        resource='trivias'
-        perPage={10}
-        sort={{ field: 'created_at', order: 'DESC' }}
-    >
-        <TriviaListView />
-    </ListBase>
-);
-
-const TriviaListView = () => {
+const TriviaList = () => {
+    const [trivias, setTrivias] = React.useState([])
     const classes = useStyles();
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
@@ -64,6 +51,17 @@ const TriviaListView = () => {
     const { selected, trivia } = useTriviaState();
     const { found: isFreeMembership} = usePlan('Free');
     const { unsetTrivia } = useTriviaDispatch();
+    const [filter, setFilter] = React.useState(null)
+
+    const fetchTrivias = async () => {
+        const res = await axios({
+            method: 'GET',
+            url: '/trivias',
+            params: getQueryFromParams({ filter })
+        })
+
+        setTrivias(res.data.data);
+    }
 
     const renderSelectedTriviaContent = () => (
         <Box padding='0 1rem' width={isSmall ? 'unset' : '20%'} display={!selected && 'none'}>
@@ -75,45 +73,63 @@ const TriviaListView = () => {
         </Box>
     )
 
+    const handleOnChange = (e) => {
+        if (e.currentTarget.value) {
+            setFilter({
+                global_search: e.currentTarget.value
+            })
+        } else {
+            setFilter(null)
+        }
+    }
+
     React.useEffect(() => {
         if (outsideClick) { unsetTrivia() }
     }, [outsideClick])
 
+    React.useEffect(() => {
+        fetchTrivias();
+    }, [filter])
+
+    console.log(filter);
+
     return (
-        <>
-            <Box display="flex" height='100%' width='100%'>
-                <Box width={isSmall ? '100%' : '80%'}>
-                    <Typography variant='h5'>
-                        Trivias
-                    </Typography>
-                    <FilterContext.Provider>
-                        <ListActions />
-                    </FilterContext.Provider>
-                    <GridList component={<TriviaCard />} />
+        <Box display="flex" height='100%' width='100%'>
+            <Box width={isSmall ? '100%' : '80%'}>
+                <Typography variant='h5'>
+                    Trivias
+                </Typography>
+                <Box width={isSmall ? '100%' : '30%'} paddingTop='1em' paddingBottom='1.1rem'>
+                    <TextField
+                        onChange={handleOnChange}
+                        placeholder='Buscar'
+                        fullWidth
+                    />
                 </Box>
-                {(isSmall) ? (
-                    <Drawer
-                        variant="persistent"
-                        anchor='right'
-                        open={selected}
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                        onClose={() => unsetTrivia()}
-                        ModalProps={{ keepMounted: true }}
-                        ref={wrapperRef}
-                    >
-                        <Box className={classes.unsetTriviaButton} onClick={() => unsetTrivia()}>
-                            <LeftAngleIcon />
-                            Volver
-                        </Box>
-                        {renderSelectedTriviaContent()}
-                    </Drawer>
-                ) : (!selected)
-                ? <SelectTrivia />
-                : renderSelectedTriviaContent()}
+                <GridList component={<TriviaCard />} data={trivias} />
             </Box>
-        </>
+            {(isSmall) ? (
+                <Drawer
+                    variant="persistent"
+                    anchor='right'
+                    open={selected}
+                    classes={{
+                        paper: classes.drawerPaper,
+                    }}
+                    onClose={() => unsetTrivia()}
+                    ModalProps={{ keepMounted: true }}
+                    ref={wrapperRef}
+                >
+                    <Box className={classes.unsetTriviaButton} onClick={() => unsetTrivia()}>
+                        <LeftAngleIcon />
+                        Volver
+                    </Box>
+                    {renderSelectedTriviaContent()}
+                </Drawer>
+            ) : (!selected)
+            ? <SelectTrivia />
+            : renderSelectedTriviaContent()}
+        </Box>
     );
 }
 

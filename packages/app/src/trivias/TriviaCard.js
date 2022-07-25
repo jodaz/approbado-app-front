@@ -65,7 +65,6 @@ const useStyles = makeStyles(theme => ({
 const TriviaCard = ({ data, id }) => {
     const { setTrivia } = useTriviaDispatch();
     const { trivia } = useTriviaState();
-    console.log(data.cover)
     const classes = {
         ...cardStyles(),
         ...useStyles({

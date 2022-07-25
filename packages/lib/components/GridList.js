@@ -1,25 +1,19 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { useListContext } from 'react-admin';
 import Spinner from '@approbado/lib/components/Spinner'
 import EmptyMessageComponent from '@approbado/lib/components/EmptyMessageComponent'
 
-const LoadedGridList = props => {
-    const { component, empty } = props
-    const { ids, data, total } = useListContext()
-
-    if (!ids || !data || !total) return <>{empty}</>;
+const LoadedGridList = ({ component, empty, data }) => {
+    if (!data.length) return <>{empty}</>;
 
     return (
         <Grid container>
-            {ids.map((id, i) => (
+            {data.map((item, i) => (
                 <Grid item xs={12} sm={6} md={4} key={i}>
                     {React.cloneElement(component, {
-                        data: data[id],
-                        id: id,
-                        index: i,
-                        key: id
+                        data: item,
+                        index: i
                     })}
                 </Grid>
             ))}
@@ -27,14 +21,12 @@ const LoadedGridList = props => {
     );
 };
 
-const GridList = props => {
-    const { component, empty } = props;
-    const { loaded } = useListContext();
-
-    return loaded ? (
+const GridList = ({ component, empty, data, loaded }) => {
+    return (loaded) ? (
         <LoadedGridList
             component={component}
             empty={empty}
+            data={data}
         />
     ) : (
         <Box display="flex">
@@ -45,7 +37,8 @@ const GridList = props => {
 
 GridList.defaultProps = {
     component: <></>,
-    empty: <EmptyMessageComponent message='Sin registros' />
+    empty: <EmptyMessageComponent message='Sin registros' />,
+    loaded: true
 }
 
 export default GridList;
