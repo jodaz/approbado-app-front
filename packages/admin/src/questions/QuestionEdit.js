@@ -1,12 +1,5 @@
 import * as React from 'react'
-import {
-    useMutation,
-    SelectInput,
-    useNotify,
-    useEditController,
-    ReferenceInput,
-    BooleanInput
-} from 'react-admin'
+import { BooleanInput } from 'react-admin'
 import { useParams, useHistory } from 'react-router-dom'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import Typography from '@material-ui/core/Typography'
@@ -22,11 +15,12 @@ import { makeStyles } from '@material-ui/core'
 import { unmarkOptions, validate } from './questionsFormUtils'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '@approbado/lib/components/TextInput'
-
-const OPTIONS = [
-    { id: '1', name: 'Respuesta correcta' },
-    { id: '0', name: 'Respuesta incorrecta' }
-]
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { axios } from '@approbado/lib/providers'
+import Spinner from '@approbado/lib/components/Spinner'
+import SelectLevelInput from './SelectQuestionLevelInput'
+import SelectFileInput from './SelectQuestionFileInput'
+import SelectAclaratoryInput from './SelectAclaratoryInput'
 
 const useStyles = makeStyles(theme => ({
     arrayRootField: {
@@ -46,43 +40,42 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const QuestionEdit = props => {
-    const { subtheme_id, question_id } = useParams()
-    const editControllerProps = useEditController({
-        ...props,
-        id: question_id
-    });
-    const [mutate, { data, loaded }] = useMutation();
+const QuestionEdit = () => {
+    const { subtheme_id, trivia_id, question_id } = useParams()
+    const [record, setRecord] = React.useState({})
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const classes = useStyles();
 
     const save = React.useCallback(async (values) => {
-        const data = { subtheme_id: subtheme_id, ...values };
-
         try {
-            await mutate({
-                type: 'update',
-                resource: 'questions',
-                payload: { id: question_id, data: data }
-            }, { returnPromise: true })
+            const { data } = await axios.put(`/questions/${question_id}`, {
+                subtheme_id: subtheme_id,
+                ...values
+            });
+
+            if (data) {
+                history.push(`/trivias/${subtheme_id}/subthemes/${data.subtheme_id}/questions`)
+                showNotification(`¡Actualizó la pregunta "${data.description}" exitosamente!`)
+            }
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;
             }
         }
-    }, [mutate, subtheme_id])
+    }, [question_id])
 
-    React.useEffect(() => {
-        if (loaded) {
-            notify(`¡Actualizó la pregunta "${data.description}" exitosamente!`, 'success')
-            history.push(`/trivias/${subtheme_id}/subthemes/${data.subtheme_id}/questions`)
+    React.useEffect(async () => {
+        if (question_id) {
+            const { data } = await axios.get(`/questions/${question_id}`)
+
+            if (data) {
+                setRecord(data)
+            }
         }
-    }, [loaded])
+    }, [question_id])
 
-    const { record, loaded: loadedRecord } = editControllerProps
-
-    if (!loadedRecord) return null
+    if (!Object.entries(record).length) return <Spinner />
 
     return (
         <Box component='div'>
@@ -108,7 +101,7 @@ const QuestionEdit = props => {
                         <form onSubmit={handleSubmit}>
                             <Box maxWidth="90em" paddingTop='2rem'>
                                 <Grid container spacing={1}>
-                                    <Typography component='h1' variant='h5'>{'Crear pregunta'}</Typography>
+                                    <Typography component='h1' variant='h5'>Editar pregunta</Typography>
                                     <Box paddingBottom='1rem' width='100%'>
                                         <Typography variant="subtitle1" color="textSecondary">
                                             Enunciado
@@ -179,15 +172,7 @@ const QuestionEdit = props => {
                                             {'Aclaratorias'}
                                         </Typography>
                                     </Box>
-                                    <InputContainer sm='12' md='6' label='Mostrar cuando'>
-                                        <SelectInput
-                                            source="explanation_type"
-                                            choices={OPTIONS}
-                                            disabled={submitting}
-                                            fullWidth
-                                            emptyText="Sin aclaratoria"
-                                        />
-                                    </InputContainer>
+                                    <SelectAclaratoryInput disabled={submitting } />
                                     <InputContainer sm='12' md='6' label='Aclaratoria'>
                                         <TextInput
                                             name="explanation"
@@ -196,30 +181,8 @@ const QuestionEdit = props => {
                                             fullWidth
                                         />
                                     </InputContainer>
-                                    <InputContainer sm='12' md='6' label='Archivo de referencia'>
-                                        <ReferenceInput
-                                            source="file_id"
-                                            reference="files"
-                                            disabled={submitting}
-                                            fullWidth
-                                            allowEmpty
-                                        >
-                                            <SelectInput
-                                                optionText="title"
-                                                emptyText="N/A"
-                                            />
-                                        </ReferenceInput>
-                                    </InputContainer>
-                                    <InputContainer label='Nivel' sm='12' md='6'>
-                                        <ReferenceInput
-                                            source='level_id'
-                                            reference='configurations/levels'
-                                            allowEmpty
-                                            fullWidth
-                                        >
-                                            <SelectInput source="name" emptyText="N/A" />
-                                        </ReferenceInput>
-                                    </InputContainer>
+                                    <SelectFileInput trivia_id={trivia_id} />
+                                    <SelectLevelInput />
                                     <Grid container>
                                         <Grid item xs={12} sm={12} md={4} lg={3}>
                                             <CustomCreateButton
@@ -244,11 +207,6 @@ const QuestionEdit = props => {
             />
         </Box>
     )
-}
-
-QuestionEdit.defaultProps = {
-    basePath: '/questions',
-    resource: 'questions'
 }
 
 export default QuestionEdit

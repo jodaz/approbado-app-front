@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { TOGGLE_SIDEBAR } from '../actions';
+import {
+    TOGGLE_SIDEBAR,
+    SHOW_NOTIFICATION,
+    HIDE_NOTIFICATION
+} from '../actions';
 
 export const useUiState = () => {
     const store = useSelector(state => state);
@@ -13,6 +17,13 @@ export const useUiDispatch = () => {
     return {
         toggleSidebar: () => dispatch({
             type: TOGGLE_SIDEBAR
+        }),
+        hideNotification: () => dispatch({
+            type: HIDE_NOTIFICATION
+        }),
+        showNotification: message => dispatch({
+            type: SHOW_NOTIFICATION,
+            payload: message
         })
     }
 }

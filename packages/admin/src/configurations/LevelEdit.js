@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { validateLevel } from './configurationsValidations';
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -14,7 +14,7 @@ const LevelEdit = () => {
     const [loading, setLoading] = React.useState(false)
     const [record, setRecord] = React.useState({})
     const history = useHistory()
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         setLoading(true)
@@ -24,8 +24,8 @@ const LevelEdit = () => {
             setLoading(false)
 
             if (data) {
-                notify(`¡Ha editado el nivel "${data.name}!`, 'success');
                 history.push('/configurations?tab=levels')
+                showNotification(`¡Ha editado el nivel "${data.name}!`);
             }
         } catch (error) {
             setLoading(false)

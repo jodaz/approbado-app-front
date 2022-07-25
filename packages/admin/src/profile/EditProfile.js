@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import Grid from '@material-ui/core/Grid'
 import { fileProvider } from '@approbado/lib/providers'
@@ -28,7 +28,7 @@ const validate = values => {
 const UpdateProfile = () => {
     const [provider, { loading, data }] = useFileProvider(fileProvider);
     const { user } = useUserState();
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const { fetchUser } = useUserDispatch();
 
     const save = React.useCallback(async values => {
@@ -41,8 +41,8 @@ const UpdateProfile = () => {
 
     React.useEffect(() => {
         if (!isEmpty(data)) {
-            notify('¡Su perfil ha sido actualizado!', 'success')
             fetchUser();
+            showNotification('¡Su perfil ha sido actualizado!')
         }
     }, [data])
 

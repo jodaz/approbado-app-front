@@ -11,7 +11,7 @@ import Box from '@material-ui/core/Box';
 import { axios } from '@approbado/lib/providers'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { useHistory, useParams } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
@@ -69,9 +69,9 @@ export default function({ onClick, id }) {
     const [open, setOpen] = React.useState(false);
     const ref = React.useRef(null);
     const { deleteChat } = useChatDispatch();
-    const notify = useNotify();
     const { id: paramsId } = useParams();
-    const isCurrentChat = paramsId == id;
+    const { showNotification } = useUiDispatch();
+    const history = useHistory();
 
     const handleClickOpen = e => {
         setOpen(true);
@@ -87,9 +87,9 @@ export default function({ onClick, id }) {
             const { data } = await axios.delete(`/chats/${id}`)
 
             if (data) {
-                await deleteChat(data, isCurrentChat)
-                // await history.push('/chats')
-                notify('¡Chat eliminado!', 'success')
+                await history.push('/chats')
+                showNotification('¡Chat eliminado!')
+                await deleteChat(data)
                 await handleClose();
             }
         } catch (error) {

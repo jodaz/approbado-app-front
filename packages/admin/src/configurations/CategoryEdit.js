@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { validateCategory } from './configurationsValidations';
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -13,7 +13,7 @@ const CategoryEdit = () => {
     const [loading, setLoading] = React.useState(false)
     const [record, setRecord] = React.useState({})
     const history = useHistory();
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         setLoading(true)
@@ -23,8 +23,8 @@ const CategoryEdit = () => {
             setLoading(false)
 
             if (data) {
-                notify(`¡Ha editado la categoría "${data.name}!`, 'success');
                 history.push('/configurations?tab=categories')
+                showNotification(`¡Ha editado la categoría "${data.name}!`);
             }
         } catch (error) {
             setLoading(false)

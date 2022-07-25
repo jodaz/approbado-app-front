@@ -38,6 +38,8 @@ export const SET_CHAT_ID = 'SET_CHAT_ID';
 export const ACCEPT_CHAT_INVITING = 'ACCEPT_CHAT_INVITING';
 export const REQUEST_CHAT = 'REQUEST_CHAT';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
+export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,

@@ -5,15 +5,11 @@ import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import Dialog from '@approbado/lib/components/Dialog'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { useSelector, useDispatch } from 'react-redux';
-import {
-    hideNotification,
-    getNotification,
-} from 'ra-core';
 import { makeStyles } from '@material-ui/core/styles';
 import ConfirmIcon from '@approbado/lib/icons/ConfirmIcon'
+import { useUiState, useUiDispatch } from '@approbado/lib/hooks/useUI'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     button: {
         background: "linear-gradient(135.16deg, #E6EA00 -22.35%, #FDE000 113.73%)",
         boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.08)",
@@ -46,11 +42,11 @@ const CustomDialogTitle = ({ handleClose }) => (
 )
 
 const Notification = ({
-  autoHideDuration = 3000
+    autoHideDuration = 3000
 }) => {
     const [open, setOpen] = React.useState(false);
-    const notification = useSelector(getNotification);
-    const dispatch = useDispatch();
+    const { hideNotification } = useUiDispatch();
+    const { notification } = useUiState();
     const classes = useStyles();
     const timerAutoHide = React.useRef();
 
@@ -73,17 +69,17 @@ const Notification = ({
 
     const handleClose = React.useCallback(() => {
         setOpen(false);
-        dispatch(hideNotification());
-    }, [dispatch, setOpen]);
+        hideNotification()
+    }, [setOpen]);
 
     React.useEffect(() => {
-        setOpen(!!notification);
-    }, [notification]);
+        setOpen(!!notification.message);
+    }, [notification.message]);
 
     return (
         <Dialog open={open} handleClose={handleClose} title={<CustomDialogTitle handleClose={handleClose} />}>
             <Typography gutterBottom>
-                {notification && notification.message}
+                {notification.message}
             </Typography>
             <ConfirmIcon width='144' height='144' />
             <Button onClick={handleClose} className={classes.button}>

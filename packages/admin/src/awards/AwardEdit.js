@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { fileProvider } from '@approbado/lib/providers'
 import { useFileProvider } from '@jodaz_/file-provider'
 import BaseForm from '@approbado/lib/components/BaseForm'
@@ -18,7 +18,7 @@ const AwardsEdit = () => {
     const [provider, { data: fileDataResponse, loading }] = useFileProvider(fileProvider);
     const [record, setRecord] = React.useState({})
     const history = useHistory();
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         const data = { id: award_id, data: values };
@@ -37,8 +37,8 @@ const AwardsEdit = () => {
 
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
-            notify(`¡Ha actualizado el premio "${fileDataResponse.title}" exitosamente!`, 'success')
             history.push(`/trivias/${trivia_id}/awards`)
+            showNotification(`¡Ha actualizado el premio "${fileDataResponse.title}" exitosamente!`)
         }
     }, [fileDataResponse])
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { validateCategory } from './configurationsValidations';
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -8,7 +8,7 @@ import { axios } from '@approbado/lib/providers'
 import { useHistory } from 'react-router-dom'
 
 const CategoryCreate = () => {
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -17,7 +17,7 @@ const CategoryCreate = () => {
 
             if (data) {
                 history.push(`/configurations/categories`)
-                notify(`¡Ha registrado la categoría "${data.name}"!`, 'success')
+                showNotification(`¡Ha registrado la categoría "${data.name}"!`)
             }
         } catch (error) {
             if (error.response.data.errors) {

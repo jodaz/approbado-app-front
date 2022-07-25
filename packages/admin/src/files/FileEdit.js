@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { fileProvider } from '@approbado/lib/providers'
 import { useFileProvider } from '@jodaz_/file-provider'
 import { useParams, useHistory } from 'react-router-dom'
@@ -18,7 +18,7 @@ const FileEdit = () => {
     const [provider, { data: fileDataResponse, loading }] = useFileProvider(fileProvider);
     const [record, setRecord] = React.useState({})
     const history = useHistory();
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         const data = { id: file_id, data: values };
@@ -38,8 +38,8 @@ const FileEdit = () => {
 
     React.useEffect(() => {
         if (!isEmpty(fileDataResponse)) {
-            notify(`¡Ha actualizado el archivo "${fileDataResponse.title}" exitosamente!`, 'success')
             history.push(`/trivias/${trivia_id}/files`)
+            showNotification(`¡Ha actualizado el archivo "${fileDataResponse.title}" exitosamente!`)
         }
     }, [fileDataResponse])
 

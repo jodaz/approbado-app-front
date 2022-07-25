@@ -3,10 +3,9 @@ import Confirm from '@approbado/lib/layouts/Confirm';
 import { useDialogState, useDialogDispatch } from "@approbado/lib/hooks/useDialog"
 import { Form } from 'react-final-form'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import { useUserDispatch } from '@approbado/lib/hooks/useUserState'
 import TextInput from '@approbado/lib/components/TextInput'
 import { useHistory } from 'react-router-dom'
 import SelectCategoriesInput from './SelectCategoriesInput';
@@ -16,8 +15,7 @@ import { axios } from '@approbado/lib/providers'
 const ForumCreate = () => {
     const { status } = useDialogState('forums.create');
     const { unsetDialog } = useDialogDispatch('forums.create')
-    const { fetchUser } = useUserDispatch();
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
@@ -25,10 +23,9 @@ const ForumCreate = () => {
             const { data } = await axios.post('/forums', values)
 
             if (data) {
-                notify('¡Ha realizado una publicación!', 'success');
                 history.push(`/forums/${data.id}`);
                 unsetDialog();
-                fetchUser();
+                await showNotification('¡Ha realizado una publicación!');
             }
         } catch (error) {
             console.log(error)

@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { alpha } from '@material-ui/core'
 import styled from '@material-ui/styles/styled';
-import { useMutation, useNotify } from 'react-admin'
+import { useMutation } from 'react-admin'
 import Button from '@material-ui/core/Button';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import { useHistory } from 'react-router-dom'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 
 const CustomizedButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.error.main,
@@ -17,7 +18,7 @@ const CustomizedButton = styled(Button)(({ theme }) => ({
 
 const DeleteReportButton = ({ id }) => {
     const history = useHistory();
-    const notify = useNotify()
+    const { showNotification } = useUiDispatch();
     const [open, setOpen] = React.useState(false);
     const [handleDelete, { loaded, loading }] = useMutation({
         type: 'delete',
@@ -28,7 +29,7 @@ const DeleteReportButton = ({ id }) => {
     React.useEffect(() => {
         if (loaded) {
             history.push('/reports')
-            notify('¡La publicación ha sido eliminada!', 'success')
+            showNotification('¡La publicación ha sido eliminada!')
         }
     }, [loaded])
 

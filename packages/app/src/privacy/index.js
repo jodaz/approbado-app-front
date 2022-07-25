@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useNotify } from 'react-admin'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import Checkbox from '@approbado/lib/components/FinalFormCheckbox'
 import Grid from '@material-ui/core/Grid'
@@ -10,14 +10,14 @@ import Spinner from '@approbado/lib/components/Spinner'
 const PrivacySettings = () => {
     const [{ record, isLoading, isError }, doFetch] = useFetchProfile();
     const [loading, setLoading] = React.useState(false)
-    const notify = useNotify();
+    const { showNotification } = useUiDispatch();
 
     const save = React.useCallback(async (values) => {
         setLoading(true)
 
         try {
             await axios.post('profile', values);
-            notify('Hemos actualizado tus configuraciones de privacidad con éxito.', 'success')
+            showNotification('Hemos actualizado tus configuraciones de privacidad con éxito.')
             setLoading(false)
         } catch (error) {
             setLoading(false)
