@@ -1,23 +1,23 @@
-import * as React from 'react';
+import * as React from 'react'
 import { useMediaQuery, makeStyles  } from '@material-ui/core'
-import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg';
+import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg'
 import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
 import TriviaCard from './TriviaCard'
 import GridList from '@approbado/lib/components/GridList'
 import Drawer from '@material-ui/core/Drawer'
 import Temary from './temary'
 import SelectTrivia from './components/SelectTrivia'
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box'
+import Typography from '@material-ui/core/Typography'
 // Hooks
 import { useTriviaState, useTriviaDispatch } from "@approbado/lib/hooks/useTriviaSelect"
-import { usePlan } from '@approbado/lib/hooks/useUserState';
-import useDetectOutsideClick from '@approbado/lib/hooks/useDetectOutsideClick';
+import { usePlan } from '@approbado/lib/hooks/useUserState'
+import useDetectOutsideClick from '@approbado/lib/hooks/useDetectOutsideClick'
 import { axios } from '@approbado/lib/providers'
 import TextField from '@material-ui/core/TextField'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 
-const drawerWidth = 300;
+const drawerWidth = 300
 
 const useStyles = makeStyles(() => ({
     drawerPaper: {
@@ -32,25 +32,19 @@ const useStyles = makeStyles(() => ({
         marginBottom: '1rem',
         fontSize: '0.95rem'
     }
-}));
-
-// const ListActions = () => (
-//     <TopToolbar>
-//         <FilterLiveSearch label='' source="name" label='Buscar trivia' />
-//     </TopToolbar>
-// );
+}))
 
 const TriviaList = () => {
     const [trivias, setTrivias] = React.useState([])
-    const classes = useStyles();
+    const classes = useStyles()
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
     )
-    const wrapperRef = React.useRef(null);
-    const outsideClick = useDetectOutsideClick(wrapperRef);
-    const { selected, trivia } = useTriviaState();
-    const { found: isFreeMembership} = usePlan('Free');
-    const { unsetTrivia } = useTriviaDispatch();
+    const wrapperRef = React.useRef(null)
+    const outsideClick = useDetectOutsideClick(wrapperRef)
+    const { selected, trivia } = useTriviaState()
+    const { found: isFreeMembership} = usePlan('Free')
+    const { unsetTrivia } = useTriviaDispatch()
     const [filter, setFilter] = React.useState(null)
 
     const fetchTrivias = async () => {
@@ -60,7 +54,7 @@ const TriviaList = () => {
             params: getQueryFromParams({ filter })
         })
 
-        setTrivias(res.data.data);
+        setTrivias(res.data.data)
     }
 
     const renderSelectedTriviaContent = () => (
@@ -88,10 +82,8 @@ const TriviaList = () => {
     }, [outsideClick])
 
     React.useEffect(() => {
-        fetchTrivias();
+        fetchTrivias()
     }, [filter])
-
-    console.log(filter);
 
     return (
         <Box display="flex" height='100%' width='100%'>
@@ -130,7 +122,7 @@ const TriviaList = () => {
             ? <SelectTrivia />
             : renderSelectedTriviaContent()}
         </Box>
-    );
+    )
 }
 
-export default TriviaList;
+export default TriviaList

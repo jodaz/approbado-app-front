@@ -11,7 +11,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Dot from '@approbado/lib/components/Dot';
 import { ReactComponent as More } from '@approbado/lib/icons/More.svg'
 import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
-// Edit button
 import LinkButton from '@approbado/lib/components/LinkButton'
 
 const OptionsMenu = props => (

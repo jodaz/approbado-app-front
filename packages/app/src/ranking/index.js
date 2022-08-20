@@ -36,9 +36,6 @@ const RankingList = () => {
         }
     }
 
-    /**
-     * Update state and fetch data
-     */
     React.useEffect(() => {
         setData({ ...data, loaded: false })
         fetchUsers();

@@ -43,11 +43,10 @@ const OptionsMenu = props => (
     </OptionsCardMenu>
 );
 
-const TriviaCard = ({ data, id }) => {
+const TriviaCard = ({ data }) => {
     const classes = { ...cardStyles(), ...useStyles() };
     const history = useHistory();
-
-    const handleRedirect = () => history.push(`/trivias/${id}`)
+    const handleRedirect = () => history.push(`/trivias/${data.id}`)
 
     return (
         <Card className={classes.root} onClick={handleRedirect}>

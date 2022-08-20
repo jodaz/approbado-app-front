@@ -1,51 +1,79 @@
-import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import {
-    FilterContext,
-    ListBase,
-    FilterLiveSearch,
-    TopToolbar,
-} from 'react-admin';
-import GridList from '@approbado/lib/components/GridList';
+import * as React from 'react'
 import TriviaCard from './TriviaCard'
-import CreateButton from '../components/CreateButton'
 import ListContainer from '../components/ListContainer'
+import { axios } from '@approbado/lib/providers'
+import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import { useMediaQuery } from '@material-ui/core'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
+import CreateButton from '../components/CreateButton'
+import GridList from '@approbado/lib/components/GridList';
 
-const ListActions = () => (
-    <TopToolbar>
-        <FilterLiveSearch source="name" label='' />
-        <CreateButton basePath="/trivias" />
-    </TopToolbar>
-);
+const TriviaList = () => {
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
+    const [filter, setFilter] = React.useState(null)
+    const [trivias, setTrivias] = React.useState([])
 
-const TriviaList = props => (
-    <ListBase
-        basePath='trivias'
-        resource='trivias'
-        perPage={10}
-        sort={{ field: 'created_at', order: 'DESC' }}
-        {...props}
-    >
-        <TriviaListView />
-    </ListBase>
-);
+    const fetchTrivias = async () => {
+        const res = await axios({
+            method: 'GET',
+            url: '/trivias',
+            params: getQueryFromParams({ filter })
+        })
 
-const TriviaListView = () => (
-    <ListContainer
-        title={
-            <Typography variant='h5'>
-                Trivias
-            </Typography>
+        setTrivias(res.data.data);
+    }
+
+    const handleOnChange = (e) => {
+        if (e.currentTarget.value) {
+            setFilter({
+                global_search: e.currentTarget.value
+            })
+        } else {
+            setFilter(null)
         }
-        actions={
-            <FilterContext.Provider>
-                <ListActions />
-            </FilterContext.Provider>
-        }
-        list={
-            <GridList component={<TriviaCard />} />
-        }
-    />
-);
+    }
+
+    React.useEffect(() => {
+        fetchTrivias()
+    }, [filter])
+
+    return (
+        <ListContainer
+            title={
+                <Box component='h5' sx={{ margin: '1rem 0' }}>
+                    Trivias
+                </Box>
+            }
+            actions={
+                <Box sx={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    margin: '1rem 0'
+                }}>
+                    <Box width={isSmall ? '100%' : '25%'}>
+                        <TextField
+                            onChange={handleOnChange}
+                            placeholder='Buscar'
+                            fullWidth
+                        />
+                    </Box>
+                    <CreateButton to='/trivias/create' label='Crear' />
+                </Box>
+            }
+            list={
+                <Box marginTop='1rem'>
+                    <GridList
+                        data={trivias}
+                        component={<TriviaCard />}
+                    />
+                </Box>
+            }
+        />
+    );
+}
 
 export default TriviaList;

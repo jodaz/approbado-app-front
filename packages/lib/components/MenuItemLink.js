@@ -1,13 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { setSidebarVisibility } from 'ra-core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tooltip from '@material-ui/core/Tooltip';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import { useMediaQuery, makeStyles, alpha } from '@material-ui/core';
+import { makeStyles, alpha } from '@material-ui/core';
 
 const NavLinkRef = React.forwardRef((props, ref) => (
     <NavLink innerRef={ref} {...props} />
@@ -58,17 +56,6 @@ const MenuItemLink = React.forwardRef((props, ref) => {
     } = props;
 
     const classes = useStyles(props);
-    const dispatch = useDispatch();
-    const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
-    const handleMenuTap = React.useCallback(
-        e => {
-            if (isSmall) {
-                dispatch(setSidebarVisibility(false));
-            }
-            onClick && onClick(e);
-        },
-        [dispatch, isSmall, onClick]
-    );
 
     const renderMenuItem = () => {
         return (
@@ -79,7 +66,6 @@ const MenuItemLink = React.forwardRef((props, ref) => {
                 ref={ref}
                 tabIndex={0}
                 {...rest}
-                onClick={handleMenuTap}
             >
                 {leftIcon && (
                     <ListItemIcon className={classes.linkIcon}>

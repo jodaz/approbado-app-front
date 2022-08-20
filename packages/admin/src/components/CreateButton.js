@@ -2,25 +2,11 @@ import * as React from 'react';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { useResourceContext } from 'ra-core';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ReactComponent as PlusIcon } from '@approbado/lib/icons/Plus.svg'
 
-/**
- * Opens the Create view of a given resource
- *
- * Renders as a regular button on desktop, and a Floating Action Button
- * on mobile.
- *
- * @example // basic usage
- * import { CreateButton } from 'react-admin';
- *
- * const CommentCreateButton = () => (
- *     <CreateButton basePath="/comments" label="Create comment" />
- * );
- */
 const CreateButton = props => {
     const {
         basePath = '',
@@ -29,26 +15,19 @@ const CreateButton = props => {
         label = 'Crear',
         scrollToTop = true,
         variant,
+        to,
         ...rest
     } = props;
     const classes = useStyles(props);
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
     );
-    const resource = useResourceContext();
-    const location = React.useMemo(
-        () => ({
-            pathname: basePath ? `${basePath}/create` : `/${resource}/create`,
-            state: { _scrollToTop: scrollToTop },
-        }),
-        [basePath, resource, scrollToTop]
-    );
 
     return isSmall ? (
         <Fab
             component={Link}
             className={classnames(classes.floating, className)}
-            to={location}
+            to={to}
             aria-label={label}
             {...rest}
         >
@@ -57,7 +36,7 @@ const CreateButton = props => {
     ) : (
         <Button
             component={Link}
-            to={location}
+            to={to}
             className={classnames(classes.fullwidth, className)}
             label={label}
             variant={variant}

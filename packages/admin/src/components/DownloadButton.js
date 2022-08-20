@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import classnames from 'classnames';
-import { useResourceContext } from 'ra-core';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -21,7 +20,6 @@ const CreateButton = props => {
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
     );
-    const resource = useResourceContext();
 
     return isSmall ? (
         <Fab

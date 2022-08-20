@@ -1,43 +1,74 @@
 import * as React from 'react';
-import {
-    FilterContext,
-    ListBase,
-    FilterLiveSearch,
-    TopToolbar,
-} from 'react-admin';
-import GridList from '@approbado/lib/components/GridList';
 import FileCard from './FileCard'
-import CreateButton from '../components/CreateButton'
 import ListContainer from '../components/ListContainer'
+import { axios } from '@approbado/lib/providers'
+import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import { useMediaQuery } from '@material-ui/core'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
+import CreateButton from '../components/CreateButton'
+import GridList from '@approbado/lib/components/GridList'
 
-const ListActions = ({ trivia_id }) => (
-    <TopToolbar>
-        <FilterLiveSearch source="global_search" label='' />
-        <CreateButton basePath={`/trivias/${trivia_id}/files`} />
-    </TopToolbar>
-);
+const FileList = ({ record }) => {
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
+    const initialValues = { trivia_id: record.id }
+    const [filter, setFilter] = React.useState(initialValues)
+    const [files, setFiles] = React.useState([])
 
-const FileList = ({ record, ...rest }) => (
-    <ListBase
-        resource='files'
-        basePath='files'
-        perPage={10}
-        filter={{ trivia_id: record.id }}
-        {...rest}
-    >
-        <FileListView trivia_id={record.id} />
-    </ListBase>
-);
+    const fetchFiles = async () => {
+        const res = await axios({
+            method: 'GET',
+            url: '/files',
+            params: getQueryFromParams({ filter })
+        })
 
-const FileListView = ({ trivia_id }) => (
-    <ListContainer
-        actions={
-            <FilterContext.Provider>
-                <ListActions trivia_id={trivia_id} />
-            </FilterContext.Provider>
+        setFiles(res.data.data);
+    }
+
+    const handleOnChange = (e) => {
+        if (e.currentTarget.value) {
+            console.log(e.currentTarget.value)
+        } else {
+            setFilter(initialValues)
         }
-        list={<GridList component={<FileCard trivia_id={trivia_id} />} />}
-    />
-);
+    }
+
+    React.useEffect(() => {
+        fetchFiles()
+    }, [filter])
+
+    return (
+        <ListContainer
+            actions={
+                <Box sx={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    margin: '1rem 0'
+                }}>
+                    <Box width={isSmall ? '100%' : '25%'}>
+                        <TextField
+                            onChange={handleOnChange}
+                            placeholder='Buscar'
+                            fullWidth
+                        />
+                    </Box>
+                    <CreateButton
+                        to={`/trivias/${record.id}/files/create`}
+                        label='Crear'
+                    />
+                </Box>
+            }
+            list={
+                <GridList
+                    data={files}
+                    component={<FileCard />}
+                />
+            }
+        />
+    );
+}
 
 export default FileList;

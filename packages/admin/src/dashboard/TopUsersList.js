@@ -13,7 +13,7 @@ const TopUsersList = () => {
         error
     } = useFetch('/users', {
         perPage: 9,
-        page: 1,
+        page: 0,
         sort: { field: 'points', order: 'DESC'},
         filter: { is_registered: true }
     })
