@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { BooleanInput } from 'react-admin'
 import { Grid } from '@material-ui/core'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -9,6 +8,7 @@ import { axios } from '@approbado/lib/providers'
 import { useHistory } from 'react-router-dom'
 import CustomPasswordInput from './CustomPasswordInput'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import SwitchInput from '@approbado/lib/components/SwitchInput'
 
 const ACCESS_TYPES = [
     { id: 'Administrador', name: 'Administrador' },
@@ -75,7 +75,7 @@ const UserCreate = () => {
                 />
             </InputContainer>
             <Grid item xs={12}>
-                <BooleanInput
+                <SwitchInput
                     source="random_pass"
                     label="Generar contraseña y enviar por correo"
                 />

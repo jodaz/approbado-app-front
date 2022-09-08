@@ -25,7 +25,7 @@ const UsersDatagrid = () => (
 const ListActions = props => (
     <TopToolbar>
         <FilterLiveSearch source="global_search" label='' {...props} />
-        <CreateButton basePath="/users" />
+        <CreateButton to="/users/create" />
     </TopToolbar>
 );
 

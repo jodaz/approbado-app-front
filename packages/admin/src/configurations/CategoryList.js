@@ -23,7 +23,7 @@ const CategoriesDatagrid = () => (
 const ListActions = () => (
     <TopToolbar>
         <FilterLiveSearch source="name" label='' />
-        <CreateButton label="Crear" basePath="/configurations/categories" />
+        <CreateButton label="Crear" to="/configurations/categories/create" />
     </TopToolbar>
 );
 
