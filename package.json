@@ -6,25 +6,13 @@
   ],
   "version": "1.0.0",
   "scripts": {
-    "dev:app": "concurrently \"npm run server:dev\" \"npm run start:app\"",
-    "dev:admin": "concurrently \"npm run server:dev\" \"npm run start:admin\"",
-    "dev:frames": "concurrently \"npm run server:dev\" \"npm run start:frames\"",
     "build:app": "yarn workspace @approbado/app run build",
     "build:admin": "yarn workspace @approbado/admin run build",
     "build:frames": "yarn workspace @approbado/frames run build",
     "build:server": "yarn workspace @approbado/server run build",
-    "server:prod": "yarn workspace @approbado/server run start",
-    "server:dev": "yarn workspace @approbado/server run watch:dev",
     "start:frames": "yarn workspace @approbado/frames run start",
     "start:app": "yarn workspace @approbado/app run start",
-    "start:admin": "yarn workspace @approbado/admin run start",
-    "db:refresh": "npm run rollback && npm run migrate",
-    "migrate": "yarn workspace @approbado/db run db:migrate",
-    "seed": "yarn workspace @approbado/db run seed:run",
-    "rollback": "yarn workspace @approbado/db run db:rollback",
-    "prepareProd": "npm run db:refresh && yarn workspace @approbado/db run prod:run",
-    "build:all": "concurrently \"npm run build:app\" \"npm run build:admin\" \"npm run build:frames\" && utils/predeploy.sh",
-    "deploy": "npm run build:all && utils/deploy.sh"
+    "start:admin": "yarn workspace @approbado/admin run start"
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
