@@ -1,26 +1,35 @@
 import defaultAxios from 'axios';
 import CONFIG_NAMES from '../configs'
 
-const instance = defaultAxios.create({
+const jsonInstance = defaultAxios.create({
     baseURL: CONFIG_NAMES.SOURCE,
     withCredentials: true
 });
 
+const blobInstance = defaultAxios.create({
+    baseURL: CONFIG_NAMES.SOURCE,
+    withCredentials: true,
+    responseType: 'blob'
+});
+
 // Request interceptor
-instance.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);
+const interceptorsFunc = (config) => {
+    const token = localStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);
 
-        const newConfig = config;
+    const newConfig = config;
 
-        // When a 'token' is available set as token.
-        if (token) {
-            newConfig.headers.Authorization = `Bearer ${token}`;
-        }
+    // When a 'token' is available set as token.
+    if (token) {
+        newConfig.headers.Authorization = `Bearer ${token}`;
+    }
 
-        return newConfig;
-    },
-    (err) => Promise.reject(err),
-);
+    return newConfig;
+};
 
-export default instance
+jsonInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(err));
+blobInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(err));
+
+export {
+    jsonInstance as JSONAxiosInstance,
+    blobInstance as BlobAxiosInstance
+}
