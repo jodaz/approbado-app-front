@@ -9,7 +9,6 @@
     "build:app": "yarn workspace @approbado/app run build",
     "build:admin": "yarn workspace @approbado/admin run build",
     "build:frames": "yarn workspace @approbado/frames run build",
-    "build:server": "yarn workspace @approbado/server run build",
     "start:frames": "yarn workspace @approbado/frames run start",
     "start:app": "yarn workspace @approbado/app run start",
     "start:admin": "yarn workspace @approbado/admin run start"
