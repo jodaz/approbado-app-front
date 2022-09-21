@@ -60,7 +60,11 @@ const UsersDatagrid = props => (
 )
 
 const ListActions = props => {
+    const [loading, setLoading] = React.useState(false)
+
     const handleSubmit = React.useCallback(async () => {
+        setLoading(true);
+
         try {
             await download(
                 'users/download',
@@ -72,12 +76,13 @@ const ListActions = props => {
                 return error.response.data.errors;
             }
         }
+        setLoading(false)
     }, [props]);
 
     return (
         <Box display='flex' justifyContent='space-between' alignItems='center'>
             <FormFilter {...props} />
-            <Button icon={<DownloadIcon />} onClick={handleSubmit}>
+            <Button icon={<DownloadIcon />} onClick={handleSubmit} disabled={loading}>
                 Descargar
             </Button>
         </Box>

@@ -57,6 +57,7 @@ const validate = (values) => {
 export default function() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [loading, setLoading] = React.useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -66,6 +67,7 @@ export default function() {
     };
 
     const handleSubmit = React.useCallback(async (values) => {
+        setLoading(true);
         try {
             await download(
                 'memberships/payments/download',
@@ -77,6 +79,7 @@ export default function() {
                 return error.response.data.errors;
             }
         }
+        setLoading(false)
     }, []);
 
     return (

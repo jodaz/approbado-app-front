@@ -3,12 +3,12 @@ import CONFIG_NAMES from '../configs'
 
 const jsonInstance = defaultAxios.create({
     baseURL: CONFIG_NAMES.SOURCE,
-    withCredentials: true
+    withCredentials: false
 });
 
 const blobInstance = defaultAxios.create({
     baseURL: CONFIG_NAMES.SOURCE,
-    withCredentials: true,
+    withCredentials: false,
     responseType: 'blob'
 });
 
