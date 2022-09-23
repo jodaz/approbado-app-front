@@ -4,8 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { all, fork } from 'redux-saga/effects';
 import {
     adminReducer,
-    adminSaga,
-    USER_LOGOUT,
+    adminSaga
 } from 'react-admin';
 import { loadState } from './persistedState'
 
