@@ -28,13 +28,4 @@ const reducer = (state = {
     }
 }
 
-export const set = data => ({
-    type: 'SET',
-    payload: data
-})
-
-export const unset = () => ({
-    type: 'SET'
-})
-
-export default reducer
+export default reducer;

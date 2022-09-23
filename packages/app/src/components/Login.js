@@ -15,6 +15,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import VpnKeyIcon from '@material-ui/icons/VpnKeyOutlined';
 import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
+import CONFIG_NAMES from '@approbado/lib/configs';
 
 const validate = (values) => {
     const errors = {};
@@ -36,12 +37,12 @@ const Login = () => {
 
     const handleSubmit = React.useCallback(values => {
         setLoading(true)
-        return axios.post(`${process.env.REACT_APP_API_DOMAIN}/auth/login`, values)
+        return axios.post(`${CONFIG_NAMES.SOURCE}/auth/login`, values)
             .then(res => {
                 const { token } = res.data;
 
                 window.location.href =
-                    `${process.env.REACT_APP_LOCATION}/auth?token=${token}`;
+                    `${CONFIG_NAMES.REDIRECT_TO}/auth?token=${token}`;
 
                 setLoading(false);
             }).catch(err => {

@@ -40,6 +40,8 @@ export const REQUEST_CHAT = 'REQUEST_CHAT';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
+export const SET_FORM_AUTH = 'SET_FORM_AUTH';
+export const UNSET_FORM_AUTH = 'UNSET_FORM_AUTH';
 
 export const setConfigs = data => ({
     type: SET_CONFIGS,

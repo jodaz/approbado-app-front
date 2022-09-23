@@ -2,12 +2,11 @@ import FacebookLogin from 'react-facebook-login'
 import axios from 'axios'
 import { ReactComponent as FacebookIcon } from "@approbado/lib/icons/FacebookIconOutline.svg"
 import { useHistory } from 'react-router-dom'
-import { set } from '../store/formFiller'
-import { useDispatch } from "react-redux";
+import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 
 const FBLoginButton = ({ className }) => {
     const history = useHistory()
-    const dispatch = useDispatch();
+    const { set } = useFormAuthDispatch();
 
     const processResponse = response => {
         const { name, email, userID } = response;
@@ -24,12 +23,12 @@ const FBLoginButton = ({ className }) => {
                     `${process.env.REACT_APP_LOCATION}/auth?token=${token}`;
             }).catch(err => {
                 if (err.response.status === 422) {
-                    dispatch(set({
+                    set({
                         email: email,
                         provider: 'facebook',
                         key: userID,
                         names: name
-                    }))
+                    })
 
                     return history.push('/register');
                 }

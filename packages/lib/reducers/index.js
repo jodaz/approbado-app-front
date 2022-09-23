@@ -5,6 +5,7 @@ import schedulesReducer from './schedulesReducer';
 import notificationsReducer from './notificationsReducer';
 import chatReducer from './chatReducer';
 import uiReducer from './uiReducer';
+import formAuthReducer from './formAuthReducer';
 
 export default {
     user: userReducer,
@@ -13,5 +14,6 @@ export default {
     schedules: schedulesReducer,
     notifications: notificationsReducer,
     chat: chatReducer,
-    ui: uiReducer
+    ui: uiReducer,
+    formAuth: formAuthReducer
 };

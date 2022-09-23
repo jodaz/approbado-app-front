@@ -51,6 +51,12 @@ import { format } from "date-fns";
 import DateFnsUtils from '@date-io/date-fns';
 import esLocale from "date-fns/locale/es";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import LazyLoader from '@approbado/lib/components/LazyLoader'
+import ResetPassword from './components/ResetPassword'
+// Frames
+const Login = React.lazy(() => import('./components/Login'))
+const Register = React.lazy(() => import('./components/Register'))
+const PlansList = React.lazy(() => import('./components/PlansList'))
 
 class LocalizedUtils extends DateFnsUtils {
     getDatePickerHeaderText(date) {
@@ -66,6 +72,25 @@ const App = () => {
     return (
         <MuiPickersUtilsProvider utils={LocalizedUtils} locale={esLocale}>
             <Route path='/auth' render={() => <Authenticate />} />
+            <Route exact path='/login'>
+                <LazyLoader loader={true}>
+                    <Login />
+                </LazyLoader>
+            </Route>
+            <Route path='/register'>
+                <LazyLoader loader={true}>
+                    <Register />
+                </LazyLoader>
+            </Route>
+            <Route path='/reset-password'>
+                <ResetPassword />
+            </Route>
+            <Route path='/update-password'>
+                <UpdatePassword />
+            </Route>
+            <LazyLoader loader={true}>
+                <Route path='/plans' render={() => <PlansList />} />
+            </LazyLoader>
 
             <Switch>
                 {/**

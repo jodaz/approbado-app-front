@@ -1,13 +1,12 @@
 import GoogleLogin from 'react-google-login';
 import { ReactComponent as GoogleIcon } from "@approbado/lib/icons/GoogleIcon.svg"
 import { useHistory } from 'react-router-dom'
-import { set } from '../store/formFiller'
-import { useDispatch } from "react-redux";
+import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import axios from 'axios'
 
 const GoogleLoginButton = ({ className }) => {
     const history = useHistory()
-    const dispatch = useDispatch();
+    const { set } = useFormAuthDispatch();
 
     const processResponse = response => {
         const { name, email, googleId } = response.profileObj;
@@ -24,12 +23,12 @@ const GoogleLoginButton = ({ className }) => {
                     `${process.env.REACT_APP_LOCATION}/auth?token=${token}`;
             }).catch(err => {
                 if (err.response.status === 422) {
-                    dispatch(set({
+                    set({
                         email: email,
                         provider: 'google',
                         key: googleId,
                         names: name
-                    }))
+                    })
 
                     return history.push('/register');
                 }
