@@ -9,11 +9,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import { ReactComponent as DownloadIcon } from '@approbado/lib/icons/download.svg'
 import { Form } from 'react-final-form'
 import SelectInput from '@approbado/lib/components/SelectInput';
+import download from '@approbado/lib/utils/download';
 
 const TYPES = [
     { id: 'none', name: 'none' },
@@ -58,7 +57,7 @@ const validate = (values) => {
 export default function() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
-    const [provider] = useFileProvider(fileProvider);
+    const [loading, setLoading] = React.useState(false)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -68,21 +67,19 @@ export default function() {
     };
 
     const handleSubmit = React.useCallback(async (values) => {
+        setLoading(true);
         try {
-            await provider({
-                type: 'get',
-                resource: 'memberships/payments/download',
-                payload: {
-                    name: `reporte-pagos-approbado`,
-                    ext: 'pdf',
-                    filterValues: values
-                }
-            })
+            await download(
+                'memberships/payments/download',
+                {values},
+                'reporte-pagos-approbado.pdf'
+            )
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;
             }
         }
+        setLoading(false)
     }, []);
 
     return (

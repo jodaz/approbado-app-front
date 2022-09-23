@@ -5,7 +5,7 @@ const CONFIG_NAMES = {
     REDIRECT_TO: `${process.env.REACT_APP_REDIRECT_DOMAIN}`,
     SOURCE: `${process.env.REACT_APP_API_DOMAIN}`,
     USER: `${process.env.REACT_APP_AUTH_USER_INFO}`,
-    NAME: `${process.env.REACT_APP_NAME}`
+    NAME: `${process.env.REACT_APP_NAME}` // Nombre de la app (Cliente, Admin)
 }
 
 export default CONFIG_NAMES
