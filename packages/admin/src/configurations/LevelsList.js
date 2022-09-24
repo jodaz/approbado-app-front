@@ -26,7 +26,7 @@ const LevelsDatagrid = props => (
 const ListActions = () => (
     <TopToolbar>
         <FilterLiveSearch source="name" label='' />
-        <CreateButton basePath="/configurations/levels" />
+        <CreateButton to="/configurations/levels/create" />
     </TopToolbar>
 );
 
