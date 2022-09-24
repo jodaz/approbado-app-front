@@ -57,7 +57,7 @@ const AwardsList = ({ record }) => {
                         />
                     </Box>
                     <CreateButton
-                        basePath={`/trivias/${record.id}/awards`}
+                        to={`/trivias/${record.id}/awards/create`}
                         resource='/awards'
                         label='Crear'
                     />

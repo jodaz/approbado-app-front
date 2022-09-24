@@ -12,7 +12,7 @@ import ListContainer from '../components/ListContainer'
 const ListActions = () => (
     <TopToolbar>
         <FilterLiveSearch label='' source="name" />
-        <CreateButton basePath="/memberships/plans" />
+        <CreateButton to="/memberships/plans" />
     </TopToolbar>
 );
 
