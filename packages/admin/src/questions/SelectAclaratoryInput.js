@@ -14,7 +14,7 @@ const SelectAclaratoryInput = ({ disabled }) => (
         label='Mostrar cuando'
     >
         <SelectInput
-            name='aclaratory_type'
+            name='explanation_type'
             placeholder='Ingrese el texto de la aclaratoria'
             options={OPTIONS}
         />

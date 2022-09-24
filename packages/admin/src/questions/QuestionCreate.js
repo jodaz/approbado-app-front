@@ -8,10 +8,10 @@ import Box from '@material-ui/core/Box'
 import { FieldArray } from 'react-final-form-arrays'
 import { Form } from 'react-final-form'
 import arrayMutators from 'final-form-arrays'
-import CustomCreateButton from '@approbado/lib/components/Button'
+import Button from '@approbado/lib/components/Button'
 import Grid from '@material-ui/core/Grid'
 import InputLabel from '@material-ui/core/InputLabel'
-import Button from '@material-ui/core/Button'
+import MuiButton from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core'
 import { unmarkOptions, validate } from './questionsFormUtils'
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -46,7 +46,8 @@ const QuestionCreate = () => {
     const initialFormState = { options: [{}] };
     const classes = useStyles();
 
-    const save = React.useCallback(async (values) => {
+    const handleSubmit = async (values) => {
+        console.log(values)
         try {
             const { data } = await axios.post('/questions', values)
 
@@ -59,12 +60,12 @@ const QuestionCreate = () => {
                 return error.response.data.errors;
             }
         }
-    }, []);
+    };
 
     return (
         <Box component='div'>
             <Form
-                onSubmit={save}
+                onSubmit={handleSubmit}
                 mutators={{
                     ...arrayMutators,
                     unmarkOptions
@@ -87,7 +88,7 @@ const QuestionCreate = () => {
                                     <Typography component='h1' variant='h5'>{'Crear pregunta'}</Typography>
                                     <Box paddingBottom='1rem' width='100%'>
                                         <Typography variant="subtitle1" color="textSecondary">
-                                            {'Enunciado'}
+                                            Enunciado
                                         </Typography>
                                     </Box>
                                     <InputContainer label='Pregunta' sm={12} md={12}>
@@ -118,7 +119,7 @@ const QuestionCreate = () => {
                                                                 onClick={unmarkOptions}
                                                             />
                                                             <Grid item>
-                                                                <Button
+                                                                <MuiButton
                                                                     variant="outlined"
                                                                     type="button"
                                                                     onClick={() => (values.options.length > 1) ? fields.remove(index) : null}
@@ -126,7 +127,7 @@ const QuestionCreate = () => {
                                                                     disabled={!(values.options.length > 1)}
                                                                 >
                                                                     Eliminar opción
-                                                                </Button>
+                                                                </MuiButton>
                                                             </Grid>
                                                         </Box>
                                                     </Grid>
@@ -151,7 +152,7 @@ const QuestionCreate = () => {
                                     </Grid>
                                     <Box paddingBottom='1rem' width='100%'>
                                         <Typography variant="subtitle1" color="textSecondary">
-                                            {'Aclaratorias'}
+                                            Aclaratorias
                                         </Typography>
                                     </Box>
                                     <SelectAclaratoryInput disabled={submitting } />
@@ -167,17 +168,12 @@ const QuestionCreate = () => {
                                     <SelectLevelInput />
                                     <Grid container>
                                         <Grid item xs={12} sm={12} md={4} lg={3}>
-                                            <CustomCreateButton
+                                            <Button
                                                 disabled={submitting}
-                                                onClick={event => {
-                                                    if (event) {
-                                                        event.preventDefault();
-                                                    }
-                                                    handleSubmit()
-                                                }}
+                                                onClick={handleSubmit}
                                             >
-                                                {'Crear'}
-                                            </CustomCreateButton>
+                                                Crear
+                                            </Button>
                                         </Grid>
                                     </Grid>
                                 </Grid>

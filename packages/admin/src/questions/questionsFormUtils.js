@@ -23,6 +23,7 @@ export const validate = (values) => {
     if (!options.filter(item => item != undefined && item.is_right && item.statement).length) {
         errors.options_field = 'Ingrese al menos una opción correcta.'
     }
+    console.log(errors)
 
     return errors;
 };
