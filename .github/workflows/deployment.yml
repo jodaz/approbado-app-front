@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    environment: production
     strategy:
       matrix:
         node-version: [16.x]
