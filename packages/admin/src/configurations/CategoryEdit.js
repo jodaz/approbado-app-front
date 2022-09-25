@@ -15,6 +15,14 @@ const CategoryEdit = () => {
     const history = useHistory();
     const { showNotification } = useUiDispatch();
 
+    const fetchData = async () => {
+        const { data } = await axios.get(`/configurations/categories/${id}`)
+
+        if (data) {
+            setRecord(data)
+        }
+    }
+
     const save = React.useCallback(async (values) => {
         setLoading(true)
         try {
@@ -35,13 +43,9 @@ const CategoryEdit = () => {
         }
     }, [])
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
         if (id) {
-            const { data } = await axios.get(`/configurations/categories/${id}`)
-
-            if (data) {
-                setRecord(data)
-            }
+            fetchData()
         }
     }, [id])
 

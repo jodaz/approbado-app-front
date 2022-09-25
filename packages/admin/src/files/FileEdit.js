@@ -20,6 +20,14 @@ const FileEdit = () => {
     const history = useHistory();
     const { showNotification } = useUiDispatch();
 
+    const fetchData = async () => {
+        const { data } = await axios.get(`/files/${file_id}`)
+
+        if (Object.entries(data).length) {
+            setRecord(data)
+        }
+    }
+
     const save = React.useCallback(async (values) => {
         const data = { id: file_id, data: values };
 
@@ -45,11 +53,7 @@ const FileEdit = () => {
 
     React.useEffect(async () => {
         if (file_id) {
-            const { data } = await axios.get(`/files/${file_id}`)
-
-            if (Object.entries(data).length) {
-                setRecord(data)
-            }
+            fetchData()
         }
     }, [file_id])
 

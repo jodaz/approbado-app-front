@@ -16,6 +16,14 @@ const LevelEdit = () => {
     const history = useHistory()
     const { showNotification } = useUiDispatch();
 
+    const fetchData = async () => {
+        const { data } = await axios.get(`/configurations/levels/${id}`)
+
+        if (data) {
+            setRecord(data)
+        }
+    }
+
     const save = React.useCallback(async (values) => {
         setLoading(true)
         try {
@@ -36,13 +44,9 @@ const LevelEdit = () => {
         }
     }, [])
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
         if (id) {
-            const { data } = await axios.get(`/configurations/levels/${id}`)
-
-            if (data) {
-                setRecord(data)
-            }
+            fetchData()
         }
     }, [id])
 

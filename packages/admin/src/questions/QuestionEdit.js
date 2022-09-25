@@ -47,6 +47,14 @@ const QuestionEdit = () => {
     const { showNotification } = useUiDispatch();
     const classes = useStyles();
 
+    const fetchData = async () => {
+        const { data } = await axios.get(`/questions/${question_id}`)
+
+        if (data) {
+            setRecord(data)
+        }
+    }
+
     const save = React.useCallback(async (values) => {
         try {
             const { data } = await axios.put(`/questions/${question_id}`, {
@@ -67,11 +75,7 @@ const QuestionEdit = () => {
 
     React.useEffect(async () => {
         if (question_id) {
-            const { data } = await axios.get(`/questions/${question_id}`)
-
-            if (data) {
-                setRecord(data)
-            }
+            fetchData()
         }
     }, [question_id])
 
@@ -87,7 +91,6 @@ const QuestionEdit = () => {
                     unmarkOptions
                 }}
                 validate={validate}
-                initialValues={record}
                 render={({
                     handleSubmit,
                     form: {

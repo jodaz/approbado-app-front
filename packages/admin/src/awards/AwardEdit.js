@@ -20,6 +20,14 @@ const AwardsEdit = () => {
     const history = useHistory();
     const { showNotification } = useUiDispatch();
 
+    const fetchData = async () => {
+        const { data } = await axios.get(`/awards/${award_id}`)
+
+        if (Object.entries(data).length) {
+            setRecord(data)
+        }
+    }
+
     const save = React.useCallback(async (values) => {
         const data = { id: award_id, data: values };
         try {
@@ -42,13 +50,9 @@ const AwardsEdit = () => {
         }
     }, [fileDataResponse])
 
-    React.useEffect(async () => {
+    React.useEffect(() => {
         if (award_id) {
-            const { data } = await axios.get(`/awards/${award_id}`)
-
-            if (Object.entries(data).length) {
-                setRecord(data)
-            }
+            fetchData()
         }
     }, [award_id])
 
