@@ -8,7 +8,6 @@ import { useGetResponses } from '@approbado/lib/hooks/useGetResponses'
 import { ReactComponent as StateIllustration } from '@approbado/lib/illustrations/Stage1.svg'
 import Button from '@approbado/lib/components/Button'
 import Checkbox from '../components/Checkbox'
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NoAnswer from '../components/NoAnswer'
 // Icons
