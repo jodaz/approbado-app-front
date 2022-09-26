@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         marginTop: '1rem',
         width: '50%',
+        color: theme.palette.info.dark,
         [theme.breakpoints.down('sm')]: {
             width: '80%'
         }

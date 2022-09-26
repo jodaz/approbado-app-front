@@ -54,6 +54,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LazyLoader from '@approbado/lib/components/LazyLoader'
 import ResetPassword from './components/ResetPassword'
 import WaitingUsers from './trivias/room/WaitingUsers';
+import WinAward from './trivias/room/WinAward';
 // Frames
 const Login = React.lazy(() => import('./components/Login'))
 const Register = React.lazy(() => import('./components/Register'))
@@ -95,6 +96,7 @@ const App = () => {
                 </LazyLoader>
 
                 <Route path='/rooms' render={() => <WaitingUsers />} />
+                <Route path='/win' render={() => <WinAward />} />
 
                 <Switch>
                     {/**

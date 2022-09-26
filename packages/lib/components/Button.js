@@ -29,10 +29,13 @@ const useStyles = makeStyles(theme => ({
         textTransform: 'none',
         fontSize: '16px',
         borderRadius: '6px',
+        padding: '8px 16px',
         boxShadow: 'none',
         maxHeight: '2.5rem !important',
+        fontWeight: 600,
         width: props => props.fullWidth ? '100%' : 'max-content',
         minWidth: '8rem',
+        backgroundColor: 'linear-gradient(135.16deg, #E6EA00 -22.35%, #FDE000 113.73%)',
         '&:hover': {
             boxShadow: `0px 2px 2px -2px ${theme.palette.primary.main}`,
             backgroundColor: alpha(theme.palette.secondary.main, 0.95)
@@ -70,9 +73,7 @@ const CustomButton = ({ disabled, children, fullWidth, unresponsive, icon, ...re
             {...rest}
         >
             {(!disabled)
-                ? <Typography variant="subtitle1">
-                    {children}
-                </Typography>
+                ? <>{children}</>
                 : <CircularProgress className={classes.loader} size={'1rem'} />
             }
         </Button>
