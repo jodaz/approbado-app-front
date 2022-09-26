@@ -55,6 +55,7 @@ import LazyLoader from '@approbado/lib/components/LazyLoader'
 import ResetPassword from './components/ResetPassword'
 import WaitingUsers from './trivias/room/WaitingUsers';
 import WinAward from './trivias/room/WinAward';
+import Results from './trivias/room/Results';
 // Frames
 const Login = React.lazy(() => import('./components/Login'))
 const Register = React.lazy(() => import('./components/Register'))
@@ -97,6 +98,7 @@ const App = () => {
 
                 <Route path='/rooms' render={() => <WaitingUsers />} />
                 <Route path='/win' render={() => <WinAward />} />
+                <Route path='/results' render={() => <Results />} />
 
                 <Switch>
                     {/**

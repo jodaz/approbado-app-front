@@ -26,7 +26,8 @@ const palette = {
         main: '#2280ED', // Azul primario,
         light: '#6D6D6D', // Plomo secundario,
         dark: '#333333', // Plomo secndario
-        success: '#00B94A' // Verde
+        success: '#00B94A', // Verde
+        blue: '#232730'
     }
 };
 
