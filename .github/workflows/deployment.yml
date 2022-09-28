@@ -4,6 +4,14 @@ on:
   push:
     branches: [ "main" ]
 
+env:
+    REACT_APP_API_DOMAIN: ${{ REACT_APP_API_DOMAIN }}
+    REACT_APP_AUTH_TOKEN_NAME: ${{ REACT_APP_AUTH_TOKEN_NAME }}
+    REACT_APP_FB_ID: ${{ REACT_APP_FB_ID }}
+    REACT_APP_GOOGLE_ID: ${{ REACT_APP_GOOGLE_ID }}
+    REACT_APP_LOCATION: ${{ REACT_APP_LOCATION }}
+    REACT_APP_AUTH_USER_INFO: ${{ REACT_APP_AUTH_USER_INFO }}
+
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -20,3 +28,4 @@ jobs:
         cache: 'npm'
     - run: npm i --force
     - run: npm run build:admin --if-present
+    - run: npm run build:app --if-present
