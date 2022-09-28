@@ -5,12 +5,12 @@ on:
     branches: [ "main" ]
 
 env:
-  REACT_APP_API_DOMAIN: ${{ REACT_APP_API_DOMAIN }}
-  REACT_APP_AUTH_TOKEN_NAME: ${{ REACT_APP_AUTH_TOKEN_NAME }}
-  REACT_APP_FB_ID: ${{ REACT_APP_FB_ID }}
-  REACT_APP_GOOGLE_ID: ${{ REACT_APP_GOOGLE_ID }}
-  REACT_APP_LOCATION: ${{ REACT_APP_LOCATION }}
-  REACT_APP_AUTH_USER_INFO: ${{ REACT_APP_AUTH_USER_INFO }}
+  REACT_APP_API_DOMAIN: ${{ secrets.REACT_APP_API_DOMAIN }}
+  REACT_APP_AUTH_TOKEN_NAME: ${{ secrets.REACT_APP_AUTH_TOKEN_NAME }}
+  REACT_APP_FB_ID: ${{ secrets.REACT_APP_FB_ID }}
+  REACT_APP_GOOGLE_ID: ${{ secrets.REACT_APP_GOOGLE_ID }}
+  REACT_APP_LOCATION: ${{ secrets.REACT_APP_LOCATION }}
+  REACT_APP_AUTH_USER_INFO: ${{ secrets.REACT_APP_AUTH_USER_INFO }}
 
 jobs:
   build:
@@ -41,6 +41,6 @@ jobs:
         switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude=".node_modules"
         path: /
         remote_path: '/var/www/html'
-        remote_host: ${{ SSH_HOST }}
-        remote_user: ${{ SSH_USERNAME }}
-        remote_key: ${{ SSH_KEY }}
+        remote_host: ${{ secrets.SSH_HOST }}
+        remote_user: ${{ secrets.SSH_USERNAME }}
+        remote_key: ${{ secrets.SSH_KEY }}
