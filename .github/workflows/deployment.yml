@@ -41,6 +41,6 @@ jobs:
         switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude=".node_modules"
         path: /
         remote_path: '/var/www/html'
-        remote_host: ${{ secrets.SSH_HOST }}
-        remote_user: ${{ secrets.SSH_USERNAME }}
-        remote_key: ${{ secrets.SSH_KEY }}
+        remote_host: ${{ SSH_HOST }}
+        remote_user: ${{ SSH_USERNAME }}
+        remote_key: ${{ SSH_KEY }}
