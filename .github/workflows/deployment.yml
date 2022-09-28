@@ -38,7 +38,7 @@ jobs:
     - name: 📂 Sync files
       uses: burnett01/rsync-deployments@5.2.1
       with:
-        switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude=".node_modules"
+        switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="node_modules" --exclude="packages/admin/node_modules" --exclude="packages/app/node_modules"
         path: /
         remote_path: /var/www/html
         remote_host: ${{ secrets.SSH_HOST }}
