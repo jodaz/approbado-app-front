@@ -38,13 +38,13 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-      - name: Deploy Admin App
-        uses: burnett01/rsync-deployments@5.2.1
-        with:
-          switches: -avzr --delete
-          path: /packages/admin/build
-          remote_path: /var/www/html
-          remote_host: ${{ SSH_HOST }}
-          remote_user: ${{ SSH_USERNAME }}
-          remote_key: ${{ SSH_KEY }}
+    - uses: actions/checkout@v2
+    - name: Deploy Admin App
+      uses: burnett01/rsync-deployments@5.2.1
+      with:
+        switches: -avzr --delete
+        path: /packages/admin/build
+        remote_path: /var/www/html
+        remote_host: ${{ SSH_HOST }}
+        remote_user: ${{ SSH_USERNAME }}
+        remote_key: ${{ SSH_KEY }}
