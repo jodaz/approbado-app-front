@@ -34,9 +34,9 @@ jobs:
 
     - name: Build Users App
     - run: npm run build:app --if-present
-
+    
+    - uses: actions/checkout@v3
     - name: Deploy to server
-      id: deploy
       uses: Pendect/action-rsyncer@v1.1.0
       env:
         DEPLOY_KEY: ${{ SSH_KEY }}
