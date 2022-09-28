@@ -31,9 +31,13 @@ jobs:
 
     - name: Build admin app
       run: npm run build:admin --if-present
+      env:
+        REACT_APP_NAME: 'admin'
 
     - name: Build Users App
       run: npm run build:app --if-present
+      env:
+        REACT_APP_NAME: 'app'
 
     - name: 📂 Deploy Admin App
       uses: burnett01/rsync-deployments@5.2.1
