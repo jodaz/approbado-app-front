@@ -35,16 +35,16 @@ jobs:
     - name: Build Users App
     - run: npm run build:app --if-present
 
-  deploy:
-    runs-on: ubuntu-20.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: Deploy Admin App
-      uses: burnett01/rsync-deployments@5.2.1
+    - name: Deploy to server
+      id: deploy
+      uses: Pendect/action-rsyncer@v1.1.0
+      env:
+        DEPLOY_KEY: ${{ SSH_KEY }}
       with:
-        switches: -avzr --delete
-        path: /packages/admin/build
-        remote_path: /var/www/html
-        remote_host: ${{ SSH_HOST }}
-        remote_user: ${{ SSH_USERNAME }}
-        remote_key: ${{ SSH_KEY }}
+        flags: '-avzr --delete'
+        options: '-progress -v'
+        src: '/packages/admin/build'
+        dest: "${{ SSH_USERNAME }}@${{ SSH_HOST }}:/var/www/html"
+
+    - name: Display status from deploy
+      run: echo "${{ steps.deploy.outputs.status }}"
