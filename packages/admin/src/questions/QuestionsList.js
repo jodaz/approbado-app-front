@@ -9,34 +9,40 @@ import GridList from '@approbado/lib/components/GridList';
 import QuestionCard from './QuestionCard'
 import AddQuestionsDialog from './AddQuestionsDialog'
 import Pagination from '@approbado/lib/components/Pagination';
+import { useMediaQuery } from '@material-ui/core'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 
-const ListActions = props => (
-    <TopToolbar>
-        <FilterLiveSearch source="global_search" label='' />
-        {props.trivia_id && <AddQuestionsDialog {...props} />}
-    </TopToolbar>
-);
+const QuestionList = ({ record, filter, ...rest }) => {
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
+    const initialValues = { trivia_id: record.id }
+    const [filter, setFilter] = React.useState(initialValues)
+    const [subthemes, setSubthemes] = React.useState([])
 
-const QuestionListView = (record) => (
-    <>
-        <FilterContext.Provider>
-            <ListActions {...record} />
-        </FilterContext.Provider>
-        <GridList component={<QuestionCard />} />
-        <Pagination />
-    </>
-);
+    const fetchQuestions = async () => {
+        const res = await axios({
+            method: 'GET',
+            url: '/questions',
+            params: getQueryFromParams({ filter })
+        })
 
-const QuestionList = ({ record, filter, ...rest }) => (
-    <ListBase
-        resource='questions'
-        basePath='questions'
-        perPage={10}
-        filter={{ ...filter, options: true, onlyTrueOptions: true }}
-        {...rest}
-    >
-        <QuestionListView {...record} />
-    </ListBase>
-);
+        setSubthemes(res.data.data);
+    }
+
+    console.log(record)
+    return (
+        <></>
+        // <ListBase
+        //     resource='questions'
+        //     basePath='questions'
+        //     perPage={10}
+        //     filter={{ ...filter, options: true, onlyTrueOptions: true }}
+        //     {...rest}
+        // >
+        //     <QuestionListView {...record} />
+        // </ListBase>
+    );
+}
 
 export default QuestionList;
