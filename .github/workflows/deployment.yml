@@ -35,12 +35,22 @@ jobs:
     - name: Build Users App
       run: npm run build:app --if-present
 
-    - name: 📂 Sync files
+    - name: 📂 Deploy Admin App
       uses: burnett01/rsync-deployments@5.2.1
       with:
-        switches: -avzr --delete --exclude=".git" --exclude=".github" --exclude="node_modules" --exclude="packages/admin/node_modules" --exclude="packages/app/node_modules"
-        path: /
-        remote_path: /var/www/html
+        switches: -avzr --delete
+        path: /packages/admin/build
+        remote_path: /var/www/html/admin
+        remote_host: ${{ secrets.SSH_HOST }}
+        remote_user: ${{ secrets.SSH_USERNAME }}
+        remote_key: ${{ secrets.SSH_KEY }}
+
+    - name: 📂 Deploy Users App
+      uses: burnett01/rsync-deployments@5.2.1
+      with:
+        switches: -avzr --delete
+        path: /packages/app/build
+        remote_path: /var/www/html/app
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: ${{ secrets.SSH_USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
