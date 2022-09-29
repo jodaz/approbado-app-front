@@ -96,9 +96,11 @@ const App = () => {
                     <Route path='/plans' render={() => <PlansList />} />
                 </LazyLoader>
 
+                {/** Pruebas */}
                 <Route path='/rooms' render={() => <WaitingUsers />} />
                 <Route path='/win' render={() => <WinAward />} />
                 <Route path='/results' render={() => <Results />} />
+                <Route path="/loading-trivia-grupal" component={() => <PreparingRoom />} />
 
                 <Switch>
                     {/**

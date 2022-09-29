@@ -3,7 +3,6 @@ import { useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/styles/makeStyles'
 import Button from '@approbado/lib/components/Button'
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon'
 import { Link } from 'react-router-dom'
 import { alpha } from '@material-ui/core/styles/colorManipulator';
 
