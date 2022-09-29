@@ -285,31 +285,31 @@ const App = () => {
                 <ProtectedRoute
                     layout={TriviaShowLayout}
                     exact
-                    path='/trivias/:id'
+                    path='/trivias/:trivia_id'
                     component={TriviaEdit}
                 />
                 <ProtectedRoute
                     layout={TriviaShowLayout}
                     exact
-                    path='/trivias/:id/files'
+                    path='/trivias/:trivia_id/files'
                     component={FilesList}
                 />
                 <ProtectedRoute
                     layout={TriviaShowLayout}
                     exact
-                    path='/trivias/:id/questions'
+                    path='/trivias/:trivia_id/questions'
                     component={QuestionsList}
                 />
                 <ProtectedRoute
                     layout={TriviaShowLayout}
                     exact
-                    path='/trivias/:id/awards'
+                    path='/trivias/:trivia_id/awards'
                     component={AwardsList}
                 />
                 <ProtectedRoute
                     layout={TriviaShowLayout}
                     exact
-                    path='/trivias/:id/subthemes'
+                    path='/trivias/:trivia_id/subthemes'
                     component={SubthemesList}
                 />
                 <ProtectedRoute

@@ -53,11 +53,11 @@ const OptionsMenu = props => {
 };
 
 const TriviaShow = ({ children }) => {
-    const { id } = useParams();
+    const { trivia_id } = useParams();
     const [record, setRecord] = React.useState({})
 
     const fetchRecord = React.useCallback(async () => {
-        const { data } = await axios.get(`/trivias/${id}`)
+        const { data } = await axios.get(`/trivias/${trivia_id}`)
 
         setRecord(data)
     }, [])
@@ -78,7 +78,7 @@ const TriviaShow = ({ children }) => {
                     menu={<OptionsMenu record={record} />}
                 />
                 <TabbedList
-                    tags={tags(id)}
+                    tags={tags(trivia_id)}
                 />
                 {React.Children.map(children, child => (
                     React.cloneElement(child, {

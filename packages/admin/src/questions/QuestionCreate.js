@@ -47,7 +47,6 @@ const QuestionCreate = () => {
     const classes = useStyles();
 
     const handleSubmit = async (values) => {
-        console.log(values)
         try {
             const { data } = await axios.post('/questions', values)
 
