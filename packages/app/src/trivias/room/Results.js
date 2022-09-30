@@ -5,11 +5,41 @@ import makeStyles from '@material-ui/styles/makeStyles'
 import Button from '@approbado/lib/components/Button'
 import { Link } from 'react-router-dom'
 import { alpha } from '@material-ui/core/styles/colorManipulator';
+import PodiumCard from '../components/PodiumCard'
+import PodiumRow from '../components/PodiumRow'
 
 const award = {
     title: 'Approbado Oro',
     icon_winner: 'http://localhost:4000/public/default/insignia_oro.svg'
 }
+
+const users = [
+    {
+        user_name: '@maria_antonieta',
+        status: 'completed',
+        points: 74
+    },
+    {
+        user_name: '@primero',
+        status: 'pending',
+        points: 100
+    },
+    {
+        user_name: '@tercero',
+        status: 'pending',
+        points: 70
+    },
+    {
+        user_name: '@cuarto',
+        status: 'pending',
+        points: 64
+    },
+    {
+        user_name: '@quinto',
+        status: 'pending',
+        points: 64
+    },
+]
 
 const titleStyles = {
     fontSize: '1.1rem',
@@ -66,9 +96,12 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const Results = ({ title, icon_winner }) => {
+const Results = () => {
     const { room: { loaded } } = useTriviaState();
     const classes = useStyles();
+    const sortedUsers = users.sort((a, b) => (a.points > b.points) ? -1 : 1)
+    const firstUsers = sortedUsers.slice(0, 3);
+    const lastUsers = sortedUsers.slice(3);
 
     return (
         <Box sx={{
@@ -82,9 +115,23 @@ const Results = ({ title, icon_winner }) => {
                     Resultados
                 </Box>
                 <Box sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'end',
+                    padding: '0 1rem',
+                    borderBottom: '1px solid #6D6D6D',
+                    height: '400px',
+                }}>
+                    {firstUsers.map((user, i) => <PodiumCard user={user} i={i} />)}
+                </Box>
+                <Box sx={{ width: '100%' }}>
+                    {lastUsers.map((user, i) => <PodiumRow user={user} i={i} />)}
+                </Box>
+                <Box sx={{
                     width: '400px',
                     display: 'flex',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    marginTop: '4rem'
                 }}>
                     <Button
                         to='/trivias'
