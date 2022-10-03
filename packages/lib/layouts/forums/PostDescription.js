@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const redirectTo = (record, userId) => (
-    (record.owner.id == userId) ? `/profile` : `/users/${record.owner.id}/show`
+    (record.owner.id == userId) ? `/profile` : `/${record.owner.user_name}`
 )
 
 export default ({ record }) => {

@@ -20,20 +20,20 @@ const useStyles = makeStyles(theme => ({
 const tags = id => ([
     {
         name: 'Sobre mí',
-        pathname: `/users/${id}/about`
+        pathname: `/${id}/about`
     },
     {
         name: 'Publicaciones',
-        pathname: `/users/${id}/publications`
+        pathname: `/${id}/publications`
     },
     {
         name: 'Certificaciones',
-        pathname: `/users/${id}/certifications`
+        pathname: `/${id}/certifications`
     }
 ])
 
 const Profile = ({ data, children }) => {
-    const { id } = data
+    const { user_name } = data
     const classes = useStyles();
 
     return (
@@ -43,7 +43,7 @@ const Profile = ({ data, children }) => {
             </Grid>
             <span style={{ width: '4rem'}} />
             <Grid item md='8' sm='12'>
-                <TabbedList tags={tags(id)} />
+                <TabbedList tags={tags(user_name)} />
                 {
                     React.Children.map(children, (child) =>
                         React.cloneElement(child, {

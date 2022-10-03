@@ -200,10 +200,10 @@ const App = () => {
                     {/**
                      * Users
                      */}
-                    <Redirect exact from='/users/:id' to='/users/:id/about' />
+                    <Redirect exact from='/:id' to='/:id/about' />
                     <ProtectedRoute
                         exact
-                        path="/users/:id/about"
+                        path="/:id/about"
                         component={() => (
                             <UserProfile>
                                 <AboutMe />
@@ -213,7 +213,7 @@ const App = () => {
                     />
                     <ProtectedRoute
                         exact
-                        path="/users/:id/about"
+                        path="/:id/about"
                         component={() => (
                             <UserProfile>
                                 <AboutMe />
@@ -223,7 +223,7 @@ const App = () => {
                     />
                     <ProtectedRoute
                         exact
-                        path="/users/:id/certifications"
+                        path="/:id/certifications"
                         component={() => (
                             <UserProfile>
                                 <Certifications />
@@ -233,7 +233,7 @@ const App = () => {
                     />
                     <ProtectedRoute
                         exact
-                        path="/users/:id/publications"
+                        path="/:id/publications"
                         component={() => (
                             <UserProfile>
                                 <Publications />

@@ -11,7 +11,7 @@ const CertificationsListView = () => {
     const { id } = useParams();
     const [certs, setCerts] = React.useState([])
     const filter = {
-        user_id: id
+        user_name: id
     }
 
     const fetchCerts = async () => {

@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const BlacklistedUserCard = ({ data }) => {
-    const { id, names, picture, usersReportsCount } = data
+    const { id, names, user_name, picture, usersReportsCount } = data
     const classes = useStyles()
 
     return (
@@ -46,7 +46,7 @@ const BlacklistedUserCard = ({ data }) => {
                 <Box display="flex" flexDirection="column">
                     <Box component="span">{names}</Box>
                     <Link
-                        to={`/reports/users/${id}/show`}
+                        to={`/${user_name}`}
                         color='info'
                         underline='hover'
                         component={LinkBehavior}

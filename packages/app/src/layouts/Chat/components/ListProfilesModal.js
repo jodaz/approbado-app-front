@@ -112,7 +112,7 @@ const ListProfilesModal = () => {
                         <Avatar
                             src={`${CONFIG_NAMES.SOURCE}/${user.picture}`}
                             alt={`${user.names}_picture`}
-                            onClick={() => handleUserRedirect(user.id)}
+                            onClick={() => handleUserRedirect(user.user_name)}
                         />
                     </Tooltip>
                 ))}

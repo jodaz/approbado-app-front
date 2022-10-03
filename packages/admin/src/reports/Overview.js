@@ -67,7 +67,7 @@ export default function({ id, post }) {
                     subheader={owner.user_name}
                     action={
                         <Link
-                            to={`/users/${owner.id}/show`}
+                            to={`/${owner.user_name}`}
                             color='info'
                             underline='hover'
                             component={LinkBehavior}

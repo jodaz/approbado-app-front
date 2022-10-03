@@ -119,7 +119,7 @@ const ChatMenu = ({ chat = null, children }) => {
                                             onClick={handleClose}
                                             className={classes.menuItem}
                                             component={NavLink}
-                                            to={`/users/${receptor.id}`}
+                                            to={`/${receptor.user_name}`}
                                         >
                                             <Box marginRight='0.5rem' display='flex'>
                                                 <ProfileIcon />

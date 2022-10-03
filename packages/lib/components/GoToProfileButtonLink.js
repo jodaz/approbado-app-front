@@ -9,7 +9,7 @@ const GoToProfileButtonLink = ({
     ...rest
 }) => (
     <Link
-        to={`/users/${record.id}/show`}
+        to={`/${record.user_name}`}
         color='info'
         underline='hover'
         component={LinkBehavior}
