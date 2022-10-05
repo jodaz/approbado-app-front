@@ -1,10 +1,11 @@
 import React from 'react';
 import AwardItem from './AwardItem'
 import Spinner from '@approbado/lib/components/Spinner'
-import { axios, history } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box';
+import { useHistory } from 'react-router-dom'
 import { useSubthemeState } from '@approbado/lib/hooks/useSubthemeSelect';
 
 export default function TemaryList({ id }) {
@@ -12,6 +13,7 @@ export default function TemaryList({ id }) {
     const [data, setData] = React.useState([])
     const [error, setError] = React.useState(false)
     const state = useSubthemeState();
+    const history = useHistory();
 
     React.useEffect(() => {
         setLoading(true)

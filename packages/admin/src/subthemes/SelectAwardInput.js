@@ -1,6 +1,6 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import { useParams } from 'react-router-dom'
 import Box from '@material-ui/core/Box'

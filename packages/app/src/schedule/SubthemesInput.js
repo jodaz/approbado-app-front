@@ -2,7 +2,7 @@ import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { useFormState } from 'react-final-form'
 import LayerIcon from '@approbado/lib/icons/LayerIcon';
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 
