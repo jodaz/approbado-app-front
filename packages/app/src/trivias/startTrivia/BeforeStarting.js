@@ -4,7 +4,7 @@ import LayerIcon from '@approbado/lib/icons/LayerIcon';
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@approbado/lib/components/Button'
 import Switch from '@approbado/lib/components/Switch';
-import { useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
+import { useTriviaDispatch, useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
 import AddFriendsModal from './AddFriendsModal';
 import { useHistory } from 'react-router-dom'
 
@@ -27,12 +27,13 @@ const useStyles = makeStyles(theme => ({
 
 const getMaxTime = subthemes => subthemes.map(({ duration }) => duration).reduce((a, b) => a + b, 0)
 
-const BeforeStarting = props => {
-    const { questions, selectedSubthemes } = props
+const BeforeStarting = () => {
+    const { questions, selectedSubthemes, room } = useTriviaState()
     const [maxTime, setMaxTime] = React.useState(false)
     const classes = useStyles();
     const { setConfigs, startCounter } = useTriviaDispatch();
     const history = useHistory();
+    const [url, setUrl] = React.useState('/game')
 
     const handleSetMaxTime = () => {
         if (!maxTime) {
@@ -50,8 +51,14 @@ const BeforeStarting = props => {
 
         if (maxTime) { startCounter(maxTime) }
 
-        history.push('/game')
+        history.push(url)
     }
+
+    React.useEffect(() => {
+        if (room.token) {
+            setUrl(`/rooms/${room.token}`)
+        }
+    }, [room.token])
 
     return (
         <Box
