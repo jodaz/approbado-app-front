@@ -53,9 +53,10 @@ import esLocale from "date-fns/locale/es";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LazyLoader from '@approbado/lib/components/LazyLoader'
 import ResetPassword from './components/ResetPassword'
-import WaitingUsers from './trivias/room/WaitingUsers';
-import WinAward from './trivias/room/WinAward';
-import Results from './trivias/room/Results';
+import WaitingUsers from './trivias/games/WaitingUsers';
+import WinAward from './trivias/games/WinAward';
+import Results from './trivias/games/Results';
+
 // Frames
 const Login = React.lazy(() => import('./components/Login'))
 const Register = React.lazy(() => import('./components/Register'))
@@ -97,10 +98,9 @@ const App = () => {
                 </LazyLoader>
 
                 {/** Pruebas */}
-                <Route path='/rooms' render={() => <WaitingUsers />} />
+                {/* <Route path='/rooms' render={() => <WaitingUsers />} />
                 <Route path='/win' render={() => <WinAward />} />
-                <Route path='/results' render={() => <Results />} />
-                <Route path="/loading-trivia-grupal" component={() => <PreparingRoom />} />
+                <Route path='/results' render={() => <Results />} /> */}
 
                 <Switch>
                     {/**

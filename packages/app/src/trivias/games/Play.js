@@ -9,6 +9,7 @@ import OptionsForm from '../components/OptionsForm'
 import Counter from '../components/Counter'
 import ShareIcon from '@approbado/lib/icons/ShareIcon'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
+import PlayersList from '../components/PlayersList'
 
 const useStyles = makeStyles(theme => ({
     passQuestion: {
@@ -52,7 +53,8 @@ export default function() {
         currQuestion: current,
         answers,
         configs,
-        secs
+        secs,
+        room
     } = useTriviaState()
     const currQuestion = questions[current]
     const [currAnswer, setCurrentAnswer] = React.useState(null)
@@ -87,9 +89,10 @@ export default function() {
     }, [answers, currQuestion]);
 
     const { duration } = configs
-
+    console.log(room);
     return (
         <Box padding='1rem'>
+            {room.loaded && <PlayersList users={room.participants} />}
             {(duration != 0) && (
                 <Counter sec={secs} />
             )}

@@ -2,24 +2,12 @@ import * as React from 'react'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
+import { useUserState } from '@approbado/lib/hooks/useUserState'
 import makeStyles from '@material-ui/styles/makeStyles'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar'
-
-const users = [
-    {
-        names: 'antonio',
-        status: 'pending'
-    },
-    {
-        names: 'maria_antonieta',
-        status: 'completed'
-    },
-    {
-        names: 'antonio',
-        status: 'pending'
-    },
-]
+import CONFIG_NAMES from '@approbado/lib/configs'
+import Spinner from '@approbado/lib/components/Spinner'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -43,8 +31,31 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const PreparingRoom = () => {
-    const { room: { loaded, ...restRoom } } = useTriviaState();
+    const { room: { loaded, participants }, trivia, selected } = useTriviaState();
+    const { setRoom } = useTriviaDispatch();
     const classes = useStyles();
+    const { user } = useUserState();
+    const { token } = useParams()
+    const history = useHistory();
+
+    const fetchTriviaGrupal = async () => {
+        try {
+            const { data } = await axios.get(`/trivias/grupal/${token}`)
+
+            setRoom(data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    React.useEffect(() => {
+        if (selected && loaded) {
+            history.push('/game')
+        }
+        fetchTriviaGrupal();
+    }, [selected, loaded])
+
+    if (!selected) return <Spinner />
 
     return (
         <Box className={classes.root}>
@@ -57,15 +68,14 @@ const PreparingRoom = () => {
                     marginTop: '2rem'
                 }
             }}>
-
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     margin: '1rem'
                 }}>
-                    <Avatar className={classes.player} />
-                    <Box marginTop='1rem'>Antonella Pineda</Box>
+                    <Avatar src={`${CONFIG_NAMES.SOURCE}/${user.picture}`} className={classes.player} />
+                    <Box marginTop='1rem'>{user.names}</Box>
                 </Box>
                 <Box fontWeight='700' fontSize='1.5rem'>VS</Box>
                 <Box sx={{
@@ -73,14 +83,14 @@ const PreparingRoom = () => {
                     width: '100%',
                     flexWrap: 'wrap'
                 }}>
-                    {users.map(user => (
+                    {participants.map(user => (
                         <Box sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             margin: '1rem'
                         }}>
-                            <Avatar className={classes.otherPlayers} />
+                            <Avatar src={`${CONFIG_NAMES.SOURCE}/${user.picture}`} className={classes.otherPlayers} />
                             <Box sx={{ marginTop: '1rem' }}>
                                 {user.names}
                             </Box>
