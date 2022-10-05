@@ -98,9 +98,9 @@ const App = () => {
                 </LazyLoader>
 
                 {/** Pruebas */}
-                {/* <Route path='/rooms' render={() => <WaitingUsers />} />
+                <Route path='/rooms' render={() => <WaitingUsers />} />
                 <Route path='/win' render={() => <WinAward />} />
-                <Route path='/results' render={() => <Results />} /> */}
+                <Route path='/results' render={() => <Results />} />
 
                 <Switch>
                     {/**

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import { alpha } from '@material-ui/core/styles/colorManipulator';
 import PodiumCard from '../components/PodiumCard'
 import PodiumRow from '../components/PodiumRow'
+import Share from '../components/Share'
 
 const award = {
     title: 'Approbado Oro',
@@ -108,6 +109,7 @@ const Results = () => {
             height: '100%',
             width: '100%',
             display: 'flex',
+            position: 'relative',
             justifyContent: 'center'
         }}>
             <Box className={classes.root}>
@@ -151,6 +153,7 @@ const Results = () => {
                     </Button>
                 </Box>
             </Box>
+            <Share />
         </Box>
     )
 }
