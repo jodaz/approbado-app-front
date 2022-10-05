@@ -23,7 +23,7 @@ const StartTriviaSelector = props => {
     return (
         <Box className={classes.root}>
             {(level && type) ? (
-                <BeforeStarting {...props} />
+                <BeforeStarting />
             ) : (
                 <NoContent
                     icon={<SelectionIllustration />}
