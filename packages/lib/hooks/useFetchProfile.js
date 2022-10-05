@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 
 const useFetchProfile = () => {
     const [record, setRecord] = React.useState({})

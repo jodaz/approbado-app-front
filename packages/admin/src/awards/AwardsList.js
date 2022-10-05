@@ -1,7 +1,7 @@
 import * as React from 'react';
 import AwardsCard from './AwardsCard'
 import ListContainer from '../components/ListContainer'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
 import { useMediaQuery } from '@material-ui/core'

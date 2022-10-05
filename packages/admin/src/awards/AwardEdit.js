@@ -9,7 +9,7 @@ import validate from './validateAwardForm'
 import Spinner from '@approbado/lib/components/Spinner'
 import { FileInput, ACCESS_TYPES } from './awardsFormHelpers'
 import { useHistory, useParams } from 'react-router-dom'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
 

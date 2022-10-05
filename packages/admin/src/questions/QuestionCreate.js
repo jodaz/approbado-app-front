@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BooleanInput } from 'react-admin'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import { useParams, useHistory } from 'react-router-dom'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import Typography from '@material-ui/core/Typography'
@@ -47,7 +47,6 @@ const QuestionCreate = () => {
     const classes = useStyles();
 
     const handleSubmit = async (values) => {
-        console.log(values)
         try {
             const { data } = await axios.post('/questions', values)
 

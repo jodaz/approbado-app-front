@@ -12,7 +12,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
     <React.Fragment>
         <MenuItemLink
             to="/dashboard"
-            primaryText='Inicio'
+            primaryText='Home'
             leftIcon={<HomeIcon />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
@@ -46,7 +46,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         />
         <MenuItemLink
             to='/chats'
-            primaryText='Mensajería'
+            primaryText='Mensajes'
             leftIcon={<MessageIcon />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
@@ -63,7 +63,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         />
         <MenuItemLink
             to="/settings"
-            primaryText='Configuraciones'
+            primaryText='Configuración'
             leftIcon={<SettingsIcon />}
             onClick={onMenuClick}
             sidebarIsOpen={open}

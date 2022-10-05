@@ -8,13 +8,15 @@ import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import Typography from '@material-ui/core/Typography';
+import { useParams } from 'react-router-dom'
 
-export default function CustomizedDialogs({ trivia_id, id }) {
+export default function CustomizedDialogs() {
     const history = useHistory();
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
         setOpen(true);
     };
+    const { trivia_id, subtheme_id } = useParams();
     const handleClose = () => {
         setOpen(false);
     };
@@ -53,13 +55,13 @@ export default function CustomizedDialogs({ trivia_id, id }) {
                     >
                         <Button
                             variant="outlined"
-                            onClick={() => history.push(`/trivias/${trivia_id}/subthemes/${id}/questions/upload`)}
+                            onClick={() => history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions/upload`)}
                         >
                             Subir de forma masiva
                         </Button>
                         <Button
                             variant="outlined"
-                            onClick={() => history.push(`/trivias/${trivia_id}/subthemes/${id}/questions/create`)}
+                            onClick={() => history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions/create`)}
                         >
                             Agregar una pregunta
                         </Button>

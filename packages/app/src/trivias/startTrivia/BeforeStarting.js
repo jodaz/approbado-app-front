@@ -4,9 +4,9 @@ import LayerIcon from '@approbado/lib/icons/LayerIcon';
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@approbado/lib/components/Button'
 import Switch from '@approbado/lib/components/Switch';
-import { history } from '@approbado/lib/providers'
 import { useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import AddFriendsModal from './AddFriendsModal';
+import { useHistory } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
     test: {
@@ -32,6 +32,7 @@ const BeforeStarting = props => {
     const [maxTime, setMaxTime] = React.useState(false)
     const classes = useStyles();
     const { setConfigs, startCounter } = useTriviaDispatch();
+    const history = useHistory();
 
     const handleSetMaxTime = () => {
         if (!maxTime) {

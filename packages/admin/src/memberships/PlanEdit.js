@@ -8,7 +8,7 @@ import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Spinner from '@approbado/lib/components/Spinner'
 import SelectTriviasInput from './SelectTriviasInput';
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 
 const ACCESS_TYPES = [
     { id: '1', name: 'Permitido' },

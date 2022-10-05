@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SuccessDialog from './SuccessDialog'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 import { useParams } from 'react-router-dom'
