@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import { history } from '@approbado/lib/providers'
+import { useHistory } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 import Emoji from '@approbado/lib/components/Emoji'
 import Button from '@approbado/lib/components/Button'
@@ -35,15 +35,23 @@ const useStyles = makeStyles(theme => ({
 
 export default function() {
     const classes = useStyles();
-    const { selected, answers, questions, configs } = useTriviaState()
+    const { selected, answers, questions, configs, room } = useTriviaState()
     const { setConfigs } = useTriviaDispatch()
     const { responses } = useGetResponses(questions, answers)
+    const history = useHistory();
 
-    const handleClick = () => {
-        setConfigs({
-            ...configs,
-            view: 'finished'
-        })
+    const handleSubmit = () => {
+        if (room.loaded) {
+            setConfigs({
+                ...configs,
+                view: 'waiting'
+            })
+        } else {
+            setConfigs({
+                ...configs,
+                view: 'finished'
+            })
+        }
     }
 
     React.useEffect(() => {
@@ -64,7 +72,7 @@ export default function() {
                     <Box>
                         Revisa tus respuestas antes de enviar <Emoji symbol='😉' />
                     </Box>
-                    <Button onClick={handleClick} unresponsive>
+                    <Button onClick={handleSubmit} unresponsive>
                         Enviar
                     </Button>
                 </Box>
