@@ -309,7 +309,7 @@ const App = () => {
                  */}
                 <Switch>
                     <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
-                    <ProtectedRoute exact path="/room/:token" component={() => <PreparingRoom />} layout={GameLayout} />
+                    <ProtectedRoute exact path="/rooms/:token" component={() => <PreparingRoom />} layout={GameLayout} />
                 </Switch>
 
                 <Switch>
