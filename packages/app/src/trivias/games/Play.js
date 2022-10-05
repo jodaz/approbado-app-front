@@ -89,7 +89,7 @@ export default function() {
     }, [answers, currQuestion]);
 
     const { duration } = configs
-    console.log(room);
+
     return (
         <Box padding='1rem'>
             {room.loaded && <PlayersList users={room.participants} />}

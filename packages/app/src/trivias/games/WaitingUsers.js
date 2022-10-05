@@ -3,33 +3,19 @@ import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTrivi
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/styles/makeStyles'
 import { useParams } from 'react-router-dom'
+import socketIOClient from "socket.io-client";
 import BalanceIcon from '@approbado/lib/icons/BalanceIcon'
 import UserCardCheck from '../components/UserCardCheck'
+import CONFIG_NAMES from '@approbado/lib/configs'
 
 const users = [
     {
-        user_name: '@antonio',
-        status: 'pending'
-    },
-    {
-        user_name: '@maria_antonieta',
+        user_name: '@test',
         status: 'completed'
     },
     {
-        user_name: '@antonio',
+        user_name: '@otrousuario',
         status: 'pending'
-    },
-    {
-        user_name: '@maria_antonieta_delas_nieves',
-        status: 'completed'
-    },
-    {
-        user_name: '@antonio',
-        status: 'pending'
-    },
-    {
-        user_name: '@maria_antonieta_delas_nieves',
-        status: 'completed'
     }
 ]
 
@@ -86,12 +72,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const WaitingUsers = () => {
-    const { room: { loaded, ...restRoom } } = useTriviaState();
-    const { setRoom } = useTriviaDispatch()
-    const { token } = useParams()
+    const { room: { loaded, token, ...restRoom }, trivia } = useTriviaState();
     const classes = useStyles();
     const pendingUsers = getUsersByStatus(users, 'pending')
     const completedUsers = getUsersByStatus(users, 'completed')
+
+    React.useEffect(() => {
+        const socket = socketIOClient(CONFIG_NAMES.SOURCE);
+
+        socket.on("room", data => console.log(data));
+        socket.emit('room', { token: token })
+
+        return () => socket.disconnect();
+    }, [])
 
     return (
         <Box sx={{
@@ -104,11 +97,11 @@ const WaitingUsers = () => {
                 <Box className={classes.header}>
                     <Box className={classes.triviaName}>
                         <BalanceIcon />
-                        <Box marginLeft='0.5rem'>Derecho laboral</Box>
+                        <Box marginLeft='0.5rem'>{trivia.name}</Box>
                     </Box>
                 </Box>
                 <Box className={classes.subthemeName}>
-                    Tema en especifico #1
+                    {trivia.name} #1
                 </Box>
                 <Box className={classes.container}>
                     <Box className={classes.sent}>

@@ -7,6 +7,8 @@ const PlayTriviaGame = React.lazy(() => import('./Play'))
 const ResumeTriviaGame = React.lazy(() => import('./Resume'))
 const FinishedTriviaGame = React.lazy(() => import('./Finished'))
 const OutOfTime = React.lazy(() => import('./OutOfTime'))
+const WaitingUsers = React.lazy(() => import('./WaitingUsers'))
+const WinAward = React.lazy(() => import('./WinAward'))
 
 export default function() {
     const { selected, configs: { view } } = useTriviaState();
@@ -21,11 +23,14 @@ export default function() {
         <LazyLoader>
             {(view == 'playing')
                 ? <PlayTriviaGame />
-                : (view == 'resume') ? (
+                : (view == 'resume') ?
                     <ResumeTriviaGame />
-                )
                 : (view == 'timeout') ?
                     <OutOfTime />
+                : (view == 'waiting') ?
+                    <WaitingUsers />
+                : (view == 'winning') ?
+                    <WinAward />
                 : <FinishedTriviaGame />}
         </LazyLoader>
     )

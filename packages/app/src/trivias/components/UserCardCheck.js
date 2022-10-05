@@ -33,7 +33,7 @@ const UserCardCheck = ({
             alignItems: 'center'
         }}>
             <Avatar />
-            <Box sx={titleStyles} component={Link} to={`/users/${user_name}`}>{user_name}</Box>
+            <Box sx={titleStyles} component={Link} to={`/${user_name}`}>{user_name}</Box>
             {status == 'pending' ? <TimeIcon fill='#6D6D6D' /> : <CheckSolid />}
         </Box>
     )

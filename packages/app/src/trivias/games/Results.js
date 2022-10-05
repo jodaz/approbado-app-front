@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
+import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/styles/makeStyles'
 import Button from '@approbado/lib/components/Button'
@@ -13,34 +13,6 @@ const award = {
     title: 'Approbado Oro',
     icon_winner: 'http://localhost:4000/public/default/insignia_oro.svg'
 }
-
-const users = [
-    {
-        user_name: '@maria_antonieta',
-        status: 'completed',
-        points: 74
-    },
-    {
-        user_name: '@primero',
-        status: 'pending',
-        points: 100
-    },
-    {
-        user_name: '@tercero',
-        status: 'pending',
-        points: 70
-    },
-    {
-        user_name: '@cuarto',
-        status: 'pending',
-        points: 64
-    },
-    {
-        user_name: '@quinto',
-        status: 'pending',
-        points: 64
-    },
-]
 
 const titleStyles = {
     fontSize: '1.1rem',
@@ -98,11 +70,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Results = () => {
-    const { room: { loaded } } = useTriviaState();
+    const { room: { loaded, participants }, configs } = useTriviaState();
     const classes = useStyles();
-    const sortedUsers = users.sort((a, b) => (a.points > b.points) ? -1 : 1)
+    const sortedUsers = participants.sort((a, b) => (a.points > b.points) ? -1 : 1)
     const firstUsers = sortedUsers.slice(0, 3);
     const lastUsers = sortedUsers.slice(3);
+    const { setConfigs } = useTriviaDispatch()
+
+    const handleSubmit = () => {
+        setConfigs({
+            ...configs,
+            view: 'finished'
+        })
+    }
 
     return (
         <Box sx={{
@@ -144,8 +124,7 @@ const Results = () => {
                         Ver más trivias
                     </Button>
                     <Button
-                        to='/show-results'
-                        component={Link}
+                        onClick={handleSubmit}
                         className={classes.darkButton}
                         unresponsive
                     >
@@ -157,7 +136,5 @@ const Results = () => {
         </Box>
     )
 }
-
-Results.defaultProps = award
 
 export default Results
