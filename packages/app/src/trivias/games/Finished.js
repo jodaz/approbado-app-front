@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import { history } from '@approbado/lib/providers'
+import { useHistory } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 import Emoji from '@approbado/lib/components/Emoji'
 import { useGetResponses } from '@approbado/lib/hooks/useGetResponses'
@@ -92,6 +92,7 @@ export default function() {
     const { responses } = useGetResponses(questions, answers)
     const classes = useStyles();
     const [showAnswers, setShowAnswers] = React.useState(false);
+    const history = useHistory();
 
     React.useEffect(() => {
         if (!selected) {
