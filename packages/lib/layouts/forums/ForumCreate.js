@@ -60,8 +60,11 @@ const ForumCreate = () => {
                                         multiline
                                     />
                                 </InputContainer>
+                                <SelectCategoriesInput
+                                    submitting={submitting}
+                                    placeholder='Etiquetas'
+                                />
                                 <SelectTriviaInput />
-                                <SelectCategoriesInput submitting={submitting} />
                             </Grid>
                         </Box>
                     }

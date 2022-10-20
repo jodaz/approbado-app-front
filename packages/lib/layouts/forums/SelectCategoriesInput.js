@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const SelectCategoriesInput = ({ submitting }) => {
+const SelectCategoriesInput = ({ submitting, placeholder }) => {
     const classes = useStyles();
     const [options, setOptions] = React.useState([])
 
@@ -48,7 +48,7 @@ const SelectCategoriesInput = ({ submitting }) => {
         <InputContainer
             disabled={submitting}
             label="Etiquetas"
-            md={6}
+            md={12}
             xs={12}
         >
             <SelectInput
@@ -65,7 +65,7 @@ const SelectCategoriesInput = ({ submitting }) => {
                             }}>
                                 {option.name}
                             </Box>
-                        </Box >
+                        </Box>
                     </Box>
                 )}
                 getOptionSelected={(option, value) => option.name === value.name}
@@ -80,11 +80,7 @@ const SelectCategoriesInput = ({ submitting }) => {
                         />
                     ))
                 }
-                renderInput={params => (
-                    <TextField
-                        {...params}
-                    />
-                )}
+                inputProps={{ placeholder: placeholder }}
             />
         </InputContainer>
     )
