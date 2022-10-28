@@ -56,7 +56,7 @@ const TestList = () => {
                     </Box>
                 ) : (
                     <Box>
-                        Sin trivias
+                        No hay trivias disponibles
                     </Box>
                 )}
             </Box>
@@ -70,7 +70,7 @@ const TestList = () => {
                     </Box>
                 ) : (
                     <Box>
-                        Sin trivias
+                        No hay trivias disponibles
                     </Box>
                 )}
             </Box>
