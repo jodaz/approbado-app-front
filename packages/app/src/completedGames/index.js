@@ -44,17 +44,19 @@ const CompletedGamesList = () => {
     )
 
     return (
-        <Box display='flex' flexDirection='column'>
-            {(themes.loaded) ? (
-                <Box marginBottom='1rem'>
-                    <Box component='strong'>
-                        Continúa con tu prueba
-                    </Box>
+        <Box display='flex' flexDirection='column' height="100%">
+            <Box marginBottom='1rem'>
+                <Box component='strong'>
+                    Continúa con tu prueba
+                </Box>
+            </Box>
+            {(themes.total) ? (
+                <Box flex={1}>
                     {renderer(themes)}
                 </Box>
             ) : (
-                <Box>
-                    Aún no has culminado ninguna prueba.
+                <Box flex={1}>
+                    No has realizado ninguna prueba.
                 </Box>
             )}
         </Box>
