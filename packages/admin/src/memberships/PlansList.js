@@ -1,45 +1,73 @@
-import {
-    FilterContext,
-    ListBase,
-    FilterLiveSearch,
-    TopToolbar
-} from 'react-admin'
-import GridList from '@approbado/lib/components/GridList';
+import * as React from 'react';
 import MembershipCard from './MembershipCard'
-import CreateButton from '../components/CreateButton'
 import ListContainer from '../components/ListContainer'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import { useMediaQuery } from '@material-ui/core'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
+import CreateButton from '../components/CreateButton'
+import GridList from '@approbado/lib/components/GridList'
 
-const ListActions = () => (
-    <TopToolbar>
-        <FilterLiveSearch label='' source="name" />
-        <CreateButton to="/memberships/plans" />
-    </TopToolbar>
-);
+const PlansList = () => {
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
+    const [filter, setFilter] = React.useState({})
+    const [files, setFiles] = React.useState([])
 
-const PlansList = props => (
-    <ListBase
-        perPage={10}
-        sort={{ field: 'amount', order: 'DESC' }}
-        {...props}
-    >
-        <PlansListView />
-    </ListBase>
-);
+    const fetchPlans = async () => {
+        const res = await axios({
+            method: 'GET',
+            url: 'memberships/plans',
+            params: getQueryFromParams({ filter })
+        })
 
-const PlansListView = () => (
-    <ListContainer
-        actions={
-            <FilterContext.Provider>
-                <ListActions />
-            </FilterContext.Provider>
+        setFiles(res.data.data);
+    }
+
+    const handleOnChange = (e) => {
+        if (e.currentTarget.value) {
+            setFilter({ name: e.currentTarget.value })
+        } else {
+            setFilter({})
         }
-        list={<GridList component={<MembershipCard />} />}
-    />
-);
+    }
 
-PlansList.defaultProps = {
-    basePath: 'memberships/plans',
-    resource: 'memberships/plans'
+    React.useEffect(() => {
+        fetchPlans()
+    }, [filter])
+
+    return (
+        <ListContainer
+            actions={
+                <Box sx={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    margin: '1rem 0'
+                }}>
+                    <Box width={isSmall ? '100%' : '25%'}>
+                        <TextField
+                            onChange={handleOnChange}
+                            placeholder='Buscar'
+                            fullWidth
+                        />
+                    </Box>
+                    <CreateButton
+                        to="/memberships/plans/create"
+                        label='Crear'
+                    />
+                </Box>
+            }
+            list={
+                <GridList
+                    data={files}
+                    component={<MembershipCard />}
+                />
+            }
+        />
+    );
 }
 
-export default PlansList
+export default PlansList;
