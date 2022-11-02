@@ -24,7 +24,7 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
         hasMore
     } = useFetch('/forums', {
         perPage: perPage,
-        page: 1,
+        page: 0,
         filter: filter,
         sort: sort
     })

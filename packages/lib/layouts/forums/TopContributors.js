@@ -5,13 +5,12 @@ import Box from '@material-ui/core/Box';
 import Emoji from '@approbado/lib/components/Emoji'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import Spinner from '@approbado/lib/components/Spinner'
-import useSpinnerStyles from '@approbado/lib/styles/useSpinnerStyles'
 import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
 import ReplyIcon from '@approbado/lib/icons/ReplyIcon';
-import useFetch from '@approbado/lib/hooks/useFetch'
+import { JSONAxiosInstance } from '../../api';
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 
 const payload = {
     pagination: { page: 1, perPage: 5 },
@@ -51,17 +50,27 @@ const useStyles = makeStyles(theme => ({
 
 const AsideBar = ({ isXSmall }) => {
     const classes = useStyles();
-    const spinnerClasses = useSpinnerStyles();
-    const {
-        loading,
-        total,
-        data,
-        error
-    } = useFetch('/users', {
-        perPage: 5,
-        page: 1,
-        sort: { field: 'contributionsCount', order: 'DESC'}
-    })
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(false)
+    const [data, setData] = React.useState([])
+
+    const fetchUsers = async () => {
+        setLoading(true)
+
+        const res = await JSONAxiosInstance.get('/users', { params: getQueryFromParams(payload) })
+
+        if (res.status >= 200 && res.status < 300) {
+            setData(res.data.data)
+        } else {
+            setError(true)
+        }
+
+        setLoading(false)
+    }
+
+    React.useEffect(() => {
+        fetchUsers();
+    }, [])
 
     return (
         <Box>
@@ -77,11 +86,10 @@ const AsideBar = ({ isXSmall }) => {
                             {'Personas que comentaron debates y compartieron conocimientos en el foro.'}
                         </Box>
                     </Typography>
-                    {loading && <Spinner classes={spinnerClasses}/>}
 
-                    {error && <ErrorMessage />}
+                    {error && <Box mt={5}><ErrorMessage /></Box>}
 
-                    {(total || loading == false) ? (
+                    {!!(!loading && data.length) && (
                         <Box>
                             {data.map(user =>
                                 <Box className={classes.card}>
@@ -105,7 +113,9 @@ const AsideBar = ({ isXSmall }) => {
                                 </Box>
                             )}
                         </Box>
-                    ) : (
+                    )}
+
+                    {(loading || !data.length && !error) && (
                         <Box className={classes.description} paddingTop='2rem' >
                             <Typography component={'p'} variant="body1">
                                 No tenemos contribuidores disponibles
