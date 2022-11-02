@@ -1,14 +1,13 @@
 import * as React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import { history } from '@approbado/lib/providers'
+import { useHistory } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 import Emoji from '@approbado/lib/components/Emoji'
 import { useGetResponses } from '@approbado/lib/hooks/useGetResponses'
 import { ReactComponent as StateIllustration } from '@approbado/lib/illustrations/Stage1.svg'
 import Button from '@approbado/lib/components/Button'
 import Checkbox from '../components/Checkbox'
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NoAnswer from '../components/NoAnswer'
 // Icons
@@ -93,6 +92,7 @@ export default function() {
     const { responses } = useGetResponses(questions, answers)
     const classes = useStyles();
     const [showAnswers, setShowAnswers] = React.useState(false);
+    const history = useHistory();
 
     React.useEffect(() => {
         if (!selected) {

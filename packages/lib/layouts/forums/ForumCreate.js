@@ -10,7 +10,7 @@ import TextInput from '@approbado/lib/components/TextInput'
 import { useHistory } from 'react-router-dom'
 import SelectCategoriesInput from './SelectCategoriesInput';
 import SelectTriviaInput from './SelectTriviaInput'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 
 const ForumCreate = () => {
     const { status } = useDialogState('forums.create');
@@ -60,8 +60,11 @@ const ForumCreate = () => {
                                         multiline
                                     />
                                 </InputContainer>
+                                <SelectCategoriesInput
+                                    submitting={submitting}
+                                    placeholder='Etiquetas'
+                                />
                                 <SelectTriviaInput />
-                                <SelectCategoriesInput submitting={submitting} />
                             </Grid>
                         </Box>
                     }

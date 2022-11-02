@@ -1,6 +1,6 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 
@@ -17,7 +17,7 @@ const SelectTriviaInput = ({ disabled }) => {
     }, [])
 
     return (
-        <InputContainer disabled={disabled} label="Trivia" xs={12} md={6}>
+        <InputContainer disabled={disabled} label="Trivia" xs={12} md={12}>
             {(!Object.entries(options).length) ? (
                 <Box marginTop='0.5rem' fontSize='0.9rem' fontWeight={300}>
                     Sin datos
@@ -25,8 +25,10 @@ const SelectTriviaInput = ({ disabled }) => {
             ) : (
                 <SelectInput
                     name='trivia_id'
-                    placeholder='Trivia'
                     options={options}
+                    inputProps={{
+                        placeholder: 'Tema específico'
+                    }}
                 />
             )}
         </InputContainer>

@@ -8,8 +8,8 @@ import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import clsx from 'clsx';
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import { history } from '@approbado/lib/providers'
-import { axios } from '@approbado/lib/providers'
+import { useHistory } from 'react-router-dom'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import { stringify } from 'qs';
 // Icons
 import BalanceIcon from '@approbado/lib/icons/BalanceIcon';
@@ -79,10 +79,11 @@ const StartTrivia = () => {
         error
     } = useFetch('/configurations/levels', {
         perPage: 5,
-        page: 1,
+        page: 0,
         sort: { field: 'created_at', order: 'DESC' }
     })
     const { configs: { level } } = state;
+    const history = useHistory();
 
     React.useEffect(() => {
         if (!state.selected) {

@@ -13,12 +13,13 @@ import { Form } from 'react-final-form'
 import Link from '@material-ui/core/Link';
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import SelectInput from '@approbado/lib/components/SelectInput'
-import { axios, history } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import ClipboardCopyField from './ClipboardCopyField'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
+import ItemCollection from '@approbado/lib/components/ItemCollection';
 
 const useStyles = makeStyles(theme => ({
     dialogRoot: {
@@ -113,7 +114,8 @@ const AddFriendsModal = () => {
         configs: {
             level, type
         },
-        selectedSubthemes
+        selectedSubthemes,
+        room
     } = useTriviaState()
     const { setRoom } = useTriviaDispatch()
 
@@ -137,17 +139,18 @@ const AddFriendsModal = () => {
         setOpen(false);
     };
 
-    const handleSubmit = React.useCallback(async (values) => {
+    const handleSubmit = async (values) => {
         try {
             const { data } = await axios.post('/trivias/grupal', values)
-            await history.push(`/room/${link.token}`)
-            await setRoom(data)
+
+            setOpen(false);
+            setRoom(data);
         } catch (error) {
             if (error.response.data.errors) {
                 return error.response.data.errors;
             }
         }
-    }, [link]);
+    };
 
     React.useEffect(() => {
         fetchLink();
@@ -155,13 +158,20 @@ const AddFriendsModal = () => {
 
     return (
         <>
-            <Box className={classes.test} onClick={handleClickOpen}>
-                <Box>
-                    <PlusCircleIcon />
+            <Box marginBottom='1rem'>
+                <Box className={classes.test} onClick={handleClickOpen}>
+                    <Box>
+                        <PlusCircleIcon />
+                    </Box>
+                    <Box className={classes.link} onClick={() => setAddFriends(!addFriends)}>
+                        Agregar amigos
+                    </Box>
                 </Box>
-                <Box className={classes.link} onClick={() => setAddFriends(!addFriends)}>
-                    Agregar amigos
-                </Box>
+                {(room.participants.length > 0) && (
+                    <Box display='flex' marginLeft='3rem'>
+                        <ItemCollection items={room.participants} label='names' />
+                    </Box>
+                )}
             </Box>
             <Dialog
                 onClose={handleClose}

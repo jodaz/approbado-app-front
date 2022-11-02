@@ -3,7 +3,7 @@ import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import Checkbox from '@approbado/lib/components/FinalFormCheckbox'
 import Grid from '@material-ui/core/Grid'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import useFetchProfile from '@approbado/lib/hooks/useFetchProfile'
 import Spinner from '@approbado/lib/components/Spinner'
 

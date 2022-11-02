@@ -25,6 +25,8 @@ const ControllableSelectInput = props => {
         }
     })());
 
+    console.log(value)
+
     const handleChange = (event, option) => (onChange(option.id))
 
     const handleMultipleChange = (event, option) => (onChange(option.map(items => items.id)))

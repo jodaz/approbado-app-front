@@ -48,7 +48,7 @@ const dialogReducer = (
     action
 ) => {
     switch (action.type) {
-        case SET_ROOM: {
+        case SET_ROOM:
             return {
                 ...state,
                 room: {
@@ -57,15 +57,8 @@ const dialogReducer = (
                     participants: action.payload.participants,
                     subtheme: action.payload.subtheme_id,
                     token: action.payload.link
-                },
-                configs: {
-                    ...configs,
-                    type: action.payload.type,
-                    level: action.payload.level,
-                    duration: action.payload.duration
                 }
             }
-        }
         case START_COUNTER:
             return {
                 ...state,

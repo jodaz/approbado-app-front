@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import TextInput from '@approbado/lib/components/TextInput'
 
 const validate = values => {

@@ -5,7 +5,7 @@ import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import CustomColorPicker from './CustomColorPicker'
 import TextInput from '@approbado/lib/components/TextInput'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import { useHistory } from 'react-router-dom'
 
 const LevelCreate = () => {

@@ -6,7 +6,7 @@ import InputContainer from '@approbado/lib/components/InputContainer'
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import { useHistory } from 'react-router-dom'
-import { axios } from '@approbado/lib/providers'
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectTriviasInput from './SelectTriviasInput';
 
 const ACCESS_TYPES = [
