@@ -2,17 +2,17 @@ import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box';
-import Emoji from '../Emoji'
+import Emoji from '@approbado/lib/components/Emoji'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
-import Spinner from '@approbado/lib/components/Spinner'
-import useFetch from '@approbado/lib/hooks/useFetch'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
+import { JSONAxiosInstance } from '@approbado/lib/api';
+import getQueryFromParams from '../../utils/getQueryFromParams';
 
 const payload = {
     pagination: { page: 1, perPage: 5 },
     sort: { field: 'comments', order: 'DESC'}
-};
+}
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -52,18 +52,29 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const AsideBar = ({ isXSmall }) => {
+const PopularPosts = ({ isXSmall }) => {
     const classes = useStyles();
-    const {
-        loading,
-        total,
-        data,
-        error
-    } = useFetch('/forums', {
-        perPage: 5,
-        page: 1,
-        sort: { field: 'comments', order: 'DESC'}
-    })
+    const [loading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState(false)
+    const [data, setData] = React.useState([])
+
+    const fetchData = async () => {
+        setLoading(true)
+
+        const res = await JSONAxiosInstance.get('/forums', {
+            params: getQueryFromParams(payload)
+        })
+
+        if (res.status >= 200 && res.status < 300) {
+            setData(res.data.data)
+        } else {
+            setError(true)
+        }
+
+        setLoading(false)
+    }
+
+    React.useEffect(() => fetchData(), [])
 
     return (
         <Box>
@@ -74,57 +85,56 @@ const AsideBar = ({ isXSmall }) => {
                             Debates más hots{' '} <Emoji symbol="😰" />
                         </Box>
                     </Typography>
-                    <Query type='getList' resource='forums' payload={payload}>
-                        {({ data, total, loading, error }) => {
-                            if (loading) {
-                                return (
-                                    <Spinner classes={spinnerClasses} />
-                                );
-                            }
-                            if (error) { return null; }
 
-                            return (
-                                <div>
-                                    {data.map(post =>
-                                        <Box className={classes.container}>
-                                            <Box className={classes.innerContent}>
-                                                <Link
-                                                    className={classes.postTitle}
-                                                    to={`/forums/${post.id}/show`}
-                                                >
-                                                    {post.message}
-                                                </Link>
-                                                <Box className={classes.description}>
-                                                    Por
-                                                    <Link
-                                                        className={classes.username}
-                                                        to={`/users/${post.owner.id}/show`}
-                                                    >
-                                                        {post.owner.names}
-                                                    </Link>
-                                                </Box>
-                                            </Box>
-                                        </Box>
-                                    )}
-                                    {(total == 0) && (
+                    {error && (
+                        <Box mt={5}>
+                            <ErrorMessage />
+                        </Box>
+                    )}
+
+                    {!!(!loading && data.length) && (
+                        <Box>
+                            {data.map(post =>
+                                <Box className={classes.container}>
+                                    <Box className={classes.innerContent}>
+                                        <Link
+                                            className={classes.postTitle}
+                                            to={`/forums/${post.id}/show`}
+                                        >
+                                            {post.message}
+                                        </Link>
                                         <Box className={classes.description}>
-                                            <Typography component={'p'} variant="body1">
-                                                No tenemos debates disponibles
-                                            </Typography>
+                                            Por
+                                            <Link
+                                                className={classes.username}
+                                                to={`/users/${post.owner.id}/show`}
+                                            >
+                                                {post.owner.names}
+                                            </Link>
                                         </Box>
-                                    )}
-                                </div>
-                            );
-                        }}
-                    </Query>
+                                    </Box>
+                                </Box>
+                            )}
+                        </Box>
+                    )}
+
+                    {(loading || !data.length && !error) && (
+                        <Box className={classes.description} paddingTop='2rem' >
+                            <Typography component={'p'} variant="body1">
+                                No tenemos contribuidores disponibles
+                                {' '}
+                                <Emoji symbol="😔" />
+                            </Typography>
+                        </Box>
+                    )}
                 </Box>
             )}
         </Box>
     );
 }
 
-AsideBar.propTypes = {
+PopularPosts.propTypes = {
     isXSmall: PropTypes.bool
 }
 
-export default AsideBar
+export default PopularPosts

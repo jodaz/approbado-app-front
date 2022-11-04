@@ -9,7 +9,7 @@ import { ReactComponent as ForumIllustration } from '@approbado/lib/illustration
 import { useMediaQuery, makeStyles } from '@material-ui/core'
 import CommentInput from '@approbado/lib/layouts/comments/CommentInput'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
-import PopularPosts from '@approbado/lib/components/PopularPosts'
+import PopularPosts from '@approbado/lib/layouts/forums/PopularPosts'
 import { useParams } from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({

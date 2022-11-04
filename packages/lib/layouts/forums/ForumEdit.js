@@ -31,12 +31,12 @@ const ForumEdit = () => {
     const history = useHistory()
     const { showNotification } = useUiDispatch();
 
-    const save = React.useCallback(async (values) => {
+    const save = async (values) => {
         try {
             const { data } = await axios.put(`forums/${record.id}`, values)
 
             if (data) {
-                history.push(`/forums/${record.id}/show`)
+                history.push(`/forums/${record.id}`)
                 showNotification('Se ha completado la actualización con éxito')
             }
         } catch (error) {
@@ -44,7 +44,7 @@ const ForumEdit = () => {
                 return error.response.data.errors;
             }
         }
-    }, [])
+    }
 
     React.useEffect(async () => {
         if (id) {
