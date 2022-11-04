@@ -58,6 +58,7 @@ const ForumCreate = () => {
                                         placeholder="Ingrese una descripción (Opcional)"
                                         fullWidth
                                         multiline
+                                        minRows={3}
                                     />
                                 </InputContainer>
                                 <SelectCategoriesInput
