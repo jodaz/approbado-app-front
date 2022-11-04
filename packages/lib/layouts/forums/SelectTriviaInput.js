@@ -25,6 +25,7 @@ const SelectTriviaInput = ({ disabled }) => {
             ) : (
                 <SelectInput
                     name='trivia_id'
+                    multiple
                     options={options}
                     inputProps={{
                         placeholder: 'Tema específico'
