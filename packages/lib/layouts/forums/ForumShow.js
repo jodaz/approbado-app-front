@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import BackButton from './BackButton'
 import Typography from '@material-ui/core/Typography';
 import { useMediaQuery, makeStyles } from '@material-ui/core'
-import PopularPosts from '@approbado/lib/components/PopularPosts'
+import PopularPosts from '@approbado/lib/layouts/forums/PopularPosts'
 import Avatar from '@material-ui/core/Avatar';
 import PostDescription from './PostDescription'
 import NoContent from '@approbado/lib/components/NoContent'

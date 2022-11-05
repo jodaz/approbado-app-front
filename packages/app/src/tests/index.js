@@ -45,23 +45,35 @@ const TestList = () => {
     }, [])
 
     return (
-        <Box display='flex' flexDirection='column'>
-            {(newTrivias.loaded) && (
-                <Box marginBottom='1rem'>
-                    <Box component='strong'>
-                        Continúa con tu prueba
-                    </Box>
-                    {renderer(newTrivias)}
+        <Box display='flex' height="100%" flexDirection='column'>
+            <Box marginBottom='1rem' flex="1">
+                <Box component='strong'>
+                    Continúa con tu prueba
                 </Box>
-            )}
-            {(popularTrivias.loaded) && (
-                <Box marginBottom='1rem'>
-                    <Box component='strong'>
-                    Pruebas populares - Estas listo? 🔥
+                {(newTrivias.total) ? (
+                    <Box>
+                        {renderer(newTrivias)}
                     </Box>
-                    {renderer(popularTrivias)}
+                ) : (
+                    <Box>
+                        No hay trivias disponibles
+                    </Box>
+                )}
+            </Box>
+            <Box marginBottom='1rem' flex="1">
+                <Box component='strong'>
+                Pruebas populares - Estas listo? 🔥
                 </Box>
-            )}
+                {(popularTrivias.total) ? (
+                    <Box>
+                        {renderer(popularTrivias)}
+                    </Box>
+                ) : (
+                    <Box>
+                        No hay trivias disponibles
+                    </Box>
+                )}
+            </Box>
         </Box>
     )
 }
