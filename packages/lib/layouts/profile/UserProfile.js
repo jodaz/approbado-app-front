@@ -6,13 +6,13 @@ import { JSONAxiosInstance as axios } from '@approbado/lib/api';
 import NotFound from '@approbado/lib/layouts/NotFound';
 
 const UserProfile = ({ children }) => {
-    const { id } = useParams();
+    const { username } = useParams();
     const [loading, setLoading] = React.useState(true);
     const [record, setRecord] = React.useState(null)
 
     async function fetchRecord() {
         try {
-            const res = await axios.get(`/users/profile/${id}`)
+            const res = await axios.get(`/users/profile/${username}`)
             setRecord(res.data)
         } catch (error) {
             // Handle errors

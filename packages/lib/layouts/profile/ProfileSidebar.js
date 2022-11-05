@@ -6,7 +6,7 @@ import ProfileExtraInfoCard from '@approbado/lib/components/ProfileExtraInfoCard
 import { makeStyles, alpha } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
 import ProfilePhotoInput from '@approbado/lib/components/ProfilePhotoInput'
-import { history } from '@approbado/lib/providers'
+import { useLocation } from 'react-router-dom'
 
 // Illustrations
 import { ReactComponent as Stage1 } from '@approbado/lib/illustrations/Stage1.svg'
@@ -63,9 +63,10 @@ const ProfileSidebar = ({
     discussion,
     profile
 }) => {
+    const { pathname } = useLocation();
     const { user } = useUserState();
     const classes = useStyles();
-    const [isEditting] = React.useState(() => history.location.pathname == '/profile/edit')
+    const isEditting = pathname == '/profile/edit'
 
     return (
         <Box className={classes.root}>

@@ -290,7 +290,7 @@ const App = () => {
                      */}
                     <ProtectedRoute
                         exact
-                        path="/:id"
+                        path="/:username"
                         component={() => (
                             <UserProfile>
                                 <AboutMe />
@@ -300,17 +300,7 @@ const App = () => {
                     />
                     <ProtectedRoute
                         exact
-                        path="/:id/about"
-                        component={() => (
-                            <UserProfile>
-                                <AboutMe />
-                            </UserProfile>
-                        )}
-                        layout={DefaultLayout}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path="/:id/certifications"
+                        path="/:username/certifications"
                         component={() => (
                             <UserProfile>
                                 <Certifications />
@@ -320,7 +310,7 @@ const App = () => {
                     />
                     <ProtectedRoute
                         exact
-                        path="/:id/publications"
+                        path="/:username/publications"
                         component={() => (
                             <UserProfile>
                                 <Publications />

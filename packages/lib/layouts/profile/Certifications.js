@@ -8,17 +8,14 @@ import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import AwardBadge from './AwardBadge'
 
 const CertificationsListView = () => {
-    const { id } = useParams();
+    const { username } = useParams();
     const [certs, setCerts] = React.useState([])
-    const filter = {
-        user_name: id
-    }
 
     const fetchCerts = async () => {
         const res = await axios({
             method: 'GET',
             url: '/awards',
-            params: getQueryFromParams({ filter })
+            params: getQueryFromParams({ user_name: username })
         })
 
         setCerts(res.data.data);
@@ -26,7 +23,7 @@ const CertificationsListView = () => {
 
     React.useEffect(() => {
         fetchCerts();
-    }, [id])
+    }, [username])
 
     return (
         <GridList

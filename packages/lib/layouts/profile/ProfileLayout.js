@@ -17,18 +17,18 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const tags = id => ([
+const tags = username => ([
     {
         name: 'Sobre mí',
-        pathname: `/${id}`
+        pathname: `/${username}`
     },
     {
         name: 'Publicaciones',
-        pathname: `/${id}/publications`
+        pathname: `/${username}/publications`
     },
     {
         name: 'Certificaciones',
-        pathname: `/${id}/certifications`
+        pathname: `/${username}/certifications`
     }
 ])
 
