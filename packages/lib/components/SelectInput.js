@@ -1,11 +1,37 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
+import Box from '@material-ui/core/Box'
+import Chip from '@material-ui/core/Chip';
+import CloseIcon from '@approbado/lib/icons/CloseIcon'
 import { Field } from 'react-final-form'
 
+const useStyles = makeStyles(theme => ({
+    userCard: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: '100%'
+    },
+    userInfo: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'start'
+    },
+    chip: {
+        padding: '4px 4px 4px 8px !important',
+        backgroundColor: '#EAEAEA !important',
+        borderRadius: '6px',
+        fontWeight: 600,
+        color: theme.palette.info.dark
+    }
+}))
+
 const ControllableSelectInput = props => {
+    const classes = useStyles();
     const {
         meta: { touched, error, submitError, initial } = { touched, initial, error, submitError },
         input: { onChange, value, multiple, ...restInputProps },
@@ -44,6 +70,31 @@ const ControllableSelectInput = props => {
                         InputProps={{ ...params.InputProps, ...inputProps }}
                     />
                 )}
+                renderOption={(option, { selected }) => (
+                    <Box className={classes.userCard}>
+                        <Box className={classes.userInfo}>
+                            <Box sx={{
+                                fontSize: '0.9rem',
+                                fontSize: '1rem',
+                                fontWeight: 600
+                            }}>
+                                {option[property]}
+                            </Box>
+                        </Box >
+                    </Box>
+                )}
+                getOptionSelected={(option, value) => option[property] === value.name}
+                renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                        <Chip
+                            label={option[property]}
+                            size="small"
+                            classes={{ root: classes.chip }}
+                            deleteIcon={<CloseIcon />}
+                            {...getTagProps({ index })}
+                        />
+                    ))
+                }
                 defaultValue={defaultValue}
                 onChange={multiple ? handleMultipleChange : handleChange}
                 {...rest}

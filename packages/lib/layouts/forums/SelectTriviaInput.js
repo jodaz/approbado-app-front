@@ -24,10 +24,11 @@ const SelectTriviaInput = ({ disabled }) => {
                 </Box>
             ) : (
                 <SelectInput
-                    name='trivia_id'
+                    name='trivias_ids'
+                    multiple
                     options={options}
                     inputProps={{
-                        placeholder: 'Tema específico'
+                        placeholder: 'Seleccione un tema específico'
                     }}
                 />
             )}
