@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 const tags = id => ([
     {
         name: 'Sobre mí',
-        pathname: `/${id}/about`
+        pathname: `/${id}`
     },
     {
         name: 'Publicaciones',

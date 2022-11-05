@@ -97,40 +97,39 @@ const App = () => {
                     <Route path='/plans' render={() => <PlansList />} />
                 </LazyLoader>
 
-                {/**
-                 * Chats
-                 */}
-                <ProtectedRoute
-                    exact
-                    path="/chats"
-                    component={() => (
-                        <>
-                            <AsideChatList />
-                            {!isSmall && <SelectMessageAlert />}
-                        </>
-                    )}
-                    layout={ChatLayout}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/chats/:chat_id"
-                    component={() => (
-                        <>
-                            {!isSmall && <AsideChatList />}
-                            <Chatbox />
-                        </>
-                    )}
-                    layout={ChatLayout}
-                />
-
-                {/** Pruebas */}
-                <Route path='/rooms' render={() => <WaitingUsers />} />
-                <Route path='/win' render={() => <WinAward />} />
-                <Route path='/results' render={() => <Results />} />
-                <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
-                <ProtectedRoute exact path="/rooms/:token" component={() => <PreparingRoom />} layout={GameLayout} />
-
                 <Switch>
+                    {/**
+                     * Chats
+                     */}
+                    <ProtectedRoute
+                        exact
+                        path="/chats"
+                        component={() => (
+                            <>
+                                <AsideChatList />
+                                {!isSmall && <SelectMessageAlert />}
+                            </>
+                        )}
+                        layout={ChatLayout}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/chats/:chat_id"
+                        component={() => (
+                            <>
+                                {!isSmall && <AsideChatList />}
+                                <Chatbox />
+                            </>
+                        )}
+                        layout={ChatLayout}
+                    />
+
+                    {/** Pruebas */}
+                    <Route path='/rooms' render={() => <WaitingUsers />} />
+                    <Route path='/win' render={() => <WinAward />} />
+                    <Route path='/results' render={() => <Results />} />
+                    <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
+                    <ProtectedRoute exact path="/rooms/:token" component={() => <PreparingRoom />} layout={GameLayout} />
                     {/**
                      * Dashboard
                      */}
@@ -286,32 +285,12 @@ const App = () => {
                         component={() => <TriviaList />}
                     />
                     <ProtectedRoute exact path="/trivias/start" component={() => <StartTrivia />} layout={DefaultLayout} />
-
-                    {/**
-                     * Responsive routes
-                     */}
-                    {isSmall ? (
-                        <Switch>
-                            <ProtectedRoute
-                                exact
-                                path="/schedules"
-                                component={() => <ScheduleNavbar />}
-                                layout={DefaultLayout}
-                            />
-                            <Redirect from='/schedules' to='/schedules' />
-                        </Switch>
-                    ) : (
-                        <Switch>
-                            <Redirect from='/schedules' to='/dashboard/schedules' />
-                        </Switch>
-                    )}
                     {/**
                      * Users
                      */}
-                    <Redirect exact from='/:id' to='/:id/about' />
                     <ProtectedRoute
                         exact
-                        path="/:id/about"
+                        path="/:id"
                         component={() => (
                             <UserProfile>
                                 <AboutMe />
@@ -350,6 +329,25 @@ const App = () => {
                         layout={DefaultLayout}
                     />
                 </Switch>
+
+                {/**
+                 * Responsive routes
+                 */}
+                {isSmall ? (
+                    <Switch>
+                        <ProtectedRoute
+                            exact
+                            path="/schedules"
+                            component={() => <ScheduleNavbar />}
+                            layout={DefaultLayout}
+                        />
+                        <Redirect from='/schedules' to='/schedules' />
+                    </Switch>
+                ) : (
+                    <Switch>
+                        <Redirect from='/schedules' to='/dashboard/schedules' />
+                    </Switch>
+                )}
             </BrowserRouter>
         </MuiPickersUtilsProvider>
     )
