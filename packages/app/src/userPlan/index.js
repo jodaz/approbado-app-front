@@ -117,7 +117,7 @@ const UserPlan = () => {
             display: 'flex',
             flexDirection: 'column',
         }}>
-            {(daysLeft && daysLeft < 7) && <UpdatePlanBanner days={daysLeft} />}
+            {!(daysLeft && daysLeft < 7) && <UpdatePlanBanner days={daysLeft} />}
             <Box sx={{
                 textTransform: 'uppercase',
                 fontWeight: 600
