@@ -97,12 +97,39 @@ const App = () => {
                     <Route path='/plans' render={() => <PlansList />} />
                 </LazyLoader>
 
-                {/** Pruebas */}
-                <Route path='/rooms' render={() => <WaitingUsers />} />
-                <Route path='/win' render={() => <WinAward />} />
-                <Route path='/results' render={() => <Results />} />
-
                 <Switch>
+                    {/**
+                     * Chats
+                     */}
+                    <ProtectedRoute
+                        exact
+                        path="/chats"
+                        component={() => (
+                            <>
+                                <AsideChatList />
+                                {!isSmall && <SelectMessageAlert />}
+                            </>
+                        )}
+                        layout={ChatLayout}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/chats/:chat_id"
+                        component={() => (
+                            <>
+                                {!isSmall && <AsideChatList />}
+                                <Chatbox />
+                            </>
+                        )}
+                        layout={ChatLayout}
+                    />
+
+                    {/** Pruebas */}
+                    <Route path='/rooms' render={() => <WaitingUsers />} />
+                    <Route path='/win' render={() => <WinAward />} />
+                    <Route path='/results' render={() => <Results />} />
+                    <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
+                    <ProtectedRoute exact path="/rooms/:token" component={() => <PreparingRoom />} layout={GameLayout} />
                     {/**
                      * Dashboard
                      */}
@@ -206,50 +233,6 @@ const App = () => {
                         component={() => <NotificationsView />}
                         layout={DefaultLayout}
                     />
-                    {/**
-                     * Users
-                     */}
-                    <Redirect exact from='/users/:id' to='/users/:id/about' />
-                    <ProtectedRoute
-                        exact
-                        path="/users/:id/about"
-                        component={() => (
-                            <UserProfile>
-                                <AboutMe />
-                            </UserProfile>
-                        )}
-                        layout={DefaultLayout}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path="/users/:id/about"
-                        component={() => (
-                            <UserProfile>
-                                <AboutMe />
-                            </UserProfile>
-                        )}
-                        layout={DefaultLayout}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path="/users/:id/certifications"
-                        component={() => (
-                            <UserProfile>
-                                <Certifications />
-                            </UserProfile>
-                        )}
-                        layout={DefaultLayout}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path="/users/:id/publications"
-                        component={() => (
-                            <UserProfile>
-                                <Publications />
-                            </UserProfile>
-                        )}
-                        layout={DefaultLayout}
-                    />
 
                     {/**
                      * Forum
@@ -302,41 +285,38 @@ const App = () => {
                         component={() => <TriviaList />}
                     />
                     <ProtectedRoute exact path="/trivias/start" component={() => <StartTrivia />} layout={DefaultLayout} />
-                </Switch>
-
-                {/**
-                 * Game
-                 */}
-                <Switch>
-                    <ProtectedRoute exact path="/game" component={() => <TriviaGame />} layout={GameLayout} />
-                    <ProtectedRoute exact path="/rooms/:token" component={() => <PreparingRoom />} layout={GameLayout} />
-                </Switch>
-
-                <Switch>
                     {/**
-                     * Chats
+                     * Users
                      */}
                     <ProtectedRoute
                         exact
-                        path="/chats"
+                        path="/:username"
                         component={() => (
-                            <>
-                                <AsideChatList />
-                                {!isSmall && <SelectMessageAlert />}
-                            </>
+                            <UserProfile>
+                                <AboutMe />
+                            </UserProfile>
                         )}
-                        layout={ChatLayout}
+                        layout={DefaultLayout}
                     />
                     <ProtectedRoute
                         exact
-                        path="/chats/:chat_id"
+                        path="/:username/certifications"
                         component={() => (
-                            <>
-                                {!isSmall && <AsideChatList />}
-                                <Chatbox />
-                            </>
+                            <UserProfile>
+                                <Certifications />
+                            </UserProfile>
                         )}
-                        layout={ChatLayout}
+                        layout={DefaultLayout}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/:username/publications"
+                        component={() => (
+                            <UserProfile>
+                                <Publications />
+                            </UserProfile>
+                        )}
+                        layout={DefaultLayout}
                     />
                 </Switch>
 

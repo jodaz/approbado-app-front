@@ -14,9 +14,9 @@ import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
 import { useMediaQuery } from '@material-ui/core'
 
-const GoToProfileButtonLink = ({ id }) => (
+const GoToProfileButtonLink = ({ user_name }) => (
     <Link
-        to={`/users/${id}`}
+        to={`/users/${user_name}`}
         color='info'
         underline='hover'
         component={LinkBehavior}

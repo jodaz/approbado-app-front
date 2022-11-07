@@ -63,7 +63,7 @@ const RestrictedUserCard = ({ data, id }) => {
     const classes = useStyles();
     const history = useHistory();
 
-    const handleRedirect = () => history.push(`/users/${id}/show`)
+    const handleRedirect = () => history.push(`/${data.user_name}`)
 
     return (
         <Card className={classes.root} key={id} onClick={handleRedirect}>

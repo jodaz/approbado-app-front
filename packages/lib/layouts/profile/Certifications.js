@@ -8,25 +8,29 @@ import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import AwardBadge from './AwardBadge'
 
 const CertificationsListView = () => {
-    const { id } = useParams();
+    const { username } = useParams();
+    const [error, setError] = React.useState(false)
     const [certs, setCerts] = React.useState([])
-    const filter = {
-        user_id: id
-    }
 
-    const fetchCerts = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/awards',
-            params: getQueryFromParams({ filter })
-        })
+    const fetchAwards = async () => {
+        try {
+            const res = await axios({
+                method: 'GET',
+                url: '/awards',
+                params: getQueryFromParams({
+                    filter: { user_name: username }
+                 })
+            })
 
-        setCerts(res.data.data);
+            setCerts(res.data.data);
+        } catch (error) {
+            setError(true)
+        }
     }
 
     React.useEffect(() => {
-        fetchCerts();
-    }, [id])
+        fetchAwards();
+    }, [])
 
     return (
         <GridList
@@ -38,6 +42,7 @@ const CertificationsListView = () => {
                     title='Aún no hay certificaciones'
                 />
             }
+            error={error}
         />
     );
 }

@@ -63,8 +63,8 @@ const ListProfilesModal = () => {
         unsetDialog()
     };
 
-    const handleUserRedirect = id => {
-        history.push(`/users/${id}`)
+    const handleUserRedirect = username => {
+        history.push(`/${username}`)
         unsetDialog()
     }
 
@@ -112,7 +112,7 @@ const ListProfilesModal = () => {
                         <Avatar
                             src={`${CONFIG_NAMES.SOURCE}/${user.picture}`}
                             alt={`${user.names}_picture`}
-                            onClick={() => handleUserRedirect(user.id)}
+                            onClick={() => handleUserRedirect(user.user_name)}
                         />
                     </Tooltip>
                 ))}

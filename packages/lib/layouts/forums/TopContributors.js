@@ -101,7 +101,7 @@ const TopContributors = ({ isXSmall }) => {
                                     <Box className={classes.description}>
                                         <Link
                                             className={classes.username}
-                                            to={`/users/${user.id}/show`}
+                                            to={`/${user.user_name}`}
                                         >
                                             {user.names}
                                         </Link>

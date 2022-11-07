@@ -67,7 +67,7 @@ const UserCard = ({ data, index }) => {
     const position = index + 1
     const history = useHistory();
 
-    const handleClick = () => history.push(`/users/${data.id}/show`)
+    const handleClick = () => history.push(`/${data.user_name}`)
 
     return (
         <Card className={classes.root} onClick={handleClick}>

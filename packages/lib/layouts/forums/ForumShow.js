@@ -111,7 +111,7 @@ const ForumShow = () => {
                 <Box className={classes.root}>
                     {(record.owner) && (
                         <Link
-                            to={`/users/${record.owner.id}/show`}
+                            to={`/${record.owner.user_name}`}
                             color='info'
                             underline='none'
                             component={LinkBehavior}

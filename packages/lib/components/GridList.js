@@ -4,29 +4,32 @@ import Box from '@material-ui/core/Box';
 import Spinner from '@approbado/lib/components/Spinner'
 import EmptyMessageComponent from '@approbado/lib/components/EmptyMessageComponent'
 
-const LoadedGridList = ({ component, empty, data }) => {
+const LoadedGridList = ({ component, data }) => (
+    <Grid container>
+        {data.map((item, i) => (
+            <Grid item xs={12} sm={6} md={4} key={i}>
+                {React.cloneElement(component, {
+                    data: item,
+                    index: i
+                })}
+            </Grid>
+        ))}
+    </Grid>
+);
+
+const GridList = ({ component, empty, data, loaded, error }) => {
     if (!data.length) return <>{empty}</>;
 
-    return (
-        <Grid container>
-            {data.map((item, i) => (
-                <Grid item xs={12} sm={6} md={4} key={i}>
-                    {React.cloneElement(component, {
-                        data: item,
-                        index: i
-                    })}
-                </Grid>
-            ))}
-        </Grid>
-    );
-};
+    if (error) return <EmptyMessageComponent
+        message='Ha ocurrido un error en su solicitud'
+    />;
 
-const GridList = ({ component, empty, data, loaded }) => {
     return (loaded) ? (
         <LoadedGridList
             component={component}
             empty={empty}
             data={data}
+            error={error}
         />
     ) : (
         <Box display="flex">
@@ -38,6 +41,7 @@ const GridList = ({ component, empty, data, loaded }) => {
 GridList.defaultProps = {
     component: <></>,
     empty: <EmptyMessageComponent message='Sin registros' />,
+    error: false,
     loaded: true
 }
 

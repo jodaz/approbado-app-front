@@ -94,7 +94,7 @@ const BlacklistedUserShow = () => {
                     </Box>
                     <Box className={classes.count}>
                         <Link
-                            to={`/users/${id}/show`}
+                            to={`/${user_name}`}
                             color='info'
                             underline='hover'
                             component={LinkBehavior}

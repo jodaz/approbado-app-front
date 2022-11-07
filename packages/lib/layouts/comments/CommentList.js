@@ -60,7 +60,7 @@ const CommentList = ({ parent_id }) => {
         error
     } = useFetch('/comments', {
         perPage: 5,
-        page: 1,
+        page: 0,
         sort: { field: 'created_at', order: 'DESC'},
         filter: { id: parent_id }
     })

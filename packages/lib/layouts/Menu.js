@@ -2,9 +2,11 @@ import * as React from 'react';
 import { useUiState } from '../hooks/useUI';
 import Box from '@material-ui/core/Box';
 import { Link } from 'react-router-dom'
+import { useUserState } from '@approbado/lib/hooks/useUserState';
 
 const Menu = ({ children }) => {
     const { sidebarOpen } = useUiState();
+    const { user } = useUserState();
 
     return (
         <Box mt={1} textAlign="left" padding={sidebarOpen && "0 1rem"}>
@@ -22,6 +24,7 @@ const Menu = ({ children }) => {
             {React.Children.map(children, (menuItem) =>
                 React.cloneElement(menuItem, {
                     open: sidebarOpen,
+                    user: user
                 })
             )}
         </Box>

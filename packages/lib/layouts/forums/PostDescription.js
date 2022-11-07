@@ -2,7 +2,6 @@ import * as React from 'react';
 import { makeStyles, Box, useMediaQuery  } from '@material-ui/core';
 import Dot from '@approbado/lib/components/Dot'
 import { Link } from 'react-router-dom'
-import { useUserState } from '@approbado/lib/hooks/useUserState'
 import ItemCollection from '@approbado/lib/components/ItemCollection'
 import { useConvertPostgresDate } from '@approbado/lib/hooks/useConvertPostgresDate'
 
@@ -39,13 +38,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const redirectTo = (record, userId) => (
-    (record.owner.id == userId) ? `/profile` : `/users/${record.owner.id}/show`
-)
-
 export default ({ record }) => {
     const { categories } = record
-    const { user } = useUserState();
     const date = useConvertPostgresDate(record.created_at)
     const classes = useStyles();
     const isXSmall = useMediaQuery(theme =>
@@ -60,7 +54,7 @@ export default ({ record }) => {
                 </span>
                 <Link
                     className={classes.link}
-                    to={redirectTo(record, user.id)}
+                    to={`/${record.owner.user_name}`}
                 >
                     {record.owner.names}
                 </Link>

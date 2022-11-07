@@ -126,7 +126,7 @@ const CommentShow = comment => {
             <Box className={classes.content}>
                 <Box component="div" className={classes.header}>
                     <Link
-                        to={`/users/${comment.owner.id}`}
+                        to={`/${comment.owner.user_name}`}
                         color='info'
                         underline='hover'
                         component={LinkBehavior}
