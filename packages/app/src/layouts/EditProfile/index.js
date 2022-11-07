@@ -42,7 +42,7 @@ const tags = [
 
 const EditProfileLayout = ({ children }) => {
     const classes = useStyles();
-    const [provider, { loading, data }] = useFileProvider(fileProvider);
+    const [provider, {  data }] = useFileProvider(fileProvider);
     const { user, isAuth } = useUserState();
     const { showNotification } = useUiDispatch();
     const { fetchUser } = useUserDispatch();
@@ -85,9 +85,14 @@ const EditProfileLayout = ({ children }) => {
                                 <span style={{ width: '4rem'}} />
                                 <Grid item md='8' sm='12'>
                                     <TabbedList tags={tags} />
-                                    {React.cloneElement(children, {
-                                        ...user,
-                                        submitting: submitting
+                                    {React.Children.map(children, child => {
+                                        if (React.isValidElement(child)) {
+                                            return React.cloneElement(child, {
+                                                user: user,
+                                                submitting: submitting,
+                                                handleSubmit: handleSubmit
+                                            })
+                                        }
                                     })}
                                 </Grid>
                             </Grid>

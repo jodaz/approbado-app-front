@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         width: '100%',
         display: 'flex',
+        marginTop: '1rem',
         flexDirection: 'column',
         alignItems: 'center',
         [theme.breakpoints.up('sm')]: {
