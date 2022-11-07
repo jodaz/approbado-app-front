@@ -8,7 +8,6 @@ import CloseIcon from '@approbado/lib/icons/CloseIcon'
 import { makeStyles } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
-import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
     userCard: {
@@ -94,11 +93,9 @@ const SelectUsersInput = ({ submitting }) => {
                         />
                     ))
                 }
-                renderInput={params => (
-                    <TextField
-                        {...params}
-                    />
-                )}
+                inputProps={{
+                    placeholder: 'Seleccione un participante'
+                }}
             />
         </InputContainer>
     )

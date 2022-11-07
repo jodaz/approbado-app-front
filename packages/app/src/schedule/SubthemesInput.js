@@ -38,7 +38,8 @@ const SubthemesInput = ({ submitting }) => {
                         <Box marginLeft='6px' display='flex'>
                             <LayerIcon />
                         </Box>
-                    )
+                    ),
+                    placeholder: 'Seleccione un subtema'
                 }}
             />
         </InputContainer>

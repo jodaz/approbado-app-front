@@ -34,7 +34,8 @@ const SelectTriviasInput = ({ submitting }) => {
                         <Box marginLeft='6px' display='flex'>
                             <BalanceIcon />
                         </Box>
-                    )
+                    ),
+                    placeholder: 'Seleccione una trivia'
                 }}
             />
         </InputContainer>

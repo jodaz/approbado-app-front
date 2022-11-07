@@ -34,7 +34,8 @@ const SelectLevelInput = ({ submitting }) => {
                         <Box marginLeft='6px' display='flex'>
                             <IdeaIcon />
                         </Box>
-                    )
+                    ),
+                    placeholder: 'Seleccione un nivel'
                 }}
             />
         </InputContainer>
