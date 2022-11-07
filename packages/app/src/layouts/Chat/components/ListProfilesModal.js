@@ -63,8 +63,8 @@ const ListProfilesModal = () => {
         unsetDialog()
     };
 
-    const handleUserRedirect = id => {
-        history.push(`/users/${id}`)
+    const handleUserRedirect = username => {
+        history.push(`/${username}`)
         unsetDialog()
     }
 
