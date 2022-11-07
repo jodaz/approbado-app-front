@@ -14,7 +14,6 @@ const generateNullData = results => Array.from({ length: results }).map(_ => nul
 const results = 5
 
 const ForumListView = ({ sort = {}, filter = {} }) => {
-    console.log(filter)
     const { user } = useUserState();
     const [perPage, setPerPage] = React.useState(results)
     const {

@@ -5,13 +5,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@approbado/lib/layouts/AppBar';
 import Notification from '@approbado/lib/components/Notification'
 
-const CustomSidebar = props => <Sidebar {...props} size={200} />;
-
-const CustomMenu = props => (
-    <Menu {...props}>
-        <MenuItems />
-    </Menu>
-)
+const CustomSidebar = props => (
+    <Sidebar {...props} size={200}>
+        <Menu>
+            <MenuItems />
+        </Menu>
+    </Sidebar>
+);
 
 const styles = makeStyles(theme => ({
     root: {
@@ -64,9 +64,7 @@ const DefaultLayout = ({ children, ...rest }) => {
             <div className={classes.root}>
                 <AppBar />
                 <main className={classes.contentWithSidebar}>
-                    <CustomSidebar>
-                        <CustomMenu />
-                    </CustomSidebar>
+                    <CustomSidebar />
                     <div id="main-content" className={classes.content}>
                         {children}
                     </div>

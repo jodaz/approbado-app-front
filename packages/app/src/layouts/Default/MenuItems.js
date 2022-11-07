@@ -8,7 +8,7 @@ import { ReactComponent as ForumIcon } from '@approbado/lib/icons/Forum.svg'
 import NotificationIcon from '@approbado/lib/icons/NotificationIcon'
 import MessageIcon from '@approbado/lib/icons/MessageIcon'
 
-const MenuItems = ({ open, onMenuClick, dense }) => (
+const MenuItems = ({ open, onMenuClick, dense, user }) => (
     <React.Fragment>
         <MenuItemLink
             to="/dashboard"
@@ -53,7 +53,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
             dense={dense}
         />
         <MenuItemLink
-            to="/profile"
+            to={`/${user.user_name}`}
             primaryText='Perfil'
             leftIcon={<ProfileIcon />}
             onClick={onMenuClick}
