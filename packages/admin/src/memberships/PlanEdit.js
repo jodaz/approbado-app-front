@@ -21,16 +21,10 @@ const PlanEdit = () => {
     const { id } = useParams();
     const [record, setRecord] = React.useState({})
 
-    const save = React.useCallback(async (values) => {
+    const save = async (values) => {
+        console.log(values)
         try {
-            const { trivia_ids, trivias, ...rest } = values;
-
-            const triviasIds = trivia_ids.map(item => item.id);
-
-            const { data } = await axios.put(`/memberships/plans/${record.id}`, {
-                trivia_ids: triviasIds,
-                ...rest
-            })
+            const { data } = await axios.put(`/memberships/plans/${record.id}`, values)
 
             if (data) {
                 history.push('/memberships/plans')
@@ -41,7 +35,7 @@ const PlanEdit = () => {
                 return error.response.data.errors;
             }
         }
-    }, []);
+    };
 
     const fetchRecord = async () => {
         const { data } = await axios.get(`/memberships/plans/${id}`);

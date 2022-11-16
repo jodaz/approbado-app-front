@@ -37,7 +37,7 @@ const ForumEdit = () => {
 
             if (data) {
                 data.trivias_ids = data.trivias;
-                data.categories_ids = data.trivias;
+                data.categories_ids = data.categories;
 
                 setRecord(data)
             }
@@ -53,23 +53,24 @@ const ForumEdit = () => {
             validate={validateForum}
             formName='Editar foro'
         >
-            <InputContainer label='Título' sx={12} md={6}>
+            <InputContainer label='Título' sx={12} md={12}>
                 <TextInput
                     name="message"
                     placeholder="Ingrese un título"
                     fullWidth
                 />
             </InputContainer>
-            <InputContainer label='Descripción' sx={12} md={6}>
+            <SelectTriviaInput />
+            <SelectCategoriesInput />
+            <InputContainer label='Descripción' sx={12} md={12}>
                 <TextInput
                     name="summary"
                     placeholder="Ingrese una descripción (Opcional)"
                     fullWidth
                     multiline
+                    rows={4}
                 />
             </InputContainer>
-            <SelectTriviaInput />
-            <SelectCategoriesInput />
         </BaseForm>
     )
 }
