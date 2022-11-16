@@ -43,11 +43,15 @@ const PlanEdit = () => {
         }
     }, []);
 
-    const fetchRecord = React.useCallback(async () => {
+    const fetchRecord = async () => {
         const { data } = await axios.get(`/memberships/plans/${id}`);
 
-        setRecord(data);
-    }, []);
+        if (data) {
+            data.trivias_ids = data.trivias;
+
+            setRecord(data)
+        }
+    };
 
     React.useEffect(() => {
         fetchRecord()

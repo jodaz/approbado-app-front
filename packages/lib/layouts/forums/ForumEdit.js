@@ -36,6 +36,9 @@ const ForumEdit = () => {
             const { data } = await axios.get(`/forums/${id}`)
 
             if (data) {
+                data.trivias_ids = data.trivias;
+                data.categories_ids = data.trivias;
+
                 setRecord(data)
             }
         }
