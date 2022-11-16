@@ -1,18 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ReactComponent as ActionDelete } from '@approbado/lib/icons/Trash.svg';
-import { useMutation } from 'react-admin';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { JSONAxiosInstance as axios } from '../api';
 
 const DeleteButton = (
     props
 ) => {
     const {
         basePath,
-        classes: classesOverride,
         confirmTitle = 'ra.message.delete_title',
         confirmContent = 'ra.message.delete_content',
         icon = defaultIcon,
@@ -21,41 +20,34 @@ const DeleteButton = (
         confirmColor,
         customAction
     } = props;
-    const [mutate, { data, loading, loaded }] = useMutation();
     const [open, setOpen] = React.useState(false);
     const { showNotification } = useUiDispatch();
     const ref = React.useRef(null);
 
-    const handleDelete = React.useCallback(async () => {
+    const handleDialog = () => {
+        setOpen(!open);
+    };
+
+    const handleDelete = async () => {
         try {
-            await mutate({
-                type: 'delete',
-                resource: basePath,
-                payload: { id: record.id }
-            }, { returnPromise: true })
+            const res = await axios.delete(`/${basePath}/${record.id}`)
+
+            if (res.status >= 200 || res.status < 300) {
+                showNotification(`Se ha eliminado el registro con éxito`)
+
+                if (customAction) {
+                    customAction();
+                }
+            }
+
+            handleDialog();
         } catch (error) {
             console.log(error)
             if (error.response.data.errors) {
                 return error.response.data.errors;
             }
         }
-    }, [mutate])
-
-    const handleDialog = () => {
-        setOpen(!open);
-    };
-
-    React.useEffect(() => {
-        if (loaded) {
-            showNotification(`Se ha eliminado el registro con éxito`)
-
-            if (customAction) {
-                customAction();
-            }
-
-            setOpen(!open);
-        }
-    }, [data, loaded])
+    }
 
     return (
         <React.Fragment>
@@ -71,7 +63,6 @@ const DeleteButton = (
             </MenuItem>
             <Confirm
                 isOpen={open}
-                loading={loading}
                 title={confirmTitle}
                 content={confirmContent}
                 onConfirm={handleDelete}
