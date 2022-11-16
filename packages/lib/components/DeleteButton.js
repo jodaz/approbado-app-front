@@ -12,8 +12,8 @@ const DeleteButton = (
 ) => {
     const {
         basePath,
-        confirmTitle = 'ra.message.delete_title',
-        confirmContent = 'ra.message.delete_content',
+        confirmTitle,
+        confirmContent,
         icon = defaultIcon,
         label,
         record,
