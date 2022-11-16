@@ -20,6 +20,10 @@ export const validatePlan = (values) => {
     }
     if (!values.trivias_ids) {
         errors.trivias_ids = "Seleccione al menos una trivia.";
+    } else {
+        if (!values.trivias_ids.length) {
+            errors.trivias_ids = "Seleccione al menos una trivia.";
+        }
     }
 
     return errors;

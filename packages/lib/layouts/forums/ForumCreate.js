@@ -19,7 +19,7 @@ const ForumCreate = () => {
     const { showNotification } = useUiDispatch();
     const history = useHistory()
 
-    const save = React.useCallback(async (values) => {
+    const save = async (values) => {
         try {
             const { data } = await axios.post('/forums', values)
 
@@ -34,7 +34,7 @@ const ForumCreate = () => {
                 return error.response.data.errors;
             }
         }
-    }, []);
+    };
 
     return (
         <Form
