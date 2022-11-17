@@ -8,6 +8,7 @@ import { useUserState } from '@approbado/lib/hooks/useUserState'
 import Spinner from '../../components/Spinner'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 import useFetch from '../../hooks/useFetch'
+import { useForumsState, useForumsDispatch } from '@approbado/lib/hooks/useForums'
 
 const generateNullData = results => Array.from({ length: results }).map(_ => null)
 
@@ -18,7 +19,6 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
     const [perPage, setPerPage] = React.useState(results)
     const {
         loading,
-        total,
         data,
         error,
         hasMore
@@ -28,7 +28,8 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
         filter: filter,
         sort: sort
     })
-    const [items, setItems] = React.useState([])
+    const { items, total } = useForumsState()
+    const { set } = useForumsDispatch()
 
     const observer = React.useRef()
     const lastItemRef = React.useCallback(node => {
@@ -36,7 +37,7 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && hasMore) {
-                setItems(prevItems => {
+                set(prevItems => {
                     return [...prevItems, ...generateNullData(results)]
                 })
                 setPerPage(prevPerPage => prevPerPage + results)
@@ -47,16 +48,16 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
 
     React.useEffect(() => {
         if (data.length) {
-            setItems(data)
+            set(data)
         }
 
         if (data.length == 0 && !loading) {
-            setItems([])
+            set([])
         }
     }, [data, loading])
 
     React.useEffect(() => {
-        setItems(generateNullData(results))
+        set(generateNullData(results))
     }, [])
 
     if (!total) {
