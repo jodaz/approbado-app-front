@@ -4,6 +4,7 @@ import Dot from '@approbado/lib/components/Dot'
 import { Link } from 'react-router-dom'
 import ItemCollection from '@approbado/lib/components/ItemCollection'
 import { useConvertPostgresDate } from '@approbado/lib/hooks/useConvertPostgresDate'
+import { ReactComponent as TagIcon } from '@approbado/lib/icons/Tag.svg'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'start',
         justifyContent: 'space-evenly',
         flexDirection: 'column',
-        height: '4rem'
+        height: 'fit-content'
     },
     lightTypography: {
         fontSize: '0.9rem',
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default ({ record }) => {
-    const { categories } = record
+    const { categories, trivias } = record
     const date = useConvertPostgresDate(record.created_at)
     const classes = useStyles();
     const isXSmall = useMediaQuery(theme =>
@@ -71,7 +72,18 @@ export default ({ record }) => {
                     </>
                 )}
             </Box>
-            <ItemCollection items={categories} />
+            <Box pt={1}>
+                <ItemCollection
+                    items={categories}
+                    icon={<TagIcon />}
+                />
+            </Box>
+            <Box pt={1}>
+                <ItemCollection
+                    items={trivias}
+                    color='dark'
+                />
+            </Box>
         </Box>
     );
 }

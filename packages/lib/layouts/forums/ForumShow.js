@@ -123,14 +123,12 @@ const ForumShow = () => {
                         </Link>
                     )}
                     <Box className={classes.content}>
-                        <Box component="div">
-                            <Typography component='h6' className={classes.title}>
-                                {record.message}
-                            </Typography>
-                        </Box>
-                        <Box>
+                        <Typography component='h6' className={classes.title} gutterBottom>
+                            {record.message}
+                        </Typography>
+                        <Typography component='subtitle1' gutterBottom>
                             {record.summary}
-                        </Box>
+                        </Typography>
                         <PostDescription record={record} />
                     </Box>
                 </Box>

@@ -8,21 +8,22 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'row',
         alignItems: 'center',
         padding: '4px 8px',
-        backgroundColor: theme.palette.info.main,
+        backgroundColor: props => theme.palette.info[props.color],
         borderRadius: '6px',
         marginRight: '0.5rem',
-        fontSize: '14px',
+        fontSize: '12px',
         fontWeight: '600',
         width: 'max-content',
-        height: 'max-content'
+        height: 'max-content',
+        marginTop: '0.3rem'
     },
     icon: {
         marginRight: '0.3rem'
     }
 }))
 
-const Tag = ({ name, icon }) => {
-    const classes = useStyles();
+const Tag = ({ name, icon, color = 'main' }) => {
+    const classes = useStyles({ color: color });
 
     return (
         <Box className={classes.item}>
@@ -32,6 +33,10 @@ const Tag = ({ name, icon }) => {
             {name}
         </Box>
     );
+}
+
+Tag.defaultProps = {
+    label: 'name'
 }
 
 export default Tag;
