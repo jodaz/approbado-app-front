@@ -73,10 +73,16 @@ export default ({ record }) => {
                 )}
             </Box>
             <Box pt={1}>
-                <ItemCollection items={categories} icon={<TagIcon />} />
+                <ItemCollection
+                    items={categories}
+                    icon={<TagIcon />}
+                />
             </Box>
             <Box pt={1}>
-                <ItemCollection items={trivias} color='dark' />
+                <ItemCollection
+                    items={trivias}
+                    color='dark'
+                />
             </Box>
         </Box>
     );

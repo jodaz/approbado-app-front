@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
         border: '1px solid #D1D1D1',
         cursor: 'pointer',
         marginBottom: '2rem',
-        padding: '1rem'
+        padding: '1rem',
+        height: 'fit-content'
     },
     title: {
         fontSize: '1rem',
@@ -37,11 +38,12 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.primary.main
     },
     header: {
-        padding: '0rem'
+        padding: '0rem',
+        height: 'fit-content'
     },
     content: {
         padding: '0 0 0 3.5rem',
-        height: '4rem',
+        height: 'fit-content',
         '&:last-child': {
             paddingBottom: 'unset !important'
         }
