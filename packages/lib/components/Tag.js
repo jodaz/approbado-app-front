@@ -11,11 +11,11 @@ const useStyles = makeStyles(theme => ({
         backgroundColor: props => theme.palette.info[props.color],
         borderRadius: '6px',
         marginRight: '0.5rem',
-        fontSize: '14px',
+        fontSize: '12px',
         fontWeight: '600',
         width: 'max-content',
         height: 'max-content',
-        marginTop: '0.5rem'
+        marginTop: '0.3rem'
     },
     icon: {
         marginRight: '0.3rem'
