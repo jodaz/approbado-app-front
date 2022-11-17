@@ -6,7 +6,7 @@ import {
 
 export const useForumsState = () => {
     const store = useSelector(state => state);
-
+    console.log(store.forums)
     return store.forums;
 };
 
@@ -18,9 +18,9 @@ export const useForumsDispatch = () => {
             type: FETCH_FORUMS,
             payload: data
         }),
-        deleteForums: id => dispatch({
+        unset: record => dispatch({
             type: DELETE_FORUM,
-            payload: id
+            payload: record
         })
     }
 }
