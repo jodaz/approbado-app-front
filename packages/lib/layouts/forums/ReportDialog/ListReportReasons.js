@@ -26,7 +26,7 @@ export default function ReportDialog({ handleClick, reasonID }) {
         error,
         loading
     } = useFetch('/report-reasons', {
-        page: 1,
+        page: 0,
         perPage: 10
     })
 

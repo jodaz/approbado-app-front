@@ -29,7 +29,7 @@ const ForumCardMenuOptions = React.forwardRef(({ record, user }, ref) => {
             {(user.id != record.owner.id) && (
                 <LinkButton
                     label="Ver perfil"
-                    to={`/users/${record.owner.id}/show`}
+                    to={`/${record.owner.user_name}`}
                     icon={<ProfileIcon />}
                 />
             )}
