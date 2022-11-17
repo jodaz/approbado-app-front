@@ -18,8 +18,12 @@ export const validatePlan = (values) => {
     if (!values.amount && values.amount != 0) {
         errors.amount = "Ingrese el monto.";
     }
-    if (!values.trivia_ids) {
-        errors.trivia_ids = "Seleccione al menos una trivia.";
+    if (!values.trivias_ids) {
+        errors.trivias_ids = "Seleccione al menos una trivia.";
+    } else {
+        if (!values.trivias_ids.length) {
+            errors.trivias_ids = "Seleccione al menos una trivia.";
+        }
     }
 
     return errors;

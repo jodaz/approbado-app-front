@@ -11,6 +11,7 @@ import { useHistory } from 'react-router-dom'
 import SelectCategoriesInput from './SelectCategoriesInput';
 import SelectTriviaInput from './SelectTriviaInput'
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import validateForum from './validate';
 
 const ForumCreate = () => {
     const { status } = useDialogState('forums.create');
@@ -18,7 +19,7 @@ const ForumCreate = () => {
     const { showNotification } = useUiDispatch();
     const history = useHistory()
 
-    const save = React.useCallback(async (values) => {
+    const save = async (values) => {
         try {
             const { data } = await axios.post('/forums', values)
 
@@ -33,11 +34,12 @@ const ForumCreate = () => {
                 return error.response.data.errors;
             }
         }
-    }, []);
+    };
 
     return (
         <Form
             onSubmit={save}
+            validate={validateForum}
             render={ ({ handleSubmit, submitting }) => (
                 <Confirm
                     isOpen={status}
@@ -61,11 +63,8 @@ const ForumCreate = () => {
                                         minRows={3}
                                     />
                                 </InputContainer>
-                                <SelectCategoriesInput
-                                    submitting={submitting}
-                                    placeholder='Etiquetas'
-                                />
-                                <SelectTriviaInput />
+                                <SelectCategoriesInput disabled={submitting} />
+                                <SelectTriviaInput disabled={submitting} />
                             </Grid>
                         </Box>
                     }

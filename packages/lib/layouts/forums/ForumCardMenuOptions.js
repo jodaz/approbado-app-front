@@ -2,13 +2,13 @@ import * as React from 'react';
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import LinkButton from '@approbado/lib/components/LinkButton'
-
+import { useForumsDispatch } from '@approbado/lib/hooks/useForums'
 // Icons
 import ProfileIcon from '@approbado/lib/icons/ProfileIcon'
 import ReportDialog from './ReportDialog'
 
-const ForumCardMenuOptions = React.forwardRef((props, ref) => {
-    const { record, user } = props;
+const ForumCardMenuOptions = React.forwardRef(({ record, user }, ref) => {
+    const { unset } = useForumsDispatch()
 
     return (
         <OptionsCardMenu ref={ref}>
@@ -22,13 +22,14 @@ const ForumCardMenuOptions = React.forwardRef((props, ref) => {
                     confirmColor='warning'
                     confirmTitle='Eliminar foro'
                     confirmContent='¿Está seguro que desea eliminar este foro?'
-                    {...record}
+                    record={record}
+                    customAction={() => unset(record)}
                 />
             )}
             {(user.id != record.owner.id) && (
                 <LinkButton
                     label="Ver perfil"
-                    to={`/users/${record.owner.id}/show`}
+                    to={`/${record.owner.user_name}`}
                     icon={<ProfileIcon />}
                 />
             )}

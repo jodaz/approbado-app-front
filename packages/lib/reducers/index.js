@@ -6,6 +6,7 @@ import notificationsReducer from './notificationsReducer';
 import chatReducer from './chatReducer';
 import uiReducer from './uiReducer';
 import formAuthReducer from './formAuthReducer';
+import forumsReducer from './forumsReducer';
 
 export default {
     user: userReducer,
@@ -15,5 +16,6 @@ export default {
     notifications: notificationsReducer,
     chat: chatReducer,
     ui: uiReducer,
+    forums: forumsReducer,
     formAuth: formAuthReducer
 };

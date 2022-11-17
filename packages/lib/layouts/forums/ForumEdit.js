@@ -8,22 +8,7 @@ import SelectTriviaInput from './SelectTriviaInput'
 import TextInput from '@approbado/lib/components/TextInput'
 import Spinner from '../../components/Spinner'
 import { axios } from '../../providers'
-
-const validate = values => {
-    const errors = {};
-
-    if (!values.message) {
-        errors.message = "Ingrese el nombre.";
-    }
-    if (!values.trivia_id) {
-        errors.trivia_id = "Seleccione una trivia.";
-    }
-    if (!values.categories_ids) {
-        errors.categories_ids = "Seleccione al menos una categoría";
-    }
-
-    return errors;
-};
+import validateForum from './validate'
 
 const ForumEdit = () => {
     const { id } = useParams();
@@ -51,6 +36,9 @@ const ForumEdit = () => {
             const { data } = await axios.get(`/forums/${id}`)
 
             if (data) {
+                data.trivias_ids = data.trivias;
+                data.categories_ids = data.categories;
+
                 setRecord(data)
             }
         }
@@ -62,26 +50,27 @@ const ForumEdit = () => {
         <BaseForm
             save={save}
             record={record}
-            validate={validate}
+            validate={validateForum}
             formName='Editar foro'
         >
-            <InputContainer label='Título' sx={12} md={6}>
+            <InputContainer label='Título' sx={12} md={12}>
                 <TextInput
                     name="message"
                     placeholder="Ingrese un título"
                     fullWidth
                 />
             </InputContainer>
-            <InputContainer label='Descripción' sx={12} md={6}>
+            <SelectTriviaInput />
+            <SelectCategoriesInput />
+            <InputContainer label='Descripción' sx={12} md={12}>
                 <TextInput
                     name="summary"
                     placeholder="Ingrese una descripción (Opcional)"
                     fullWidth
                     multiline
+                    rows={4}
                 />
             </InputContainer>
-            <SelectTriviaInput />
-            <SelectCategoriesInput />
         </BaseForm>
     )
 }

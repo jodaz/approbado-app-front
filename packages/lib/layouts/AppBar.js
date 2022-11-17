@@ -65,16 +65,16 @@ const useStyles = makeStyles(theme => ({
     { name: 'RaAppBar' }
 );
 
-const CustomUserMenu = React.forwardRef((props, ref) => (
-    <UserMenu {...props}>
+const CustomUserMenu = React.forwardRef(({ onClick, user }, ref) => (
+    <UserMenu>
         <Box color='primary'>
             <MenuItemLink
                 ref={ref}
-                to="/profile"
+                to={user.user_name}
                 primaryText='Perfil'
                 title='Configuraciones de perfil'
                 leftIcon={<ProfileIcon color='inherit' />}
-                onClick={props.onClick}
+                onClick={onClick}
                 sidebarIsOpen
             />
             <LogoutButton>
@@ -122,7 +122,7 @@ const AppBar = props => {
                             <NotificationsButton />
                         </LazyLoader>
                     )}
-                    <CustomUserMenu />
+                    <CustomUserMenu user={user} />
                 </div>
             </Toolbar>
         </MuiAppBar>

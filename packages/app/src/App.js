@@ -26,7 +26,6 @@ import UserRanking from './ranking'
 import CompletedGames from './completedGames'
 import ScheduleCreate from './schedule/ScheduleCreate'
 import Authenticate from '@approbado/lib/layouts/Authenticate'
-import Profile from './profile';
 import ForumShow from '@approbado/lib/layouts/forums/ForumShow'
 import ForumEdit from '@approbado/lib/layouts/forums/ForumEdit'
 import CommentShow from '@approbado/lib/layouts/comments/CommentShow'
@@ -214,12 +213,6 @@ const App = () => {
                         path="/profile/plans"
                         component={() => <UserPlan />}
                         layout={ProfileEditLayout}
-                    />
-                    <ProtectedRoute
-                        exact
-                        path="/profile"
-                        component={() => <Profile />}
-                        layout={DefaultLayout}
                     />
                     <ProtectedRoute
                         exact

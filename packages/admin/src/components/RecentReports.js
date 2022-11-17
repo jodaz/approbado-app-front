@@ -1,58 +1,73 @@
 import * as React from 'react'
-import { ListBase } from 'react-admin'
 import ReportCard from './ReportCard'
+import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
+import GridList from '@approbado/lib/components/GridList';
 import ListContainer from '../components/ListContainer'
-import Box from '@material-ui/core/Box';
-import Spinner from '@approbado/lib/components/Spinner'
-import { useListContext } from 'react-admin';
-import Typography from '@material-ui/core/Typography';
+import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { useMediaQuery } from '@material-ui/core'
 
-const RecentReports = props => (
-    <ListBase
-        perPage={5}
-        sort={{ field: 'created_at', order: 'DESC' }}
-        {...props}
-    >
-        <RecentReportListView />
-    </ListBase>
-);
+const initialFilter = { in_blacklist: true };
 
-const LoadedList = ({ component }) => {
-    const { ids, data, total } = useListContext();
+const RecentReports = () => {
+    const isSmall = useMediaQuery(theme =>
+        theme.breakpoints.down('sm')
+    )
+    const [filter, setFilter] = React.useState(initialFilter)
+    const [reports, setReports] = React.useState([])
 
-    if (!ids || !data || !total) {
-        return (
-            <Typography variant="subtitle1">
-                Aún no tenemos reportes
-            </Typography>
-        )
+    const fetchReports = async () => {
+        const res = await axios({
+            method: 'GET',
+            url: '/reports',
+            params: getQueryFromParams({ filter })
+        })
+
+        setReports(res.data.data);
     }
 
+    const handleOnChange = (e) => {
+        if (e.currentTarget.value) {
+            // setFilter({
+            //     global_search: e.currentTarget.value
+            // })
+        } else {
+            setFilter(null)
+        }
+    }
+
+    React.useEffect(() => {
+        fetchReports()
+    }, [filter])
+
     return (
-        <Box>
-            {ids.map((id, i) => (
-                <Box>
-                    {React.cloneElement(component, {
-                        data: data[id],
-                        id: id,
-                        index: i,
-                        key: id
-                    })}
-                </Box>
-            ))}
-        </Box>
-    );
-};
-
-const RecentReportListView = props => {
-    const { loaded } = useListContext();
-
-    return loaded ? (
         <ListContainer
-            list={<LoadedList component={<ReportCard />} />}
+            actions={
+                <Box sx={{
+                    display: 'flex',
+                    width: '100%',
+                    justifyContent: 'space-between',
+                    margin: '1rem 0'
+                }}>
+                    <Box width={isSmall ? '100%' : '25%'}>
+                        <TextField
+                            onChange={handleOnChange}
+                            placeholder='Buscar'
+                            fullWidth
+                        />
+                    </Box>
+                </Box>
+            }
+            list={
+                <Box marginTop='1rem'>
+                    <GridList
+                        data={reports}
+                        component={<ReportCard />}
+                    />
+                </Box>
+            }
         />
-    ) : (
-        <Spinner />
     );
 }
 
