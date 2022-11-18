@@ -43,8 +43,8 @@ const OptionsMenu = props => {
                 basePath='trivias'
                 confirmColor='warning'
                 confirmTitle='Eliminar trivia'
-                confirmContent={'¿Está seguro que desea eliminar esta trivia?'}
-                label={'Eliminar'}
+                confirmContent='¿Está seguro que desea eliminar esta trivia?'
+                label='Eliminar'
                 customAction={() => history.push('/trivias')}
                 {...props}
             />

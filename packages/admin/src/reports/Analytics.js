@@ -5,7 +5,7 @@ import Spinner from '@approbado/lib/components/Spinner'
 import useFetch from '@approbado/lib/hooks/useFetch'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 
-const Analytics = ({ id }) => {
+const Analytics = ({ record }) => {
     const {
         loading,
         total,
@@ -13,9 +13,9 @@ const Analytics = ({ id }) => {
         error
     } = useFetch('/report-reasons', {
         perPage: 100,
-        page: 1,
+        page: 0,
         sort: { field: 'reportsCount', order: 'DESC' },
-        filter: { report_id: id }
+        filter: { report_id: record.id }
     })
 
     if (loading) return <Spinner />

@@ -39,7 +39,7 @@ import UserListLayout from './users/UserListLayout'
 import UserEdit from './users/UserEdit'
 import UserCreate from './users/UserCreate'
 import ReportsView from './reports/ReportsView'
-import ReportShow from './reports/ReportShow'
+import ReportShowLayout from './reports/ReportShowLayout'
 import NotFound from './layouts/NotFound'
 import ForumShow from '@approbado/lib/layouts/forums/ForumShow'
 import CommentShow from '@approbado/lib/layouts/comments/CommentShow'
@@ -59,6 +59,8 @@ import FilesList from './files/FilesList'
 import ForumLayout from './forums'
 import QuestionsList from './questions/QuestionsList'
 import ForumList from '@approbado/lib/layouts/forums/ForumList';
+import Overview from './reports/Overview';
+import Analytics from './reports/Analytics';
 
 const App = () => {
     return (
@@ -138,10 +140,16 @@ const App = () => {
                     component={() => <RestrictedUsers />}
                 />
                 <ProtectedRoute
-                    layout={Layout}
+                    layout={ReportShowLayout}
                     exact
-                    path='/reports/:id'
-                    component={() => <ReportShow />}
+                    path='/reports/:id/overview'
+                    component={Overview}
+                />
+                <ProtectedRoute
+                    layout={ReportShowLayout}
+                    exact
+                    path='/reports/:id/analytics'
+                    component={Analytics}
                 />
 
                 {/**

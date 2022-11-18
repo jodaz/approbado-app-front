@@ -45,10 +45,10 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-export default function({ id, post }) {
+export default function({ record }) {
     const classes = useStyles();
 
-    const { owner } = post
+    const { post } = record
 
     return (
         <>
@@ -60,14 +60,14 @@ export default function({ id, post }) {
                     avatar={
                         <Avatar
                             aria-label="recipe"
-                            src={`${configs.SOURCE}/${owner.picture}`}
+                            src={`${configs.SOURCE}/${post.owner.picture}`}
                         />
                     }
-                    title={owner.names}
-                    subheader={owner.user_name}
+                    title={post.owner.names}
+                    subheader={post.owner.user_name}
                     action={
                         <Link
-                            to={`/${owner.user_name}`}
+                            to={`/${post.owner.user_name}`}
                             color='info'
                             underline='hover'
                             component={LinkBehavior}
@@ -82,7 +82,7 @@ export default function({ id, post }) {
                     }}
                 />
                 <Box paddingTop='1rem' display="flex">
-                    {isEmpty(owner.blacklisted) && <BlacklistButton {...post} />}
+                    {isEmpty(post.owner.blacklisted) && <BlacklistButton {...post} />}
                     <DeleteReportButton id={post.id} />
                 </Box>
             </Card>

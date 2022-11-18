@@ -28,17 +28,17 @@ const OptionsMenu = props => (
     </OptionsCardMenu>
 );
 
-const ReportCard = ({ data, id }) => {
+const ReportCard = ({ data }) => {
     const classes = cardStyles();
     const history = useHistory();
     const date = useConvertPostgresDate(data.created_at)
 
-    const handleRedirect = () => history.push(`/reports/${id}/show`)
+    const handleRedirect = () => history.push(`/reports/${data.id}/overview`)
 
     const { message, summary, type, owner } = data.post
 
     return (
-        <Card className={classes.root} key={id} onClick={handleRedirect}>
+        <Card className={classes.root} key={data.id} onClick={handleRedirect}>
             <CardHeader
                 action={<OptionsMenu record={data} />}
                 className={classes.cardHeader}
@@ -72,8 +72,7 @@ const ReportCard = ({ data, id }) => {
 }
 
 ReportCard.propTypes = {
-    data: PropTypes.object,
-    id: PropTypes.number
+    data: PropTypes.object
 }
 
 export default ReportCard

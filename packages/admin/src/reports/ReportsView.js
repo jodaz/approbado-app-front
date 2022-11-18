@@ -2,6 +2,7 @@ import * as React from 'react'
 // Components
 import Admin from '../layouts/Admin'
 import TabbedList from '@approbado/lib/components/TabbedList'
+import Box from '@material-ui/core/Box'
 
 const tags = [
     {
@@ -20,11 +21,13 @@ const tags = [
 
 const ReportsList = ({ children }) => (
     <Admin>
-        <TabbedList
-            tags={tags}
-            name='Reportes del foro'
-        />
-        {children}
+        <Box marginTop='1rem'>
+            <TabbedList
+                tags={tags}
+                name='Reportes del foro'
+            />
+            {children}
+        </Box>
     </Admin>
 )
 

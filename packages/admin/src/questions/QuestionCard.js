@@ -28,7 +28,6 @@ const OptionsMenu = props => (
 
 const QuestionCard = ({ data, id }) => {
     const classes = cardStyles();
-    console.log(data)
 
     return (
         <Card className={classes.root} key={id}>
