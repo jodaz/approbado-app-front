@@ -2,7 +2,8 @@ export {
     AiOutlineEye as EyeIcon,
     AiOutlineEyeInvisible as EyeOffIcon,
     AiOutlineInfoCircle as InfoCircle,
-    AiOutlineUser as User
+    AiOutlineUser as User,
+    AiOutlineCalendar as Calendar
 } from 'react-icons/ai'
 
 export {

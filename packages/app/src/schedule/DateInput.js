@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { Calendar } from '@approbado/lib/icons'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { useFormState } from 'react-final-form'
 import TextInput from '@approbado/lib/components/TextInput'
 import { format } from "date-fns";
 import { es } from 'date-fns/locale'
 import Box from '@material-ui/core/Box'
-import CalendarIcon from '@approbado/lib/icons/CalendarIcon'
 
 const DateInput = ({ submitting }) => {
     const { values: { starts_at } } = useFormState();
@@ -33,7 +33,7 @@ const DateInput = ({ submitting }) => {
                 InputProps={{
                     startAdornment: (
                         <Box marginLeft='6px' display='flex'>
-                            <CalendarIcon />
+                            <Calendar />
                         </Box>
                     )
                 }}

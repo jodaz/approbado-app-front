@@ -1,20 +1,22 @@
 import * as React from 'react';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import {
+    Card,
+    CardHeader,
+    Typography,
+    Avatar,
+    Box
+} from '@material-ui/core'
+import { MoreHorizontal } from '@approbado/lib/icons'
 import PropTypes from 'prop-types'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import cardStyles from '@approbado/lib/styles/cardStyles'
-import Avatar from '@material-ui/core/Avatar';
 import Dot from '@approbado/lib/components/Dot';
-import { ReactComponent as More } from '@approbado/lib/icons/More.svg'
 import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
 import LinkButton from '@approbado/lib/components/LinkButton'
 
 const OptionsMenu = props => (
-    <OptionsCardMenu icon={<More />}>
+    <OptionsCardMenu icon={<MoreHorizontal />}>
         <LinkButton
             to={`/trivias/${props.record.trivia_id}/awards/${props.record.id}`}
         />

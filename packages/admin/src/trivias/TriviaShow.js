@@ -40,7 +40,7 @@ const OptionsMenu = props => {
     const history = useHistory();
 
     return (
-        <OptionsCardMenu icon={<MoreHorizontal size='1.5em' />}>
+        <OptionsCardMenu icon={<MoreHorizontal />}>
             <DeleteButton
                 basePath='trivias'
                 confirmColor='warning'
@@ -75,7 +75,7 @@ const TriviaShow = ({ children }) => {
             <Box display="flex" marginTop="2rem" flexDirection='column'>
                 <Header
                     record={record}
-                    icon={<Balance />}
+                    icon={<Balance size='1.5em' />}
                     name='Trivia'
                     menu={<OptionsMenu record={record} />}
                 />

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { MoreHorizontal } from '@approbado/lib/icons'
 import { axios } from '@approbado/lib/providers';
 import { useHistory, useParams } from 'react-router-dom'
 import LayerIcon from '@approbado/lib/icons/LayerIcon'
@@ -6,7 +7,6 @@ import DeleteButton from '@approbado/lib/components/DeleteButton'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import Admin from '../layouts/Admin';
 import TabbedList from '@approbado/lib/components/TabbedList'
-import { ReactComponent as More } from '@approbado/lib/icons/More.svg'
 import Header from '../components/Header'
 import Box from '@material-ui/core/Box'
 
@@ -15,7 +15,7 @@ const OptionsMenu = props => {
     const { trivia_id } = props;
 
     return (
-        <OptionsCardMenu icon={<More />}>
+        <OptionsCardMenu icon={<MoreHorizontal />}>
             <DeleteButton
                 basePath='subthemes'
                 confirmColor='warning'

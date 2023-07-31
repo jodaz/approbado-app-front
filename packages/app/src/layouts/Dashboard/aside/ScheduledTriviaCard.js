@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { MoreHorizontal } from '@approbado/lib/icons'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Collapse from '@material-ui/core/Collapse';
@@ -8,7 +9,6 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import IconButton from '@material-ui/core/IconButton';
 import Dot from '@approbado/lib/components/Dot'
 import Box from '@material-ui/core/Box';
-import { ReactComponent as MoreIcon } from '@approbado/lib/icons/More.svg'
 import DownAngleIcon from '@approbado/lib/icons/DownAngleIcon'
 import UpperAngleIcon from '@approbado/lib/icons/UpperAngleIcon'
 import Button from '@material-ui/core/Button';
@@ -103,7 +103,7 @@ const ScheduledTriviaCard = props => {
                 <CardHeader
                     className={classes.header}
                     action={(isOwner) && (
-                        <OptionsCardMenu icon={<MoreIcon />}>
+                        <OptionsCardMenu icon={<MoreHorizontal />}>
                             <EditEvent {...props} />
                             <DeleteEvent {...props} />
                         </OptionsCardMenu>

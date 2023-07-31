@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Calendar } from '@approbado/lib/icons'
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box';
 import { useMediaQuery, Button } from '@material-ui/core'
@@ -7,7 +8,6 @@ import { useUserState } from '@approbado/lib/hooks/useUserState'
 import Default from '../Default'
 import useFetch from '@approbado/lib/hooks/useFetch'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
-import CalendarIcon from '@approbado/lib/icons/CalendarIcon'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior';
 
 const tags = [
@@ -68,7 +68,7 @@ export default function Dashboard({ children }) {
                                 component={LinkBehavior}
                                 to='/schedules'
                             >
-                                <CalendarIcon />
+                                <Calendar />
                             </Button>
                         )}
                     </Box>
