@@ -1,20 +1,22 @@
 import * as React from 'react';
-import SettingsIcon from '@approbado/lib/icons/SettingsIcon';
+import {
+    Settings,
+    InfoCircle,
+    Home,
+    Users,
+    Dollar,
+    Balance
+} from '@approbado/lib/icons'
 import MenuItemLink from '@approbado/lib/components/MenuItemLink'
-import InformationIcon from '@approbado/lib/icons/InformationIcon'
 import LogoutButton from '@approbado/lib/components/LogoutButton'
-import UsersIcon from '@approbado/lib/icons/UsersIcon'
-import HomeIcon from '@approbado/lib/icons/HomeIcon';
-import DollarIcon from '@approbado/lib/icons/DollarIcon';
 import Typography from '@material-ui/core/Typography'
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon';
 
 const MenuItems = ({ open, onMenuClick, dense }) => (
     <React.Fragment>
         <MenuItemLink
             to="/"
             primaryText={'Inicio'}
-            leftIcon={<HomeIcon />}
+            leftIcon={<Home />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -23,7 +25,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         <MenuItemLink
             to="/trivias"
             primaryText='Trivias'
-            leftIcon={<BalanceIcon />}
+            leftIcon={<Balance />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -31,7 +33,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         <MenuItemLink
             to='/users'
             primaryText='Usuarios'
-            leftIcon={<UsersIcon />}
+            leftIcon={<Users />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -39,7 +41,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         <MenuItemLink
             to="/memberships"
             primaryText={'Planes y membresías'}
-            leftIcon={<DollarIcon />}
+            leftIcon={<Dollar />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -47,7 +49,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         <MenuItemLink
             to='/reports'
             primaryText='Reportes'
-            leftIcon={<InformationIcon />}
+            leftIcon={<InfoCircle />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -55,7 +57,7 @@ const MenuItems = ({ open, onMenuClick, dense }) => (
         <MenuItemLink
             to="/configurations"
             primaryText={'Configuraciones'}
-            leftIcon={<SettingsIcon />}
+            leftIcon={<Settings />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}

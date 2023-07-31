@@ -4,7 +4,7 @@ import {
     IconButton,
     styled
 } from '@material-ui/core';
-import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
+import { ChevronLeft } from '../icons';
 import { useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import { useHistory, useRouteMatch } from 'react-router-dom'
 
@@ -30,7 +30,7 @@ const ToggleSidebarButton = () => {
             enterDelay={500}
         >
             <CustomIconButton onClick={handleGoHome}>
-                <LeftAngleIcon />
+                <ChevronLeft />
             </CustomIconButton>
         </Tooltip>
     );

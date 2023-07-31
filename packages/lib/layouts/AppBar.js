@@ -4,20 +4,20 @@ import {
     Toolbar,
     useMediaQuery,
     Box,
-    AppBar as MuiAppBar
+    AppBar as MuiAppBar,
+    Typography
 } from '@material-ui/core';
+import { MenuItemLink } from 'react-admin'
+import { useUserState } from '@approbado/lib/hooks/useUserState'
+import { useUiState } from '@approbado/lib/hooks/useUI';
+import LazyLoader from '@approbado/lib/components/LazyLoader'
+import Dot from '@approbado/lib/components/Dot'
+import ProfileIcon from '@approbado/lib/icons/ProfileIcon';
+import LogoutButton from '@approbado/lib/components/LogoutButton'
 // Icons
 import ToggleSidebarButton from './ToggleSidebarButton';
 import GoBackButton from './GoBackButton';
 import UserMenu from './UserMenu'
-import { MenuItemLink } from 'react-admin'
-import ProfileIcon from '@approbado/lib/icons/ProfileIcon';
-import LogoutButton from '@approbado/lib/components/LogoutButton'
-import Typography from '@material-ui/core/Typography'
-import { useUserState } from '@approbado/lib/hooks/useUserState'
-import LazyLoader from '@approbado/lib/components/LazyLoader'
-import Dot from '@approbado/lib/components/Dot'
-import { useUiState } from '@approbado/lib/hooks/useUI';
 
 const NotificationsButton = React.lazy(() => import('./NotificationsButton'))
 

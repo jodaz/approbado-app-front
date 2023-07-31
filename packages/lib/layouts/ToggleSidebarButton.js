@@ -4,7 +4,7 @@ import {
     IconButton,
     styled
 } from '@material-ui/core';
-import { ReactComponent as MenuIcon } from '@approbado/lib/icons/Menu.svg'
+import { Menu } from '../icons';
 import { useUiState, useUiDispatch } from '../hooks/useUI';
 
 const CustomIconButton = styled(IconButton)(({ theme }) => ({
@@ -26,7 +26,7 @@ const ToggleSidebarButton = () => {
             <CustomIconButton
                 onClick={() => toggleSidebar()}
             >
-                <MenuIcon />
+                <Menu />
             </CustomIconButton>
         </Tooltip>
     );
