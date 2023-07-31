@@ -1,6 +1,5 @@
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Settings from '@material-ui/icons/Settings';
+import { MenuItem, ListItemIcon } from '@material-ui/core'
+import { Settings } from '@approbado/lib/icons'
 
 const OptionMenuItem = ({ icon, name }) => (
     <MenuItem>

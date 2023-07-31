@@ -2,16 +2,19 @@ import * as React from 'react';
 import {
     CardActions,
     Typography,
-    Box
+    Box,
+    InputAdornment,
+    ThemeProvider,
+    createMuiTheme
 } from '@material-ui/core';
+import { User } from '@approbado/lib/icons';
+import { theme } from '@approbado/lib/styles';
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios'
 import AuthLayout from './AuthLayout'
 import useStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Link, useLocation } from 'react-router-dom'
-import AccountCircle from '@material-ui/icons/PersonOutlineOutlined';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Spinner from '@approbado/lib/components/Spinner'
 import queryString from 'query-string'
 import Button from '@approbado/lib/components/Button'
@@ -92,7 +95,7 @@ const UpdatePassword = () => {
                                             InputProps={{
                                                 startAdornment: (
                                                     <InputAdornment position="start">
-                                                        <AccountCircle />
+                                                        <User size='1.5em' />
                                                     </InputAdornment>
                                                 ),
                                             }}

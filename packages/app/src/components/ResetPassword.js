@@ -1,18 +1,16 @@
 import * as React from 'react';
-import { Field } from 'react-final-form';
 import {
-    Card,
     CardActions,
     Typography,
     Box
 } from '@material-ui/core';
-import axios from 'axios'
-import AuthLayout from './AuthLayout'
-import useStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Link } from 'react-router-dom'
-import AccountCircle from '@material-ui/icons/PersonOutlineOutlined';
+import { User } from '@approbado/lib/icons';
+import axios from 'axios'
+import AuthLayout from './AuthLayout'
+import useStyles from '@approbado/lib/styles/formStyles'
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Dialog from '@approbado/lib/components/Dialog'
 import Button from '@approbado/lib/components/Button'
@@ -67,7 +65,7 @@ const ResetPassword = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <AccountCircle />
+                                <User size='1.5em' />
                             </InputAdornment>
                         ),
                     }}

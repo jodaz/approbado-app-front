@@ -2,6 +2,7 @@ import * as React from 'react';
 import {
     CardActions,
     Typography,
+    InputAdornment,
     Box
 } from '@material-ui/core';
 import axios from 'axios'
@@ -10,12 +11,10 @@ import useStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
 import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Link } from 'react-router-dom'
-import AccountCircle from '@material-ui/icons/PersonOutlineOutlined';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import VpnKeyIcon from '@material-ui/icons/VpnKeyOutlined';
 import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
 import CONFIG_NAMES from '@approbado/lib/configs';
+import { Lock, User } from '@approbado/lib/icons';
 
 const validate = (values) => {
     const errors = {};
@@ -71,7 +70,7 @@ const Login = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <AccountCircle />
+                                <User size='1.5em' />
                             </InputAdornment>
                         ),
                     }}
@@ -86,7 +85,7 @@ const Login = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <VpnKeyIcon />
+                                <Lock size='1.5em' />
                             </InputAdornment>
                         ),
                     }}

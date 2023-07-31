@@ -2,16 +2,20 @@ export {
     AiOutlineEye as EyeIcon,
     AiOutlineEyeInvisible as EyeOffIcon,
     AiOutlineInfoCircle as InfoCircle,
+    AiOutlineUser as User
 } from 'react-icons/ai'
 
 export {
-    MdLogout as Logout
+    MdLogout as Logout,
+    MdLockOutline as Lock,
+    MdOutlineConfirmationNumber as ConfirmationNumber
 } from 'react-icons/md'
 
 export {
     FiMail as Mail,
     FiUsers as Users,
-    FiArrowRight as ArrowRight
+    FiArrowRight as ArrowRight,
+    FiPhone as Phone
 } from 'react-icons/fi'
 
 export {
@@ -42,3 +46,11 @@ export {
 export {
     TbPodium as Podium
 } from 'react-icons/tb'
+
+export {
+    HiOutlineMail as Email
+} from 'react-icons/hi'
+
+export {
+    SiMaildotru as Arroba
+} from 'react-icons/si'
