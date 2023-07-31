@@ -1,11 +1,13 @@
 import * as React from 'react';
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon'
+import {
+    Balance,
+    MoreHorizontal
+} from '@approbado/lib/icons'
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box';
 import Header from '../components/Header'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
-import { ReactComponent as More } from '@approbado/lib/icons/More.svg'
 import Admin from '../layouts/Admin';
 import { axios } from '@approbado/lib/providers';
 import { useHistory, useParams } from 'react-router-dom'
@@ -38,7 +40,7 @@ const OptionsMenu = props => {
     const history = useHistory();
 
     return (
-        <OptionsCardMenu icon={<More />}>
+        <OptionsCardMenu icon={<MoreHorizontal size='1.5em' />}>
             <DeleteButton
                 basePath='trivias'
                 confirmColor='warning'
@@ -73,7 +75,7 @@ const TriviaShow = ({ children }) => {
             <Box display="flex" marginTop="2rem" flexDirection='column'>
                 <Header
                     record={record}
-                    icon={<BalanceIcon />}
+                    icon={<Balance />}
                     name='Trivia'
                     menu={<OptionsMenu record={record} />}
                 />

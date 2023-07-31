@@ -12,9 +12,11 @@ import { useHistory } from 'react-router-dom'
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import { stringify } from 'qs';
 // Icons
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon';
 import ItemCollection from '@approbado/lib/components/ItemCollection';
 import useFetch from '@approbado/lib/hooks/useFetch'
+import {
+    Balance
+} from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -124,7 +126,7 @@ const StartTrivia = () => {
                         Genial! Estas a punto de iniciar una trivia
                     </Typography>
                     <Box className={classes.triviaInformation}>
-                        <BalanceIcon />
+                        <Balance />
                         &nbsp;
                         <Typography variant='subtitle1'>{trivia.name}</Typography>
                     </Box>

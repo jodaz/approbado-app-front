@@ -3,8 +3,10 @@ import { useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/styles/makeStyles'
 import Button from '@approbado/lib/components/Button'
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon'
 import { Link } from 'react-router-dom'
+import {
+    Balance
+} from '@approbado/lib/icons'
 
 const award = {
     title: 'Approbado Oro',
@@ -62,7 +64,7 @@ const WinAward = ({ title, icon_winner }) => {
             <Box className={classes.root}>
                 <img src={icon_winner} className={classes.iconWinner} />
                 <Box className={classes.triviaName}>
-                    <BalanceIcon />
+                    <Balance />
                     <Box marginLeft='0.5rem'>Derecho laboral</Box>
                 </Box>
                 <Box className={classes.awardName}>

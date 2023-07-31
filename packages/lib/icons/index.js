@@ -12,6 +12,10 @@ export {
 } from 'react-icons/md'
 
 export {
+    CgProfile as Profile
+} from 'react-icons/cg'
+
+export {
     FiMail as Mail,
     FiUsers as Users,
     FiArrowRight as ArrowRight,
@@ -19,7 +23,8 @@ export {
 } from 'react-icons/fi'
 
 export {
-    LuSettings as Settings
+    LuSettings as Settings,
+    LuMoreHorizontal as MoreHorizontal
 } from 'react-icons/lu'
 
 export {
