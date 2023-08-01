@@ -4,7 +4,7 @@ import MessageCard from './MessageCard'
 import socketIOClient from "socket.io-client";
 import CONFIG_NAMES from '@approbado/lib/configs'
 import { useParams } from 'react-router-dom'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat'
 

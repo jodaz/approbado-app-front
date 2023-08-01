@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import makeStyles from '@material-ui/styles/makeStyles'

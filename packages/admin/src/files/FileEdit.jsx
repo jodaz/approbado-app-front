@@ -11,7 +11,7 @@ import validate from './validateFileForm'
 import Spinner from '@approbado/lib/components/Spinner'
 import SelectSubthemeInput from './SelectSubthemeInput'
 import TextInput from '@approbado/lib/components/TextInput'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 
 const FileEdit = () => {
     const { file_id, trivia_id } = useParams();

@@ -10,7 +10,7 @@ import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
 import NoContent from '@approbado/lib/components/NoContent'
 import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 

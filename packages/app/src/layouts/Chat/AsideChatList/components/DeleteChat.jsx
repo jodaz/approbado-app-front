@@ -8,7 +8,7 @@ import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box';
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'

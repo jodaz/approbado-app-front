@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem'
 import InformationIcon from '@approbado/lib/icons/InformationIcon'
 import Box from '@material-ui/core/Box'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import ListReportReasons from './ListReportReasons'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';

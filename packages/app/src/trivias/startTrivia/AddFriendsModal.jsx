@@ -13,7 +13,7 @@ import { Form } from 'react-final-form'
 import Link from '@material-ui/core/Link';
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import SelectInput from '@approbado/lib/components/SelectInput'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import ClipboardCopyField from './ClipboardCopyField'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import configs from '@approbado/lib/configs'

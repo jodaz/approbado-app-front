@@ -1,7 +1,7 @@
 import React from 'react';
 import AwardItem from './AwardItem'
 import Spinner from '@approbado/lib/components/Spinner'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import List from '@material-ui/core/List';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box';

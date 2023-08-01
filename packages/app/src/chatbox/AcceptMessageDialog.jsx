@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
 import Spinner from '@approbado/lib/components/Spinner'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat'
 
 const AcceptMessageDialog = ({ id: chat_id, is_private, receptor, notification, currUserId }) => {

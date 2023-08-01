@@ -1,9 +1,9 @@
 import getQueryFromParams from './getQueryFromParams'
 import fileDownload from 'js-file-download';
-import { BlobAxiosInstance } from '@approbado/lib/api'
+import { fileProvider } from '@approbado/lib/api'
 
 const download = (url, params, filename, title = null) => {
-    BlobAxiosInstance({
+    fileProvider({
         method: 'GET',
         url: url,
         params: {

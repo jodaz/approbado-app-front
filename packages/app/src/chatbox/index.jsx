@@ -6,7 +6,7 @@ import ChatboxMessages from './components/ChatboxMessages'
 import { useParams } from 'react-router-dom'
 import { useChatState, useChatDispatch } from '@approbado/lib/hooks/useChat'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import AcceptMessageDialog from './AcceptMessageDialog'
 
 const Chatbox = () => {

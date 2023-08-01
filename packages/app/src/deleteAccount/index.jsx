@@ -7,7 +7,7 @@ import { alpha } from '@material-ui/core/styles/colorManipulator';
 import { ReactComponent as DeleteIllustration } from '@approbado/lib/illustrations/delete.svg';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import Button from '@material-ui/core/Button';
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import configs from '@approbado/lib/configs'
 
 const DeleteAccount = () => {

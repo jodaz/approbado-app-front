@@ -10,7 +10,7 @@ import TextInput from '@approbado/lib/components/TextInput'
 import { useHistory } from 'react-router-dom'
 import SelectCategoriesInput from './SelectCategoriesInput';
 import SelectTriviaInput from './SelectTriviaInput'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import validateForum from './validate';
 
 const ForumCreate = () => {

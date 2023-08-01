@@ -2,7 +2,7 @@ import * as React from 'react'
 import ProfileLayout from './ProfileLayout'
 import { useParams } from 'react-router-dom'
 import Spinner from '../../components/Spinner'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api';
+import { apiProvider as axios } from '@approbado/lib/api';
 import NotFound from '@approbado/lib/layouts/NotFound';
 
 const UserProfile = ({ children }) => {

@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import GridList from '@approbado/lib/components/GridList';
 import ListContainer from '../components/ListContainer'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { useMediaQuery } from '@material-ui/core'
 
 const initialFilter = { in_blacklist: false };

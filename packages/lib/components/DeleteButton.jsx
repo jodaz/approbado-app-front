@@ -5,7 +5,7 @@ import Confirm from '@approbado/lib/layouts/Confirm';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-import { JSONAxiosInstance as axios } from '../api';
+import { apiProvider as axios } from '@approbado/lib/api'
 
 const DeleteButton = (
     props

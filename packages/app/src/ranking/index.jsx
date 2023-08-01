@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Box from '@material-ui/core/Box'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import RankingTable from './RankingTable'
 import Spinner from '@approbado/lib/components/Spinner'
 import TextField from '@material-ui/core/TextField'

@@ -7,7 +7,7 @@ import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box';
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { useDialogDispatch, useDialogState } from '@approbado/lib/hooks/useDialog'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 import { useUserState } from '@approbado/lib/hooks/useUserState'

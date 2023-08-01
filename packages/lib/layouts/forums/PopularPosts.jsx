@@ -6,8 +6,8 @@ import Emoji from '@approbado/lib/components/Emoji'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
-import { JSONAxiosInstance } from '@approbado/lib/api';
 import getQueryFromParams from '../../utils/getQueryFromParams';
+import { apiProvider as axios } from '@approbado/lib/api'
 
 const payload = {
     pagination: { page: 1, perPage: 5 },
@@ -61,7 +61,7 @@ const PopularPosts = ({ isXSmall }) => {
     const fetchData = async () => {
         setLoading(true)
 
-        const res = await JSONAxiosInstance.get('/forums', {
+        const res = await axios.get('/forums', {
             params: getQueryFromParams(payload)
         })
 

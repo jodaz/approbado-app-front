@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
 import ReplyIcon from '@approbado/lib/icons/ReplyIcon';
-import { JSONAxiosInstance } from '../../api';
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
+import { apiProvider as axios } from '@approbado/lib/api'
 
 const payload = {
     pagination: { page: 1, perPage: 5 },
@@ -57,7 +57,7 @@ const TopContributors = ({ isXSmall }) => {
     const fetchUsers = async () => {
         setLoading(true)
 
-        const res = await JSONAxiosInstance.get('/users', { params: getQueryFromParams(payload) })
+        const res = await axios.get('/users', { params: getQueryFromParams(payload) })
 
         if (res.status >= 200 && res.status < 300) {
             setData(res.data.data)

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import CardButton from './CardButton'
 import useSpinnerStyles from '@approbado/lib/styles/useSpinnerStyles'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import TopUsersList from './TopUsersList'
 
 const initialState = {

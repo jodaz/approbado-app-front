@@ -2,7 +2,7 @@ import * as React from 'react'
 import LikeIcon from '@approbado/lib/icons/LikeIcon'
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 
 const useStyles = makeStyles(theme => ({
     root: {

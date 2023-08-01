@@ -16,7 +16,7 @@ import { unmarkOptions, validate } from './questionsFormUtils'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '@approbado/lib/components/TextInput'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import Spinner from '@approbado/lib/components/Spinner'
 import SelectLevelInput from './SelectQuestionLevelInput'
 import SelectFileInput from './SelectQuestionFileInput'

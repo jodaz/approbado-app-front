@@ -6,7 +6,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 import configs from '@approbado/lib/configs'
 import { useHistory } from 'react-router-dom'
 import { useChatDispatch, useChatState } from '@approbado/lib/hooks/useChat';
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { makeStyles, alpha } from '@material-ui/core'
 import ChatMenu from './ChatMenu';
 

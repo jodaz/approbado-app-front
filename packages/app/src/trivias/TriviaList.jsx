@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography'
 import { useTriviaState, useTriviaDispatch } from "@approbado/lib/hooks/useTriviaSelect"
 import { usePlan } from '@approbado/lib/hooks/useUserState'
 import useDetectOutsideClick from '@approbado/lib/hooks/useDetectOutsideClick'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import TextField from '@material-ui/core/TextField'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 

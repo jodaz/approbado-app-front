@@ -9,7 +9,7 @@ import { Field, Form } from 'react-final-form';
 import Box from '@material-ui/core/Box'
 import { useParams } from 'react-router-dom'
 import AddImageInput from './AddImageInput'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 
 const useStyles = makeStyles(theme => ({

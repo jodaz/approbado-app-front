@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import clsx from 'clsx';
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import { useHistory } from 'react-router-dom'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { stringify } from 'qs';
 // Icons
 import BalanceIcon from '@approbado/lib/icons/BalanceIcon';

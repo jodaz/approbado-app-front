@@ -4,7 +4,7 @@ import NoContent from '@approbado/lib/components/NoContent'
 import GridList from '@approbado/lib/components/GridList';
 import { useParams } from 'react-router-dom'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import AwardBadge from './AwardBadge'
 
 const CertificationsListView = () => {
