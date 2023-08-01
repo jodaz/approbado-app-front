@@ -7,6 +7,8 @@ export {
     AiOutlineTwitter as Twitter,
     AiFillLinkedin as Linkedin,
     AiFillFacebook as Facebook,
+    AiOutlinePlusCircle as PlusCircle,
+    AiOutlineHeart as Heart
 } from 'react-icons/ai'
 
 export {

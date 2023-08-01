@@ -2,11 +2,11 @@ import * as React from 'react';
 import {
     Tooltip,
     IconButton,
-    styled
+    styled,
+    Badge
 } from '@material-ui/core';
-import NotificationIcon from '@approbado/lib/icons/NotificationIcon'
+import { Bell } from '../icons';
 import { useHistory } from 'react-router-dom'
-import Badge from '@material-ui/core/Badge';
 import socketIOClient from "socket.io-client";
 import CONFIG_NAMES from '@approbado/lib/configs'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
@@ -37,7 +37,7 @@ const NotificationsButton = () => {
                 <CustomIconButton
                     onClick={() => history.push('/notifications')}
                 >
-                    <NotificationIcon />
+                    <Bell />
                 </CustomIconButton>
             </Badge>
         </Tooltip>
