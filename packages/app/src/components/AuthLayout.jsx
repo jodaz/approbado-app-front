@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
         background: theme.palette.primary.main,
         '&::before': {
             content: "''",
-            background: `url(${process.env.PUBLIC_URL}/A.svg)`,
+            background: `url(/A.svg)`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: '0px 0px',
             position: 'absolute',
@@ -80,7 +80,7 @@ const AuthLayout = ({ validate, title, handleSubmit, children, ...rest }) => {
     return (
         <Box component='div' className={classes.outer}>
             <Box component='div' className={classes.title}>
-                <img src={process.env.PUBLIC_URL + "/isotipo.png"} alt="approbado_isotipo" />
+                <img src={"/isotipo.png"} alt="approbado_isotipo" />
                 <Typography variant='h5' component='h5'>
                     La mejor manera de aprender y compartir conocimiento sobre derecho,
                     esta en <strong>Approbado</strong>.
