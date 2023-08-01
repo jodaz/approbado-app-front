@@ -3,7 +3,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
@@ -20,6 +19,7 @@ import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import ItemCollection from '@approbado/lib/components/ItemCollection';
+import { Close } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     dialogRoot: {
@@ -195,7 +195,7 @@ const AddFriendsModal = () => {
                             color: theme => theme.palette.grey[500],
                         }}
                     >
-                        <CloseIcon />
+                        <Close />
                     </IconButton>
                 </DialogTitle>
                 <DialogContent className={classes.content}>
@@ -258,7 +258,7 @@ const AddFriendsModal = () => {
                                                     label={option.names}
                                                     size="small"
                                                     classes={{ root: classes.chip }}
-                                                    deleteIcon={<CloseIcon />}
+                                                    deleteIcon={<Close />}
                                                     {...getTagProps({ index })}
                                                 />
                                             ))

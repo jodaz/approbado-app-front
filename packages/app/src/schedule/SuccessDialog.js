@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import NoContent from '@approbado/lib/components/NoContent'
 import { ReactComponent as QuizzIllustration } from '@approbado/lib/illustrations/Quiz.svg'
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
+import { Close } from '@approbado/lib/icons'
 
 const SuccessDialog = ({ open, handleClose, title, ...rest }) => (
     <Dialog
@@ -23,7 +23,7 @@ const SuccessDialog = ({ open, handleClose, title, ...rest }) => (
                 onClick={handleClose}
                 unresponsive
             >
-                <CloseIcon />
+                <Close />
             </IconButton>
         </Box>
         <DialogContent>

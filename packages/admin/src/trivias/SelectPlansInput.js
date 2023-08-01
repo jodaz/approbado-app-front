@@ -1,10 +1,10 @@
 import * as React from 'react'
+import { Close } from '@approbado/lib/icons'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 import Chip from '@material-ui/core/Chip';
-import CloseIcon from '@approbado/lib/icons/CloseIcon'
 import { makeStyles } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField';
 
@@ -71,7 +71,7 @@ const SelectPlansInput = ({ submitting }) => {
                             label={option.name}
                             size="small"
                             classes={{ root: classes.chip }}
-                            deleteIcon={<CloseIcon />}
+                            deleteIcon={<Close />}
                             {...getTagProps({ index })}
                         />
                     ))

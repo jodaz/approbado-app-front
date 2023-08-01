@@ -2,10 +2,9 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import CustomButton from '@approbado/lib/components/Button'
 import { usePlan } from '@approbado/lib/hooks/useUserState';
-import CloseIcon from '@approbado/lib/icons/CloseIcon'
-import CheckIcon from '@approbado/lib/icons/CheckIcon'
 import UpdatePlanBanner from './UpdatePlanBanner'
-import { format, parseISO, differenceInDays } from 'date-fns'
+import { parseISO, differenceInDays } from 'date-fns'
+import { Check, Close } from '@approbado/lib/icons'
 
 const NoAccessItem = () => (
     <li style={{
@@ -19,7 +18,7 @@ const NoAccessItem = () => (
             justifyContent: 'space-between'
         }}>
             Lorem ipsum
-            <CloseIcon />
+            <Close />
         </div>
     </li>
 )
@@ -35,7 +34,7 @@ const AccessItem = () => (
             justifyContent: 'space-between'
         }}>
             Lorem ipsum
-            <CheckIcon />
+            <Check />
         </div>
     </li>
 )

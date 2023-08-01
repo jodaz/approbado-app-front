@@ -4,7 +4,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
+import { Close } from '@approbado/lib/icons'
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
@@ -103,7 +103,7 @@ export default function({ onClick, id }) {
                         onClick={handleClose}
                         unresponsive
                     >
-                        <CloseIcon />
+                        <Close />
                     </IconButton>
                 </DialogTitle>
                 <DialogContent className={classes.content}>
@@ -154,7 +154,7 @@ export default function({ onClick, id }) {
                         onClick={handleCloseDeleteDialog}
                         unresponsive
                     >
-                        <CloseIcon />
+                        <Close />
                     </IconButton>
                 </DialogTitle>
                 <DialogContent className={classes.content}>

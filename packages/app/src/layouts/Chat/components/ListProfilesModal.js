@@ -3,7 +3,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles } from '@material-ui/core/styles';
 import { history } from '@approbado/lib/providers'
 import Tooltip from '@material-ui/core/Tooltip';
@@ -11,6 +10,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { useDialogDispatch, useDialogState } from '@approbado/lib/hooks/useDialog'
 import CONFIG_NAMES from '@approbado/lib/configs';
 import Box from '@material-ui/core/Box';
+import { Close } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(() => ({
     dialogRoot: {
@@ -103,7 +103,7 @@ const ListProfilesModal = () => {
                         color: theme => theme.palette.grey[500],
                     }}
                 >
-                    <CloseIcon />
+                    <Close />
                 </IconButton>
             </DialogTitle>
             <DialogContent className={classes.content}>

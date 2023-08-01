@@ -3,13 +3,17 @@ export {
     AiOutlineEyeInvisible as EyeOffIcon,
     AiOutlineInfoCircle as InfoCircle,
     AiOutlineUser as User,
-    AiOutlineCalendar as Calendar
+    AiOutlineCalendar as Calendar,
+    AiOutlineTwitter as Twitter,
+    AiFillLinkedin as Linkedin,
+    AiFillFacebook as Facebook,
 } from 'react-icons/ai'
 
 export {
     MdLogout as Logout,
     MdLockOutline as Lock,
-    MdOutlineConfirmationNumber as ConfirmationNumber
+    MdOutlineConfirmationNumber as ConfirmationNumber,
+    MdOutlineClose as Close
 } from 'react-icons/md'
 
 export {
@@ -20,7 +24,9 @@ export {
     FiMail as Mail,
     FiUsers as Users,
     FiArrowRight as ArrowRight,
-    FiPhone as Phone
+    FiCheck as Check,
+    FiPhone as Phone,
+    FiUpload as Upload
 } from 'react-icons/fi'
 
 export {
@@ -42,7 +48,9 @@ export {
     BiChevronDown as ChevronDown,
     BiChevronLeft as ChevronLeft,
     BiChevronRight as ChevronRight,
-    BiChevronUp as ChevronUp
+    BiChevronUp as ChevronUp,
+    BiLinkAlt as Link,
+    BiCheckCircle as CheckCircle
 } from 'react-icons/bi'
 
 export {

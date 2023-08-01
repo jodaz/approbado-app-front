@@ -8,8 +8,8 @@ import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
 import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
-import CloseIcon from '@approbado/lib/icons/CloseIcon'
 import { Field } from 'react-final-form'
+import { Close } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     userCard: {
@@ -93,7 +93,7 @@ const ControlledSelectInput = props => {
                             label={option.names}
                             size="small"
                             classes={{ root: classes.chip }}
-                            deleteIcon={<CloseIcon />}
+                            deleteIcon={<Close />}
                             {...getTagProps({ index })}
                         />
                     ))

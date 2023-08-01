@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
 import Avatar from '@material-ui/core/Avatar'
+
 import { ReactComponent as PhotoIcon } from '@approbado/lib/icons/Photo.svg'
 
 const useStyles = makeStyles(
