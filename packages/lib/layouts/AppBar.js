@@ -70,7 +70,7 @@ const CustomUserMenu = React.forwardRef(({ onClick, user }, ref) => (
         <Box color='primary'>
             <MenuItemLink
                 ref={ref}
-                to={user.user_name}
+                to={user.user_name ? `/${user.user_name}` : '/profile'}
                 primaryText='Perfil'
                 title='Configuraciones de perfil'
                 leftIcon={<ProfileIcon color='inherit' />}
