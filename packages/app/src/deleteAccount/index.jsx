@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
-import { makeStyles, useMeda } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { alpha } from '@material-ui/core/styles/colorManipulator';
 import { ReactComponent as DeleteIllustration } from '@approbado/lib/illustrations/delete.svg';
 import Confirm from '@approbado/lib/layouts/Confirm';
