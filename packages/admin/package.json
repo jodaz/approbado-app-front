@@ -15,15 +15,14 @@
     "react-admin-color-input": "^3.0.0-beta.0",
     "react-dom": "^17.0.2",
     "react-final-form-listeners": "^1.0.3",
-    "react-scripts": "^5.0.0",
     "socket.io-client": "^4.2.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "PORT=3002 react-app-rewired start",
-    "build": "CI=false react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "devServer": "vite --port 3002",
+    "start": "react-app-rewired vite --port 3002",
+    "build": "react-app-rewired vite build",
+    "serve": "react-app-rewired vite preview"
   },
   "eslintConfig": {
     "extends": [

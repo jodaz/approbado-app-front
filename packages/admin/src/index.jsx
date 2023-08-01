@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
 import customReducers from '@approbado/lib/reducers'
 import createAdminStore from '@approbado/lib/store'
 import { Provider } from 'react-redux'
@@ -40,7 +40,7 @@ const Index = () => (
 
             <ConnectedRouter history={history}>
                 <ThemeProvider theme={createTheme(theme)}>
-                    <App />
+                    {/*<App />  */}
                 </ThemeProvider>
             </ConnectedRouter>
         </DataProviderContext.Provider>

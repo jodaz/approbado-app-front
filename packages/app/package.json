@@ -4,10 +4,9 @@
   "description": "Users webapp",
   "private": true,
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "CI=false react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired vite --port 3000",
+    "build": "react-app-rewired vite build",
+    "serve": "react-app-rewired vite preview"
   },
   "eslintConfig": {
     "extends": [
