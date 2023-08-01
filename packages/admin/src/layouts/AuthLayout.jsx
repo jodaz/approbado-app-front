@@ -59,7 +59,7 @@ const AuthLayout = ({ validate, handleSubmit, children, ...rest }) => {
             <Box component="div" className={classes.header}>
                 <Box padding='1rem' paddingLeft='2rem'>
                     <Link to="/">
-                        <img src={`${process.env.PUBLIC_URL}/logotipo.png`} alt='approbado_logotipo' height='40px' width='200px' />
+                        <img src={`/logotipo.png`} alt='approbado_logotipo' height='40px' width='200px' />
                     </Link>
                 </Box>
             </Box>

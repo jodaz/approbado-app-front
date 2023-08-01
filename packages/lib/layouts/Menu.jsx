@@ -14,7 +14,7 @@ const Menu = ({ children }) => {
                 {(sidebarOpen) && (
                     <Link to='/'>
                         <img
-                            src={`${process.env.PUBLIC_URL}/logotipo_white.png`} alt='approbado_logotipo'
+                            src={`/logotipo_white.png`} alt='approbado_logotipo'
                             height="100%"
                             width="100%"
                         />

@@ -77,7 +77,7 @@ const Login = () => {
         <AuthLayout validate={validate} handleSubmit={handleSubmit} title='Iniciar sesión'>
             <div className={classes.form}>
                 <Box className={classes.cardHeader}>
-                    <img src={`${process.env.PUBLIC_URL}/logotipo.png`} alt='approbado_logotipo' height="50px" width="200px" />
+                    <img src={`/logotipo.png`} alt='approbado_logotipo' height="50px" width="200px" />
                     <Typography variant="subtitle1" classKey='p'>
                         Administrador
                     </Typography>
