@@ -1,8 +1,8 @@
 import FacebookLogin from 'react-facebook-login'
-import axios from 'axios'
 import { ReactComponent as FacebookIcon } from "@approbado/lib/icons/FacebookIconOutline.svg"
 import { useHistory } from 'react-router-dom'
 import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
+import { apiProvider } from '@approbado/lib/api'
 
 const FBLoginButton = ({ className }) => {
     const history = useHistory()
@@ -11,7 +11,7 @@ const FBLoginButton = ({ className }) => {
     const processResponse = response => {
         const { name, email, userID } = response;
 
-        return axios.post(`${process.env.REACT_APP_API_DOMAIN}/auth/external`, {
+        return apiProvider.post(`/auth/external`, {
             email: email,
             provider: 'facebook',
             key: userID

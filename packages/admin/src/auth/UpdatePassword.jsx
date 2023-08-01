@@ -5,7 +5,6 @@ import {
     Typography,
     Box
 } from '@material-ui/core';
-import axios from 'axios'
 import AuthLayout from '../layouts/AuthLayout'
 import formStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
@@ -17,6 +16,7 @@ import Dialog from '@approbado/lib/components/Dialog'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
+import { apiProvider } from '@approbado/lib/api';
 
 const validate = (values) => {
     const errors = {};
@@ -73,7 +73,7 @@ const UpdatePassword = () => {
     const handleSubmit = React.useCallback(values => {
         setLoading(true)
 
-        return axios.put(`${process.env.REACT_APP_API_DOMAIN}/reset-password/?token=${token}`, values)
+        return apiProvider.put(`/reset-password/?token=${token}`, values)
             .then(() => {
                 setLoading(false)
                 setOpen(true)
@@ -94,7 +94,7 @@ const UpdatePassword = () => {
      * Verify if token is valid
      */
     React.useEffect(() => {
-        return axios.get(`${process.env.REACT_APP_API_DOMAIN}/reset-password/?token=${token}`)
+        return apiProvider.get(`/reset-password/?token=${token}`)
             .then(() => {
                 setIsVerifying(false);
             }).catch(err => {

@@ -4,7 +4,6 @@ import {
     Typography,
     Box
 } from '@material-ui/core';
-import axios from 'axios'
 import AuthLayout from './AuthLayout'
 import useStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
@@ -16,6 +15,7 @@ import Spinner from '@approbado/lib/components/Spinner'
 import queryString from 'query-string'
 import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
+import { apiProvider } from '@approbado/lib/api';
 
 const validate = (values) => {
     const errors = {};
@@ -46,7 +46,7 @@ const UpdatePassword = () => {
     const handleSubmit = React.useCallback(values => {
         setLoading(true)
 
-        return axios.put(`${process.env.REACT_APP_API_DOMAIN}/reset-password/?token=${token}`, values)
+        return apiProvider.put(`/reset-password/?token=${token}`, values)
             .then(res => {
                 setIsVerifying(true)
             }).catch(err => {
@@ -59,7 +59,7 @@ const UpdatePassword = () => {
     }, [])
 
     React.useEffect(() => {
-        return axios.get(`${process.env.REACT_APP_API_DOMAIN}/reset-password/?token=${token}`)
+        return apiProvider.get(`/reset-password/?token=${token}`)
             .then(res => {
                 setIsVerifying(false);
             }).catch(err => {

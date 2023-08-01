@@ -2,7 +2,7 @@ import GoogleLogin from 'react-google-login';
 import { ReactComponent as GoogleIcon } from "@approbado/lib/icons/GoogleIcon.svg"
 import { useHistory } from 'react-router-dom'
 import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
-import axios from 'axios'
+import { apiProvider } from '@approbado/lib/api';
 
 const GoogleLoginButton = ({ className }) => {
     const history = useHistory()
@@ -11,7 +11,7 @@ const GoogleLoginButton = ({ className }) => {
     const processResponse = response => {
         const { name, email, googleId } = response.profileObj;
 
-        return axios.post(`${process.env.REACT_APP_API_DOMAIN}/auth/external`, {
+        return apiProvider.post(`/auth/external`, {
             email: email,
             provider: 'google',
             key: googleId

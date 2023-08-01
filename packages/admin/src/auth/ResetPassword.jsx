@@ -6,7 +6,7 @@ import {
     makeStyles,
     Link
 } from '@material-ui/core';
-import axios from 'axios'
+import { apiProvider } from '@approbado/lib/api';
 import Button from '@approbado/lib/components/Button'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import AuthLayout from '../layouts/AuthLayout'
@@ -57,7 +57,7 @@ const ResetPassword = () => {
     const handleSubmit = React.useCallback(values => {
         setLoading(true)
 
-        return axios.post(`${process.env.REACT_APP_API_DOMAIN}/reset-password`, values)
+        return apiProvider.post(`/reset-password`, values)
             .then(res => {
                 setLoading(false);
                 setOpen(true)

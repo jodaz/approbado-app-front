@@ -6,7 +6,6 @@ import {
     Typography,
     Box
 } from '@material-ui/core';
-import axios from 'axios'
 import AuthLayout from './AuthLayout'
 import useStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
@@ -17,6 +16,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Dialog from '@approbado/lib/components/Dialog'
 import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
+import { apiProvider } from '@approbado/lib/api';
 
 const validate = (values) => {
     const errors = {};
@@ -40,7 +40,7 @@ const ResetPassword = () => {
     const handleSubmit = React.useCallback(values => {
         setLoading(true)
 
-        return axios.post(`${process.env.REACT_APP_API_DOMAIN}/reset-password`, values)
+        return apiProvider.post(`/reset-password`, values)
             .then(res => {
                 const { token } = res.data;
 

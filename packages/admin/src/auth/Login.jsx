@@ -5,8 +5,8 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
+import { apiProvider } from '@approbado/lib/api';
 import Button from '@approbado/lib/components/Button'
-import { axios } from '@approbado/lib/providers/dataProvider'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import AuthLayout from '../layouts/AuthLayout'
 import formStyles from '@approbado/lib/styles/formStyles'
@@ -51,7 +51,7 @@ const Login = () => {
     const handleSubmit = React.useCallback(async (values) => {
         setLoading(true)
 
-        return await axios.post(`${process.env.REACT_APP_API_DOMAIN}/auth/admin-login`, values)
+        return await apiProvider.post(`/auth/admin-login`, values)
             .then(async (res) => {
                 await setUser({
                     user: res.data.user,
