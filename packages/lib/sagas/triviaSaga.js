@@ -1,5 +1,5 @@
 import { put, takeLatest, all, select } from 'redux-saga/effects'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import {
     setResults,
     FETCH_RESULTS_FAILED,

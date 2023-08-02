@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import getQueryFromParams from '../utils/getQueryFromParams'
 
 const useFetch = (url, params = {}) => {
