@@ -1,7 +1,7 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { useFormState } from 'react-final-form'
-import LayerIcon from '@approbado/lib/icons/LayerIcon';
+import { Layer } from '@approbado/lib/icons';
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
@@ -36,7 +36,7 @@ const SubthemesInput = ({ submitting }) => {
                 inputProps={{
                     startAdornment: (
                         <Box marginLeft='6px' display='flex'>
-                            <LayerIcon />
+                            <Layer />
                         </Box>
                     ),
                     placeholder: 'Seleccione un subtema'

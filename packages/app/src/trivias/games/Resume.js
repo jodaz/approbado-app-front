@@ -1,13 +1,13 @@
 import * as React from 'react'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import { useHistory } from 'react-router-dom'
+import { RadialSelected } from '@approbado/lib/icons'
 import Box from '@material-ui/core/Box'
 import Emoji from '@approbado/lib/components/Emoji'
 import Button from '@approbado/lib/components/Button'
 import { useGetResponses } from '@approbado/lib/hooks/useGetResponses'
 import NoAnswer from '../components/NoAnswer'
 import makeStyles from '@material-ui/styles/makeStyles'
-import SelectIcon from '@approbado/lib/icons/SelectIcon'
 
 const useStyles = makeStyles(theme => ({
     header: {
@@ -87,7 +87,7 @@ export default function() {
                             {`${index + 1}. ${item.description}`}
                         </Box>
                         <Box className={classes.answer}>
-                            <SelectIcon className={classes.icon}/>
+                            <RadialSelected className={classes.icon}/>
                             {item.answer ? item.answer : <NoAnswer />}
                         </Box>
                     </Box>

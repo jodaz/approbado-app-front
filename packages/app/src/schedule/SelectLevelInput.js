@@ -3,7 +3,7 @@ import InputContainer from '@approbado/lib/components/InputContainer'
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
-import IdeaIcon from '@approbado/lib/icons/IdeaIcon'
+import { Lightbulb } from '@approbado/lib/icons'
 
 const SelectLevelInput = ({ submitting }) => {
     const [levels, setLevels] = React.useState([])
@@ -32,7 +32,7 @@ const SelectLevelInput = ({ submitting }) => {
                 inputProps={{
                     startAdornment: (
                         <Box marginLeft='6px' display='flex'>
-                            <IdeaIcon />
+                            <Lightbulb />
                         </Box>
                     ),
                     placeholder: 'Seleccione un nivel'

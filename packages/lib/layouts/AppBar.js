@@ -10,9 +10,9 @@ import {
 import { MenuItemLink } from 'react-admin'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { useUiState } from '@approbado/lib/hooks/useUI';
+import { Profile } from '../icons';
 import LazyLoader from '@approbado/lib/components/LazyLoader'
 import Dot from '@approbado/lib/components/Dot'
-import ProfileIcon from '@approbado/lib/icons/ProfileIcon';
 import LogoutButton from '@approbado/lib/components/LogoutButton'
 // Icons
 import ToggleSidebarButton from './ToggleSidebarButton';
@@ -73,7 +73,7 @@ const CustomUserMenu = React.forwardRef(({ onClick, user }, ref) => (
                 to={user.user_name ? `/${user.user_name}` : '/profile'}
                 primaryText='Perfil'
                 title='Configuraciones de perfil'
-                leftIcon={<ProfileIcon color='inherit' />}
+                leftIcon={<Profile color='inherit' />}
                 onClick={onClick}
                 sidebarIsOpen
             />

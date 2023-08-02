@@ -1,5 +1,5 @@
 import * as React from 'react';
-import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
+import { ChevronLeft } from '../../icons';
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import { makeStyles } from '@material-ui/core'
@@ -30,7 +30,7 @@ const BackButton = () => {
     return (
         <Typography component="div">
             <Box className={classes.root} onClick={goBackHandler}>
-                <LeftAngleIcon className={classes.icon} />
+                <ChevronLeft className={classes.icon} />
                 Volver al Foro
             </Box>
         </Typography>

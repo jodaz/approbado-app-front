@@ -15,7 +15,8 @@ export {
     MdLogout as Logout,
     MdLockOutline as Lock,
     MdOutlineConfirmationNumber as ConfirmationNumber,
-    MdOutlineClose as Close
+    MdOutlineClose as Close,
+    MdOutlineThumbsUpDown as ThumbsUpDown
 } from 'react-icons/md'
 
 export {
@@ -34,7 +35,9 @@ export {
 export {
     LuSettings as Settings,
     LuMoreHorizontal as MoreHorizontal,
-    LuGraduationCap as GraduationCap
+    LuGraduationCap as GraduationCap,
+    LuMessageSquarePlus as MessageSquarePlus,
+    LuSearch as Search
 } from 'react-icons/lu'
 
 export {
@@ -54,12 +57,19 @@ export {
 export {
     BiHomeAlt as Home,
     BiBell as Bell,
+    BiImages as Images,
     BiChevronDown as ChevronDown,
     BiChevronLeft as ChevronLeft,
     BiChevronRight as ChevronRight,
     BiChevronUp as ChevronUp,
-    BiLinkAlt as Link
+    BiLinkAlt as Link,
+    BiRightArrowAlt as RightArrow,
+    BiLayer as Layer
 } from 'react-icons/bi'
+
+export {
+    RiLightbulbLine as Lightbulb
+} from 'react-icons/ri'
 
 export {
     IoMdCloseCircle as CloseCircle
@@ -80,3 +90,11 @@ export {
 export {
     SiMaildotru as Arroba
 } from 'react-icons/si'
+
+export {
+    PiPaperPlaneRightBold as Send
+} from 'react-icons/pi'
+
+export {
+    GrRadialSelected as RadialSelected
+} from 'react-icons/gr'

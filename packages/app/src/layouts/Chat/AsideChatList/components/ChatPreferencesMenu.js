@@ -7,8 +7,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import SettingsIcon from '@approbado/lib/icons/SettingsIcon'
-import PreferenceIcon from '@approbado/lib/icons/PreferenceIcon';
+import { Settings, ThumbsUpDown } from '@approbado/lib/icons';
 import { NavLink } from 'react-router-dom'
 import MessageRequestModal from './MessageRequestModal';
 
@@ -74,7 +73,7 @@ export default function ChatPreferencesMenu() {
                     aria-haspopup="true"
                     onClick={handleToggle}
                 >
-                    <SettingsIcon />
+                    <Settings />
                 </IconButton>
                 <Popper
                     open={open}
@@ -106,7 +105,7 @@ export default function ChatPreferencesMenu() {
                                             component={NavLink}
                                             to='/settings/privacy'
                                         >
-                                            <PreferenceIcon />
+                                            <ThumbsUpDown />
                                             Preferencias
                                         </MenuItem>
                                         <MessageRequestModal handleCloseMenu={handleClose} />

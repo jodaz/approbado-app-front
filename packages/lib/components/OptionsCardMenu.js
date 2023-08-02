@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { MoreHorizontal } from '@approbado/lib/icons'
 import IconButton from '@material-ui/core/IconButton';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import MenuList from '@material-ui/core/MenuList';
-import MoreMenuIcon from '@approbado/lib/icons/MoreMenuIcon'
 import { makeStyles } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -117,7 +117,7 @@ const OptionsCardMenu = ({ children, icon }) => {
 }
 
 OptionsCardMenu.defaultProps = {
-    icon: <MoreMenuIcon />
+    icon: <MoreHorizontal />
 }
 
 export default OptionsCardMenu;

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { MoreHorizontal } from '@approbado/lib/icons'
+import { MoreHorizontal, Layer } from '@approbado/lib/icons'
 import { axios } from '@approbado/lib/providers';
 import { useHistory, useParams } from 'react-router-dom'
-import LayerIcon from '@approbado/lib/icons/LayerIcon'
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import Admin from '../layouts/Admin';
@@ -61,7 +60,7 @@ const SubthemeShow = ({ children }) => {
             <Box marginTop='2rem'>
                 <Header
                     record={record}
-                    icon={<LayerIcon />}
+                    icon={<Layer />}
                     name='Subtema'
                     menu={<OptionsMenu record={record} trivia_id={trivia_id} />}
                 />

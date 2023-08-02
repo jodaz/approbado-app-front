@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import ImageIcon from '@approbado/lib/icons/ImageIcon'
+import { Images } from '@approbado/lib/icons'
 import { Field } from "react-final-form";
 import { useDropzone } from "react-dropzone";
 import IconButton from '@material-ui/core/IconButton';
@@ -22,7 +22,7 @@ function FileFieldInput({ input, dropZoneProps, className }) {
         accept: 'image/png,image/jpg',
         ...dropZoneProps
     });
-    console.log(acceptedFiles)
+
     const files = acceptedFiles.map((file) => (
         <span key={file.path}>
             {file.path} - {file.size} bytes
@@ -33,7 +33,7 @@ function FileFieldInput({ input, dropZoneProps, className }) {
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             <IconButton className={className}>
-                <ImageIcon />
+                <Images />
             </IconButton>
             {files}
         </div>

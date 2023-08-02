@@ -1,4 +1,5 @@
 import React from 'react';
+import { Logout, MoreHorizontal, Profile, RightArrow } from '@approbado/lib/icons';
 import IconButton from '@material-ui/core/IconButton';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
@@ -8,13 +9,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import MoreMenuIcon from '@approbado/lib/icons/MoreMenuIcon'
-import ProfileIcon from '@approbado/lib/icons/ProfileIcon'
-import RightArrowIcon from '@approbado/lib/icons/RightArrowIcon';
 import { NavLink } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import DeleteChat from './DeleteChat';
-import OutIcon from '@approbado/lib/icons/OutIcon';
 import { useDialogDispatch } from '@approbado/lib/hooks/useDialog'
 
 const useStyles = makeStyles(() => ({
@@ -90,7 +87,7 @@ const ChatMenu = ({ chat = null, children }) => {
                 aria-haspopup="true"
                 onClick={handleToggle}
             >
-                <MoreMenuIcon />
+                <MoreHorizontal />
             </IconButton>
             <Popper
                 open={open}
@@ -122,11 +119,11 @@ const ChatMenu = ({ chat = null, children }) => {
                                             to={`/${receptor.user_name}`}
                                         >
                                             <Box marginRight='0.5rem' display='flex'>
-                                                <ProfileIcon />
+                                                <Profile />
                                             </Box>
                                             Ver perfil
                                             <Box marginLeft='0.5rem' display='flex'>
-                                                <RightArrowIcon />
+                                                <RightArrow />
                                             </Box>
                                         </MenuItem>
                                     ) : (
@@ -138,7 +135,7 @@ const ChatMenu = ({ chat = null, children }) => {
                                             className={classes.menuItem}
                                         >
                                             <Box marginRight='0.5rem' display='flex'>
-                                                <ProfileIcon />
+                                                <Profile />
                                             </Box>
                                             Ver perfiles
                                         </MenuItem>
@@ -155,7 +152,7 @@ const ChatMenu = ({ chat = null, children }) => {
                                             className={classes.menuItem}
                                         >
                                             <Box marginRight='0.5rem' display='flex'>
-                                                <OutIcon />
+                                                <Logout />
                                             </Box>
                                             Salir del grupo
                                         </MenuItem>

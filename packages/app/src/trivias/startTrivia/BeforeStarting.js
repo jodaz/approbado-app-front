@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { Layer } from '@approbado/lib/icons';
 import Box from '@material-ui/core/Box';
-import LayerIcon from '@approbado/lib/icons/LayerIcon';
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@approbado/lib/components/Button'
 import Switch from '@approbado/lib/components/Switch';
@@ -81,7 +81,7 @@ const BeforeStarting = () => {
             </Box>
             <Box className={classes.test}>
                 <Box>
-                    <LayerIcon />
+                    <Layer />
                 </Box>
                 <Box>
                     {`La trivia consta de ${questions.length} preguntas`}

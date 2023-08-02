@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { Profile } from '../../icons';
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import LinkButton from '@approbado/lib/components/LinkButton'
 import { useForumsDispatch } from '@approbado/lib/hooks/useForums'
 // Icons
-import ProfileIcon from '@approbado/lib/icons/ProfileIcon'
 import ReportDialog from './ReportDialog'
 
 const ForumCardMenuOptions = React.forwardRef(({ record, user }, ref) => {
@@ -30,7 +30,7 @@ const ForumCardMenuOptions = React.forwardRef(({ record, user }, ref) => {
                 <LinkButton
                     label="Ver perfil"
                     to={`/${record.owner.user_name}`}
-                    icon={<ProfileIcon />}
+                    icon={<Profile />}
                 />
             )}
             {(user.id != record.owner.id) && (

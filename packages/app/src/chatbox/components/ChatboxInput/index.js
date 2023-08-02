@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { Send } from '@approbado/lib/icons'
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import { makeStyles, alpha, styled } from '@material-ui/core'
-import SendIcon from '@approbado/lib/icons/SendIcon'
 import { Field, Form } from 'react-final-form';
 import Box from '@material-ui/core/Box'
 import { useParams } from 'react-router-dom'
@@ -120,7 +120,7 @@ const ChatInput = () => {
                         type='submit'
                         disabled={loading}
                     >
-                        <SendIcon />
+                        <Send />
                     </IconButton>
                 </Paper>
             )}
