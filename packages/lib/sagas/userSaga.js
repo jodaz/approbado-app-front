@@ -1,5 +1,5 @@
 import { put, takeLatest, all } from 'redux-saga/effects'
-import { JSONAxiosInstance as axios } from '@approbado/lib/api'
+import { apiProvider as axios } from '@approbado/lib/api'
 import { USER_FETCH_REQUESTED, fetchUserSuccess, SET_USER, UNSET_USER } from '../actions';
 import CONFIG_NAMES from '../configs'
 

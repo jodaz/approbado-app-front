@@ -30,6 +30,6 @@ jsonInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(
 blobInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(err));
 
 export {
-    jsonInstance as JSONAxiosInstance,
-    blobInstance as BlobAxiosInstance
+    jsonInstance as apiProvider,
+    blobInstance as fileProvider
 }
