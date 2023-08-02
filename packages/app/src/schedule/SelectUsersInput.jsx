@@ -4,10 +4,10 @@ import { apiProvider as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 import Chip from '@material-ui/core/Chip';
-import CloseIcon from '@approbado/lib/icons/CloseIcon'
 import { makeStyles } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
+import { Close } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     userCard: {
@@ -88,7 +88,7 @@ const SelectUsersInput = ({ submitting }) => {
                             label={option.names}
                             size="small"
                             classes={{ root: classes.chip }}
-                            deleteIcon={<CloseIcon />}
+                            deleteIcon={<Close />}
                             {...getTagProps({ index })}
                         />
                     ))

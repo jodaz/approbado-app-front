@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import {
+    makeStyles,
+    FormHelperText,
+    Typography
+} from '@material-ui/core';
+import { Upload } from '../icons';
 import { useInput, InputHelperText } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
-import { ReactComponent as UploadIcon } from '@approbado/lib/icons/Upload.svg'
-import Typography from '@material-ui/core/Typography'
 import Spinner from '@approbado/lib/components/Spinner'
 
 const useStyles = makeStyles(
@@ -141,7 +143,7 @@ const UploadFileButton = props => {
             >
                 {(!loading) ? (
                     <>
-                        <UploadIcon />
+                        <Upload />
                         <input
                             id={id}
                             {...getInputProps({

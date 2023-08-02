@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { Search } from '@approbado/lib/icons'
 import Box from '@material-ui/core/Box';
-import SearchIcon from '@approbado/lib/icons/SearchIcon'
 import TextField from '@material-ui/core/TextField'
 import SelectMessagesType from './components/SelectMessagesType'
 import ChatPreferencesMenu from './components/ChatPreferencesMenu'
@@ -27,7 +27,7 @@ const AsideBarHeader = ({ onChange }) => (
                 InputProps={{
                     startAdornment: (
                         <Box marginLeft='6px' display='flex'>
-                            <SearchIcon />
+                            <Search />
                         </Box>
                     )
                 }}

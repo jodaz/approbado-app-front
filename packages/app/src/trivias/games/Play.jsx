@@ -7,9 +7,9 @@ import Box from '@material-ui/core/Box'
 import AnswerPill from '../components/AnswerPill'
 import OptionsForm from '../components/OptionsForm'
 import Counter from '../components/Counter'
-import ShareIcon from '@approbado/lib/icons/ShareIcon'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import PlayersList from '../components/PlayersList'
+import { ShareBoxLine } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     passQuestion: {
@@ -134,7 +134,7 @@ export default function() {
                             component={LinkBehavior}
                             to='/trivias'
                         >
-                            Para más detalles ver recursos <ShareIcon className={classes.icon} />
+                            Para más detalles ver recursos <ShareBoxLine className={classes.icon} />
                         </Box>
                     </>
                 )}

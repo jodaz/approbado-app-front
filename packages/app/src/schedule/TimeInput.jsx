@@ -1,8 +1,8 @@
 import * as React from 'react'
+import { Watch } from '@approbado/lib/icons'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import TextInput from '@approbado/lib/components/TextInput'
 import Box from '@material-ui/core/Box'
-import TimeIcon from '@approbado/lib/icons/TimeIcon'
 import formatString from "format-string-by-pattern";
 
 const formatTime = value => {
@@ -25,7 +25,7 @@ const TimeInput = ({ submitting }) => (
             InputProps={{
                 startAdornment: (
                     <Box marginLeft='6px' display='flex'>
-                        <TimeIcon />
+                        <Watch />
                     </Box>
                 )
             }}

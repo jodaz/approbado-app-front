@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import {
     useNotificationDispatch
 } from '@approbado/lib/hooks/useNotifications'
-import { ReactComponent as ActionDelete } from '@approbado/lib/icons/Trash.svg';
+import { Trash2 } from '@approbado/lib/icons';
 import MenuItem from '@material-ui/core/MenuItem'
 import { axios } from '@approbado/lib/providers';
 
@@ -36,7 +36,7 @@ const DeleteNotification = ({ id, onClick }) => {
                 alignItems: 'center',
                 marginRight: '10px'
             }}>
-                <ActionDelete />
+                <Trash2 />
             </Box>
             Eliminar notificación
         </MenuItem>

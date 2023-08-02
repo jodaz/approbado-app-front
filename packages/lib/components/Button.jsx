@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import { alpha } from '@material-ui/core/styles/colorManipulator';
 import { useMediaQuery } from '@material-ui/core';
 import Fab from '@material-ui/core/Fab';
-import { ReactComponent as PlusIcon } from '@approbado/lib/icons/Plus.svg'
+import { Plus } from '@approbado/lib/icons';
 
 const useStyles = makeStyles(theme => ({
     loader: {
@@ -87,7 +87,7 @@ CustomButton.defaultProps = {
     variant: 'contained',
     color: 'secondary',
     type: 'submit',
-    icon: <PlusIcon />,
+    icon: <Plus />,
     fullWidth: false
 }
 

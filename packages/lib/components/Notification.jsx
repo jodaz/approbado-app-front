@@ -1,12 +1,13 @@
 import * as React from 'react'
-import DialogTitle from '@material-ui/core/DialogTitle';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
-import Dialog from '@approbado/lib/components/Dialog'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles';
-import ConfirmIcon from '@approbado/lib/icons/ConfirmIcon'
+import {
+    DialogTitle,
+    IconButton,
+    Dialog,
+    Typography,
+    Button,
+    makeStyles
+} from '@material-ui/core'
+import { CheckCircle, Close } from '../icons';
 import { useUiState, useUiDispatch } from '@approbado/lib/hooks/useUI'
 
 const useStyles = makeStyles(() => ({
@@ -35,7 +36,7 @@ const CustomDialogTitle = ({ handleClose }) => (
                 color: (theme) => theme.palette.grey[500],
             }}
         >
-            <CloseIcon />
+            <Close />
         </IconButton>
         ) : null}
     </DialogTitle>
@@ -81,7 +82,7 @@ const Notification = ({
             <Typography gutterBottom>
                 {notification.message}
             </Typography>
-            <ConfirmIcon width='144' height='144' />
+            <CheckCircle size='2em' />
             <Button onClick={handleClose} className={classes.button}>
                 <Typography variant="subtitle1">
                     Continuar

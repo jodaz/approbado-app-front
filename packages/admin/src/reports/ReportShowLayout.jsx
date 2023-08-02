@@ -1,10 +1,10 @@
 import * as React from 'react'
+import { Tag as TagIcon } from '@approbado/lib/icons'
 import Box from '@material-ui/core/Box';
 import Tag from '@approbado/lib/components/Tag';
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
-import { ReactComponent as TagIcon } from '@approbado/lib/icons/Tag.svg'
 import Link from '@material-ui/core/Link';
 import { useConvertPostgresDate } from '@approbado/lib/hooks/useConvertPostgresDate'
 import Spinner from '@approbado/lib/components/Spinner'

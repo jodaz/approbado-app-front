@@ -1,8 +1,8 @@
-import StarIcon from '@approbado/lib/icons/StarIcon'
+import { Star } from '@approbado/lib/icons'
 
 const BookmarkButton = () => {
     return (
-        <StarIcon />
+        <Star />
     )
 }
 

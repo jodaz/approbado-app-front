@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { InputAdornment, IconButton } from '@material-ui/core';
-import EyeIcon from '@approbado/lib/icons/EyeIcon';
-import EyeOffIcon from '@approbado/lib/icons/EyeOffIcon';
+import { EyeIcon, EyeOffIcon } from '../icons';
 import TextInput from './TextInput';
 
 const PasswordInput = ({
     initiallyVisible = false,
     ...rest
 }) => {
-    const [visible, setVisible] = useState(initiallyVisible);
+    const [visible, setVisible] = React.useState(initiallyVisible);
 
     const handleClick = () => {
         setVisible(!visible);

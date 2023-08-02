@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { RegCopy } from '@approbado/lib/icons'
 import Box from '@material-ui/core/Box';
 import TextInput from '@approbado/lib/components/TextInput'
-import IconCopy from '@approbado/lib/icons/IconCopy'
 import { useForm } from 'react-final-form'
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton'
@@ -56,7 +56,7 @@ const ClipboardCopyField = props => {
                             placement='right'
                         >
                             <IconButton>
-                                <IconCopy
+                                <RegCopy
                                     className={classes.icon}
                                     onClick={handleCopyClick}
                                 />

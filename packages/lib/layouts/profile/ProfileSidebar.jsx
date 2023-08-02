@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Edit } from '@approbado/lib/icons';
 import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
@@ -13,7 +14,6 @@ import { ReactComponent as Stage1 } from '@approbado/lib/illustrations/Stage1.sv
 import { ReactComponent as Forum } from '@approbado/lib/illustrations/Forum.svg'
 import { ReactComponent as Forum2 } from '@approbado/lib/illustrations/Forum2.svg'
 import { ReactComponent as Ribbon } from '@approbado/lib/illustrations/Ribbon.svg'
-import { ReactComponent as EditIcon } from '@approbado/lib/icons/Edit.svg'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 
 const Spacer = () => <span style={{ height: 0, width: '100%', borderBottom: '0.1rem solid rgba(0, 0, 0, 0.2)' }} />;
@@ -91,7 +91,7 @@ const ProfileSidebar = ({
                 </Typography>
                 {(user.id == profile.user_id && !isEditting) && (
                     <Box className={classes.icon} to='/profile/edit' component={LinkBehavior}>
-                        <EditIcon />
+                        <Edit />
                     </Box>
                 )}
             </Box>

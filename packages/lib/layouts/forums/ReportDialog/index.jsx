@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { useUiDispatch } from '@approbado/lib/hooks/useUI';
+import { Close } from '@approbado/lib/icons'
+import { InfoCircle } from '@approbado/lib/icons';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem'
-import InformationIcon from '@approbado/lib/icons/InformationIcon'
 import Box from '@material-ui/core/Box'
 import { apiProvider as axios } from '@approbado/lib/api'
 import ListReportReasons from './ListReportReasons'
@@ -91,7 +91,7 @@ export default function ReportDialog({ post_id }) {
                     alignItems: 'center',
                     marginRight: '10px'
                 }}>
-                    <InformationIcon />
+                    <InfoCircle />
                 </Box>
                     Reportar
             </MenuItem>
@@ -109,7 +109,7 @@ export default function ReportDialog({ post_id }) {
                         onClick={handleClose}
                         style={{ float: 'right' }}
                     >
-                        <CloseIcon />
+                        <Close />
                     </IconButton>
                 </DialogTitle>
                 <DialogContent className={classes.content}>

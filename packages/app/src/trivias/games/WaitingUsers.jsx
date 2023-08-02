@@ -2,11 +2,12 @@ import * as React from 'react'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
 import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/styles/makeStyles'
-import { useParams } from 'react-router-dom'
 import socketIOClient from "socket.io-client";
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon'
 import UserCardCheck from '../components/UserCardCheck'
 import CONFIG_NAMES from '@approbado/lib/configs'
+import {
+    Balance
+} from '@approbado/lib/icons'
 
 const users = [
     {
@@ -96,7 +97,7 @@ const WaitingUsers = () => {
             <Box className={classes.root}>
                 <Box className={classes.header}>
                     <Box className={classes.triviaName}>
-                        <BalanceIcon />
+                        <Balance />
                         <Box marginLeft='0.5rem'>{trivia.name}</Box>
                     </Box>
                 </Box>

@@ -1,7 +1,7 @@
-import SearchIcon from '@approbado/lib/icons/SearchIcon'
+import { Search } from '@approbado/lib/icons'
 
 const SearchInput = () => (
-    <SearchIcon />
+    <Search />
 )
 
 export default SearchInput

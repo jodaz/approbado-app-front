@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Edit } from '@approbado/lib/icons';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
-import { ReactComponent as EditIcon } from '@approbado/lib/icons/Edit.svg'
 import { useHistory } from 'react-router-dom'
 
 export default function({ id }) {
@@ -16,7 +16,7 @@ export default function({ id }) {
                 alignItems: 'center',
                 marginRight: '10px'
             }}>
-                <EditIcon />
+                <Edit />
             </Box>
             Editar evento
         </MenuItem>

@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Edit } from '@approbado/lib/icons';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
-import { ReactComponent as EditIcon } from '@approbado/lib/icons/Edit.svg'
 import { useHistory } from 'react-router-dom'
 
 const LinkButton = ({ to, label, icon }) => {
@@ -24,7 +24,7 @@ const LinkButton = ({ to, label, icon }) => {
 }
 
 LinkButton.defaultProps = {
-    icon: <EditIcon />,
+    icon: <Edit />,
     label: 'Editar'
 }
 

@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
-import LogoutIcon from '@approbado/lib/icons/LogoutIcon'
+import { Logout } from '@approbado/lib/icons'
 import { useUserDispatch } from '@approbado/lib/hooks/useUserState'
 import { useHistory } from 'react-router-dom'
 import configs from '@approbado/lib/configs'
@@ -34,7 +34,7 @@ const LogoutButton = ({ children }) => {
 
     return (
         <Button
-            startIcon={<LogoutIcon />}
+            startIcon={<Logout />}
             className={classes.button}
             onClick={() => handleClick()}
         >

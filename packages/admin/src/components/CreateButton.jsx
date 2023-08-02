@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { Plus } from '@approbado/lib/icons';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { ReactComponent as PlusIcon } from '@approbado/lib/icons/Plus.svg'
 
 const CreateButton = props => {
     const {
@@ -31,7 +31,7 @@ const CreateButton = props => {
             aria-label={label}
             {...rest}
         >
-            <PlusIcon />
+            <Plus />
         </Fab>
     ) : (
         <Button

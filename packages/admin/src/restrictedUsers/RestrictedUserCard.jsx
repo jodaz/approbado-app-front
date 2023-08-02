@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { MoreHorizontal } from '@approbado/lib/icons'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
-import { ReactComponent as More } from '@approbado/lib/icons/More.svg'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { useHistory } from 'react-router-dom'
@@ -13,7 +13,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 
 const OptionsMenu = props => (
-    <OptionsCardMenu icon={<More />}>
+    <OptionsCardMenu icon={<MoreHorizontal />}>
         <DeleteButton
             basePath='blacklisted-users'
             confirmColor='warning'

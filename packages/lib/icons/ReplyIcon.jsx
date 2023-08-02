@@ -1,5 +1,5 @@
-import ChatBubbleIcon from '@approbado/lib/icons/ChatBubbleIcon'
 import { withStyles } from '@material-ui/core/styles';
+import { ChatRight } from '@approbado/lib/icons'
 
 const styles = {
     root: {
@@ -10,7 +10,7 @@ const styles = {
 };
 
 const ReplyIcon = ({ classes }) => (
-    <ChatBubbleIcon className={classes.root} />
+    <ChatRight className={classes.root} />
 )
 
 export default withStyles(styles)(ReplyIcon);

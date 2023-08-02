@@ -1,15 +1,14 @@
 import * as React from 'react';
+import { Close, Trash2 } from '@approbado/lib/icons'
 import MenuItem from '@material-ui/core/MenuItem'
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button'
 import Box from '@material-ui/core/Box';
 import { apiProvider as axios } from '@approbado/lib/api'
-import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import { useHistory, useParams } from 'react-router-dom'
@@ -100,7 +99,7 @@ export default function({ onClick, id }) {
     return (
         <>
             <MenuItem ref={ref} onClick={handleClickOpen} className={classes.menuItem}>
-                <TrashIcon />
+                <Trash2 />
                 Eliminar chat
             </MenuItem>
             <Dialog open={open} onClose={handleClose}>
@@ -110,7 +109,7 @@ export default function({ onClick, id }) {
                         onClick={handleClose}
                         unresponsive
                     >
-                        <CloseIcon />
+                        <Close />
                     </IconButton>
                 </DialogTitle>
                 <DialogContent className={classes.content}>

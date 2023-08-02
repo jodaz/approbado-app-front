@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { useInput, InputHelperText } from 'react-admin';
+import { makeStyles, Typography } from '@material-ui/core';
+import { useInput } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
-import { ReactComponent as UploadIcon } from '@approbado/lib/icons/Upload.svg'
-import Typography from '@material-ui/core/Typography'
+import { Upload } from '../icons';
 
 const useStyles = makeStyles(
     theme => ({
@@ -144,7 +143,7 @@ const ProfilePhotoInput = props => {
             >
                 {(!file.hasPreview) ? (
                     <>
-                        <UploadIcon />
+                        <Upload />
                         <input
                             id={id}
                             {...getInputProps({

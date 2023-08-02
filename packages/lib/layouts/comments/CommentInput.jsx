@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Send } from '../../icons';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,7 +7,6 @@ import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import { makeStyles, alpha, styled } from '@material-ui/core'
 import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
-import SendIcon from '@approbado/lib/icons/SendIcon'
 import { Field, Form } from 'react-final-form';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Box from '@material-ui/core/Box'
@@ -150,7 +150,7 @@ const CommentContainer = () => {
                         onClick={handleSubmit}
                         disabled={submitting}
                     >
-                        <SendIcon />
+                        <Send />
                     </IconButton>
                 </Paper>
             )}

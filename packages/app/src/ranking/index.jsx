@@ -1,10 +1,10 @@
 import * as React from 'react'
+import { Search } from '@approbado/lib/icons'
 import Box from '@material-ui/core/Box'
 import { apiProvider as axios } from '@approbado/lib/api'
 import RankingTable from './RankingTable'
 import Spinner from '@approbado/lib/components/Spinner'
 import TextField from '@material-ui/core/TextField'
-import SearchIcon from '@approbado/lib/icons/SearchIcon'
 import { useMediaQuery } from '@material-ui/core'
 
 const initialState = {
@@ -49,7 +49,7 @@ const RankingList = () => {
                     InputProps={{
                         startAdornment: (
                             <Box marginLeft='6px' display='flex'>
-                                <SearchIcon />
+                                <Search />
                             </Box>
                         )
                     }}

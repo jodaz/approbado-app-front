@@ -1,11 +1,11 @@
 import * as React from 'react'
+import { Download } from '@approbado/lib/icons';
 import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import { makeStyles } from '@material-ui/core'
 import { ReactComponent as PDFIcon } from '@approbado/lib/icons/PDF.svg'
 import configs from '@approbado/lib/configs'
 import Link from '@material-ui/core/Link'
-import { ReactComponent as DownloadIcon } from '@approbado/lib/icons/download.svg'
 import { fileProvider } from '@approbado/lib/providers'
 import { useFileProvider } from '@jodaz_/file-provider'
 import IconButton from '@material-ui/core/IconButton'
@@ -66,7 +66,7 @@ export default function Resource({ id, title, size, key, file }) {
                 className={classes.content}
                 action={
                     <IconButton onClick={handleDownload}>
-                        <DownloadIcon />
+                        <Download />
                     </IconButton>
                 }
                 classes={{ action: classes.action }}

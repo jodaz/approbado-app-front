@@ -3,8 +3,7 @@ import { DatePicker } from "@material-ui/pickers";
 import Badge from "@material-ui/core/Badge";
 import { format, isValid } from "date-fns";
 import { Field } from 'react-final-form'
-import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
-import RightAngleIcon from '@approbado/lib/icons/RightAngleIcon'
+import { ChevronLeft, ChevronRight } from '@approbado/lib/icons'
 
 const convertDateFromUTC = date => format(new Date(date), 'MM-dd-yyyy')
 
@@ -36,8 +35,8 @@ const CalendarInput = ({ name, input: { value, onChange }, items }) => (
                 onChange(null);
             }
         }}
-        leftArrowIcon={<LeftAngleIcon />}
-        rightArrowIcon={<RightAngleIcon />}
+        leftArrowIcon={<ChevronLeft />}
+        rightArrowIcon={<ChevronRight />}
     />
 );
 

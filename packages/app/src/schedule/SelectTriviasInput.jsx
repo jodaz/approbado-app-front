@@ -3,7 +3,9 @@ import InputContainer from '@approbado/lib/components/InputContainer'
 import { apiProvider as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon'
+import {
+    Balance
+} from '@approbado/lib/icons'
 
 const SelectTriviasInput = ({ submitting }) => {
     const [trivias, setTrivias] = React.useState([])
@@ -32,7 +34,7 @@ const SelectTriviasInput = ({ submitting }) => {
                 inputProps={{
                     startAdornment: (
                         <Box marginLeft='6px' display='flex'>
-                            <BalanceIcon />
+                            <Balance size='1.5em' />
                         </Box>
                     ),
                     placeholder: 'Seleccione una trivia'

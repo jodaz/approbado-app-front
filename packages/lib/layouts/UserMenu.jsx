@@ -8,7 +8,7 @@ import {
     Typography
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import ArrowDown from '@material-ui/icons/KeyboardArrowDown';
+import { ChevronDown } from '../icons'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 
 const useStyles = makeStyles(theme => ({
@@ -62,7 +62,7 @@ const UserMenu = props => {
                     <Typography variant="subtitle1" fontWeight='900'>
                         {names}
                     </Typography>
-                    <ArrowDown />
+                    <ChevronDown />
                 </IconButton>
             </Tooltip>
             <Popover

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import LikeIcon from '@approbado/lib/icons/LikeIcon'
+import { Heart } from '../../icons';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { apiProvider as axios } from '@approbado/lib/api'
@@ -42,7 +42,7 @@ const LikeButton = ({ id, likeUser }) => {
             disabled={loading}
             className={classes.root}
         >
-            <LikeIcon className={classes.icon} />
+            <Heart className={classes.icon} />
         </IconButton>
     )
 }

@@ -1,19 +1,21 @@
 import * as React from 'react';
-import HomeIcon from '@approbado/lib/icons/HomeIcon';
-import ProfileIcon from '@approbado/lib/icons/ProfileIcon';
-import SettingsIcon from '@approbado/lib/icons/SettingsIcon';
-import BalanceIcon from '@approbado/lib/icons/BalanceIcon';
+import {
+    Settings,
+    Home,
+    Profile,
+    Balance,
+    Email,
+    Podium,
+    Bell
+} from '@approbado/lib/icons'
 import MenuItemLink from '@approbado/lib/components/MenuItemLink'
-import { ReactComponent as ForumIcon } from '@approbado/lib/icons/Forum.svg'
-import NotificationIcon from '@approbado/lib/icons/NotificationIcon'
-import MessageIcon from '@approbado/lib/icons/MessageIcon'
 
 const MenuItems = ({ open, onMenuClick, dense, user }) => (
     <React.Fragment>
         <MenuItemLink
             to="/dashboard"
-            primaryText='Home'
-            leftIcon={<HomeIcon />}
+            primaryText={'Inicio'}
+            leftIcon={<Home />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -22,7 +24,7 @@ const MenuItems = ({ open, onMenuClick, dense, user }) => (
         <MenuItemLink
             to='/notifications'
             primaryText='Notificaciones'
-            leftIcon={<NotificationIcon />}
+            leftIcon={<Bell />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -30,16 +32,15 @@ const MenuItems = ({ open, onMenuClick, dense, user }) => (
         <MenuItemLink
             to="/trivias"
             primaryText='Trivias'
-            leftIcon={<BalanceIcon />}
+            leftIcon={<Balance />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
-            exact
         />
         <MenuItemLink
             to='/forums'
             primaryText='Foros'
-            leftIcon={<ForumIcon />}
+            leftIcon={<Podium />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -47,7 +48,7 @@ const MenuItems = ({ open, onMenuClick, dense, user }) => (
         <MenuItemLink
             to='/chats'
             primaryText='Mensajes'
-            leftIcon={<MessageIcon />}
+            leftIcon={<Email />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -55,7 +56,7 @@ const MenuItems = ({ open, onMenuClick, dense, user }) => (
         <MenuItemLink
             to={`/${user.user_name}`}
             primaryText='Perfil'
-            leftIcon={<ProfileIcon />}
+            leftIcon={<Profile />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}
@@ -64,7 +65,7 @@ const MenuItems = ({ open, onMenuClick, dense, user }) => (
         <MenuItemLink
             to="/settings"
             primaryText='Configuración'
-            leftIcon={<SettingsIcon />}
+            leftIcon={<Settings />}
             onClick={onMenuClick}
             sidebarIsOpen={open}
             dense={dense}

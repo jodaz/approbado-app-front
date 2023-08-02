@@ -7,8 +7,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
-import RightAngleIcon from '@approbado/lib/icons/RightAngleIcon'
-import DownAngleIcon from '@approbado/lib/icons/DownAngleIcon'
+import { ChevronDown, ChevronRight } from '@approbado/lib/icons';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -79,7 +78,7 @@ export default function SelectMessagesType() {
                     aria-controls={open ? 'menu-list-grow' : undefined}
                     aria-haspopup="true"
                     onClick={handleToggle}
-                    endIcon={open ? <DownAngleIcon /> : <RightAngleIcon />}
+                    endIcon={open ? <ChevronDown /> : <ChevronRight />}
                 >
                     {options[selectedIndex]}
                 </Button>

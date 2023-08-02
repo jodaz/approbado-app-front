@@ -1,17 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import { alpha } from '@material-ui/core/styles/colorManipulator';
+import {
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle,
+    Button,
+    makeStyles,
+    alpha,
+    IconButton,
+    Typography
+} from '@material-ui/core'
+import { Close } from '@approbado/lib/icons'
 import classnames from 'classnames';
-import CloseIcon from '@approbado/lib/icons/CloseIcon';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 
 const buttonStyles = {
     padding: '0.5rem 2rem',
@@ -139,7 +141,7 @@ const Confirm = props => {
                         color: (theme) => theme.palette.grey[500],
                     }}
                 >
-                    <CloseIcon />
+                    <Close />
                 </IconButton>
             </DialogTitle>
             <DialogContent>

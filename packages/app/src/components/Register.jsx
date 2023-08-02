@@ -3,23 +3,20 @@ import { Field } from 'react-final-form';
 import {
     CardActions,
     Typography,
-    Box
+    Box,
+    InputAdornment,
+    ThemeProvider,
+    createMuiTheme
 } from '@material-ui/core';
+import { Lock, User, Email, Arroba, Phone, ConfirmationNumber } from '@approbado/lib/icons';
+import { Link } from 'react-router-dom'
+import { theme } from '@approbado/lib/styles';
+import { useFormAuthState, useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import Button from '@approbado/lib/components/Button'
 import axios from 'axios'
 import AuthLayout from './AuthLayout'
 import useStyles from '@approbado/lib/styles/formStyles'
-import { Link } from 'react-router-dom'
-import { theme } from '@approbado/lib/styles';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/PersonOutlineOutlined';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import VpnKeyIcon from '@material-ui/icons/VpnKeyOutlined';
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
-import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
-import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
 import Checkbox from '@approbado/lib/components/Checkbox'
-import { useFormAuthState, useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import TextInput from '@approbado/lib/components/TextInput'
 import formatString from "format-string-by-pattern";
 
@@ -114,7 +111,7 @@ const Register = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <AccountCircle />
+                                <User size='1.5em' />
                             </InputAdornment>
                         ),
                     }}
@@ -128,7 +125,7 @@ const Register = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <EmailOutlinedIcon />
+                                <Email size='1.5em' />
                             </InputAdornment>
                         ),
                     }}
@@ -142,7 +139,7 @@ const Register = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <AccountCircle />
+                                <Arroba size='1.5em' />
                             </InputAdornment>
                         ),
                     }}
@@ -157,7 +154,7 @@ const Register = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <VpnKeyIcon />
+                                <Lock size='1.5em' />
                             </InputAdornment>
                         ),
                     }}
@@ -173,7 +170,7 @@ const Register = () => {
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">
-                                <LocalPhoneOutlinedIcon />
+                                <Phone size='1.5em' />
                             </InputAdornment>
                         ),
                     }}
@@ -206,7 +203,7 @@ const Register = () => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <ConfirmationNumberIcon />
+                                    <ConfirmationNumber size='1.5em' />
                                 </InputAdornment>
                             ),
                         }}

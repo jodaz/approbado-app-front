@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useMediaQuery, makeStyles  } from '@material-ui/core'
 import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg'
-import LeftAngleIcon from '@approbado/lib/icons/LeftAngleIcon'
+import { ChevronLeft } from '@approbado/lib/icons'
 import TriviaCard from './TriviaCard'
 import GridList from '@approbado/lib/components/GridList'
 import Drawer from '@material-ui/core/Drawer'
@@ -113,7 +113,7 @@ const TriviaList = () => {
                     ref={wrapperRef}
                 >
                     <Box className={classes.unsetTriviaButton} onClick={() => unsetTrivia()}>
-                        <LeftAngleIcon />
+                        <ChevronLeft />
                         Volver
                     </Box>
                     {renderSelectedTriviaContent()}
