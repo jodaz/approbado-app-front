@@ -9,8 +9,7 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import IconButton from '@material-ui/core/IconButton';
 import Dot from '@approbado/lib/components/Dot'
 import Box from '@material-ui/core/Box';
-import DownAngleIcon from '@approbado/lib/icons/DownAngleIcon'
-import UpperAngleIcon from '@approbado/lib/icons/UpperAngleIcon'
+import { ChevronDown, ChevronUp } from '@approbado/lib/icons';
 import Button from '@material-ui/core/Button';
 import Tag from '@approbado/lib/components/Tag'
 import { format } from 'date-fns'
@@ -130,7 +129,7 @@ const ScheduledTriviaCard = props => {
                         aria-expanded={expanded}
                         aria-label="show more"
                     >
-                        {!expanded ? <DownAngleIcon /> : <UpperAngleIcon /> }
+                        {!expanded ? <ChevronDown /> : <ChevronUp /> }
                     </IconButton>
                 </Box>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>

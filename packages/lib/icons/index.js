@@ -33,11 +33,18 @@ export {
 
 export {
     LuSettings as Settings,
-    LuMoreHorizontal as MoreHorizontal
+    LuMoreHorizontal as MoreHorizontal,
+    LuGraduationCap as GraduationCap
 } from 'react-icons/lu'
 
 export {
-    BsCurrencyDollar as Dollar
+    FaRegCopy as RegCopy
+} from 'react-icons/fa'
+
+export {
+    BsCurrencyDollar as Dollar,
+    BsCheckCircleFill as CheckCircle,
+    BsChatRight as ChatRight
 } from 'react-icons/bs'
 
 export {
@@ -51,9 +58,12 @@ export {
     BiChevronLeft as ChevronLeft,
     BiChevronRight as ChevronRight,
     BiChevronUp as ChevronUp,
-    BiLinkAlt as Link,
-    BiCheckCircle as CheckCircle
+    BiLinkAlt as Link
 } from 'react-icons/bi'
+
+export {
+    IoMdCloseCircle as CloseCircle
+} from 'react-icons/io'
 
 export {
     GiHamburgerMenu as Menu

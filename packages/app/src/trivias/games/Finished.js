@@ -11,8 +11,7 @@ import Checkbox from '../components/Checkbox'
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NoAnswer from '../components/NoAnswer'
 // Icons
-import CheckSolid from '@approbado/lib/icons/CheckSolid'
-import CloseSolid from '@approbado/lib/icons/CloseSolid'
+import { CheckCircle, CloseCircle } from '@approbado/lib/icons'
 import Switch from '@approbado/lib/components/Switch'
 import Item from './Item'
 
@@ -180,7 +179,7 @@ export default function() {
                                         checked={true}
                                         tabIndex={-1}
                                         disableRipple
-                                        checkedIcon={(item.is_right) ? <CheckSolid /> : <CloseSolid />}
+                                        checkedIcon={(item.is_right) ? <CheckCircle /> : <CloseCircle />}
                                     />
                                 </ListItemIcon>
                                 <Box sx={{ fontWeight: 600 }}>

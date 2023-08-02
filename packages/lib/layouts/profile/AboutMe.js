@@ -4,10 +4,10 @@ import {
     Linkedin,
     Twitter,
     Message,
-    Profile
+    Profile,
+    GraduationCap
 } from '@approbado/lib/icons'
 import ProfileContentItem from './ProfileContentItem';
-import CertificationIcon from '@approbado/lib/icons/CertificationIcon';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -41,7 +41,7 @@ const AboutMe = ({ bio, email, profile }) => (
                     <Grid item xs={12} sm={4}>
                         <ProfileContentItem
                             title='Ocupación'
-                            icon={<CertificationIcon />}
+                            icon={<GraduationCap />}
                         >
                             <Typography variant="subtitle1">
                                 {(profile.ocupation) ? profile.ocupation : 'Ninguna'}

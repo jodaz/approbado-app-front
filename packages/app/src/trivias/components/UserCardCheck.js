@@ -1,6 +1,6 @@
 import Box from '@material-ui/core/Box'
 import Avatar from '@material-ui/core/Avatar'
-import CheckSolid from '@approbado/lib/icons/CheckSolid'
+import { CheckCircle } from '@approbado/lib/icons'
 import TimeIcon from '@approbado/lib/icons/TimeIcon'
 import { Link } from 'react-router-dom'
 
@@ -34,7 +34,7 @@ const UserCardCheck = ({
         }}>
             <Avatar />
             <Box sx={titleStyles} component={Link} to={`/${user_name}`}>{user_name}</Box>
-            {status == 'pending' ? <TimeIcon fill='#6D6D6D' /> : <CheckSolid />}
+            {status == 'pending' ? <TimeIcon fill='#6D6D6D' /> : <CheckCircle />}
         </Box>
     )
 }
