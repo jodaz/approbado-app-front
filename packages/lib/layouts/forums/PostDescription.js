@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { Tag as TagIcon } from '@approbado/lib/icons'
 import { makeStyles, Box, useMediaQuery  } from '@material-ui/core';
 import Dot from '@approbado/lib/components/Dot'
 import { Link } from 'react-router-dom'
 import ItemCollection from '@approbado/lib/components/ItemCollection'
 import { useConvertPostgresDate } from '@approbado/lib/hooks/useConvertPostgresDate'
-import { ReactComponent as TagIcon } from '@approbado/lib/icons/Tag.svg'
 
 const useStyles = makeStyles(theme => ({
     root: {

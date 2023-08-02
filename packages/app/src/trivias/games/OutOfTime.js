@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
+import { ShareBoxLine } from '@approbado/lib/icons'
 import Box from '@material-ui/core/Box'
 import Emoji from '@approbado/lib/components/Emoji'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
-import ShareIcon from '@approbado/lib/icons/ShareIcon'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 
 const useStyles = makeStyles(theme => ({
@@ -50,7 +50,7 @@ export default function() {
                 component={LinkBehavior}
                 to='/trivias'
             >
-                Para jugar de nuevo, continúe aquí <ShareIcon className={classes.icon} />
+                Para jugar de nuevo, continúe aquí <ShareBoxLine className={classes.icon} />
             </Box>
         </Box>
     )

@@ -4,14 +4,13 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import { Close } from '@approbado/lib/icons'
+import { Close, Trash2 } from '@approbado/lib/icons'
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
 import NoContent from '@approbado/lib/components/NoContent'
 import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
 import { JSONAxiosInstance as axios } from '@approbado/lib/api'
-import { ReactComponent as TrashIcon } from '@approbado/lib/icons/Trash.svg'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 
 const useStyles = makeStyles(theme => ({
@@ -92,7 +91,7 @@ export default function({ onClick, id }) {
                     alignItems: 'center',
                     marginRight: '10px'
                 }}>
-                    <TrashIcon />
+                    <Trash2 />
                 </Box>
                 Eliminar
             </MenuItem>

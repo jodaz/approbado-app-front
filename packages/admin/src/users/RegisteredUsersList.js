@@ -8,11 +8,11 @@ import {
     FilterLiveSearch
 } from 'react-admin'
 import { Form } from 'react-final-form';
+import { Download } from '@approbado/lib/icons';
 import Box from '@material-ui/core/Box';
 import GoToProfileButtonLink from '@approbado/lib/components/GoToProfileButtonLink'
 import DatagridListView from '@approbado/lib/components/DatagridListView'
 import Button from '@approbado/lib/components/Button'
-import { ReactComponent as DownloadIcon } from '@approbado/lib/icons/download.svg'
 import download from '@approbado/lib/utils/download';
 
 const FormFilter = props => {
@@ -82,7 +82,7 @@ const ListActions = props => {
     return (
         <Box display='flex' justifyContent='space-between' alignItems='center'>
             <FormFilter {...props} />
-            <Button icon={<DownloadIcon />} onClick={handleSubmit} disabled={loading}>
+            <Button icon={<Download />} onClick={handleSubmit} disabled={loading}>
                 Descargar
             </Button>
         </Box>

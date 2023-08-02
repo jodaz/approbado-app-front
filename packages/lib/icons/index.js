@@ -12,11 +12,13 @@ export {
 } from 'react-icons/ai'
 
 export {
+    MdOutlineWatchLater as Watch,
     MdLogout as Logout,
     MdLockOutline as Lock,
     MdOutlineConfirmationNumber as ConfirmationNumber,
     MdOutlineClose as Close,
-    MdOutlineThumbsUpDown as ThumbsUpDown
+    MdOutlineThumbsUpDown as ThumbsUpDown,
+    MdInsertDriveFile as File
 } from 'react-icons/md'
 
 export {
@@ -37,7 +39,14 @@ export {
     LuMoreHorizontal as MoreHorizontal,
     LuGraduationCap as GraduationCap,
     LuMessageSquarePlus as MessageSquarePlus,
-    LuSearch as Search
+    LuSearch as Search,
+    LuTrash2 as Trash2,
+    LuStar as Star,
+    LuDownload as Download,
+    LuEdit as Edit,
+    LuPlus as Plus,
+    LuCamera as Camera,
+    LuTag as Tag
 } from 'react-icons/lu'
 
 export {
@@ -68,7 +77,8 @@ export {
 } from 'react-icons/bi'
 
 export {
-    RiLightbulbLine as Lightbulb
+    RiLightbulbLine as Lightbulb,
+    RiShareBoxLine as ShareBoxLine
 } from 'react-icons/ri'
 
 export {

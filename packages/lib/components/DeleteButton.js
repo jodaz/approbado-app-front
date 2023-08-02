@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { Trash2 } from '@approbado/lib/icons';
 import PropTypes from 'prop-types';
-import { ReactComponent as ActionDelete } from '@approbado/lib/icons/Trash.svg';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import MenuItem from '@material-ui/core/MenuItem'
 import Box from '@material-ui/core/Box';
@@ -73,7 +73,7 @@ const DeleteButton = (
     );
 };
 
-const defaultIcon = <ActionDelete />;
+const defaultIcon = <Trash2 />;
 
 DeleteButton.propTypes = {
     basePath: PropTypes.string,

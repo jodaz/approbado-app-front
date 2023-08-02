@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Tag as TagIcon } from '@approbado/lib/icons'
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import Box from '@material-ui/core/Box';
@@ -9,7 +10,6 @@ import cardStyles from '@approbado/lib/styles/cardStyles'
 import Typography from '@material-ui/core/Typography';
 import Dot from '@approbado/lib/components/Dot';
 import Tag from '@approbado/lib/components/Tag';
-import { ReactComponent as TagIcon } from '@approbado/lib/icons/Tag.svg'
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import { useHistory } from 'react-router-dom'
 import { useConvertPostgresDate } from '@approbado/lib/hooks/useConvertPostgresDate'

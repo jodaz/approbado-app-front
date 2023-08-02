@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Lock } from '@approbado/lib/icons';
 import { makeStyles, alpha } from '@material-ui/core'
 import Card from '@material-ui/core/Card';
 import Box from '@material-ui/core/Box';
@@ -7,7 +8,6 @@ import cardStyles from '@approbado/lib/styles/cardStyles'
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { useTriviaDispatch, useTriviaState } from "@approbado/lib/hooks/useTriviaSelect"
-import PadLockIcon from '@approbado/lib/icons/PadLock'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -84,7 +84,7 @@ const TriviaCard = ({ data, id }) => {
             </CardActionArea>
             {(!data.is_free) && (
                 <Box className={classes.blockedContent}>
-                    <PadLockIcon className={classes.icon} /> Contenido bloqueado
+                    <Lock className={classes.icon} /> Contenido bloqueado
                 </Box>
             )}
         </Card>

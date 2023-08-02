@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DateInput } from 'react-admin'
-import { Close } from '@approbado/lib/icons'
+import { Close, Download } from '@approbado/lib/icons'
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,7 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@approbado/lib/components/Button'
 import Box from '@material-ui/core/Box';
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { ReactComponent as DownloadIcon } from '@approbado/lib/icons/download.svg'
 import { Form } from 'react-final-form'
 import SelectInput from '@approbado/lib/components/SelectInput';
 import download from '@approbado/lib/utils/download';
@@ -85,7 +84,7 @@ export default function() {
     return (
         <div>
             <Button
-                icon={<DownloadIcon />}
+                icon={<Download />}
                 onClick={handleClickOpen}
                 size="large"
             >
