@@ -1,14 +1,13 @@
 import * as React from 'react'
 import {
-    DialogTitle,
-    IconButton,
     Typography,
     Button,
     makeStyles
 } from '@material-ui/core'
 import Dialog from '@approbado/lib/components/Dialog'
-import { CheckCircle, Close } from '../icons';
+import { CheckCircle } from '../icons';
 import { useUiState, useUiDispatch } from '@approbado/lib/hooks/useUI'
+import DialogTitle from './DialogTitle';
 
 const useStyles = makeStyles(() => ({
     button: {
@@ -22,25 +21,6 @@ const useStyles = makeStyles(() => ({
         fontWeight: 'bold'
     },
 }))
-
-const CustomDialogTitle = ({ handleClose }) => (
-    <DialogTitle style={{ textAlign: 'right' }}>
-        {handleClose ? (
-        <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-                position: 'absolute',
-                right: 8,
-                top: 8,
-                color: (theme) => theme.palette.grey[500],
-            }}
-        >
-            <Close />
-        </IconButton>
-        ) : null}
-    </DialogTitle>
-)
 
 const Notification = ({
     autoHideDuration = 3000
@@ -78,7 +58,7 @@ const Notification = ({
     }, [notification.message]);
 
     return (
-        <Dialog open={open} handleClose={handleClose} title={<CustomDialogTitle handleClose={handleClose} />}>
+        <Dialog open={open} handleClose={handleClose} title={<DialogTitle handleClose={handleClose} />}>
             <Typography variant='h6' gutterBottom>
                 {notification.message}
             </Typography>

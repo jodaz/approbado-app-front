@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { DateInput } from 'react-admin'
-import { Close, Download } from '@approbado/lib/icons'
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@approbado/lib/components/Button'
-import Box from '@material-ui/core/Box';
-import InputContainer from '@approbado/lib/components/InputContainer'
+import {
+    Box,
+    Button,
+    makeStyles
+} from '@material-ui/core'
 import { Form } from 'react-final-form'
+import DialogTitle from '@approbado/lib/components/DialogTitle';
+import Dialog from '@approbado/lib/components/Dialog';
+import InputContainer from '@approbado/lib/components/InputContainer'
 import SelectInput from '@approbado/lib/components/SelectInput';
 import download from '@approbado/lib/utils/download';
 
@@ -84,63 +83,53 @@ export default function() {
     return (
         <div>
             <Button
-                icon={<Download />}
+                color="primary"
                 onClick={handleClickOpen}
                 size="large"
             >
-                Descargar
+                Generar reporte
             </Button>
             <Dialog
                 onClose={handleClose}
-                aria-labelledby="customized-dialog-title"
                 open={open}
+                title={<DialogTitle handleClose={handleClose} />}
             >
-                <DialogTitle className={classes.title}>
-                    <IconButton
-                        aria-label="close"
-                        onClick={handleClose}
-                        unresponsive
-                    >
-                        <Close />
-                    </IconButton>
-                </DialogTitle>
-                <DialogContent className={classes.content}>
-                    <Form
-                        onSubmit={handleSubmit}
-                        validate={validate}
-                        render={ ({ handleSubmit, submitting }) => (
-                            <Box width='20rem' display='flex' justifyContent="center" flexDirection='column'>
-                                <Box component="h3" textAlign="center">
-                                    Reporte
-                                </Box>
-                                <Box component="p" marginBottom='2rem' textAlign="center">
-                                    Selecciona el rango de fechas y el tipo de pago para crear el reporte.
-                                </Box>
-                                <InputContainer label='Tipo de pago' md='12' disabled={submitting}>
-                                    <SelectInput name="payment_method" options={TYPES} />
-                                </InputContainer>
-                                <InputContainer label='Desde' md='12' disabled={submitting}>
-                                    <DateInput source="from" fullWidth />
-                                </InputContainer>
-                                <InputContainer label='Hasta' md='12' disabled={submitting}>
-                                    <DateInput source="to" fullWidth />
-                                </InputContainer>
-                                <Button
-                                    disabled={submitting}
-                                    onClick={event => {
-                                        if (event) {
-                                            event.preventDefault();
-                                            handleSubmit();
-                                        }
-                                    }}
-                                    unresponsive
-                                >
-                                    Descargar
-                                </Button>
+                <Form
+                    onSubmit={handleSubmit}
+                    validate={validate}
+                    render={ ({ handleSubmit, submitting }) => (
+                        <Box width='20rem' display='flex' justifyContent="center" flexDirection='column'>
+                            <Box component="h3" textAlign="center">
+                                Reporte
                             </Box>
-                        )}
-                    />
-                </DialogContent>
+                            <Box component="p" marginBottom='2rem' textAlign="center">
+                                Selecciona el rango de fechas y el tipo de pago para crear el reporte.
+                            </Box>
+                            <InputContainer label='Tipo de pago' md='12' disabled={submitting}>
+                                <SelectInput name="payment_method" options={TYPES} />
+                            </InputContainer>
+                            <InputContainer label='Desde' md='12' disabled={submitting}>
+                                <DateInput source="from" fullWidth />
+                            </InputContainer>
+                            <InputContainer label='Hasta' md='12' disabled={submitting}>
+                                <DateInput source="to" fullWidth />
+                            </InputContainer>
+                            <Button
+                                color="primary"
+                                disabled={submitting}
+                                onClick={event => {
+                                    if (event) {
+                                        event.preventDefault();
+                                        handleSubmit();
+                                    }
+                                }}
+                                unresponsive
+                            >
+                                Descargar
+                            </Button>
+                        </Box>
+                    )}
+                />
             </Dialog>
         </div>
     );

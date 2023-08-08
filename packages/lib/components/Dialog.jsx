@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/';
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
+import {
+    makeStyles,
+    DialogContent,
+    Dialog as MuiDialog,
+    Backdrop
+} from '@material-ui/core/';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -10,27 +13,29 @@ const useStyles = makeStyles(() => ({
     }
 }));
 
-CustomizedDialogs.defaultProps = {
+const CustomBackdrop = () => <Backdrop invisible />
+
+Dialog.defaultProps = {
     children: <></>,
     title: <></>
 }
 
-export default function CustomizedDialogs({ open, handleClose, children, backdrop, title, ...rest }) {
+export default function Dialog({ open, handleClose, children, backdrop, title, ...rest }) {
     const classes = useStyles();
 
     return (
-        <Dialog
+        <MuiDialog
             onClose={handleClose}
             aria-labelledby="customized-dialog-title"
             open={open}
             className={classes.root}
-            BackdropComponent={backdrop && backdrop}
+            BackdropComponent={CustomBackdrop}
             {...rest}
         >
             {React.cloneElement(title, {})}
             <DialogContent>
                 {children}
             </DialogContent>
-        </Dialog>
+        </MuiDialog>
     );
 }
