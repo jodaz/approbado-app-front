@@ -2,11 +2,11 @@ import * as React from 'react'
 import {
     DialogTitle,
     IconButton,
-    Dialog,
     Typography,
     Button,
     makeStyles
 } from '@material-ui/core'
+import Dialog from '@approbado/lib/components/Dialog'
 import { CheckCircle, Close } from '../icons';
 import { useUiState, useUiDispatch } from '@approbado/lib/hooks/useUI'
 
@@ -79,10 +79,10 @@ const Notification = ({
 
     return (
         <Dialog open={open} handleClose={handleClose} title={<CustomDialogTitle handleClose={handleClose} />}>
-            <Typography gutterBottom>
+            <Typography variant='h6' gutterBottom>
                 {notification.message}
             </Typography>
-            <CheckCircle size='2em' />
+            <CheckCircle size='10em' />
             <Button onClick={handleClose} className={classes.button}>
                 <Typography variant="subtitle1">
                     Continuar

@@ -22,6 +22,10 @@ export {
 } from 'react-icons/md'
 
 export {
+    PiCheckCircleLight as CheckCircle
+} from 'react-icons/pi'
+
+export {
     CgProfile as Profile
 } from 'react-icons/cg'
 
@@ -55,7 +59,6 @@ export {
 
 export {
     BsCurrencyDollar as Dollar,
-    BsCheckCircleFill as CheckCircle,
     BsChatRight as ChatRight
 } from 'react-icons/bs'
 

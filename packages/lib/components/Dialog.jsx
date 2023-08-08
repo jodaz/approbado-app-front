@@ -3,10 +3,10 @@ import { makeStyles } from '@material-ui/core/';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     root: {
         border: '0 !important',
-        borderRadius: '6px !important',
+        borderRadius: '6px !important'
     }
 }));
 
