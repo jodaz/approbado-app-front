@@ -1,13 +1,14 @@
-import Avatar from '@material-ui/core/Avatar'
-import Box from '@material-ui/core/Box';
+import {
+    Box,
+    Skeleton,
+    makeStyles,
+    useMediaQuery
+} from '@material-ui';
 import { useChatState } from '@approbado/lib/hooks/useChat'
-import Skeleton from '@material-ui/lab/Skeleton';
-import makeStyles from '@material-ui/styles/makeStyles'
-import configs from '@approbado/lib/configs';
 import BookmarkInput from './BookmarkInput'
 import SearchInput from './SearchInput'
 import ChatMenu from '../../../layouts/Chat/AsideChatList/components/ChatMenu'
-import { useMediaQuery } from '@material-ui/core';
+import Avatar from '@approbado/lib/components/Avatar';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -53,7 +54,7 @@ const ChatboxHeader = () => {
                     />
                 ) : (
                     <Box className={classes.names}>
-                        <Avatar src={`${configs.SOURCE}/${current.participants[0].picture}`} />
+                        <Avatar alt='user_picture' source={current.participants[0].picture} />
                     </Box>
                 )}
             </Box>

@@ -1,6 +1,5 @@
-import Avatar from '@material-ui/core/Avatar'
 import Box from '@material-ui/core/Box'
-import CONFIG_NAMES from '@approbado/lib/configs'
+import Avatar from '@approbado/lib/components/Avatar';
 import makeStyles from '@material-ui/styles/makeStyles'
 import Tooltip from '@material-ui/core/Tooltip';
 import { Link } from 'react-router-dom'
@@ -67,7 +66,8 @@ const PlayersList = ({ users }) => {
                         >
                             {currUser.id == user.id && <Box className={classes.mark} />}
                             <Avatar
-                                src={`${CONFIG_NAMES.SOURCE}/${user.picture}`}
+                                alt="profile_picture"
+                                source={user.picture}
                                 className={classes.playerPic}
                             />
                             <Box>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from '@approbado/lib/components/Avatar';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -6,9 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import { history } from '@approbado/lib/providers'
 import Tooltip from '@material-ui/core/Tooltip';
-import Avatar from '@material-ui/core/Avatar';
 import { useDialogDispatch, useDialogState } from '@approbado/lib/hooks/useDialog'
-import CONFIG_NAMES from '@approbado/lib/configs';
 import Box from '@material-ui/core/Box';
 import { Close } from '@approbado/lib/icons'
 
@@ -110,8 +109,8 @@ const ListProfilesModal = () => {
                 {participants.map(user => (
                     <Tooltip title={user.names}>
                         <Avatar
-                            src={`${CONFIG_NAMES.SOURCE}/${user.picture}`}
-                            alt={`${user.names}_picture`}
+                            source={user.picture}
+                            alt='user_picture'
                             onClick={() => handleUserRedirect(user.user_name)}
                         />
                     </Tooltip>

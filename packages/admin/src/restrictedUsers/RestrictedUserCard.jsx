@@ -1,15 +1,16 @@
 import * as React from 'react';
+import Avatar from '@approbado/lib/components/Avatar';
+import {
+    Card,
+    CardHeader,
+    Typography,
+    Box,
+    makeStyles
+} from '@material-ui/core'
 import { MoreHorizontal } from '@approbado/lib/icons'
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/configs'
-import makeStyles from '@material-ui/styles/makeStyles';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 
 const OptionsMenu = props => (
@@ -77,8 +78,8 @@ const RestrictedUserCard = ({ data, id }) => {
                 }
                 avatar={
                     <Avatar
-                        aria-label="recipe"
-                        src={`${configs.SOURCE}/${data.picture}`}
+                        alt="user_picture"
+                        source={data.picture}
                     />
                 }
                 subheader={

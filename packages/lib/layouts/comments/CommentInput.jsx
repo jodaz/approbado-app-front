@@ -5,9 +5,8 @@ import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import { makeStyles, alpha, styled } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/configs'
 import { Field, Form } from 'react-final-form';
+import Avatar from '@approbado/lib/components/Avatar';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Box from '@material-ui/core/Box'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
@@ -117,9 +116,9 @@ const CommentContainer = () => {
             render={({ handleSubmit, submitting }) => (
                 <Paper component="form" className={classes.root}>
                     <Avatar
-                        src={`${configs.SOURCE}/${picture}`}
-                        aria-label="menu"
+                        source={picture}
                         className={classes.avatar}
+                        alt="user_picture"
                     />
                     <Field name='summary'>
                         {({

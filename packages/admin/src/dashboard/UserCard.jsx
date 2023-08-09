@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core'
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import Avatar from '@approbado/lib/components/Avatar'
+import { Card, CardContent, Typography, makeStyles } from '@material-ui/core'
 import PropTypes from 'prop-types'
-import Avatar from '@material-ui/core/Avatar';
 import isEmpty from 'is-empty'
 import { useHistory } from 'react-router-dom'
-import configs from '@approbado/lib/configs'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -74,7 +70,7 @@ const UserCard = ({ data, index }) => {
             <CardContent className={classes.cardContent}>
                 <Avatar
                     className={classes.avatar}
-                    src={`${configs.SOURCE}/${data.picture}`}
+                    source={data.picture}
                     alt='photo_profile'
                 />
                 <div className={classes.innerContent}>

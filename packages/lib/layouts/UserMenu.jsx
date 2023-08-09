@@ -1,10 +1,10 @@
 import * as React from 'react'
+import Avatar from '@approbado/lib/components/Avatar';
 import {
     Tooltip,
     IconButton,
     Popover,
     MenuList,
-    Avatar,
     Typography
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
@@ -56,8 +56,8 @@ const UserMenu = props => {
                 >
                     <Avatar
                         className={classes.avatar}
-                        src={`${process.env.REACT_APP_API_DOMAIN}/${picture}`}
-                        alt={names}
+                        source={picture}
+                        alt={'user_picture'}
                     />
                     <Typography variant="subtitle1" fontWeight='900'>
                         {names}

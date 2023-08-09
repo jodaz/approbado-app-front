@@ -1,9 +1,9 @@
 import * as React from 'react';
+import Avatar from '@approbado/lib/components/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
 import { Camera } from '@approbado/lib/icons'
-import Avatar from '@material-ui/core/Avatar'
 
 const useStyles = makeStyles(
     theme => ({
@@ -145,8 +145,9 @@ const ProfilePhotoInput = props => {
 
     const thumbs = () => (
         <Avatar
+            alt="user_picture"
             className={classes.img}
-            src={file.preview}
+            source={file.preview}
         />
     );
 

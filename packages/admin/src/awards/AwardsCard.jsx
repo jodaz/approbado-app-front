@@ -3,10 +3,10 @@ import {
     Card,
     CardHeader,
     Typography,
-    Avatar,
     Box
 } from '@material-ui/core'
 import { MoreHorizontal } from '@approbado/lib/icons'
+import Avatar from '@approbado/lib/components/Avatar';
 import PropTypes from 'prop-types'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
@@ -40,7 +40,7 @@ const AwardCard = ({ data, id }) => {
                 avatar={
                     (data.type === 'Insignia') ? (
                         <Avatar
-                            src={`${process.env.REACT_APP_API_DOMAIN}/${data.file}`}
+                            source={data.file}
                             alt='icon'
                         />
                     ) : (
