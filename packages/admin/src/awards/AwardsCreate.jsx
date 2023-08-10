@@ -1,15 +1,14 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { createAward } from '@approbado/lib/services/awards.services'
 import { useParams } from 'react-router-dom'
 import { useHistory } from 'react-router-dom'
-import { fileProvider } from '@approbado/lib/api'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import validate from './validateAwardForm'
 import { FileInput, ACCESS_TYPES } from './awardsFormHelpers'
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
-import formDataHandler from '@approbado/lib/api/formDataHandler'
 
 const AwardsCreate = () => {
     const { trivia_id } = useParams()
@@ -17,19 +16,16 @@ const AwardsCreate = () => {
     const history = useHistory()
 
     const save = React.useCallback(async ({ file, ...restValues }) => {
-        const data = await formDataHandler({ trivia_id: trivia_id, file: file.rawFile, ...restValues }, 'file');
+        const response = await createAward({
+            trivia_id: trivia_id,
+            file: file.rawFile, ...restValues
+        });
 
-        try {
-            const res = await fileProvider.post('/awards', data)
-
-            if (res.status >= 200 && res.status < 300) {
-                history.push(`/trivias/${trivia_id}/awards`)
-                showNotification(`¡Ha registrado el premio "${restValues.title}" exitosamente!`)
-            }
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
+        if (response.success) {
+            history.push(`/trivias/${trivia_id}/awards`)
+            showNotification(`¡Ha registrado el premio "${restValues.title}" exitosamente!`)
+        } else {
+            return response.data;
         }
     }, [trivia_id])
 

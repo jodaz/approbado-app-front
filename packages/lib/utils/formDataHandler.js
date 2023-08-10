@@ -7,7 +7,7 @@ const formDataHandler = (data, fieldFileName = 'file') => {
     }
 
     for (let [key, value] of Object.entries(rest)) {
-        if (typeof value == 'undefined') continue; // ignore undefined or null
+        if (typeof value == 'undefined' || value === null) continue; // ignore undefined or null
 
         if (Array.isArray(value)) {
             value = JSON.stringify(value)

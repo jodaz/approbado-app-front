@@ -1,62 +1,55 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import isEmpty from 'is-empty'
 import validate from './validateAwardForm'
 import Spinner from '@approbado/lib/components/Spinner'
 import { FileInput, ACCESS_TYPES } from './awardsFormHelpers'
 import { useHistory, useParams } from 'react-router-dom'
-import { apiProvider as axios } from '@approbado/lib/api'
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
+import { getAward, editAward } from '@approbado/lib/services/awards.services'
 
 const AwardsEdit = () => {
     const { award_id, trivia_id } = useParams();
-    const [provider, { data: fileDataResponse, loading }] = useFileProvider(fileProvider);
-    const [record, setRecord] = React.useState({})
+    const [record, setRecord] = React.useState(null)
     const history = useHistory();
     const { showNotification } = useUiDispatch();
 
-    const fetchData = async () => {
-        const { data } = await axios.get(`/awards/${award_id}`)
+    const fetchAward = async () => {
+        const response = await getAward(award_id)
 
-        if (Object.entries(data).length) {
-            setRecord(data)
+        if (response.success) {
+            setRecord(response.data)
+        } else {
+            console.log(response.data)
         }
     }
 
-    const save = React.useCallback(async (values) => {
-        const data = { id: award_id, data: values };
-        try {
-            await provider({
-                resource: 'awards',
-                type: 'update',
-                payload: data
-            });
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
-        }
-    }, [provider])
+    const save = React.useCallback(async ({ file, ...restValues }) => {
+        const data = {
+            trivia_id: trivia_id,
+            file: file.rawFile,
+            ...restValues
+        };
 
-    React.useEffect(() => {
-        if (!isEmpty(fileDataResponse)) {
+        const response = await editAward(award_id, data)
+
+        if (response.success) {
             history.push(`/trivias/${trivia_id}/awards`)
-            showNotification(`¡Ha actualizado el premio "${fileDataResponse.title}" exitosamente!`)
+            showNotification(`¡Ha actualizado el premio "${restValues.title}" exitosamente!`)
+        } else {
+            return response.data;
         }
-    }, [fileDataResponse])
+    }, [trivia_id, award_id])
 
     React.useEffect(() => {
         if (award_id) {
-            fetchData()
+            fetchAward()
         }
     }, [award_id])
 
-    if (!Object.entries(record).length) return <Spinner />
+    if (!record) return null;
 
     return (
         <BaseForm
@@ -64,7 +57,6 @@ const AwardsEdit = () => {
             validate={validate}
             formName='Editar premio'
             record={record}
-            loading={loading}
         >
             <InputContainer label='Nombre'>
                 <TextInput
