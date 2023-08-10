@@ -7,9 +7,10 @@
   "version": "1.0.0",
   "scripts": {
     "build:app": "yarn workspace @approbado/app run build",
-    "build:admin": "CI=false && yarn workspace @approbado/admin run build",
+    "build:admin": "yarn workspace @approbado/admin run build",
     "start:app": "yarn workspace @approbado/app run start",
-    "start:admin": "CI=false && yarn workspace @approbado/admin run start"
+    "start:admin": "yarn workspace @approbado/admin run start",
+    "start:mobile": "yarn workspace @approbado/mobile run start"
   },
   "dependencies": {
     "@date-io/date-fns": "1.x",
