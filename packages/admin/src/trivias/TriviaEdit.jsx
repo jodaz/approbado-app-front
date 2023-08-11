@@ -30,8 +30,10 @@ const TriviaEdit = ({ record }) => {
         const { data, success } = await editTrivia(record.id, values)
 
         if (success) {
+            setLoading(false)
             showNotification(`¡Ha actualizado la trivia "${data.name}" exitosamente!`)
         } else {
+            setLoading(false)
             return data;
         }
     }, [record.id])

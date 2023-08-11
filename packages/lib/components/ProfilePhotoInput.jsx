@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
 import { Camera } from '@approbado/lib/icons'
+import CONFIG_NAMES from '../configs';
 
 const useStyles = makeStyles(
     theme => ({
@@ -62,7 +63,7 @@ const useStyles = makeStyles(
     { name: 'RaProfilePhotoInput' }
 );
 
-const filePreviewOrigin = filepath => (`${process.env.REACT_APP_API_DOMAIN}/${filepath}`)
+const filePreviewOrigin = filepath => (`${CONFIG_NAMES.source}/${filepath}`)
 
 const ProfilePhotoInput = props => {
     const {
