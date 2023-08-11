@@ -6,8 +6,6 @@ import { makeStyles } from '@material-ui/core'
 import { ReactComponent as PDFIcon } from '@approbado/lib/icons/PDF.svg'
 import configs from '@approbado/lib/configs'
 import Link from '@material-ui/core/Link'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import IconButton from '@material-ui/core/IconButton'
 import { downloadFile } from '@approbado/lib/services/files.services';
 import download from '@approbado/lib/utils/download';
