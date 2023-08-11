@@ -1,14 +1,12 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { Form } from 'react-final-form'
 import { makeStyles } from '@material-ui/core'
+import { useUserDispatch, useUserState } from '@approbado/lib/hooks/useUserState'
+import { updateProfile } from '@approbado/lib/services/profile.service'
 import Grid from '@material-ui/core/Grid'
 import ProfileSidebar from '@approbado/lib/layouts/profile/ProfileSidebar'
-import { useUserDispatch, useUserState } from '@approbado/lib/hooks/useUserState'
 import TabbedList from '@approbado/lib/components/TabbedList'
-import { Form } from 'react-final-form'
-import isEmpty from 'is-empty'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import DefaultLayout from '../Default'
 import Box from '@material-ui/core/Box'
 
@@ -42,31 +40,28 @@ const tags = [
 
 const EditProfileLayout = ({ children }) => {
     const classes = useStyles();
-    const [provider, {  data }] = useFileProvider(fileProvider);
     const { user, isAuth } = useUserState();
     const { showNotification } = useUiDispatch();
     const { fetchUser } = useUserDispatch();
 
-    const handleSubmit = React.useCallback(async values => {
-        try {
-            await provider({
-                resource: 'profile',
-                type: 'create',
-                payload: values
-            });
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
-        }
-    }, [provider]);
+    const handleSubmit = React.useCallback(async ({ file, ...restValues }) => {
+        setLoading(true)
+        const values = {
+            file: file.rawFile,
+            ...restValues
+        };
 
-    React.useEffect(() => {
-        if (!isEmpty(data)) {
-            showNotification('¡Su perfil ha sido actualizado!')
+        const { data, success } = await updateProfile(values)
+
+        if (success) {
+            setLoading(false)
             fetchUser();
+            showNotification(`Su perfil ha sido actualizado.`)
+        } else {
+            setLoading(false)
+            return data;
         }
-    }, [data])
+    }, []);
 
     if (!isAuth) return null;
 
