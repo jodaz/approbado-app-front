@@ -1,9 +1,8 @@
 import {
     Box,
-    Skeleton,
     makeStyles,
     useMediaQuery
-} from '@material-ui';
+} from '@material-ui/core';
 import { useChatState } from '@approbado/lib/hooks/useChat'
 import BookmarkInput from './BookmarkInput'
 import SearchInput from './SearchInput'
@@ -41,17 +40,18 @@ const ChatboxHeader = () => {
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
     )
+                    {/* <Skeleton
+                        animation="wave"
+                        height={10}
+                        width="80%"
+                        style={{ marginBottom: 6 }}
+                    /> */}
 
     return (
         <Box className={classes.root}>
             <Box sx={{ marginRight: '1rem' }}>
                 {!selected ? (
-                    <Skeleton
-                        animation="wave"
-                        variant="circle"
-                        width={40}
-                        height={40}
-                    />
+                    <></>
                 ) : (
                     <Box className={classes.names}>
                         <Avatar alt='user_picture' source={current.participants[0].picture} />
@@ -60,12 +60,7 @@ const ChatboxHeader = () => {
             </Box>
             <Box className={classes.container}>
                 {!selected ? (
-                    <Skeleton
-                        animation="wave"
-                        height={10}
-                        width="80%"
-                        style={{ marginBottom: 6 }}
-                    />
+                    <></>
                 ) : (
                     <Box className={classes.names}>
                         {current.is_private
