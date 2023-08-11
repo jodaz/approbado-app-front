@@ -8,12 +8,12 @@ export async function listFiles(query) {
             params: getQueryFromParams(query)
         })
 
-        const { data, count } = response.data
+        const { data, total } = response.data
 
         return {
             success: true,
             data: data,
-            count: count
+            count: total
         }
     } catch (error){
         return {
@@ -68,6 +68,20 @@ export async function getFile(data) {
             success: true,
             data: response.data,
         }
+    }catch (error){
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
+export async function downloadFile(id) {
+    try {
+        const { data } = await apiProvider.get(`/files/download/${id}`)
+
+        return { success: true, data: data }
     }catch (error){
         return {
             success: false,

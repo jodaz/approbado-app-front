@@ -1,25 +1,37 @@
 import * as React from 'react'
+import { listFiles } from '@approbado/lib/services/files.services'
 import Resource from './Resource'
 import Spinner from '@approbado/lib/components/Spinner'
-import useFetch from '@approbado/lib/hooks/useFetch'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 
 const ResourceList = ({ id }) => {
-    const {
-        loading,
-        total,
-        data,
-        error
-    } = useFetch('/files', {
-        perPage: 100,
-        page: 1,
-        sort: { field: 'created_at', order: 'DESC' },
-        filter: { trivia_id: id }
-    })
+    const [resources, setResources] = React.useState([])
+    const [total, setTotal] = React.useState(0)
+    const [loading, setLoading] = React.useState(false)
+
+    const fetchResources = async () => {
+        setLoading(true)
+        const { success, data, count } = await listFiles({
+            filter: {
+                trivia_id: id
+            }
+        });
+
+        if (success) {
+            setLoading(false)
+            setTotal(count)
+            setResources(data)
+        } else {
+            setLoading(false)
+            console.log(data)
+        }
+    }
+
+    React.useEffect(() => {
+        fetchResources()
+    }, [id])
 
     if (loading) return <Spinner />;
-
-    if (error) return <ErrorMessage />;
 
     if (!total) {
         return (
@@ -31,7 +43,7 @@ const ResourceList = ({ id }) => {
 
     return (
         <div>
-            {data.map(item => (
+            {resources.map(item => (
                 <Resource
                     {...item}
                 />
