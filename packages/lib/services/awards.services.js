@@ -5,9 +5,7 @@ import getQueryFromParams from "../utils/getQueryFromParams";
 export async function listAwards(query) {
     try{
         const response = await apiProvider.get('/awards', {
-            params: {
-                params: getQueryFromParams(query)
-            }
+            params: getQueryFromParams(query)
         })
 
         const { data, count } = response.data
