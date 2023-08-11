@@ -9,8 +9,8 @@ import Box from '@material-ui/core/Box';
 import { useHistory } from 'react-router-dom';
 import PostDescription from './PostDescription'
 import ForumCardMenuOptions from './ForumCardMenuOptions';
-import Avatar from '@material-ui/core/Avatar';
 import Skeleton from "@material-ui/lab/Skeleton";
+import Avatar from '@approbado/lib/components/Avatar';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -94,8 +94,8 @@ const ForumCard = ({ data, user, rootRef }) => {
                       />
                     ) : (
                         <Avatar
-                            aria-label="recipe"
-                            src={`${process.env.REACT_APP_API_DOMAIN}/${data.owner.picture}`}
+                            source={data.owner.picture}
+                            alt="user_picture"
                         />
                     )
                 }

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
-import SelectInput from '@approbado/lib/components/SelectInput'
+import { listSubthemes } from '@approbado/lib/services/subthemes.service'
 import { useParams } from 'react-router-dom'
+import InputContainer from '@approbado/lib/components/InputContainer'
+import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 
 const SelectSubthemeInput = ({ disabled }) => {
@@ -10,8 +10,15 @@ const SelectSubthemeInput = ({ disabled }) => {
     const [options, setOptions] = React.useState([])
 
     const fetchOptions = React.useCallback(async () => {
-        const { data: { data } } = await axios.get(`subthemes?filter%5Btrivia_id%5D=${trivia_id}`)
-        setOptions(data)
+        const { success, data } = await listSubthemes({
+            filter: {
+                trivia_id: trivia_id
+            }
+        })
+
+        if (success) {
+            setOptions(data)
+        }
     }, []);
 
     React.useEffect(() => {

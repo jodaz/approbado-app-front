@@ -1,10 +1,11 @@
 import * as React from 'react';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/configs'
-import Link from '@material-ui/core/Link';
+import {
+    makeStyles,
+    Box,
+    Link
+} from '@material-ui/core'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
+import Avatar from '@approbado/lib/components/Avatar';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -40,8 +41,8 @@ const BlacklistedUserCard = ({ data }) => {
         <Box className={classes.root}>
             <Box className={classes.reason}>
                 <Avatar
-                    aria-label="recipe"
-                    src={`${configs.SOURCE}/${picture}`}
+                    source={picture}
+                    alt="profile_pic"
                 />
                 <Box display="flex" flexDirection="column">
                     <Box component="span">{names}</Box>

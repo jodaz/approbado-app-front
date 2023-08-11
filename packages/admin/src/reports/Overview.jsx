@@ -1,13 +1,14 @@
 import * as React from 'react'
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import makeStyles from '@material-ui/styles/makeStyles';
+import {
+    Box,
+    Typography,
+    makeStyles,
+    Link,
+    Card,
+    CardHeader
+} from '@material-ui/core'
+import Avatar from '@approbado/lib/components/Avatar'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
-import Link from '@material-ui/core/Link';
-import configs from '@approbado/lib/configs'
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import DeleteReportButton from './DeleteReportButton'
 import BlacklistButton from './BlacklistButton'
 import isEmpty from 'is-empty'
@@ -59,8 +60,8 @@ export default function({ record }) {
                 <CardHeader
                     avatar={
                         <Avatar
-                            aria-label="recipe"
-                            src={`${configs.SOURCE}/${post.owner.picture}`}
+                            source={post.owner.picture}
+                            alt="user_picture"
                         />
                     }
                     title={post.owner.names}

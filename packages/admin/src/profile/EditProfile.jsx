@@ -1,16 +1,14 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { useUserDispatch, useUserState } from '@approbado/lib/hooks/useUserState'
+import { Form } from 'react-final-form'
+import { updateProfile } from '@approbado/lib/services/profile.service'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import Grid from '@material-ui/core/Grid'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import ProfilePhotoInput from '@approbado/lib/components/ProfilePhotoInput'
 import Box from '@material-ui/core/Box'
 import Button from '@approbado/lib/components/Button'
-import isEmpty from 'is-empty'
-import { useUserDispatch, useUserState } from '@approbado/lib/hooks/useUserState'
 import TextInput from '@approbado/lib/components/TextInput'
-import { Form } from 'react-final-form'
 
 const validate = values => {
     const errors = {};
@@ -26,25 +24,29 @@ const validate = values => {
 }
 
 const UpdateProfile = () => {
-    const [provider, { loading, data }] = useFileProvider(fileProvider);
     const { user } = useUserState();
+    const [loading, setLoading] = React.useState(false)
     const { showNotification } = useUiDispatch();
     const { fetchUser } = useUserDispatch();
 
-    const save = React.useCallback(async values => {
-        await provider({
-            resource: 'profile',
-            type: 'create',
-            payload: values
-        });
-    }, [provider]);
+    const save = React.useCallback(async ({ file, ...restValues }) => {
+        setLoading(true)
+        const values = {
+            file: file.rawFile,
+            ...restValues
+        };
 
-    React.useEffect(() => {
-        if (!isEmpty(data)) {
+        const { data, success } = await updateProfile(values)
+
+        if (success) {
+            setLoading(false)
             fetchUser();
-            showNotification('¡Su perfil ha sido actualizado!')
+            showNotification(`Su perfil ha sido actualizado.`)
+        } else {
+            setLoading(false)
+            return data;
         }
-    }, [data])
+    }, []);
 
     return (
         <Box paddingTop='2rem'>

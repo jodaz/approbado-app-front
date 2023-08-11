@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Edit } from '@approbado/lib/icons';
 import Box from '@material-ui/core/Box'
-import Avatar from '@material-ui/core/Avatar'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import ProfileExtraInfoCard from '@approbado/lib/components/ProfileExtraInfoCard'
 import { makeStyles, alpha } from '@material-ui/core'
@@ -15,6 +14,7 @@ import { ReactComponent as Forum } from '@approbado/lib/illustrations/Forum.svg'
 import { ReactComponent as Forum2 } from '@approbado/lib/illustrations/Forum2.svg'
 import { ReactComponent as Ribbon } from '@approbado/lib/illustrations/Ribbon.svg'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
+import Avatar from '../../components/Avatar';
 
 const Spacer = () => <span style={{ height: 0, width: '100%', borderBottom: '0.1rem solid rgba(0, 0, 0, 0.2)' }} />;
 
@@ -74,7 +74,7 @@ const ProfileSidebar = ({
                 {(!isEditting) ? (
                     <Avatar
                         className={classes.picture}
-                        src={`${process.env.REACT_APP_API_DOMAIN}/${picture}`}
+                        source={`/${picture}`}
                     />
                 ) : (
                     <ProfilePhotoInput

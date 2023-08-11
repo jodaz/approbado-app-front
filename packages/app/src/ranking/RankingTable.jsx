@@ -10,9 +10,8 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
-import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/configs'
 import { useMediaQuery } from '@material-ui/core'
+import Avatar from '@approbado/lib/components/Avatar';
 
 const GoToProfileButtonLink = ({ user_name }) => (
     <Link
@@ -83,7 +82,7 @@ export default function RankingTable({ data }) {
                     <TableCell align="left" className={classes.tBodyColumn} component="th" scope="row">
                         <Box className={classes.user}>
                             <Avatar
-                                src={`${configs.SOURCE}/${row.picture}`}
+                                source={row.picture}
                                 alt='photo_profile'
                             />
                             @{row.user_name}

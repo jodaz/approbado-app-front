@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-import { apiProvider as axios } from '@approbado/lib/api'
 import { useHistory } from 'react-router-dom'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
@@ -9,6 +8,7 @@ import SelectInput from '@approbado/lib/components/SelectInput'
 import SelectCategoryInput from './SelectCategoryInput'
 import validate from './validateTrivias'
 import SelectPlansInput from './SelectPlansInput'
+import { createTrivia } from '@approbado/lib/services/trivias.service'
 
 const ACCESS_TYPES = [
     { id: '1', name: 'Gratis' },
@@ -20,17 +20,11 @@ const TriviaCreate = () => {
     const history = useHistory()
 
     const save = React.useCallback(async (values) => {
-        try {
-            const { data } = await axios.post('/trivias', values)
+        const { data, success } = await createTrivia(values)
 
-            if (data) {
-                history.push(`/trivias/${data.id}`)
-                showNotification(`¡Ha registrado la trivia "${data.name}"!`)
-            }
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
+        if (success) {
+            history.push(`/trivias/${data.id}`)
+            showNotification(`¡Ha registrado la trivia "${data.name}"!`)
         }
     }, []);
 

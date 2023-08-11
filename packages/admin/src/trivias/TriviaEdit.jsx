@@ -1,12 +1,10 @@
 import * as React from 'react'
+import { editTrivia } from '@approbado/lib/services/trivias.service'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import ImageInput from '@approbado/lib/components/ImageInput'
 import Box from '@material-ui/core/Box'
-import isEmpty from 'is-empty'
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectCategoryInput from './SelectCategoryInput';
 import SelectInput from '@approbado/lib/components/SelectInput'
@@ -19,32 +17,26 @@ const ACCESS_TYPES = [
 ]
 
 const TriviaEdit = ({ record }) => {
+    const [loading, setLoading] = React.useState(false)
     const { showNotification } = useUiDispatch();
-    const [provider, { data, loading }] = useFileProvider(fileProvider);
 
-    const save = React.useCallback(async values => {
-        try {
-            const { plans, ...rest } = values
-            await provider({
-                resource: 'trivias',
-                type: 'update',
-                payload: {
-                    id: record.id,
-                    data: rest
-                }
-            });
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
-        }
-    }, [provider]);
+    const save = React.useCallback(async ({ file, ...restValues }) => {
+        setLoading(true)
+        const values = {
+            file: file.rawFile,
+            ...restValues
+        };
 
-    React.useEffect(() => {
-        if (!isEmpty(data)) {
-            showNotification('Se ha completado la actualización con éxito')
+        const { data, success } = await editTrivia(record.id, values)
+
+        if (success) {
+            setLoading(false)
+            showNotification(`¡Ha actualizado la trivia "${data.name}" exitosamente!`)
+        } else {
+            setLoading(false)
+            return data;
         }
-    }, [data])
+    }, [record.id])
 
     return (
         <BaseForm save={save} validate={validate} loading={loading} record={record}>

@@ -1,9 +1,8 @@
 import * as React from 'react'
-import Avatar from '@material-ui/core/Avatar'
+import Avatar from '@approbado/lib/components/Avatar';
 import Box from '@material-ui/core/Box';
 import Dot from '@approbado/lib/components/Dot'
 import Skeleton from "@material-ui/lab/Skeleton";
-import configs from '@approbado/lib/configs'
 import { useHistory } from 'react-router-dom'
 import { useChatDispatch, useChatState } from '@approbado/lib/hooks/useChat';
 import { apiProvider as axios } from '@approbado/lib/api'
@@ -107,7 +106,10 @@ const UserMessageCard = ({
                         />
                     ) : (
                         <Box className={classes.names}>
-                            <Avatar src={`${configs.SOURCE}/${data.participants[1].picture}`} />
+                            <Avatar
+                                alt='user_picture'
+                                source={data.participants[1].picture}
+                            />
                         </Box>
                     )}
                 </Box>
