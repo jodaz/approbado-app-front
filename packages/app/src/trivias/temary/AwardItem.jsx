@@ -1,10 +1,9 @@
 import * as React from 'react';
+import Avatar from '@approbado/lib/components/Avatar';
 import ListItem from '@material-ui/core/ListItem';
 import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
 import Box from '@material-ui/core/Box';
-import configs from '@approbado/lib/configs'
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import SubthemeItem from './SubthemeItem'
 import List from '@material-ui/core/List';
 import Collapse from '@material-ui/core/Collapse';
@@ -58,7 +57,7 @@ export default function AwardItem(props) {
                     }}>
                         {(type == 'Insignia') ? (
                             <Avatar
-                                src={`${configs.SOURCE}/${file}`}
+                                source={file}
                                 alt='icon'
                             />
                         ) : (

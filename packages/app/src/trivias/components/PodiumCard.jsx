@@ -1,6 +1,6 @@
 import * as React from 'react'
+import Avatar from '@approbado/lib/components/Avatar';
 import Box from '@material-ui/core/Box'
-import Avatar from '@material-ui/core/Avatar'
 import makeStyles from '@material-ui/styles/makeStyles'
 import { Link } from 'react-router-dom'
 
@@ -68,7 +68,7 @@ const PodiumCard = ({ user, i }) => {
         <Box className={classes.root}>
             <Box className={classes.container}>
                 <Box className={classes.innerContainer} component={Link} to={`/${user.user_name}`}>
-                    <Avatar className={classes.avatar} />
+                    <Avatar alt='user_picture' source={user.picture} className={classes.avatar} />
                     <Box>{user.user_name}</Box>
                 </Box>
                 <Box className={classes.innerContainer}>

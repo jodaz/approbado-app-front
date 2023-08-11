@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Avatar from '@approbado/lib/components/Avatar';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -7,7 +8,6 @@ import Spinner from '@approbado/lib/components/Spinner'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import RecentReports from '../components/RecentReports'
 import { useParams } from 'react-router-dom'
-import Avatar from '@material-ui/core/Avatar';
 import configs from '@approbado/lib/configs'
 import RestrictButton from '../components/RestrictButton'
 import { axios } from '@approbado/lib/providers';
@@ -75,8 +75,8 @@ const BlacklistedUserShow = () => {
                 <Box className={classes.root}>
                     <Box className={classes.reason}>
                         <Avatar
-                            aria-label="recipe"
-                            src={`${configs.SOURCE}/${picture}`}
+                            alt='user_pic'
+                            source={picture}
                         />
                         <Box display="flex" flexDirection="column" marginRight='1rem'>
                             <Box component="span" sx={{

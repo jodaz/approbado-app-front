@@ -5,8 +5,7 @@ import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/core'
-import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/configs'
+import Avatar from '@approbado/lib/components/Avatar';
 import { Close } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
@@ -60,7 +59,7 @@ const SelectUsersInput = ({ submitting }) => {
                 renderOption={(option, { selected }) => (
                     <Box className={classes.userCard}>
                         <Avatar
-                            src={`${configs.SOURCE}/${option.picture}`}
+                            source={option.picture}
                             alt='photo_profile'
                         />
                         <Box className={classes.userInfo}>

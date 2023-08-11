@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { Close } from '@approbado/lib/icons'
+import { listPlans } from '@approbado/lib/services/plan.service'
+import {
+    Box,
+    makeStyles,
+    Chip,
+    TextField
+} from '@material-ui/core'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
-import Box from '@material-ui/core/Box'
-import Chip from '@material-ui/core/Chip';
-import { makeStyles } from '@material-ui/core'
-import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
     userCard: {
@@ -33,10 +35,13 @@ const SelectPlansInput = ({ submitting }) => {
     const classes = useStyles();
     const [options, setOptions] = React.useState([])
 
-    const fetchPlans = React.useCallback(async () => {
-        const { data: { data } } = await axios.get('/memberships/plans')
-        setOptions(data)
-    }, []);
+    const fetchPlans = async () => {
+        const { success, data } = await listPlans()
+
+        if (success) {
+            setOptions(data)
+        }
+    }
 
     React.useEffect(() => {
         fetchPlans();

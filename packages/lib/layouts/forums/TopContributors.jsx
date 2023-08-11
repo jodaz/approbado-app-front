@@ -95,7 +95,7 @@ const TopContributors = ({ isXSmall }) => {
                                 <Box className={classes.card}>
                                     <Avatar
                                         className={classes.icon}
-                                        src={`${configs.SOURCE}/${user.picture}`}
+                                        source={user.picture}
                                         alt='photo_profile'
                                     />
                                     <Box className={classes.description}>

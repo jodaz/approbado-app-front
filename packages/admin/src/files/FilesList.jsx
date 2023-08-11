@@ -64,7 +64,7 @@ const FileList = ({ record }) => {
             list={
                 <GridList
                     data={files}
-                    component={<FileCard />}
+                    component={<FileCard trivia_id={record.id} />}
                 />
             }
         />

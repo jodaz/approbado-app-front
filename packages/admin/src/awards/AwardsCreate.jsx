@@ -1,52 +1,39 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { createAward } from '@approbado/lib/services/awards.services'
 import { useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { useFileProvider } from '@jodaz_/file-provider'
-import { fileProvider } from '@approbado/lib/providers'
-import isEmpty from 'is-empty'
 import validate from './validateAwardForm'
 import { FileInput, ACCESS_TYPES } from './awardsFormHelpers'
 import TextInput from '@approbado/lib/components/TextInput'
 import SelectInput from '@approbado/lib/components/SelectInput'
-import { useHistory } from 'react-router-dom'
 
 const AwardsCreate = () => {
     const { trivia_id } = useParams()
-    const [provider, { data, loading }] = useFileProvider(fileProvider);
-    const history = useHistory()
     const { showNotification } = useUiDispatch();
+    const history = useHistory()
 
-    const save = React.useCallback(async (values) => {
-        const data = { trivia_id: trivia_id, ...values };
+    const save = React.useCallback(async ({ file, ...restValues }) => {
+        const response = await createAward({
+            trivia_id: trivia_id,
+            file: file.rawFile, ...restValues
+        });
 
-        try {
-            await provider({
-                resource: 'awards',
-                type: 'create',
-                payload: data
-            });
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
-        }
-    }, [provider, trivia_id])
-
-    React.useEffect(() => {
-        if (!isEmpty(data)) {
+        if (response.success) {
             history.push(`/trivias/${trivia_id}/awards`)
-            showNotification(`¡Ha registrado el premio "${data.title}" exitosamente!`)
+            showNotification(`¡Ha registrado el premio "${restValues.title}" exitosamente!`)
+        } else {
+            return response.data;
         }
-    }, [data])
+    }, [trivia_id])
 
     return (
         <BaseForm
             save={save}
             validate={validate}
             formName='Crear premio'
-            loading={loading}
         >
             <InputContainer label='Nombre'>
                 <TextInput

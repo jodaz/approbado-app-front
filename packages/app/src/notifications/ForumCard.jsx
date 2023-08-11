@@ -9,8 +9,8 @@ import Box from '@material-ui/core/Box';
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import { useHistory } from 'react-router-dom';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
-import Avatar from '@material-ui/core/Avatar';
 import PostDescription from './PostDescription'
+import Avatar from '@approbado/lib/components/Avatar';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -78,8 +78,8 @@ const ForumCard = ({ data, id }) => {
                 }
                 avatar={
                     <Avatar
-                        aria-label="recipe"
-                        src={`${process.env.REACT_APP_API_DOMAIN}/public/${data.owner.picture}`}
+                        alt="user_picture"
+                        source={data.owner.picture}
                     />
                 }
                 className={classes.header}

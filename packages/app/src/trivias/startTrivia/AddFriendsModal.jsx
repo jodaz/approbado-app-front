@@ -14,9 +14,8 @@ import SelectInput from '@approbado/lib/components/SelectInput'
 import { apiProvider as axios } from '@approbado/lib/api'
 import ClipboardCopyField from './ClipboardCopyField'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
+import Avatar from '@approbado/lib/components/Avatar';
 import ItemCollection from '@approbado/lib/components/ItemCollection';
 import { Close, PlusCircle } from '@approbado/lib/icons'
 
@@ -230,7 +229,7 @@ const AddFriendsModal = () => {
                                         renderOption={(option, { selected }) => (
                                             <Box className={classes.userCard}>
                                                 <Avatar
-                                                    src={`${configs.SOURCE}/${option.picture}`}
+                                                    source={option.picture}
                                                     alt='photo_profile'
                                                 />
                                                 <Box className={classes.userInfo}>

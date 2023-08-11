@@ -1,12 +1,11 @@
 import React from 'react';
+import Avatar from '@approbado/lib/components/Avatar';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core'
 import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
 import FormHelperText from '@material-ui/core/FormHelperText'
 import FormControl from '@material-ui/core/FormControl'
-import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
 import { Field } from 'react-final-form'
 import { Close } from '@approbado/lib/icons'
@@ -66,7 +65,7 @@ const ControlledSelectInput = props => {
                 renderOption={(option, { selected }) => (
                     <Box className={classes.userCard}>
                         <Avatar
-                            src={`${configs.SOURCE}/${option.picture}`}
+                            source={option.picture}
                             alt='photo_profile'
                         />
                         <Box className={classes.userInfo}>

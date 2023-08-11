@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Avatar from '@approbado/lib/components/Avatar';
 import { Close, MessageSquarePlus } from '@approbado/lib/icons'
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -11,9 +12,7 @@ import InputContainer from '@approbado/lib/components/InputContainer'
 import { Form } from 'react-final-form'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import { axios, history } from '@approbado/lib/providers'
-import configs from '@approbado/lib/configs'
 import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
 import MenuItem from '@material-ui/core/MenuItem';
 import ChatNameInput from './ChatNameInput'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat';
@@ -255,7 +254,7 @@ const MessageRequestModal = ({ handleCloseMenu }) => {
                                         renderOption={(option, { selected }) => (
                                             <Box className={classes.userCard}>
                                                 <Avatar
-                                                    src={`${configs.SOURCE}/${option.picture}`}
+                                                    source={option.picture}
                                                     alt='photo_profile'
                                                 />
                                                 <Box className={classes.userInfo}>

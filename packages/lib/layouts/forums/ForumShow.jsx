@@ -5,8 +5,8 @@ import BackButton from './BackButton'
 import Typography from '@material-ui/core/Typography';
 import { useMediaQuery, makeStyles } from '@material-ui/core'
 import PopularPosts from '@approbado/lib/layouts/forums/PopularPosts'
-import Avatar from '@material-ui/core/Avatar';
 import PostDescription from './PostDescription'
+import Avatar from '@approbado/lib/components/Avatar';
 import NoContent from '@approbado/lib/components/NoContent'
 import { ReactComponent as ForumIllustration } from '@approbado/lib/illustrations/Forum.svg'
 import Link from '@material-ui/core/Link';
@@ -18,7 +18,6 @@ import LinkButton from '@approbado/lib/components/LinkButton'
 // Hooks
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import { useDialogDispatch } from "@approbado/lib/hooks/useDialog"
-import configs from '@approbado/lib/configs'
 import Spinner from '../../components/Spinner';
 
 const useStyles = makeStyles(theme => ({
@@ -117,8 +116,8 @@ const ForumShow = () => {
                             component={LinkBehavior}
                         >
                             <Avatar
-                                aria-label="avatar"
-                                src={`${configs.SOURCE}/${record.owner.picture}`}
+                                alt="user_picture"
+                                source={record.owner.picture}
                             />
                         </Link>
                     )}

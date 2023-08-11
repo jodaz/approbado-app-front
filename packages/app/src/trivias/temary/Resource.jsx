@@ -6,9 +6,9 @@ import { makeStyles } from '@material-ui/core'
 import { ReactComponent as PDFIcon } from '@approbado/lib/icons/PDF.svg'
 import configs from '@approbado/lib/configs'
 import Link from '@material-ui/core/Link'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
 import IconButton from '@material-ui/core/IconButton'
+import { downloadFile } from '@approbado/lib/services/files.services';
+import download from '@approbado/lib/utils/download';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -28,25 +28,14 @@ const useStyles = makeStyles(() => ({
 
 export default function Resource({ id, title, size, key, file }) {
     const classes = useStyles();
-    const [provider] = useFileProvider(fileProvider);
 
     const handleDownload = React.useCallback(async () => {
-        try {
-            await provider({
-                resource: 'files/download',
-                type: 'getOne',
-                payload: {
-                    name: `${title}`,
-                    ext: 'pdf',
-                    record: id
-                }
-            });
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
+        const { success, data } = await downloadFile(id);
+
+        if (success) {
+            await download(data, `${title}.pdf`)
         }
-    }, [provider, id]);
+    }, [id]);
 
     return (
         <Card className={classes.root} key={key}>

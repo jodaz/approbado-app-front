@@ -3,7 +3,6 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import makeStyles from '@material-ui/styles/makeStyles';
@@ -17,6 +16,7 @@ import DeleteNotification from './DeleteNotification'
 import { axios, history } from '@approbado/lib/providers'
 import { useChatDispatch } from '@approbado/lib/hooks/useChat'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
+import Avatar from '@approbado/lib/components/Avatar';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -117,8 +117,8 @@ const NotificationCard = ({ data, rootRef, index }) => {
                       />
                     ) : (
                         <Avatar
-                            aria-label="recipe"
-                            src={`${configs.SOURCE}/${data.user.picture}`}
+                            alt="user_picture"
+                            source={data.user.picture}
                         />
                     )
                 }

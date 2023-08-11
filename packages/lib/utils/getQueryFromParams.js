@@ -1,7 +1,11 @@
-const getQueryFromParams = ({
-    perPage, page, sort, filter, type = null
-}) => {
+const getQueryFromParams = props => {
     const query = {};
+
+    if (!props) return {}
+
+    const {
+        perPage, page, sort, filter, type = null
+    } = props;
 
     if (page) {
         query.page = page

@@ -1,11 +1,9 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-import { fileProvider } from '@approbado/lib/providers'
-import { useFileProvider } from '@jodaz_/file-provider'
+import { uploadQuestionsFile } from '@approbado/lib/services/question.service'
 import { useParams, useHistory } from 'react-router-dom'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import isEmpty from 'is-empty'
 import UploadFileButton from '@approbado/lib/components/UploadFileButton'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
@@ -23,33 +21,26 @@ const validate = (values) => {
 };
 
 const QuestionsUpload = () => {
+    const [loading, setLoading] = React.useState(false)
     const { trivia_id, subtheme_id } = useParams()
-    const [provider, { data: fileDataResponse, loading }] = useFileProvider(fileProvider);
     const history = useHistory()
     const { showNotification } = useUiDispatch();
 
-    const save = React.useCallback(async (values) => {
-        const data = { trivia_id: trivia_id, subtheme_id: subtheme_id, ...values };
+    const save = React.useCallback(async ({ file }) => {
+        setLoading(true)
+        const data = { trivia_id: trivia_id, subtheme_id: subtheme_id, file: file.rawFile };
 
-        try {
-            await provider({
-                resource: 'questions/upload',
-                type: 'create',
-                payload: data
-            });
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
-        }
-    }, [provider, trivia_id])
+        const response = await uploadQuestionsFile(data);
 
-    React.useEffect(() => {
-        if (!isEmpty(fileDataResponse)) {
+        if (response.success) {
+            setLoading(false)
             showNotification('¡Ha subido nuevas preguntas a la trivia!')
             history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions`)
+        } else {
+            setLoading(false)
+            return response.data;
         }
-    }, [fileDataResponse])
+    }, [trivia_id, subtheme_id])
 
     return (
         <BaseForm

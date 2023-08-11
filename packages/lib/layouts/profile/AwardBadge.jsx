@@ -1,9 +1,8 @@
 
 import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
-import configs from '@approbado/lib/configs'
 import Box from '@material-ui/core/Box'
-import Avatar from '@material-ui/core/Avatar'
 import { alpha } from '@material-ui/core/styles'
+import Avatar from '@approbado/lib/components/Avatar';
 
 const AwardBadge = ({
     data: {
@@ -33,7 +32,7 @@ const AwardBadge = ({
     >
         {(type == 'Insignia') ? (
             <Avatar
-                src={`${configs.SOURCE}/${file}`}
+                source={file}
                 alt='icon'
             />
         ) : (
