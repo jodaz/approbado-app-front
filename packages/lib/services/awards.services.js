@@ -1,18 +1,21 @@
 import { apiProvider, fileProvider } from "../api";
 import formDataHandler from '../utils/formDataHandler'
+import getQueryFromParams from "../utils/getQueryFromParams";
 
-export async function listAwards(page = 1, query ='') {
+export async function listAwards(query) {
     try{
         const response = await apiProvider.get('/awards', {
             params: {
-                query: query,
-                page: page
+                params: getQueryFromParams(query)
             }
         })
 
+        const { data, count } = response.data
+
         return {
             success: true,
-            data: response.data,
+            data: data,
+            count: count
         }
     }catch (error){
         return {
