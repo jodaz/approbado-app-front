@@ -45,6 +45,13 @@ const style = StyleSheet.create({
         backgroundColor: '#F6FA00',
         color: '#000'
     },
+    indicators: {
+        width: 36,
+        height: 8,
+        borderRadius: 2,
+        backgroundColor: '#A6A6A6',
+        marginEnd: 10
+    },
     textButton: {
         alignItems: 'center',
         justifyContent: 'center',
