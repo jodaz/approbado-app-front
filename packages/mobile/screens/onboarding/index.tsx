@@ -1,9 +1,7 @@
 import * as React from 'react'
-import { FlatList, Dimensions, SafeAreaView } from 'react-native';
+import { FlatList, SafeAreaView } from 'react-native';
 import slides from './slides';
 import Slide from './Slide'
-
-const { height } = Dimensions.get('window');
 
 const Onboarding = () => {
     const ref = React.useRef();
@@ -16,7 +14,6 @@ const Onboarding = () => {
                 renderItem={({ item, index }) => <Slide {...item} />}
                 pagingEnabled
                 horizontal
-                contentContainerStyle={{ height: height * 0.75 }}
                 showsHorizontalScrollIndicator={false}
             />
         </SafeAreaView>
