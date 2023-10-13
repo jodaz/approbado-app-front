@@ -7,6 +7,7 @@ import {
     Pressable
 } from 'react-native';
 import style from './style';
+import ButtonGroup from '../../components/ButtonGroup';
 
 const Presentation = () => {
     return (
@@ -17,7 +18,7 @@ const Presentation = () => {
                     <Text style={style.text}>
                         Estudia para tus exámenes con Approbado y mejora tu rendimiento en la carrera.
                     </Text>
-                    <View style={style.buttonsContainer}>
+                    <ButtonGroup>
                         <Pressable
                             style={style.primaryButton}
                         >
@@ -28,7 +29,7 @@ const Presentation = () => {
                         >
                             <Text style={style.buttonInnerText}>Iniciar sesión</Text>
                         </Pressable>
-                    </View>
+                    </ButtonGroup>
                     <Text style={style.lightText}>
                         Términos y condiciones del servicio
                     </Text>

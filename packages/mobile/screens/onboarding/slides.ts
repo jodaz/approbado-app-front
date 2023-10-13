@@ -7,7 +7,8 @@ const slides = [
             discard: true,
             next: {
                 label: 'Siguiente',
-                color: 'secondary'
+                color: 'secondary',
+                variant: 'outlined'
             }
         }
     },
@@ -19,7 +20,8 @@ const slides = [
             discard: false,
             next: {
                 label: 'Siguiente',
-                color: 'secondary'
+                color: 'secondary',
+                variant: 'outlined'
             }
         }
     },
@@ -31,7 +33,8 @@ const slides = [
             discard: false,
             next: {
                 label: 'Empezar',
-                color: 'primary'
+                color: 'primary',
+                variant: 'contained'
             }
         }
     },

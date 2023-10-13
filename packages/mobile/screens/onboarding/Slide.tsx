@@ -3,9 +3,10 @@ import {
     Image,
     View,
     ImageSourcePropType,
-    Pressable
 } from 'react-native';
 import style from './style';
+import ButtonGroup from '../../components/ButtonGroup';
+import Button from '../../components/Button';
 
 type SlideProps = {
     title: string;
@@ -23,21 +24,27 @@ const Slide = ({ title, image, buttons, skip, next } : SlideProps) => {
                 {title}
             </Text>
             <Image source={image} />
-            <View style={style.buttonsContainer}>
+            <ButtonGroup>
                 {buttons.next && (
-                    <Pressable
-                        style={buttons.next.color == 'secondary' ? style.secondaryButton : style.primaryButton}
+                    <Button 
                         onPress={next}
+                        bgColor={buttons.next.color}
+                        variant={buttons.next.variant}
                     >
-                        <Text style={{ fontWeight: '600' }}>{buttons.next.label}</Text>
-                    </Pressable>
+                        {buttons.next.label}
+                    </Button>
                 )}
                 {buttons.discard && (
-                    <Pressable style={style.textButton} onPress={skip}>
-                        <Text>Omitir</Text>
-                    </Pressable>
+                    <Button 
+                        onPress={skip}
+                        bgColor='secondary'
+                        variant='text'
+                        fontWeight={400}
+                    >
+                        Omitir
+                    </Button>
                 )}
-            </View>
+            </ButtonGroup>
         </View>
     )
 }

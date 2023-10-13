@@ -23,12 +23,6 @@ const style = StyleSheet.create({
     buttonInnerText: {
         fontWeight: '600',
     },
-    buttonsContainer: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        marginTop: 40,
-        height: 115
-    },
     secondaryButton: {
         alignItems: 'center',
         justifyContent: 'center',

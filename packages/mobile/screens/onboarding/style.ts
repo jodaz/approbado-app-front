@@ -20,11 +20,6 @@ const style = StyleSheet.create({
         width: width,
         resizeMode: 'contain'
     },
-    buttonsContainer: {
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        marginTop: 40
-    },
     secondaryButton: {
         alignItems: 'center',
         justifyContent: 'center',
