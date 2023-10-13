@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Routes } from '../routes';
 import { FlatList, Dimensions, SafeAreaView } from 'react-native';
 import slides from './slides';
 import Slide from './Slide'
@@ -6,7 +7,7 @@ import Footer from './Footer';
 
 const { width } = Dimensions.get('window');
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
     const ref = React.useRef();
     const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
 
@@ -18,10 +19,13 @@ const Onboarding = () => {
 
     const goToNextSlide = () => {
         const nextSlideIndex = currentSlideIndex + 1;
+
         if (nextSlideIndex != slides.length) {
             const offset = nextSlideIndex * width;
             ref?.current.scrollToOffset({offset});
             setCurrentSlideIndex(currentSlideIndex + 1);
+        } else {
+            navigation.navigate(Routes.Presentation)
         }
     };
 
