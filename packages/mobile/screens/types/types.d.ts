@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { StyleProp } from 'react-native';
 
 type ColorThemeType = 'primary' | 'secondary';
 
@@ -13,4 +14,13 @@ interface IButtonProps extends IComp {
     bgColor: ColorThemeType;
     variant?: VariantType;
     fontWeight?: number;
+}
+
+interface ITextProps extends IComp {
+    onPress?: () => void;
+    color: ColorThemeType;
+    variant?: VariantType;
+    fontWeight?: number;
+    fontSize?: number;
+    style?: StyleProp;
 }

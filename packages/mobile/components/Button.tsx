@@ -9,11 +9,11 @@ const ButtonContainer = styled.TouchableOpacity`
     padding-horizontal: 48px;
     border-radius: 6px;
     color: #000;
-    background-color: ${props => 
-        (props.variant != 'contained') 
-            ? 'transparent' : (props.bgColor == 'primary') 
-                ? props.theme.palette.primary
-                : props.theme.palette.secondary
+    background-color: ${props =>
+        (props.variant != 'contained')
+            ? 'transparent' : (props.bgColor == 'primary')
+                ? props.theme.palette.primary.main
+                : props.theme.palette.secondary.main
     };
     border: ${props => (props.variant == 'outlined') ? '1px solid #A6A6A6' : 'none' };
 `;

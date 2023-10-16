@@ -4,9 +4,6 @@ const { width } = Dimensions.get('window');
 
 const style = StyleSheet.create({
     text: {
-        fontWeight: '600',
-        fontSize: 20,
-        color: '#101521',
         textAlign: 'center',
         width: width
     },
@@ -19,26 +16,6 @@ const style = StyleSheet.create({
         height: '75%',
         width: width,
         resizeMode: 'contain'
-    },
-    secondaryButton: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 16,
-        paddingHorizontal: 48,
-        borderRadius: 6,
-        borderWidth: 1,
-        borderColor: '#A6A6A6',
-        backgroundColor: '#fff',
-        color: '#A6A6A6'
-    },
-    primaryButton: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingVertical: 16,
-        paddingHorizontal: 48,
-        borderRadius: 6,
-        backgroundColor: '#F6FA00',
-        color: '#000'
     },
     indicators: {
         width: 36,

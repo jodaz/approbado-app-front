@@ -1,5 +1,4 @@
 import {
-    Text,
     Image,
     View,
     ImageSourcePropType,
@@ -7,6 +6,7 @@ import {
 import style from './style';
 import ButtonGroup from '../../components/ButtonGroup';
 import Button from '../../components/Button';
+import Text from '../../components/Text';
 
 type SlideProps = {
     title: string;
@@ -26,7 +26,7 @@ const Slide = ({ title, image, buttons, skip, next } : SlideProps) => {
             <Image source={image} />
             <ButtonGroup>
                 {buttons.next && (
-                    <Button 
+                    <Button
                         onPress={next}
                         bgColor={buttons.next.color}
                         variant={buttons.next.variant}
@@ -35,7 +35,7 @@ const Slide = ({ title, image, buttons, skip, next } : SlideProps) => {
                     </Button>
                 )}
                 {buttons.discard && (
-                    <Button 
+                    <Button
                         onPress={skip}
                         bgColor='secondary'
                         variant='text'

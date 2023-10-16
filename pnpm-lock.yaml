@@ -101,9 +101,15 @@ importers:
       expo-status-bar:
         specifier: ~1.6.0
         version: 1.6.0
+      ramda:
+        specifier: ^0.29.1
+        version: 0.29.1
       react:
         specifier: 18.2.0
         version: 18.2.0
+      react-hook-form:
+        specifier: ^7.47.0
+        version: 7.47.0(react@18.2.0)
       react-native:
         specifier: 0.72.3
         version: 0.72.3(@babel/core@7.23.2)(@babel/preset-env@7.23.2)(react@18.2.0)
@@ -5548,6 +5554,7 @@ packages:
   /is-extglob@2.1.1:
     resolution: {integrity: sha512-SbKbANkN603Vi4jEZv49LeVJMn4yGwsbzZworEoyEiutsN3nJYdbO36zfhGJ6QEDpOZIFkDtnq5JRxmvl3jsoQ==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: false
 
   /is-fullwidth-code-point@2.0.0:
@@ -6889,6 +6896,7 @@ packages:
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dev: false
 
   /npm-package-arg@7.0.0:
@@ -7509,6 +7517,10 @@ packages:
       - history
     dev: false
 
+  /ramda@0.29.1:
+    resolution: {integrity: sha512-OfxIeWzd4xdUNxlWhgFazxsA/nl3mS4/jGZI5n00uWOoSSFRhC1b6gl6xvmzUamgmqELraWp0J/qqVlXYPDPyA==}
+    dev: false
+
   /range-parser@1.2.1:
     resolution: {integrity: sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==}
     engines: {node: '>= 0.6'}
@@ -7713,6 +7725,15 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
+    dev: false
+
+  /react-hook-form@7.47.0(react@18.2.0):
+    resolution: {integrity: sha512-F/TroLjTICipmHeFlMrLtNLceO2xr1jU3CyiNla5zdwsGUGu2UOxxR4UyJgLlhMwLW/Wzp4cpJ7CPfgJIeKdSg==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-icons@4.11.0(react@17.0.2):
