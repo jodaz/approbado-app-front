@@ -23,19 +23,19 @@ const ButtonText = styled.Text`
 `;
 
 const Button = ({
-    onPress,
-    bgColor = 'primary',
     children,
-    variant = 'contained',
-    fontWeight = 600
+    fontWeight,
+    ...rest
 } : IButtonProps) : JSX.Element => (
-    <ButtonContainer
-        onPress={onPress}
-        bgColor={bgColor}
-        variant={variant}
-    >
+    <ButtonContainer {...rest}>
         <ButtonText fontWeight={fontWeight}>{children}</ButtonText>
     </ButtonContainer>
 )
+
+Button.defaultProps = {
+    bgColor: 'primary',
+    variant: 'contained',
+    fontWeight: 600
+}
 
 export default Button
