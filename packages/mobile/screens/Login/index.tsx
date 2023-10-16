@@ -9,7 +9,7 @@ import {
 import style from './style';
 import ButtonGroup from '../../components/ButtonGroup';
 
-const Presentation = () => {
+const Login = () => {
     return (
         <SafeAreaView>
             <View style={style.container}>
@@ -42,4 +42,4 @@ const Presentation = () => {
     );
 }
 
-export default Presentation
+export default Login

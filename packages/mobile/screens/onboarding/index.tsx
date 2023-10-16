@@ -25,7 +25,7 @@ const Onboarding = ({ navigation }) => {
             ref?.current.scrollToOffset({offset});
             setCurrentSlideIndex(currentSlideIndex + 1);
         } else {
-            navigation.navigate(Routes.Presentation)
+            navigation.navigate(Routes.Login)
         }
     };
 
