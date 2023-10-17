@@ -1,29 +1,18 @@
 import * as React from 'react'
 import {
     SafeAreaView,
-    Image,
-    View,
-    Dimensions
+    Image
 } from 'react-native';
 import { Routes } from '../routes';
-import style from './style';
+import Container from '../../components/Container';
+import InnerContainer from '../../components/InnerContainer';
 import ButtonGroup from '../../components/ButtonGroup';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 
-const { width, height } = Dimensions.get('window');
-
-const Container = styled.View`
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: ${height};
-`
-
 const Title = styled(Text)`
     text-align: center;
-    width: ${width * .9}
 `
 
 const LightText = styled(Text)`
@@ -38,7 +27,7 @@ const Presentation = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <View style={style.innerContainer}>
+                <InnerContainer>
                     <Image source={require('../../assets/Logo.png')} />
                     <Title>
                         Estudia para tus exámenes con Approbado
@@ -65,7 +54,7 @@ const Presentation = ({ navigation }) => {
                     <LightText fontSize={16} fontWeight={400}>
                         Términos y condiciones del servicio
                     </LightText>
-                </View>
+                </InnerContainer>
                 <LightText fontSize={16} fontWeight={400}>
                     Todos los derechos reservados
                 </LightText>

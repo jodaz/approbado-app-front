@@ -10,6 +10,7 @@ const StyledText = styled.Text`
     font-size: ${({ fontSize }) => fontSize}px;
     width: calc(90% * ${width});
     color: #000;
+    text-align: ${props => props.align};
 `;
 
 const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (
@@ -21,7 +22,8 @@ const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (
 Text.defaultProps = {
     fontSize: 20,
     fontWeight: 600,
-    color: 'secondary'
+    color: 'secondary',
+    align: 'left'
 }
 
 export default Text

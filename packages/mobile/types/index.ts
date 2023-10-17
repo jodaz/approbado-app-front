@@ -5,6 +5,8 @@ type ColorThemeType = 'primary' | 'secondary';
 
 type VariantType = 'outlined' | 'text' | 'contained'
 
+type TextAlignType = 'right' | 'left' | 'center'
+
 export interface IComp {
     children: React.ReactNode
 }
@@ -22,6 +24,7 @@ export interface ITextProps extends IComp {
     fontWeight?: number;
     fontSize?: number;
     style?: StyleProp;
+    align?: TextAlignType;
 }
 
 export interface ILinkProps extends ITextProps {

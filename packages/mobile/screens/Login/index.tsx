@@ -1,9 +1,11 @@
 import * as React from 'react'
-import { Image,  } from 'react-native';
+import { Image, SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
 import { loginUser } from '@approbado/lib/services/auth.services'
 import { Routes } from '../routes';
+import Container from '../../components/Container';
+import InnerContainer from '../../components/InnerContainer';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
@@ -11,16 +13,12 @@ import Text from '../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Link from '../../components/Link';
 
-const Container = styled.View`
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-`;
-
 const FormContainer = styled.View`
     margin-top: 20px;
     width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 20px;
 `;
 
 const Login = ({ navigation }) => {
@@ -41,39 +39,43 @@ const Login = ({ navigation }) => {
     };
 
     return (
-        <Container>
-            <Image source={require('../../assets/Logo.png')} />
-            <Text>
-                Iniciar sesión
-            </Text>
-            <FormContainer>
-                <TextInput
-                    name="email"
-                    validations={USERNAME}
-                    control={control}
-                    placeholder='Ingresa tu usuario'
-                />
-                <TextInput
-                    name="password"
-                    validations={PASSWORD}
-                    control={control}
-                    placeholder='Ingresa tu contraseña'
-                    secureTextEntry
-                />
-            </FormContainer>
-            <Link to={Routes.ForgetPassword}>
-                ¿Olvidaste tu contraseña?
-            </Link>
-            <Button onPress={handleSubmit(onSubmit)} fullWidth>
-                Iniciar sesión
-            </Button>
-            <Text>
-                ¿Aún no tienes una cuenta?
-            </Text>
-            <Link to={Routes.SignUp}>
-                Crear una cuenta
-            </Link>
-        </Container>
+        <SafeAreaView>
+            <Container>
+                <InnerContainer>
+                    <Image source={require('../../assets/Logo.png')} />
+                    <Text>
+                        Iniciar sesión
+                    </Text>
+                    <FormContainer>
+                        <TextInput
+                            name="email"
+                            validations={USERNAME}
+                            control={control}
+                            placeholder='Ingresa tu usuario'
+                        />
+                        <TextInput
+                            name="password"
+                            validations={PASSWORD}
+                            control={control}
+                            placeholder='Ingresa tu contraseña'
+                            secureTextEntry
+                        />
+                        <Link to={Routes.ForgetPassword} align='right'>
+                            ¿Olvidaste tu contraseña?
+                        </Link>
+                    </FormContainer>
+                    <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                        Iniciar sesión
+                    </Button>
+                    <Text fontSize={16}>
+                        ¿Aún no tienes una cuenta?
+                    </Text>
+                    <Link to={Routes.SignUp} align='center'>
+                        Crear una cuenta
+                    </Link>
+                </InnerContainer>
+            </Container>
+        </SafeAreaView>
     );
 }
 

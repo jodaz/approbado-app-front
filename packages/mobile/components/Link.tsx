@@ -7,12 +7,13 @@ const StyledLink = styled.TouchableOpacity`
     margin-bottom: 10px;
     padding: 10px;
     background-color: #f0f0f0;
+    width: 100%;
 `;
 
 const StyledText = styled.Text`
     color: ${props => props.theme.palette.info.main};
     font-size: 16px;
-    text-align: left;
+    text-align: ${props => props.align};
 `
 
 const Link = ({ to, children, ...restTextProps } : ILinkProps) : JSX.Element => {
@@ -30,7 +31,8 @@ const Link = ({ to, children, ...restTextProps } : ILinkProps) : JSX.Element => 
 };
 
 Link.defaultProps = {
-    fontSize: 20
+    fontSize: 20,
+    align: 'left'
 }
 
 export default Link;

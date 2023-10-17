@@ -1,23 +1,23 @@
 import * as React from 'react'
-import Config from "react-native-config";
 import { Image } from 'react-native';
 import { useForm } from 'react-hook-form';
+import { Routes } from '../routes';
 import { EMAIL, PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
 import { loginUser } from '@approbado/lib/services/auth.services'
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
-import { Routes } from '../routes';
-import CONFIG_NAMES from '@approbado/lib/env'
-import axios from 'axios'
 import Link from '../../components/Link';
+import Container from '../../components/Container';
+import InnerContainer from '../../components/InnerContainer';
 
-const Container = styled.View`
-    flex: 1;
+const FormContainer = styled.View`
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
+    margin-bottom: 20px;
 `;
 
 const CreateAccount = ({ navigation }) => {
@@ -29,38 +29,45 @@ const CreateAccount = ({ navigation }) => {
 
     return (
         <Container>
-            <Image source={require('../../assets/Logo.png')} />
-            <Text>
-                Crear una cuenta
-            </Text>
-            <TextInput
-                name="user_name"
-                validations={USERNAME}
-                control={control}
-                placeholder='Usuario'
-            />
-            <TextInput
-                name="email"
-                validations={EMAIL}
-                control={control}
-                placeholder='Correo electrónico'
-            />
-            <TextInput
-                name="password"
-                validations={PASSWORD}
-                control={control}
-                placeholder='Contraseña'
-                secureTextEntry
-            />
-            <Button onPress={handleSubmit(onSubmit)} fullWidth>
-                Crear una cuenta
-            </Button>
-            <Text>
-                ¿Ya tienes una cuenta?
-            </Text>
-            <Link to={Routes.Login}>
-                Ingresa aquí
-            </Link>
+            <InnerContainer>
+                <Image source={require('../../assets/Logo.png')} />
+                <Text>
+                    Crear una cuenta
+                </Text>
+                <FormContainer>
+                    <TextInput
+                        name="user_name"
+                        validations={USERNAME}
+                        control={control}
+                        placeholder='Usuario'
+                    />
+                    <TextInput
+                        name="email"
+                        validations={EMAIL}
+                        control={control}
+                        placeholder='Correo electrónico'
+                    />
+                    <TextInput
+                        name="password"
+                        validations={PASSWORD}
+                        control={control}
+                        placeholder='Contraseña'
+                        secureTextEntry
+                    />
+                    <Button
+                        onPress={handleSubmit(onSubmit)}
+                        fullWidth
+                    >
+                        Crear una cuenta
+                    </Button>
+                </FormContainer>
+                <Text fontSize={16} align='center'>
+                    ¿Ya tienes una cuenta?
+                </Text>
+                <Link to={Routes.Login} align='center'>
+                    Ingresa aquí
+                </Link>
+            </InnerContainer>
         </Container>
     );
 }
