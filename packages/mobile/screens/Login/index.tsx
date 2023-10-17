@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Image } from 'react-native';
+import { Image,  } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
 import { loginUser } from '@approbado/lib/services/auth.services'
@@ -9,12 +9,18 @@ import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Link from '../../components/Link';
 
 const Container = styled.View`
     flex: 1;
     align-items: center;
     justify-content: center;
     padding: 20px;
+`;
+
+const FormContainer = styled.View`
+    margin-top: 20px;
+    width: 100%;
 `;
 
 const Login = ({ navigation }) => {
@@ -40,30 +46,32 @@ const Login = ({ navigation }) => {
             <Text>
                 Iniciar sesión
             </Text>
-            <TextInput
-                name="email"
-                validations={USERNAME}
-                control={control}
-                placeholder='Ingresa tu usuario'
-            />
-            <TextInput
-                name="password"
-                validations={PASSWORD}
-                control={control}
-                placeholder='Ingresa tu contraseña'
-            />
-            <Text>
+            <FormContainer>
+                <TextInput
+                    name="email"
+                    validations={USERNAME}
+                    control={control}
+                    placeholder='Ingresa tu usuario'
+                />
+                <TextInput
+                    name="password"
+                    validations={PASSWORD}
+                    control={control}
+                    placeholder='Ingresa tu contraseña'
+                />
+            </FormContainer>
+            <Link to={Routes.ForgetPassword}>
                 ¿Olvidaste tu contraseña?
-            </Text>
-            <Button onPress={handleSubmit(onSubmit)}>
+            </Link>
+            <Button onPress={handleSubmit(onSubmit)} fullWidth>
                 Iniciar sesión
             </Button>
             <Text>
                 ¿Aún no tienes una cuenta?
             </Text>
-            <Text>
+            <Link to={Routes.SignUp}>
                 Crear una cuenta
-            </Text>
+            </Link>
         </Container>
     );
 }

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Controller } from 'react-hook-form';
 import styled from 'styled-components/native';
-import { ITextInputProps } from '../screens/types/types';
+import { ITextInputProps } from '../types';
 
 const Input = styled.TextInput`
     width: 100%;

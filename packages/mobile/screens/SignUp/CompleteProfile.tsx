@@ -1,16 +1,11 @@
 import * as React from 'react'
-import Config from "react-native-config";
-import { Image } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
-import { loginUser } from '@approbado/lib/services/auth.services'
+import { Routes } from '../routes';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
-import CONFIG_NAMES from '@approbado/lib/env'
-import axios from 'axios'
-import { Routes } from '../routes';
 
 const Container = styled.View`
     flex: 1;

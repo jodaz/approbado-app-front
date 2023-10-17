@@ -5,27 +5,30 @@ type ColorThemeType = 'primary' | 'secondary';
 
 type VariantType = 'outlined' | 'text' | 'contained'
 
-interface IComp {
+export interface IComp {
     children: React.ReactNode
 }
 
-interface IButtonProps extends IComp {
+export interface IButtonProps extends IComp {
     onPress?: () => void;
     bgColor: ColorThemeType;
     variant?: VariantType;
     fontWeight?: number;
+    fullWidth?: boolean;
 }
 
-interface ITextProps extends IComp {
-    onPress?: () => void;
-    color: ColorThemeType;
-    variant?: VariantType;
+export interface ITextProps extends IComp {
+    color?: ColorThemeType;
     fontWeight?: number;
     fontSize?: number;
     style?: StyleProp;
 }
 
-interface ITextInputProps {
+export interface ILinkProps extends ITextProps {
+    to: string;
+}
+
+export interface ITextInputProps {
     control: any;
     name: string;
     placeholder?: string;

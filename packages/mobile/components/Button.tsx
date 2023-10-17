@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { IButtonProps } from '../screens/types/types';
+import { IButtonProps } from '../types'
 import styled from 'styled-components/native'
 
 const ButtonContainer = styled.TouchableOpacity`
@@ -16,6 +16,7 @@ const ButtonContainer = styled.TouchableOpacity`
                 : props.theme.palette.secondary.main
     };
     border: ${props => (props.variant == 'outlined') ? '1px solid #A6A6A6' : 'none' };
+    width: ${props => props.fullWidth ? '100%' : 'unset'}
 `;
 
 const ButtonText = styled.Text`

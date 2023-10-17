@@ -5,5 +5,6 @@ export const Routes = {
     SignUp: 'SignUp',
     CompleteProfile: 'CompleteProfile',
     Home: 'Home',
+    ForgetPassword: 'ForgetPassword',
     ConfirmPhone: 'ConfirmPhone'
 }

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components/native'
-import { IComp } from '../screens/types/types';
+import { IComp } from '../types';
 
 const ButtonContainer = styled.View`
     flexDirection: column;

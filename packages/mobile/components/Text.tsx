@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
-import { ITextProps } from '../screens/types/types';
+import { ITextProps } from '../types';
 
 const { width } = Dimensions.get('window');
 
