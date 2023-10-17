@@ -1,14 +1,16 @@
 import * as React from 'react'
+import Config from "react-native-config";
 import { Image } from 'react-native';
 import { useForm } from 'react-hook-form';
-import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
+import { EMAIL, PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
 import { loginUser } from '@approbado/lib/services/auth.services'
-import { Routes } from '../routes';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Routes } from '../routes';
+import CONFIG_NAMES from '@approbado/lib/env'
+import axios from 'axios'
 
 const Container = styled.View`
     flex: 1;
@@ -17,40 +19,36 @@ const Container = styled.View`
     padding: 20px;
 `;
 
-const Login = ({ navigation }) => {
+const CreateAccount = ({ navigation }) => {
     const { control, handleSubmit } = useForm();
 
-    const onSubmit = async (values) => {
-        try {
-            const { success, data } = await loginUser(values);
-
-            if (success) {
-                await AsyncStorage.setItem('token', data.token)
-
-                navigation.navigate(Routes.Home)
-            }
-        } catch (error) {
-            console.log(error)
-        }
+    const onSubmit = async (data) => {
+        navigation.navigate(Routes.CompleteProfile)
     };
 
     return (
         <Container>
             <Image source={require('../../assets/Logo.png')} />
             <Text>
-                Iniciar sesión
+                Crear una cuenta
             </Text>
             <TextInput
-                name="email"
+                name="user_name"
                 validations={USERNAME}
                 control={control}
-                placeholder='Ingresa tu usuario'
+                placeholder='usuario'
+            />
+            <TextInput
+                name="email"
+                validations={EMAIL}
+                control={control}
+                placeholder='Correo electrónico'
             />
             <TextInput
                 name="password"
                 validations={PASSWORD}
                 control={control}
-                placeholder='Ingresa tu contraseña'
+                placeholder='Contraseña'
             />
             <Text>
                 ¿Olvidaste tu contraseña?
@@ -59,13 +57,13 @@ const Login = ({ navigation }) => {
                 Iniciar sesión
             </Button>
             <Text>
-                ¿Aún no tienes una cuenta?
+                ¿Ya tienes una cuenta?
             </Text>
             <Text>
-                Crear una cuenta
+                Ingresa aquí
             </Text>
         </Container>
     );
 }
 
-export default Login
+export default CreateAccount

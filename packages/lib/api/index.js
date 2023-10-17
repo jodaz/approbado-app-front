@@ -2,7 +2,7 @@ import defaultAxios from 'axios';
 import CONFIG_NAMES from '../env'
 
 const jsonInstance = defaultAxios.create({
-    baseURL: "http://localhost:4000",
+    baseURL: "http://192.168.250.13:4000",
     withCredentials: false
 });
 
@@ -25,6 +25,8 @@ const interceptorsFunc = (config) => {
 
     return config;
 };
+
+console.log(process.env)
 
 jsonInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(err));
 blobInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(err));
