@@ -6,7 +6,7 @@ const dinamicallyLoadWebEnv = async () => {
     return module.default;
 };
 
-// const CONFIG_NAMES = process.env.EXPO_APP_API_DOMAIN ? NATIVE_ENV : dinamicallyLoadWebEnv();
+// const CONFIG_NAMES = process.env.EXPO_PUBLIC_API_DOMAIN ? NATIVE_ENV : dinamicallyLoadWebEnv();
 CONFIG_NAMES = NATIVE_ENV;
 
 export default CONFIG_NAMES;

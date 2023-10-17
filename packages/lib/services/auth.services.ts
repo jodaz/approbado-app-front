@@ -1,5 +1,4 @@
 import { apiProvider } from "../api";
-import getQueryFromParams from "../utils/getQueryFromParams";
 
 export async function loginUser(values) {
     try {
@@ -20,21 +19,36 @@ export async function loginUser(values) {
     }
 }
 
+export async function getCode(values) {
+    try {
+        const response = await apiProvider.post(`/auth/send`, values)
 
-export async function listAwards(query) {
-    try{
-        const response = await apiProvider.get('/awards', {
-            params: getQueryFromParams(query)
-        })
-
-        const { data, count } = response.data
+        const { data } = response
 
         return {
             success: true,
-            data: data,
-            count: count
+            data: data
         }
-    }catch (error){
+    } catch (error) {
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
+export async function registerAndValidateCode(values) {
+    try {
+        const response = await apiProvider.post(`/auth/register`, values)
+
+        const { data } = response
+
+        return {
+            success: true,
+            data: data
+        }
+    } catch (error) {
         return {
             success: false,
             status: error.response.status,
