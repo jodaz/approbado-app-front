@@ -6,7 +6,7 @@ import { ITextProps } from '../types';
 const { width } = Dimensions.get('window');
 
 const StyledText = styled.Text`
-    font-weight: 600;
+    font-weight: ${props => props.fontWeight};
     font-size: ${({ fontSize }) => fontSize}px;
     width: calc(90% * ${width});
     color: #000;
@@ -20,6 +20,7 @@ const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (
 
 Text.defaultProps = {
     fontSize: 20,
+    fontWeight: 600,
     color: 'secondary'
 }
 
