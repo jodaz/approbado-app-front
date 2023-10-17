@@ -24,3 +24,11 @@ interface ITextProps extends IComp {
     fontSize?: number;
     style?: StyleProp;
 }
+
+interface ITextInputProps {
+    control: any;
+    name: string;
+    placeholder?: string;
+    defaultValue?: string;
+    validations?: any;
+}

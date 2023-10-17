@@ -2,14 +2,19 @@ import * as React from 'react'
 import {
     SafeAreaView,
     Image,
-    View,
-    Pressable
+    View
 } from 'react-native';
+import { Routes } from '../routes';
 import style from './style';
 import ButtonGroup from '../../components/ButtonGroup';
 import Text from '../../components/Text';
+import Button from '../../components/Button';
 
-const Presentation = () => {
+const Presentation = ({ navigation }) => {
+    const handleCreateAccount = () => navigation.navigate(Routes.SignUp)
+
+    const handleLogin = () => navigation.navigate(Routes.Login)
+
     return (
         <SafeAreaView>
             <View style={style.container}>
@@ -19,16 +24,20 @@ const Presentation = () => {
                         Estudia para tus exámenes con Approbado y mejora tu rendimiento en la carrera.
                     </Text>
                     <ButtonGroup>
-                        <Pressable
-                            style={style.primaryButton}
+                        <Button
+                            bgColor='primary'
+                            variant="contained"
+                            onPress={handleCreateAccount}
                         >
-                            <Text>Crear una cuenta</Text>
-                        </Pressable>
-                        <Pressable
-                            style={style.secondaryButton}
+                            Crear una cuenta
+                        </Button>
+                        <Button
+                            bgColor='secondary'
+                            variant="outlined"
+                            onPress={handleLogin}
                         >
-                            <Text>Iniciar sesión</Text>
-                        </Pressable>
+                            Iniciar sesión
+                        </Button>
                     </ButtonGroup>
                     <Text>
                         Términos y condiciones del servicio
