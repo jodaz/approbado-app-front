@@ -34,4 +34,5 @@ export interface ITextInputProps {
     placeholder?: string;
     defaultValue?: string;
     validations?: any;
+    secureTextEntry?: boolean;
 }

@@ -11,6 +11,7 @@ import Text from '../../components/Text';
 import { Routes } from '../routes';
 import CONFIG_NAMES from '@approbado/lib/env'
 import axios from 'axios'
+import Link from '../../components/Link';
 
 const Container = styled.View`
     flex: 1;
@@ -36,7 +37,7 @@ const CreateAccount = ({ navigation }) => {
                 name="user_name"
                 validations={USERNAME}
                 control={control}
-                placeholder='usuario'
+                placeholder='Usuario'
             />
             <TextInput
                 name="email"
@@ -49,19 +50,17 @@ const CreateAccount = ({ navigation }) => {
                 validations={PASSWORD}
                 control={control}
                 placeholder='Contraseña'
+                secureTextEntry
             />
-            <Text>
-                ¿Olvidaste tu contraseña?
-            </Text>
-            <Button onPress={handleSubmit(onSubmit)}>
-                Iniciar sesión
+            <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                Crear una cuenta
             </Button>
             <Text>
                 ¿Ya tienes una cuenta?
             </Text>
-            <Text>
+            <Link to={Routes.Login}>
                 Ingresa aquí
-            </Text>
+            </Link>
         </Container>
     );
 }

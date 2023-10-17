@@ -58,6 +58,7 @@ const Login = ({ navigation }) => {
                     validations={PASSWORD}
                     control={control}
                     placeholder='Ingresa tu contraseña'
+                    secureTextEntry
                 />
             </FormContainer>
             <Link to={Routes.ForgetPassword}>

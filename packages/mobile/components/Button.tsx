@@ -21,6 +21,7 @@ const ButtonContainer = styled.TouchableOpacity`
 
 const ButtonText = styled.Text`
     font-weight: ${props => props.fontWeight };
+    font-size: 16px;
 `;
 
 const Button = ({

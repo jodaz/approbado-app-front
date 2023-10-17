@@ -9,6 +9,7 @@ const Input = styled.TextInput`
     border: ${props => `2px solid ${props.theme.palette.primary.light}`};
     margin-bottom: 10px;
     padding: 10px;
+    font-size: 16px;
     border-radius: 4px;
 `;
 
@@ -23,7 +24,8 @@ const TextInput = ({
     validations,
     placeholder,
     name,
-    defaultValue
+    defaultValue,
+    ...restInputProps
 } : ITextInputProps) : JSX.Element => (
     <Controller
         control={control}
@@ -36,6 +38,7 @@ const TextInput = ({
                     placeholder={placeholder}
                     onChangeText={onChange}
                     {...restField}
+                    {...restInputProps}
                 />
                 {error && <ErrorText>{validations.messages[error.type]}</ErrorText>}
             </>
