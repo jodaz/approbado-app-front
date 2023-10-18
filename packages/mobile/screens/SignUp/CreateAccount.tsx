@@ -3,7 +3,6 @@ import { Image } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Routes } from '../routes';
 import { EMAIL, PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
-import { loginUser } from '@approbado/lib/services/auth.services'
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
@@ -24,7 +23,7 @@ const CreateAccount = ({ navigation }) => {
     const { control, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
-        navigation.navigate(Routes.CompleteProfile)
+        navigation.navigate(Routes.CompleteProfile, data)
     };
 
     return (

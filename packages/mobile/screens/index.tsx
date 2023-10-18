@@ -7,6 +7,7 @@ import CreateAccount from "./SignUp/CreateAccount"
 import Home from "./Home"
 import ForgetPassword from "./ForgetPassword"
 import CompleteProfile from './SignUp/CompleteProfile';
+import ConfirmPhone from './ConfirmPhone';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const MainScreen = () => (
         <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
         <Stack.Screen name={Routes.Home} component={Home}  />
         <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
+        <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
     </Stack.Navigator>
 )
 

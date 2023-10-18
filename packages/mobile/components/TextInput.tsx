@@ -44,7 +44,7 @@ const TextInput = ({
             </>
         )}
         name={name}
-        rules={validations.rules}
+        rules={validations?.rules}
         defaultValue={defaultValue}
     />
 )

@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 const StyledText = styled.Text`
     font-weight: ${props => props.fontWeight};
     font-size: ${({ fontSize }) => fontSize}px;
-    width: calc(90% * ${width});
+    width: calc(90% * ${width})px;
     color: #000;
     text-align: ${props => props.align};
 `;

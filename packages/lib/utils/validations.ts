@@ -65,3 +65,22 @@ export const EMAIL = {
         notfound: "El usuario no ha sido encontrado.",
     },
 };
+
+export const NAME = {
+    rules: {
+        required: true,
+        pattern: /^[a-zA-Z ]*$/,
+    },
+    messages: {
+        pattern: "Introduzca un nombre válido",
+        required: "Campo requerido.",
+    },
+};
+
+export const LAST_NAME = {
+    rules: NAME.rules,
+    messages: {
+        ...NAME.messages,
+        pattern: "Introduzca un apellido válido",
+    },
+};

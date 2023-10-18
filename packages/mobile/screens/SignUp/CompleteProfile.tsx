@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { useForm } from 'react-hook-form';
-import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
+import { LAST_NAME, NAME, PHONE } from '@approbado/lib/utils/validations'
 import { Routes } from '../routes';
+import { useRoute } from '@react-navigation/native';
+import { getCode } from '@approbado/lib/services/auth.services'
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
@@ -23,9 +25,28 @@ const FormContainer = styled.View`
 
 const CompleteProfile = ({ navigation }) => {
     const { control, handleSubmit } = useForm();
+    const route = useRoute()
+    const previousData = route.params;
 
-    const onSubmit = async (data) => {
-        navigation.navigate(Routes.ConfirmPhone)
+    // const onSubmit = async values => {
+    //     const data = {
+    //         ...previousData,
+    //         ...values
+    //     }
+
+    //     try {
+    //         const response = await getCode(data);
+
+    //         if (response.success) {
+    //             navigation.navigate(Routes.ConfirmPhone, data)
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // };
+
+    const onSubmit = async values => {
+        navigation.navigate(Routes.ConfirmPhone, values)
     };
 
     return (
@@ -44,22 +65,20 @@ const CompleteProfile = ({ navigation }) => {
                 <FormContainer>
                     <TextInput
                         name="names"
-                        validations={USERNAME}
+                        validations={NAME}
                         control={control}
                         placeholder='Nombres'
                     />
                     <TextInput
                         name="last_name"
-                        validations={PASSWORD}
+                        validations={LAST_NAME}
                         control={control}
                         placeholder='Apellidos'
                     />
-                    {/* Create phone input */}
                     <TextInput
-                        name="last_name"
-                        validations={PASSWORD}
+                        name="phone"
                         control={control}
-                        placeholder='Apellidos'
+                        placeholder='Teléfono'
                     />
                     <Button
                         onPress={handleSubmit(onSubmit)}

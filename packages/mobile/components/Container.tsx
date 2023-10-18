@@ -9,7 +9,7 @@ const Container = styled.View`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: ${height};
+    height: ${height}px;
 `
 
 export default Container
