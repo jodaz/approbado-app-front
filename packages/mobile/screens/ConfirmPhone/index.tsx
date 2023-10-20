@@ -58,16 +58,16 @@ const ConfirmPhone = ({ navigation }) => {
             ...previousData,
             ...values
         }
-        navigation.navigate(Routes.Home, data)
-        // try {
-        //     const response = await registerAndValidateCode(data);
 
-        //     if (response.success) {
-        //         navigation.navigate(Routes.ConfirmPhone, data)
-        //     }
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+            const response = await registerAndValidateCode(data);
+
+            if (response.success) {
+                navigation.navigate(Routes.ConfirmPhone, data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (

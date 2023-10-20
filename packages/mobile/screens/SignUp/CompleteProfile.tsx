@@ -28,25 +28,21 @@ const CompleteProfile = ({ navigation }) => {
     const route = useRoute()
     const previousData = route.params;
 
-    // const onSubmit = async values => {
-    //     const data = {
-    //         ...previousData,
-    //         ...values
-    //     }
-
-    //     try {
-    //         const response = await getCode(data);
-
-    //         if (response.success) {
-    //             navigation.navigate(Routes.ConfirmPhone, data)
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // };
-
     const onSubmit = async values => {
-        navigation.navigate(Routes.ConfirmPhone, values)
+        const data = {
+            ...previousData,
+            ...values
+        }
+
+        try {
+            const response = await getCode(data);
+
+            if (response.success) {
+                navigation.navigate(Routes.ConfirmPhone, data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (

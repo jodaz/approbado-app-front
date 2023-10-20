@@ -25,17 +25,17 @@ const Login = ({ navigation }) => {
     const { control, handleSubmit } = useForm();
 
     const onSubmit = async (values) => {
-        // try {
-            // const { success, data } = await loginUser(values);
+        try {
+            const { success, data } = await loginUser(values);
 
-            // if (success) {
-                // await AsyncStorage.setItem('token', data.token)
+            if (success) {
+                await AsyncStorage.setItem('token', data.token)
 
                 navigation.navigate(Routes.Home)
-            // }
-        // } catch (error) {
-        //     console.log(error)
-        // }
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (
