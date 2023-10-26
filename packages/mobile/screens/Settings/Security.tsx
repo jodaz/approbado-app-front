@@ -1,15 +1,13 @@
 import * as React from 'react'
 import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
+import { CONFIRM_PASSWORD, PASSWORD } from '@approbado/lib/utils/validations';
 import Container from '../../components/Container';
-import InnerContainer from '../../components/InnerContainer';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
-import Text from '../../components/Text';
 import TitleBar from '../../components/TitleBar';
 import TextInput from '../../components/TextInput';
-import Link from '../../components/Link';
-import { CONFIRM_PASSWORD, PASSWORD } from '@approbado/lib/utils/validations';
+import Row from '../../components/Row';
 
 const FormContainer = styled.View`
     margin-top: 20px;
@@ -29,9 +27,9 @@ const Security = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <InnerContainer>
-                    <TitleBar title="Ajustes de seguridad" />
-                    <FormContainer>
+                <TitleBar title="Ajustes de seguridad" />
+                <FormContainer>
+                    <Row size={1}>
                         <TextInput
                             name="password"
                             validations={PASSWORD}
@@ -39,6 +37,8 @@ const Security = ({ navigation }) => {
                             placeholder='Ingresa contraseña'
                             secureTextEntry
                         />
+                    </Row>
+                    <Row size={1}>
                         <TextInput
                             name="new_password"
                             validations={CONFIRM_PASSWORD}
@@ -46,6 +46,8 @@ const Security = ({ navigation }) => {
                             placeholder='Ingresa contraseña'
                             secureTextEntry
                         />
+                    </Row>
+                    <Row size={1}>
                         <TextInput
                             name="new_password_confirmed"
                             validations={CONFIRM_PASSWORD}
@@ -53,11 +55,13 @@ const Security = ({ navigation }) => {
                             placeholder='Ingresa contraseña'
                             secureTextEntry
                         />
-                    </FormContainer>
-                    <Button onPress={handleSubmit(onSubmit)} fullWidth>
-                        Guardar cambios
-                    </Button>
-                </InnerContainer>
+                    </Row>
+                    <Row size={6}>
+                        <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                            Guardar cambios
+                        </Button>
+                    </Row>
+                </FormContainer>
             </Container>
         </SafeAreaView>
     );

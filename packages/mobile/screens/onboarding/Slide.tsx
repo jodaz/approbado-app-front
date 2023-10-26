@@ -1,12 +1,11 @@
 import {
     Image,
-    View,
     ImageSourcePropType,
 } from 'react-native';
-import style from './style';
 import ButtonGroup from '../../components/ButtonGroup';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import Container from '../../components/Container';
 
 type SlideProps = {
     title: string;
@@ -19,8 +18,8 @@ type SlideProps = {
 
 const Slide = ({ title, image, buttons, skip, next } : SlideProps) => {
     return (
-        <View style={style.view}>
-            <Text style={style.text}>
+        <Container>
+            <Text align='center'>
                 {title}
             </Text>
             <Image source={image} />
@@ -45,7 +44,7 @@ const Slide = ({ title, image, buttons, skip, next } : SlideProps) => {
                     </Button>
                 )}
             </ButtonGroup>
-        </View>
+        </Container>
     )
 }
 

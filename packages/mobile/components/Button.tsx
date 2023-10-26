@@ -20,7 +20,7 @@ const ButtonContainer = styled.TouchableOpacity`
 `;
 
 const ButtonText = styled.Text`
-    font-weight: ${props => props.fontWeight };
+    font-weight: ${props => props.fontWeight};
     font-size: 16px;
 `;
 
@@ -37,7 +37,8 @@ const Button = ({
 Button.defaultProps = {
     bgColor: 'primary',
     variant: 'contained',
-    fontWeight: 600
+    fontWeight: 600,
+    color: 'secondary'
 }
 
 export default Button

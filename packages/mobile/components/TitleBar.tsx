@@ -13,7 +13,7 @@ const NavContainer = styled.View`
 `;
 
 const NavButton = styled.TouchableOpacity`
-    margin-right: 40px;
+    margin-right: ${props => props.theme.space[5]};
 `
 
 const TitleBar = ({ title }: ITitleBarProps) : JSX.Element => {

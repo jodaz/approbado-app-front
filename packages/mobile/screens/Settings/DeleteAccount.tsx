@@ -2,11 +2,10 @@ import * as React from 'react'
 import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import Container from '../../components/Container';
-import InnerContainer from '../../components/InnerContainer';
 import Button from '../../components/Button';
-import styled from 'styled-components/native';
 import Text from '../../components/Text';
 import TitleBar from '../../components/TitleBar';
+import Row from '../../components/Row';
 
 const DeleteAccount = ({ navigation }) => {
     const { control, handleSubmit } = useForm();
@@ -17,13 +16,15 @@ const DeleteAccount = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <InnerContainer>
-                    <TitleBar title="Ajustes de cuenta" />
+                <TitleBar title="Ajustes de cuenta" />
+                <Row size={4}>
                     <Text fontSize={16} fontWeight={400}>
                         Al realizar el proceso de eliminar tu cuenta de approbado.com,
                         tu nombre visible dentro de la plataforma, tu @usuario y toda
                         la información relacionada dentro de la plataforma ya no se podrán ver en approbado.com
                     </Text>
+                </Row>
+                <Row size={4}>
                     <Button
                         variant='outlined'
                         onPress={handleSubmit(onSubmit)}
@@ -31,7 +32,7 @@ const DeleteAccount = ({ navigation }) => {
                     >
                         Eliminar cuenta
                     </Button>
-                </InnerContainer>
+                </Row>
             </Container>
         </SafeAreaView>
     );

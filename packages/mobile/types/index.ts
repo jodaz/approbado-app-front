@@ -1,11 +1,13 @@
 import * as React from 'react'
 import { StyleProp } from 'react-native';
 
-type ColorThemeType = 'primary' | 'secondary';
+type ColorThemeType = 'primary' | 'secondary' | 'error';
 
-type VariantType = 'outlined' | 'text' | 'contained'
+type VariantType = 'outlined' | 'text' | 'contained';
 
-type TextAlignType = 'right' | 'left' | 'center'
+type TextAlignType = 'right' | 'left' | 'center';
+
+type FlexboxAlignType = 'center' | 'start' | 'end' | 'unset';
 
 export interface IComp {
     children: React.ReactNode
@@ -17,6 +19,7 @@ export interface IButtonProps extends IComp {
     variant?: VariantType;
     fontWeight?: number;
     fullWidth?: boolean;
+    color: ColorThemeType;
 }
 
 export interface ITextProps extends IComp {
@@ -42,4 +45,9 @@ export interface ITextInputProps {
 
 export interface ITitleBarProps {
     title: string;
+}
+
+export interface IRowProps extends IComp {
+    size?: number;
+    align?: FlexboxAlignType;
 }

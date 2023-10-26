@@ -3,10 +3,9 @@ import {
     SafeAreaView,
     Image
 } from 'react-native';
+import Row from '../../components/Row';
 import { Routes } from '../routes';
 import Container from '../../components/Container';
-import InnerContainer from '../../components/InnerContainer';
-import ButtonGroup from '../../components/ButtonGroup';
 import Text from '../../components/Text';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
@@ -27,37 +26,43 @@ const Presentation = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <InnerContainer>
+                <Row size={4} align='center'>
                     <Image source={require('../../assets/Logo.png')} />
+                </Row>
+                <Row size={4} align='center'>
                     <Title>
                         Estudia para tus exámenes con Approbado
                         y mejora tu rendimiento en la carrera.
                     </Title>
-                    <ButtonGroup>
-                        <Button
-                            bgColor='primary'
-                            variant="contained"
-                            onPress={handleCreateAccount}
-                            fullWidth
-                        >
-                            Crear una cuenta
-                        </Button>
-                        <Button
-                            bgColor='secondary'
-                            variant="outlined"
-                            onPress={handleLogin}
-                            fullWidth
-                        >
-                            Iniciar sesión
-                        </Button>
-                    </ButtonGroup>
+                </Row>
+                <Row size={1} align='center'>
+                    <Button
+                        bgColor='primary'
+                        variant="contained"
+                        onPress={handleCreateAccount}
+                        fullWidth
+                    >
+                        Crear una cuenta
+                    </Button>
+                </Row>
+                <Row size={1} align='center'>
+                    <Button
+                        bgColor='secondary'
+                        variant="outlined"
+                        onPress={handleLogin}
+                        fullWidth
+                    >
+                        Iniciar sesión
+                    </Button>
+                </Row>
+                <Row size={4} align='center'>
                     <LightText fontSize={16} fontWeight={400}>
                         Términos y condiciones del servicio
                     </LightText>
-                </InnerContainer>
-                <LightText fontSize={16} fontWeight={400}>
-                    Todos los derechos reservados
-                </LightText>
+                    <LightText fontSize={16} fontWeight={400}>
+                        Todos los derechos reservados
+                    </LightText>
+                </Row>
             </Container>
         </SafeAreaView>
     );

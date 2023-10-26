@@ -18,8 +18,6 @@ const MainScreen = () => (
         screenOptions={{ headerShown: false }}
         initialRouteName={Routes.Onboarding}
     >
-        <Stack.Screen name={Routes.Security} component={Security}  />
-        {/* <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
         <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
         <Stack.Screen name={Routes.Presentation} component={Presentation}  />
         <Stack.Screen name={Routes.Login} component={Login}  />
@@ -27,7 +25,9 @@ const MainScreen = () => (
         <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
         <Stack.Screen name={Routes.Home} component={Home}  />
         <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
-        <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  /> */}
+        <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
+        <Stack.Screen name={Routes.Security} component={Security}  />
+        <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
     </Stack.Navigator>
 )
 

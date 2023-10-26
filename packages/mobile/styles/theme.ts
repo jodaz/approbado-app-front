@@ -30,7 +30,22 @@ export const theme = {
     },
     color: {
         dark: '#F9F9F9',
-    }
+    },
+    space: [
+        "4px",
+        "8px",
+        "12px",
+        "16px",
+        "24px",
+        "32px",
+        "48px",
+        "64px",
+        "96px",
+        "128px",
+        "192px",
+        "256px",
+        "384px"
+    ]
 };
 
 export const themeAccesor = (keys = []) =>

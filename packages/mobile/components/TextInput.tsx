@@ -7,7 +7,6 @@ const Input = styled.TextInput`
     width: 100%;
     height: 45px;
     border: ${props => `2px solid ${props.theme.palette.primary.light}`};
-    margin-bottom: 10px;
     padding: 10px;
     font-size: 16px;
     border-radius: 4px;
@@ -15,7 +14,6 @@ const Input = styled.TextInput`
 
 const ErrorText = styled.Text`
     color: ${props => props.theme.palette.error.main};
-    margin-bottom: 10px;
     width: 100%;
 `;
 
