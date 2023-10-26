@@ -7,5 +7,6 @@ export const Routes = {
     Home: 'Home',
     ForgetPassword: 'ForgetPassword',
     ConfirmPhone: 'ConfirmPhone',
-    DeleteAccount: 'DeleteAccount'
+    DeleteAccount: 'DeleteAccount',
+    Security: 'Security'
 }

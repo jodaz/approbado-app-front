@@ -9,6 +9,7 @@ import ForgetPassword from "./ForgetPassword"
 import CompleteProfile from './SignUp/CompleteProfile';
 import ConfirmPhone from './ConfirmPhone';
 import DeleteAccount from './Settings/DeleteAccount';
+import Security from './Settings/Security';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,8 +18,9 @@ const MainScreen = () => (
         screenOptions={{ headerShown: false }}
         initialRouteName={Routes.Onboarding}
     >
-        <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
-        {/* <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
+        <Stack.Screen name={Routes.Security} component={Security}  />
+        {/* <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
+        <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
         <Stack.Screen name={Routes.Presentation} component={Presentation}  />
         <Stack.Screen name={Routes.Login} component={Login}  />
         <Stack.Screen name={Routes.SignUp} component={CreateAccount}  />

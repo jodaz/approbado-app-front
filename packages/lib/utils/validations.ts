@@ -45,6 +45,20 @@ export const PASSWORD = {
     },
 };
 
+export const CONFIRM_PASSWORD = {
+    rules: {
+        required: true,
+        minLength: 6,
+        maxLength: 12,
+    },
+    messages: {
+        required: "Campo requerido.",
+        maxLength: "La contraseña no puede exceder los 12 dígitos",
+        minLength: "Mínimo 6 caracteres",
+        validate: "Las contraseñas no coinciden.",
+    },
+};
+
 export const EMAIL = {
     rules: {
         required: true,
