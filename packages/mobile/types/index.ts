@@ -39,3 +39,7 @@ export interface ITextInputProps {
     validations?: any;
     secureTextEntry?: boolean;
 }
+
+export interface ITitleBarProps {
+    title: string;
+}

@@ -10,6 +10,7 @@ const Container = styled.View`
     align-items: center;
     justify-content: space-between;
     height: ${height}px;
+    padding-top: 20px;
 `
 
 export default Container

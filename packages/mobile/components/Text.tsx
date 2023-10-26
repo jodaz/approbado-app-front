@@ -10,6 +10,7 @@ const StyledText = styled.Text`
     font-size: ${({ fontSize }) => fontSize}px;
     width: calc(90% * ${width})px;
     color: #000;
+    lineHeight: 24px;
     text-align: ${props => props.align};
 `;
 
