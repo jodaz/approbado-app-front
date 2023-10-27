@@ -51,3 +51,9 @@ export interface IRowProps extends IComp {
     size?: number;
     align?: FlexboxAlignType;
 }
+
+export interface ICheckboxProps {
+    control: any;
+    name: string;
+    label: string;
+}

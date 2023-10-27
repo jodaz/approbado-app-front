@@ -8,5 +8,7 @@ export const Routes = {
     ForgetPassword: 'ForgetPassword',
     ConfirmPhone: 'ConfirmPhone',
     DeleteAccount: 'DeleteAccount',
-    Security: 'Security'
+    Security: 'Security',
+    NotificationSettings: 'NotificationSettings',
+    PrivacySettings: 'PrivacySettings'
 }
