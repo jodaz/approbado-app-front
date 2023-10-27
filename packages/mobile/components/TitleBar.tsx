@@ -9,7 +9,6 @@ const NavContainer = styled.View`
     display: flex;
     flex-direction: row;
     width: 100%;
-    padding: 0 10px;
 `;
 
 const NavButton = styled.TouchableOpacity`

@@ -9,6 +9,8 @@ export const Routes = {
     ConfirmPhone: 'ConfirmPhone',
     DeleteAccount: 'DeleteAccount',
     Security: 'Security',
+    Settings: 'Settings',
+    Memberships: 'Memberships',
     NotificationSettings: 'NotificationSettings',
     PrivacySettings: 'PrivacySettings'
 }
