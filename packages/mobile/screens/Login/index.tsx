@@ -5,13 +5,15 @@ import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
 import { loginUser } from '@approbado/lib/services/auth.services'
 import { Routes } from '../routes';
 import Container from '../../components/Container';
-import InnerContainer from '../../components/InnerContainer';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Link from '../../components/Link';
+import GoogleLoginButton from '../../components/GoogleLogin';
+import FacebookLoginButton from '../../components/FacebookLogin';
+import Row from '../../components/Row';
 
 const FormContainer = styled.View`
     margin-top: 20px;
@@ -41,18 +43,24 @@ const Login = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <InnerContainer>
+                <Row size={4} align='center'>
                     <Image source={require('../../assets/Logo.png')} />
-                    <Text>
+                </Row>
+                <Row size={1} align='center'>
+                    <Text align='center'>
                         Iniciar sesión
                     </Text>
-                    <FormContainer>
+                </Row>
+                <FormContainer>
+                    <Row size={1}>
                         <TextInput
                             name="email"
                             validations={USERNAME}
                             control={control}
                             placeholder='Ingresa tu usuario'
                         />
+                    </Row>
+                    <Row size={1}>
                         <TextInput
                             name="password"
                             validations={PASSWORD}
@@ -60,20 +68,35 @@ const Login = ({ navigation }) => {
                             placeholder='Ingresa tu contraseña'
                             secureTextEntry
                         />
-                        <Link to={Routes.ForgetPassword} align='right'>
-                            ¿Olvidaste tu contraseña?
-                        </Link>
-                    </FormContainer>
+                    </Row>
+                    <Link to={Routes.ForgetPassword} align='right'>
+                        ¿Olvidaste tu contraseña?
+                    </Link>
+                </FormContainer>
+                <Row size={1}>
                     <Button onPress={handleSubmit(onSubmit)} fullWidth>
                         Iniciar sesión
                     </Button>
+                </Row>
+                <Row size={2} align='center'>
+                    <Text fontSize={14} fontWeight={400}>
+                        Iniciar sesión con un tercero
+                    </Text>
+                </Row>
+                <Row size={1} align='center'>
+                    <GoogleLoginButton />
+                </Row>
+                <Row size={1} align='center'>
+                    <FacebookLoginButton />
+                </Row>
+                <Row size={2} align='center'>
                     <Text fontSize={16}>
                         ¿Aún no tienes una cuenta?
                     </Text>
                     <Link to={Routes.SignUp} align='center'>
                         Crear una cuenta
                     </Link>
-                </InnerContainer>
+                </Row>
             </Container>
         </SafeAreaView>
     );

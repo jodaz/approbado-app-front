@@ -9,7 +9,9 @@ import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
 import Link from '../../components/Link';
 import Container from '../../components/Container';
-import InnerContainer from '../../components/InnerContainer';
+import Row from '../../components/Row';
+import GoogleLoginButton from '../../components/GoogleLogin';
+import FacebookLoginButton from '../../components/FacebookLogin';
 
 const FormContainer = styled.View`
     margin-top: 20px;
@@ -28,24 +30,32 @@ const CreateAccount = ({ navigation }) => {
 
     return (
         <Container>
-            <InnerContainer>
+            <Row size={4} align='center'>
                 <Image source={require('../../assets/Logo.png')} />
-                <Text>
+            </Row>
+            <Row size={1} align='center'>
+                <Text align='center'>
                     Crear una cuenta
                 </Text>
-                <FormContainer>
+            </Row>
+            <FormContainer>
+                <Row size={1}>
                     <TextInput
                         name="user_name"
                         validations={USERNAME}
                         control={control}
                         placeholder='Usuario'
                     />
+                </Row>
+                <Row size={1}>
                     <TextInput
                         name="email"
                         validations={EMAIL}
                         control={control}
                         placeholder='Correo electrónico'
                     />
+                </Row>
+                <Row size={1}>
                     <TextInput
                         name="password"
                         validations={PASSWORD}
@@ -53,20 +63,33 @@ const CreateAccount = ({ navigation }) => {
                         placeholder='Contraseña'
                         secureTextEntry
                     />
-                    <Button
-                        onPress={handleSubmit(onSubmit)}
-                        fullWidth
-                    >
-                        Crear una cuenta
-                    </Button>
-                </FormContainer>
-                <Text fontSize={16} align='center'>
-                    ¿Ya tienes una cuenta?
+                </Row>
+            </FormContainer>
+            <Row size={2}>
+                <Button
+                    onPress={handleSubmit(onSubmit)}
+                    fullWidth
+                >
+                    Crear una cuenta
+                </Button>
+            </Row>
+            <Row size={2} align='center'>
+                <Text fontSize={14} fontWeight={400}>
+                    Iniciar sesión con un tercero
                 </Text>
-                <Link to={Routes.Login} align='center'>
-                    Ingresa aquí
-                </Link>
-            </InnerContainer>
+            </Row>
+            <Row size={1} align='center'>
+                <GoogleLoginButton />
+            </Row>
+            <Row size={1} align='center'>
+                <FacebookLoginButton />
+            </Row>
+            <Text fontSize={16} align='center'>
+                ¿Ya tienes una cuenta?
+            </Text>
+            <Link to={Routes.Login} align='center'>
+                Ingresa aquí
+            </Link>
         </Container>
     );
 }

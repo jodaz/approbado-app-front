@@ -9,7 +9,7 @@ import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
 import Container from '../../components/Container';
-import InnerContainer from '../../components/InnerContainer';
+import Row from '../../components/Row';
 
 const LightText = styled(Text)`
     color: ${props => props.theme.palette.info.light};
@@ -47,10 +47,12 @@ const CompleteProfile = ({ navigation }) => {
 
     return (
         <Container>
-            <InnerContainer>
+            <Row size={4} align='center'>
                 <Text>
                     Completa tu perfil
                 </Text>
+            </Row>
+            <Row size={2} align='center'>
                 <LightText
                     fontSize={16}
                     align='center'
@@ -58,32 +60,41 @@ const CompleteProfile = ({ navigation }) => {
                 >
                     Te hemos registrado ahora completa tu perfil para que verifiquemos tu identidad.
                 </LightText>
-                <FormContainer>
+            </Row>
+            <FormContainer>
+                <Row size={1}>
                     <TextInput
                         name="names"
                         validations={NAME}
                         control={control}
                         placeholder='Nombres'
                     />
+                </Row>
+                <Row size={1}>
                     <TextInput
                         name="last_name"
                         validations={LAST_NAME}
                         control={control}
                         placeholder='Apellidos'
                     />
+                </Row>
+                <Row size={1}>
                     <TextInput
                         name="phone"
                         control={control}
                         placeholder='Teléfono'
                     />
-                    <Button
-                        onPress={handleSubmit(onSubmit)}
-                        fullWidth
-                    >
-                        Siguiente
-                    </Button>
-                </FormContainer>
-            </InnerContainer>
+                </Row>
+            </FormContainer>
+
+            <Row size={1}>
+                <Button
+                    onPress={handleSubmit(onSubmit)}
+                    fullWidth
+                >
+                    Siguiente
+                </Button>
+            </Row>
         </Container>
     );
 }
