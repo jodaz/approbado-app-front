@@ -1,96 +1,26 @@
-import React from 'react';
-import Text from '../../components/Text';
-import { SafeAreaView } from 'react-native';
-import Row from '../../components/Row';
-import Button from '../../components/Button';
-import Container from '../../components/Container';
-import TitleBar from '../../components/TitleBar';
-import styled from 'styled-components/native';
-import { IComp } from '../../types';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from '../routes';
-import { ChevronRight } from 'lucide-react-native';
+import DeleteAccount from './DeleteAccount';
+import Security from './Security';
+import NotificationSettings from './NotificationSettings';
+import PrivacySettings from './PrivacySettings';
+import Memberships from './Memberships';
+import Settings from './Settings';
 
-interface INavButtonProps extends IComp {
-    navigation: any;
-    to: string;
-}
+const Stack = createNativeStackNavigator();
 
-const StyledNavButton = styled.TouchableOpacity`
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-`
-
-const FormContainer = styled.View`
-    margin-top: 40px;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-`
-
-const NavButton = ({ navigation, children, to } : INavButtonProps ) : JSX.Element => (
-    <StyledNavButton onPress={() => navigation.navigate(to)}>
-        <Text fontSize={18} fontWeight={400}>
-            {children}
-        </Text>
-        <ChevronRight size={24} color='#000' />
-    </StyledNavButton>
+const SettingsStack = () => (
+    <Stack.Navigator
+        screenOptions={{ headerShown: false }}
+        initialRouteName={Routes.Settings}
+    >
+        <Stack.Screen name={Routes.Settings} component={Settings}  />
+        <Stack.Screen name={Routes.PrivacySettings} component={PrivacySettings}  />
+        <Stack.Screen name={Routes.NotificationSettings} component={NotificationSettings}  />
+        <Stack.Screen name={Routes.Security} component={Security}  />
+        <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
+        <Stack.Screen name={Routes.Memberships} component={Memberships}  />
+    </Stack.Navigator>
 )
 
-const Settings = ({ navigation }) => (
-    <SafeAreaView>
-        <Container>
-            <TitleBar title="Configuraciones" />
-            <FormContainer>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.PrivacySettings}
-                    >
-                        Privacidad
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.Memberships}
-                    >
-                        Membresías
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.NotificationSettings}
-                    >
-                        Notificaciones
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.Security}
-                    >
-                        Contraseña
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.DeleteAccount}
-                    >
-                        Cuenta
-                    </NavButton>
-                </Row>
-                <Row size={6} align='start'>
-                    <Button variant="text">
-                        Cerrar sesión
-                    </Button>
-                </Row>
-            </FormContainer>
-        </Container>
-    </SafeAreaView>
-);
-
-export default Settings;
+export default SettingsStack

@@ -50,6 +50,7 @@ export interface ITitleBarProps {
 export interface IRowProps extends IComp {
     size?: number;
     align?: FlexboxAlignType;
+    justify?: FlexboxAlignType;
 }
 
 export interface ICheckboxProps {

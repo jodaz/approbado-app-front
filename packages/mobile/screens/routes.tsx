@@ -12,5 +12,8 @@ export const Routes = {
     Settings: 'Settings',
     Memberships: 'Memberships',
     NotificationSettings: 'NotificationSettings',
-    PrivacySettings: 'PrivacySettings'
+    PrivacySettings: 'PrivacySettings',
+    Profile: 'Profile',
+    Game: 'Game',
+    Forum: 'Forum'
 }
