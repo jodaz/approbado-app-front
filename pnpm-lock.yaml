@@ -116,6 +116,9 @@ importers:
       expo-checkbox:
         specifier: ^2.5.0
         version: 2.5.0
+      expo-secure-store:
+        specifier: ^12.5.0
+        version: 12.5.0(expo@49.0.13)
       expo-status-bar:
         specifier: ~1.6.0
         version: 1.6.0
@@ -5103,6 +5106,14 @@ packages:
     dependencies:
       compare-versions: 3.6.0
       invariant: 2.2.4
+    dev: false
+
+  /expo-secure-store@12.5.0(expo@49.0.13):
+    resolution: {integrity: sha512-Ow2ei+SB1w4zPLxmOg2PVPf2i45Eii0T9KUaER5iRLJAMcBWN4nyGCxzESOoN3OrvxVadP0hAn6RVE1G3gdD+Q==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      expo: 49.0.13(@babel/core@7.23.2)
     dev: false
 
   /expo-status-bar@1.6.0:

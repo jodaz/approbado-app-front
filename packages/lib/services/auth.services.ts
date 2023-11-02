@@ -19,6 +19,25 @@ export async function loginUser(values) {
     }
 }
 
+export async function getUserProfile() {
+    try {
+        const response = await apiProvider.get(`/auth/user`)
+
+        const { data } = response
+
+        return {
+            success: true,
+            data: data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
 export async function getCode(values) {
     try {
         const response = await apiProvider.post(`/auth/send`, values)

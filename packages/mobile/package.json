@@ -19,6 +19,7 @@
     "expo": "~49.0.7",
     "expo-auth-session": "^5.2.0",
     "expo-checkbox": "^2.5.0",
+    "expo-secure-store": "^12.5.0",
     "expo-status-bar": "~1.6.0",
     "lucide-react-native": "^0.289.0",
     "ramda": "^0.29.1",

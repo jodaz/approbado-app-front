@@ -1,5 +1,6 @@
 import defaultAxios from 'axios';
 import CONFIG_NAMES from '../env'
+import * as SecureStore from 'expo-secure-store';
 
 const jsonInstance = defaultAxios.create({
     baseURL: CONFIG_NAMES.SOURCE,
@@ -13,15 +14,16 @@ const blobInstance = defaultAxios.create({
 });
 
 // Request interceptor
-const interceptorsFunc = (config) => {
-    // const token = localStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);
+const interceptorsFunc = async (config) => {
+    // const token = localStorage.getItem();
+    const token = await SecureStore.getItemAsync(CONFIG_NAMES.AUTH_TOKEN);
+    console.log(token);
+    const newConfig = config;
 
-    // const newConfig = config;
-
-    // // When a 'token' is available set as token.
-    // if (token) {
-    //     newConfig.headers.Authorization = `Bearer ${token}`;
-    // }
+    // When a 'token' is available set as token.
+    if (token) {
+        newConfig.headers.Authorization = `Bearer ${token}`;
+    }
 
     return config;
 };

@@ -2,14 +2,13 @@ import * as React from 'react'
 import { Image, SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
-import { loginUser } from '@approbado/lib/services/auth.services'
 import { Routes } from '../routes';
+import { login, useAuth } from '@approbado/lib/contexts/AuthContext'
 import Container from '../../components/Container';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Link from '../../components/Link';
 import GoogleLoginButton from '../../components/GoogleLogin';
 import FacebookLoginButton from '../../components/FacebookLogin';
@@ -24,15 +23,14 @@ const FormContainer = styled.View`
 `;
 
 const Login = ({ navigation }) => {
+    const { dispatch } = useAuth()
     const { control, handleSubmit } = useForm();
 
     const onSubmit = async (values) => {
         try {
-            const { success, data } = await loginUser(values);
+            const { success } = await login(dispatch, values);
 
             if (success) {
-                await AsyncStorage.setItem('token', data.token)
-
                 navigation.navigate(Routes.Home)
             }
         } catch (error) {
