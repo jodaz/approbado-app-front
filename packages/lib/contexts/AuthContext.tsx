@@ -146,7 +146,9 @@ export async function logout(dispatch: any) {
     try {
         dispatch({ type: AuthActionType.LOGOUT })
 
-        // await localStorage.removeItem(vars.authToken)
+        await SecureStore.deleteItemAsync(CONFIG_NAMES.AUTH_TOKEN)
+
+        return { success: true }
     } catch (e) {
         console.log(e);
     }

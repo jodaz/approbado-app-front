@@ -9,6 +9,7 @@ import styled from 'styled-components/native';
 import { IComp } from '../../types';
 import { Routes } from '../routes';
 import { ChevronRight } from 'lucide-react-native';
+import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
 
 interface INavButtonProps extends IComp {
     navigation: any;
@@ -38,59 +39,67 @@ const NavButton = ({ navigation, children, to } : INavButtonProps ) : JSX.Elemen
     </StyledNavButton>
 )
 
-const Settings = ({ navigation }) => (
-    <SafeAreaView>
-        <Container>
-            <TitleBar title="Configuraciones" />
-            <FormContainer>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.PrivacySettings}
-                    >
-                        Privacidad
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.Memberships}
-                    >
-                        Membresías
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.NotificationSettings}
-                    >
-                        Notificaciones
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.Security}
-                    >
-                        Contraseña
-                    </NavButton>
-                </Row>
-                <Row size={2}>
-                    <NavButton
-                        navigation={navigation}
-                        to={Routes.DeleteAccount}
-                    >
-                        Cuenta
-                    </NavButton>
-                </Row>
-                <Row size={6} align='start'>
-                    <Button variant="text">
-                        Cerrar sesión
-                    </Button>
-                </Row>
-            </FormContainer>
-        </Container>
-    </SafeAreaView>
-);
+const Settings = ({ navigation }) => {
+    const { dispatch } = useAuth();
+
+    const onLogout = async () => {
+        await logout(dispatch)
+    }
+
+    return (
+        <SafeAreaView>
+            <Container>
+                <TitleBar title="Configuraciones" />
+                <FormContainer>
+                    <Row size={2}>
+                        <NavButton
+                            navigation={navigation}
+                            to={Routes.PrivacySettings}
+                        >
+                            Privacidad
+                        </NavButton>
+                    </Row>
+                    <Row size={2}>
+                        <NavButton
+                            navigation={navigation}
+                            to={Routes.Memberships}
+                        >
+                            Membresías
+                        </NavButton>
+                    </Row>
+                    <Row size={2}>
+                        <NavButton
+                            navigation={navigation}
+                            to={Routes.NotificationSettings}
+                        >
+                            Notificaciones
+                        </NavButton>
+                    </Row>
+                    <Row size={2}>
+                        <NavButton
+                            navigation={navigation}
+                            to={Routes.Security}
+                        >
+                            Contraseña
+                        </NavButton>
+                    </Row>
+                    <Row size={2}>
+                        <NavButton
+                            navigation={navigation}
+                            to={Routes.DeleteAccount}
+                        >
+                            Cuenta
+                        </NavButton>
+                    </Row>
+                    <Row size={6} align='start'>
+                        <Button variant="text" onPress={onLogout}>
+                            Cerrar sesión
+                        </Button>
+                    </Row>
+                </FormContainer>
+            </Container>
+        </SafeAreaView>
+    );
+}
 
 export default Settings;
