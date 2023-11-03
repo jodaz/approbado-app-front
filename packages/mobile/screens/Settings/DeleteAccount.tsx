@@ -1,16 +1,24 @@
 import * as React from 'react'
+import { deleteAccount } from '@approbado/lib/services/settings.services';
 import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
+import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
 import Container from '../../components/Container';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import TitleBar from '../../components/TitleBar';
 import Row from '../../components/Row';
 
-const DeleteAccount = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
+const DeleteAccount = () => {
+    const { handleSubmit } = useForm();
+    const { dispatch } = useAuth()
 
     const onSubmit = async (values) => {
+        const { success } = await deleteAccount();
+
+        if (success) {
+            logout(dispatch)
+        }
     };
 
     return (

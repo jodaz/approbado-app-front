@@ -1,11 +1,21 @@
-export const USERNAME = {
+const globalUserEmail = {
     rules: {
         required: true,
+        unique: true,
+        notfound: true,
+        deleted: true,
+        verify: true
     },
     messages: {
         required: "Campo requerido.",
+        deleted: "La cuenta asociada ha sido eliminada por el usuario.",
+        unique: "El correo ha sido registrado.",
+        verify: "Debe verificar su correo electrónico.",
+        notfound: "El usuario no ha sido encontrado.",
     }
 }
+
+export const USERNAME = globalUserEmail
 
 export const PHONE = {
     rules: {
@@ -61,22 +71,12 @@ export const CONFIRM_PASSWORD = {
 
 export const EMAIL = {
     rules: {
-        required: true,
-        pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
-        unique: true,
-        notfound: true,
-        deleted: true,
-        verify: true,
-        byrrss: true,
+        ...globalUserEmail.rules,
+        pattern: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
     },
     messages: {
-        byrrss: "Debe iniciar sesión por una red social.",
-        deleted: "La cuenta asociada ha sido eliminada por el usuario.",
-        unique: "El correo ha sido registrado.",
-        required: "Campo requerido.",
-        pattern: "Email inválido",
-        verify: "Debe verificar su correo electrónico.",
-        notfound: "El usuario no ha sido encontrado.",
+        ...globalUserEmail.messages,
+        pattern: "Email inválido"
     },
 };
 

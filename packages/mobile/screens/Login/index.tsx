@@ -33,6 +33,7 @@ const Login = ({ navigation }) => {
         if (success) {
             navigation.navigate(Routes.Home)
         } else {
+            console.log(data)
             if (status == 422) {
                 setFormErrors(setError, data)
             }
