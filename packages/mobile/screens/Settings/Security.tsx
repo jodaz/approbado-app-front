@@ -9,6 +9,7 @@ import styled from 'styled-components/native';
 import TitleBar from '../../components/TitleBar';
 import TextInput from '../../components/TextInput';
 import Row from '../../components/Row';
+import setFormErrors from '@approbado/lib/utils/setFormErrors';
 
 const FormContainer = styled.View`
     margin-top: 20px;
@@ -19,7 +20,7 @@ const FormContainer = styled.View`
 `;
 
 const Security = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, setError } = useForm();
 
     const onSubmit = async (values) => {
         const { success, status, data } = await updatePassword(values)
@@ -27,7 +28,9 @@ const Security = ({ navigation }) => {
         if (success) {
             navigation.goBack();
         } else {
-            console.log(status, data)
+            if (status == 422) {
+                setFormErrors(setError, data)
+            }
         }
     };
 

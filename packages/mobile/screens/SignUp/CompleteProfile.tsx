@@ -10,6 +10,7 @@ import TextInput from '../../components/TextInput';
 import Text from '../../components/Text';
 import Container from '../../components/Container';
 import Row from '../../components/Row';
+import setFormErrors from '@approbado/lib/utils/setFormErrors';
 
 const LightText = styled(Text)`
     color: ${props => props.theme.palette.info.light};
@@ -24,24 +25,24 @@ const FormContainer = styled.View`
 `;
 
 const CompleteProfile = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, setError } = useForm();
     const route = useRoute()
     const previousData = route.params;
 
     const onSubmit = async values => {
-        const data = {
+        const formData = {
             ...previousData,
             ...values
         }
 
-        try {
-            const response = await getCode(data);
+        const { status, data, success } = await getCode(formData);
 
-            if (response.success) {
-                navigation.navigate(Routes.ConfirmPhone, data)
+        if (success) {
+            navigation.navigate(Routes.ConfirmPhone, data)
+        } else {
+            if (status == 422) {
+                setFormErrors(setError, data)
             }
-        } catch (error) {
-            console.log(error)
         }
     };
 

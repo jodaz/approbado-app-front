@@ -132,7 +132,7 @@ export async function login(dispatch: any, values: any) {
 
         return { success: true };
     } else {
-        return { success, status, data};
+        return { success, status, data };
     }
 }
 

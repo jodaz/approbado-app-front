@@ -10,6 +10,7 @@ import Text from '../../components/Text';
 import Container from '../../components/Container';
 import InnerContainer from '../../components/InnerContainer';
 import OTPTextView from 'react-native-otp-textinput';
+import setFormErrors from '@approbado/lib/utils/setFormErrors';
 
 const LightText = styled(Text)`
     color: ${props => props.theme.palette.info.light};
@@ -37,7 +38,7 @@ const style = StyleSheet.create({
 });
 
 const ConfirmPhone = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, setError } = useForm();
     const route = useRoute()
     const previousData = route.params;
     const [otpInput, setOtpInput] = React.useState<string>("");
@@ -54,19 +55,19 @@ const ConfirmPhone = ({ navigation }) => {
     };
 
     const onSubmit = async values => {
-        const data = {
+        const formData = {
             ...previousData,
             ...values
         }
 
-        try {
-            const response = await registerAndValidateCode(data);
+        const { success, data, status } = await registerAndValidateCode(formData);
 
-            if (response.success) {
-                navigation.navigate(Routes.ConfirmPhone, data)
+        if (success) {
+            navigation.navigate(Routes.ConfirmPhone, data)
+        } else {
+            if (status == 422) {
+                setFormErrors(setError, data)
             }
-        } catch (error) {
-            console.log(error)
         }
     };
 
