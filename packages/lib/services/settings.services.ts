@@ -39,7 +39,7 @@ export async function deleteAccount() {
 
 export async function updatePassword(values: any) {
     try {
-        const response = await apiProvider.get(`/update-password`, values)
+        const response = await apiProvider.post(`/update-password`, values)
 
         const { data } = response
 

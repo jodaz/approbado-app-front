@@ -2,6 +2,7 @@ import * as React from 'react'
 import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { CONFIRM_PASSWORD, PASSWORD } from '@approbado/lib/utils/validations';
+import { updatePassword } from '@approbado/lib/services/settings.services';
 import Container from '../../components/Container';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
@@ -21,7 +22,13 @@ const Security = ({ navigation }) => {
     const { control, handleSubmit } = useForm();
 
     const onSubmit = async (values) => {
-        navigation.goBack();
+        const { success, status, data } = await updatePassword(values)
+
+        if (success) {
+            navigation.goBack();
+        } else {
+            console.log(status, data)
+        }
     };
 
     return (
@@ -31,7 +38,7 @@ const Security = ({ navigation }) => {
                 <FormContainer>
                     <Row size={1}>
                         <TextInput
-                            name="password"
+                            name="curr_password"
                             validations={PASSWORD}
                             control={control}
                             placeholder='Ingresa contraseña'
