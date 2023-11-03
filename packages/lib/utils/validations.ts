@@ -42,16 +42,14 @@ export const PASSWORD = {
         minLength: 6,
         maxLength: 12,
         invalid: true,
-        validate: true,
-        wrong: true
+        validate: true
     },
     messages: {
         required: "Campo requerido.",
         minLength: "Mínimo 6 caracteres.",
         maxLength: "La contraseña no puede exceder los 12 dígitos.",
-        invalid: "Credenciales inválidas.",
         validate: "Las contraseñas no coinciden.",
-        wrong: "Contraseña incorrecta.",
+        invalid: "Contraseña incorrecta.",
     },
 };
 
@@ -60,10 +58,13 @@ export const CONFIRM_PASSWORD = {
         required: true,
         minLength: 6,
         maxLength: 12,
+        different: true,
+        validate: true
     },
     messages: {
         required: "Campo requerido.",
         maxLength: "La contraseña no puede exceder los 12 dígitos",
+        different: "La nueva contraseña no debe ser igual a la anterior",
         minLength: "Mínimo 6 caracteres",
         validate: "Las contraseñas no coinciden.",
     },
