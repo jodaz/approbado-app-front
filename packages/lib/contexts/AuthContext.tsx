@@ -3,7 +3,7 @@ import { IAuth, AuthContextType } from '../types/providers';
 import { getUserProfile, loginUser } from '../services/auth.services';
 import { IComp } from '../types';
 import CONFIG_NAMES from '../env';
-import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 enum AuthActionType {
     LOGIN = 'LOGIN',
@@ -25,7 +25,7 @@ const initialState: IAuth = {
 }
 
 const setLocalCredentials = async (token: string) => {
-    await SecureStore.setItemAsync(CONFIG_NAMES.AUTH_TOKEN, token);
+    await AsyncStorage.setItem(CONFIG_NAMES.AUTH_TOKEN, token);
 
     return true;
 }
@@ -34,7 +34,7 @@ const AuthContext = React.createContext<AuthContextType>({ state: initialState, 
 
 const getInitialState = async () => {
     const localInitialState = initialState;
-    const token = await SecureStore.getItemAsync(CONFIG_NAMES.AUTH_TOKEN);
+    const token = await AsyncStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);
 
     if (token) {
         localInitialState.token = token;
@@ -102,7 +102,7 @@ export async function getUser(dispatch: any) {
     })
 
     const { success, status, data } = await getUserProfile()
-    console.log(data)
+
     if (success) {
         dispatch({
             type: AuthActionType.SET_USER,
@@ -139,7 +139,7 @@ export async function login(dispatch: any, values: any) {
 export async function logout(dispatch: any) {
     dispatch({ type: AuthActionType.LOGOUT })
 
-    await SecureStore.deleteItemAsync(CONFIG_NAMES.AUTH_TOKEN)
+    await AsyncStorage.removeItem(CONFIG_NAMES.AUTH_TOKEN)
 
     return { success: true }
 }
