@@ -35,7 +35,6 @@ const AuthContext = React.createContext<AuthContextType>({ state: initialState, 
 const getInitialState = async () => {
     const localInitialState = initialState;
     const token = await SecureStore.getItemAsync(CONFIG_NAMES.AUTH_TOKEN);
-    console.log("geet initial state ", token)
 
     if (token) {
         localInitialState.token = token;
@@ -79,7 +78,7 @@ function authReducer(state: IAuth, action: AuthAction): IAuth {
 export const AuthProvider: React.FC<IComp> = ({ children }) => {
     //@ts-ignore
     const [state, dispatch] = React.useReducer(authReducer, getInitialState())
-    console.log("state ",state)
+
     return (
         <AuthContext.Provider value={{ state, dispatch }}>
             {children}
@@ -103,7 +102,7 @@ export async function getUser(dispatch: any) {
     })
 
     const { success, status, data } = await getUserProfile()
-
+    console.log(data)
     if (success) {
         dispatch({
             type: AuthActionType.SET_USER,
@@ -129,11 +128,6 @@ export async function login(dispatch: any, values: any) {
 
         await setLocalCredentials(data.token)
 
-        // Toggle to true
-        dispatch({
-            type: AuthActionType.TOGGLE_LOADING_USER
-        })
-
         await getUser(dispatch)
 
         return { success: true };
@@ -143,13 +137,9 @@ export async function login(dispatch: any, values: any) {
 }
 
 export async function logout(dispatch: any) {
-    try {
-        dispatch({ type: AuthActionType.LOGOUT })
+    dispatch({ type: AuthActionType.LOGOUT })
 
-        await SecureStore.deleteItemAsync(CONFIG_NAMES.AUTH_TOKEN)
+    await SecureStore.deleteItemAsync(CONFIG_NAMES.AUTH_TOKEN)
 
-        return { success: true }
-    } catch (e) {
-        console.log(e);
-    }
+    return { success: true }
 }

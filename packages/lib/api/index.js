@@ -17,7 +17,7 @@ const blobInstance = defaultAxios.create({
 const interceptorsFunc = async (config) => {
     // const token = localStorage.getItem();
     const token = await SecureStore.getItemAsync(CONFIG_NAMES.AUTH_TOKEN);
-    console.log(token);
+
     const newConfig = config;
 
     // When a 'token' is available set as token.

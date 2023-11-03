@@ -14,8 +14,8 @@ const SettingsStack = () => (
         screenOptions={{ headerShown: false }}
         initialRouteName={Routes.Settings}
     >
-        <Stack.Screen name={Routes.Settings} component={Settings}  />
-        <Stack.Screen name={Routes.PrivacySettings} component={PrivacySettings}  />
+        <Stack.Screen name={Routes.Settings} component={Settings} />
+        <Stack.Screen name={Routes.PrivacySettings} component={PrivacySettings} />
         <Stack.Screen name={Routes.NotificationSettings} component={NotificationSettings}  />
         <Stack.Screen name={Routes.Security} component={Security}  />
         <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
