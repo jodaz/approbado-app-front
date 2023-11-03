@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { IAuth, AuthContextType } from '../types/providers';
-import { getUserProfile, loginUser } from '../services/auth.services';
+import { getUserProfile, loginUser, socialLoginRequest } from '../services/auth.services';
 import { IComp } from '../types';
 import CONFIG_NAMES from '../env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -117,6 +117,27 @@ export async function getUser(dispatch: any) {
 
 export async function login(dispatch: any, values: any) {
     const { success, status, data } = await loginUser(values);
+
+    if (success) {
+        dispatch({
+            type: AuthActionType.LOGIN,
+            payload: {
+                token: data.token
+            }
+        })
+
+        await setLocalCredentials(data.token)
+
+        await getUser(dispatch)
+
+        return { success: true };
+    } else {
+        return { success, status, data };
+    }
+}
+
+export async function socialLogin(dispatch: any, values: any) {
+    const { success, status, data } = await socialLoginRequest(values);
 
     if (success) {
         dispatch({
