@@ -15,5 +15,6 @@ export const Routes = {
     PrivacySettings: 'PrivacySettings',
     Profile: 'Profile',
     Game: 'Game',
-    Forum: 'Forum'
+    Forum: 'Forum',
+    CreateNewPassword: 'CreateNewPassword'
 }

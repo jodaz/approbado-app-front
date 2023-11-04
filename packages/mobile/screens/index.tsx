@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from "./routes";
+import { useAuth } from '@approbado/lib/contexts/AuthContext';
 import Onboarding from "./onboarding"
 import Presentation from "./presentation"
 import Login from "./Login"
@@ -9,7 +10,7 @@ import CompleteProfile from './SignUp/CompleteProfile';
 import ConfirmPhone from './ConfirmPhone';
 import BottomNav from '../components/BottomNav';
 import SettingsStack from './Settings';
-import { useAuth } from '@approbado/lib/contexts/AuthContext';
+import CreateNewPassword from './CreateNewPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +30,7 @@ const MainScreen = () => {
                 <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
                 <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
                 <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
+                <Stack.Screen name={Routes.CreateNewPassword} component={CreateNewPassword}  />
             </Stack.Navigator>
         )
     }
