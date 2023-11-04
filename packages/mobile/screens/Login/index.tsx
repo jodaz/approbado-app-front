@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
 import { Routes } from '../routes';
 import { login, useAuth } from '@approbado/lib/contexts/AuthContext'
+import { LockIcon, User2 } from 'lucide-react-native';
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
 import Container from '../../components/Container';
 import Button from '../../components/Button';
@@ -33,9 +34,10 @@ const Login = ({ navigation }) => {
         if (success) {
             navigation.navigate(Routes.Home)
         } else {
-            console.log(data)
             if (status == 422) {
                 setFormErrors(setError, data)
+            } else {
+                console.log(data)
             }
         }
     };
@@ -58,6 +60,7 @@ const Login = ({ navigation }) => {
                             validations={USERNAME}
                             control={control}
                             placeholder='Ingresa tu usuario'
+                            icon={<User2 />}
                         />
                     </Row>
                     <Row size={1}>
@@ -66,6 +69,7 @@ const Login = ({ navigation }) => {
                             validations={PASSWORD}
                             control={control}
                             placeholder='Ingresa tu contraseña'
+                            icon={<LockIcon />}
                             secureTextEntry
                         />
                     </Row>

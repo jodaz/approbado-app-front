@@ -40,6 +40,7 @@ export interface ITextInputProps {
     placeholder?: string;
     defaultValue?: string;
     validations?: any;
+    icon?: React.ReactNode,
     secureTextEntry?: boolean;
 }
 

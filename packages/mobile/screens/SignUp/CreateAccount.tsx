@@ -3,6 +3,7 @@ import { Image } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Routes } from '../routes';
 import { EMAIL, PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
+import { LockIcon, User2, Mail } from 'lucide-react-native';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import TextInput from '../../components/TextInput';
@@ -45,6 +46,7 @@ const CreateAccount = ({ navigation }) => {
                         validations={USERNAME}
                         control={control}
                         placeholder='Usuario'
+                        icon={<User2 />}
                     />
                 </Row>
                 <Row size={1}>
@@ -53,6 +55,7 @@ const CreateAccount = ({ navigation }) => {
                         validations={EMAIL}
                         control={control}
                         placeholder='Correo electrónico'
+                        icon={<Mail />}
                     />
                 </Row>
                 <Row size={1}>
@@ -62,6 +65,7 @@ const CreateAccount = ({ navigation }) => {
                         control={control}
                         placeholder='Contraseña'
                         secureTextEntry
+                        icon={<LockIcon />}
                     />
                 </Row>
             </FormContainer>
