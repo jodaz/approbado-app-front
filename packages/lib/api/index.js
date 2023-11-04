@@ -3,12 +3,12 @@ import CONFIG_NAMES from '../env'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const jsonInstance = defaultAxios.create({
-    baseURL: CONFIG_NAMES.SOURCE,
+    baseURL: CONFIG_NAMES.API,
     withCredentials: false
 });
 
 const blobInstance = defaultAxios.create({
-    baseURL: CONFIG_NAMES.SOURCE,
+    baseURL: CONFIG_NAMES.API,
     withCredentials: false,
     responseType: 'blob'
 });

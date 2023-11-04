@@ -9,7 +9,10 @@ const StyledText = styled.Text`
     font-weight: ${props => props.fontWeight};
     font-size: ${({ fontSize }) => fontSize}px;
     width: calc(90% * ${width})px;
-    color: #000;
+    color: ${props => (props.color == 'primary')
+        ? props.theme.palette.text.primary
+        : props.theme.palette.text.secondary
+    };
     lineHeight: 24px;
     text-align: ${props => props.align};
 `;
@@ -23,7 +26,7 @@ const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (
 Text.defaultProps = {
     fontSize: 20,
     fontWeight: 600,
-    color: 'secondary',
+    color: 'primary',
     align: 'left'
 }
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { StyleProp } from 'react-native';
+import { ImageProps, StyleProp } from 'react-native';
 
 type ColorThemeType = 'primary' | 'secondary' | 'error';
 
@@ -7,7 +7,7 @@ type VariantType = 'outlined' | 'text' | 'contained';
 
 type TextAlignType = 'right' | 'left' | 'center';
 
-type FlexboxAlignType = 'center' | 'start' | 'end' | 'unset';
+type FlexboxAlignType = 'center' | 'start' | 'end' | 'unset' | 'space-between';
 
 export interface IComp {
     children: React.ReactNode

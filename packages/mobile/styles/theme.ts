@@ -26,10 +26,11 @@ export const theme = {
             dark: '#333333', // Plomo secndario
             success: '#00B94A', // Verde
             blue: '#232730'
+        },
+        text: {
+            primary: '#000',
+            secondary: '#6D6D6D'
         }
-    },
-    color: {
-        dark: '#F9F9F9',
     },
     space: [
         "4px",
