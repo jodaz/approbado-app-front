@@ -8,14 +8,30 @@ const workspaceRoot = path.resolve(projectRoot, '../..');
 
 const config = getDefaultConfig(projectRoot);
 
-// 1. Watch all files within the monorepo
-config.watchFolders = [workspaceRoot];
-// 2. Let Metro know where to resolve packages and in what order
-config.resolver.nodeModulesPaths = [
-  path.resolve(projectRoot, 'node_modules'),
-  path.resolve(workspaceRoot, 'node_modules'),
-];
-// 3. Force Metro to resolve (sub)dependencies only from the `nodeModulesPaths`
-config.resolver.disableHierarchicalLookup = true;
+module.exports = (async () => {
+    const {
+      resolver: {sourceExts, assetExts},
+    } = await getDefaultConfig(projectRoot);
 
-module.exports = config;
+    return {
+        transformer: {
+            babelTransformerPath: require.resolve('react-native-svg-transformer'),
+            getTransformOptions: async () => ({
+                transform: {
+                    experimentalImportSupport: false,
+                    inlineRequires: true,
+                },
+            }),
+        },
+        watchFolders: [workspaceRoot],
+        resolver: {
+            nodeModulesPaths: [
+                path.resolve(projectRoot, 'node_modules'),
+                path.resolve(workspaceRoot, 'node_modules'),
+            ],
+            disableHierarchicalLookup: true,
+            assetExts: assetExts.filter(ext => ext !== 'svg'),
+            sourceExts: [...sourceExts, 'svg'],
+        },
+    };
+})();
