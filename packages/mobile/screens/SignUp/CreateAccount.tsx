@@ -13,6 +13,8 @@ import Container from '../../components/Container';
 import Row from '../../components/Row';
 import GoogleLoginButton from '../../components/GoogleLogin';
 import FacebookLoginButton from '../../components/FacebookLogin';
+import { createAccountStep1 } from '@approbado/lib/services/auth.services';
+import setFormErrors from '@approbado/lib/utils/setFormErrors';
 
 const FormContainer = styled.View`
     margin-top: 20px;
@@ -23,10 +25,18 @@ const FormContainer = styled.View`
 `;
 
 const CreateAccount = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
+    const { control, handleSubmit, setError } = useForm();
 
-    const onSubmit = async (data) => {
-        navigation.navigate(Routes.CompleteProfile, data)
+    const onSubmit = async (values) => {
+        const { success, status, data } = await createAccountStep1(values);
+
+        if (success) {
+            navigation.navigate(Routes.CompleteProfile, data)
+        } else {
+            if (status == 422) {
+                setFormErrors(setError, data)
+            }
+        }
     };
 
     return (
@@ -56,6 +66,7 @@ const CreateAccount = ({ navigation }) => {
                         control={control}
                         placeholder='Correo electrónico'
                         icon={<Mail />}
+                        keyboardType={'email-address'}
                     />
                 </Row>
                 <Row size={1}>

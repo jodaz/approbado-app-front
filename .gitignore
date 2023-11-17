@@ -4,3 +4,4 @@ node_modules
 yarn-error.log
 *.zip
 package-lock.json
+eas.json

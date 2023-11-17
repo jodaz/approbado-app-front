@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ImageProps, StyleProp } from 'react-native';
+import { ImageProps, StyleProp, TextInputProps } from 'react-native';
 
 type ColorThemeType = 'primary' | 'secondary' | 'error';
 
@@ -34,7 +34,7 @@ export interface ILinkProps extends ITextProps {
     to: string;
 }
 
-export interface ITextInputProps {
+export interface ITextInputProps extends TextInputProps {
     control: any;
     name: string;
     placeholder?: string;

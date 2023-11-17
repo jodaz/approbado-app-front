@@ -20,6 +20,25 @@ export async function loginUser(values) {
     }
 }
 
+export async function createAccountStep1(values) {
+    try {
+        const response = await apiProvider.post(`/auth/mobile/create-account-verification`, values)
+
+        const { data } = response
+
+        return {
+            success: true,
+            data: data
+        }
+    } catch (error) {
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
 export async function socialLoginRequest(values) {
     try {
         const response = await apiProvider.post('/auth/mobile/external', values)

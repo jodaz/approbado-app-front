@@ -15,7 +15,13 @@ const globalUserEmail = {
     }
 }
 
-export const USERNAME = globalUserEmail
+export const USERNAME = {
+    ...globalUserEmail,
+    messages: {
+        ...globalUserEmail.messages,
+        unique: 'El usuario ha sido registrado'
+    }
+}
 
 export const PHONE = {
     rules: {
