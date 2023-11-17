@@ -11,3 +11,14 @@ export type AuthContextType = {
     state: IAuth,
     dispatch: any
 }
+
+export interface IToast {
+    isOpen: boolean;
+    color: string;
+    message: string;
+}
+
+export type ToastContextType = {
+    state: IToast,
+    dispatch: any
+}

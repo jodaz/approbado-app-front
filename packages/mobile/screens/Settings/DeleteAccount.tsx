@@ -8,15 +8,22 @@ import Button from '../../components/Button';
 import Text from '../../components/Text';
 import TitleBar from '../../components/TitleBar';
 import Row from '../../components/Row';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
 const DeleteAccount = () => {
     const { handleSubmit } = useForm();
     const { dispatch } = useAuth()
+    const { dispatch: dispatchToast } = useToast()
 
-    const onSubmit = async (values) => {
+    const onSubmit = async () => {
         const { success } = await deleteAccount();
 
         if (success) {
+            await openToast(
+                dispatchToast,
+                'success',
+                'Su cuenta ha sido eliminada'
+            )
             logout(dispatch)
         }
     };

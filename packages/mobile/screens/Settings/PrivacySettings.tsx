@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native';
 import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import Row from '../../components/Row';
 import Button from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
@@ -21,6 +22,7 @@ const FormContainer = styled.View`
 
 const PrivacySettings = ({ navigation }) => {
     const { state: { user }, dispatch } = useAuth()
+    const { dispatch: dispatchToast } = useToast()
     const { control, handleSubmit } = useForm({
         defaultValues: {
             show_name: user?.profile.show_name,
@@ -33,6 +35,11 @@ const PrivacySettings = ({ navigation }) => {
 
         if (success) {
             await getUser(dispatch)
+            await openToast(
+                dispatchToast,
+                'primary',
+                'Configuraciones actualizadas'
+            )
             navigation.navigate(Routes.Settings)
         } else {
             console.log(status, data)

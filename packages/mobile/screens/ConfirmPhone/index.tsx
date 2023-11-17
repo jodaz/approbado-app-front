@@ -4,6 +4,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useRoute } from '@react-navigation/native';
 import { Routes } from '../routes';
 import { registerAndValidateCode } from '@approbado/lib/services/auth.services';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import Button from '../../components/Button';
 import styled from 'styled-components/native';
 import Text from '../../components/Text';
@@ -39,6 +40,7 @@ const style = StyleSheet.create({
 
 const ConfirmPhone = ({ navigation }) => {
     const { control, handleSubmit, setError } = useForm();
+    const { dispatch: dispatchToast } = useToast()
     const route = useRoute()
     const previousData = route.params;
     const [otpInput, setOtpInput] = React.useState<string>("");
@@ -54,6 +56,11 @@ const ConfirmPhone = ({ navigation }) => {
         const { success, data, status } = await registerAndValidateCode(formData);
 
         if (success) {
+            await openToast(
+                dispatchToast,
+                'success',
+                'Su cuenta ha sido confirmada'
+            )
             navigation.navigate(Routes.Login)
         } else {
             if (status == 422) {

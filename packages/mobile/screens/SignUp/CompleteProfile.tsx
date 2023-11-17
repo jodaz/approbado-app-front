@@ -25,7 +25,7 @@ const FormContainer = styled.View`
 `;
 
 const CompleteProfile = ({ navigation }) => {
-    const { control, handleSubmit, setError } = useForm();
+    const { control, handleSubmit, setError, formState } = useForm();
     const route = useRoute()
     const previousData = route.params;
 
@@ -94,6 +94,7 @@ const CompleteProfile = ({ navigation }) => {
 
             <Row size={1}>
                 <Button
+                    disabled={!formState.isValid}
                     onPress={handleSubmit(onSubmit)}
                     fullWidth
                 >

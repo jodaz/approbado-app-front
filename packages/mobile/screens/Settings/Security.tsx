@@ -10,6 +10,7 @@ import TitleBar from '../../components/TitleBar';
 import TextInput from '../../components/TextInput';
 import Row from '../../components/Row';
 import setFormErrors from '@approbado/lib/utils/setFormErrors';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
 const FormContainer = styled.View`
     margin-top: 20px;
@@ -20,12 +21,18 @@ const FormContainer = styled.View`
 `;
 
 const Security = ({ navigation }) => {
-    const { control, handleSubmit, setError } = useForm();
+    const { control, handleSubmit, setError, formState } = useForm();
+    const { dispatch: dispatchToast } = useToast()
 
     const onSubmit = async (values) => {
         const { success, status, data } = await updatePassword(values)
 
         if (success) {
+            await openToast(
+                dispatchToast,
+                'primary',
+                'Contraseña actualizada'
+            )
             navigation.goBack();
         } else {
             if (status == 422) {
@@ -67,7 +74,11 @@ const Security = ({ navigation }) => {
                         />
                     </Row>
                     <Row size={6}>
-                        <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                        <Button
+                            disabled={!formState.isValid}
+                            onPress={handleSubmit(onSubmit)}
+                            fullWidth
+                        >
                             Guardar cambios
                         </Button>
                     </Row>

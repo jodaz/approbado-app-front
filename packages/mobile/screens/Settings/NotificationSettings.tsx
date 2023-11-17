@@ -10,6 +10,7 @@ import Container from '../../components/Container';
 import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
 const FormContainer = styled.View`
     margin-top: 40px;
@@ -21,6 +22,7 @@ const FormContainer = styled.View`
 
 const NotificationSettings = ({ navigation }) => {
     const { state: { user }, dispatch } = useAuth();
+    const { dispatch: dispatchToast } = useToast()
     const { control, handleSubmit } = useForm({
         defaultValues: {
             general_notifications: user?.profile.general_notifications,
@@ -35,6 +37,11 @@ const NotificationSettings = ({ navigation }) => {
 
         if (success) {
             await getUser(dispatch);
+            await openToast(
+                dispatchToast,
+                'primary',
+                'Configuraciones actualizadas'
+            )
             navigation.navigate(Routes.Settings)
         } else {
             console.log(status, data)

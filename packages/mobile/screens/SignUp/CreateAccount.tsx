@@ -25,7 +25,7 @@ const FormContainer = styled.View`
 `;
 
 const CreateAccount = ({ navigation }) => {
-    const { control, handleSubmit, setError } = useForm();
+    const { control, handleSubmit, setError, formState } = useForm();
 
     const onSubmit = async (values) => {
         const { success, status, data } = await createAccountStep1(values);
@@ -84,6 +84,7 @@ const CreateAccount = ({ navigation }) => {
                 <Button
                     onPress={handleSubmit(onSubmit)}
                     fullWidth
+                    disabled={!formState.isValid}
                 >
                     Crear una cuenta
                 </Button>
