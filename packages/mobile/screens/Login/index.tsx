@@ -26,7 +26,7 @@ const FormContainer = styled.View`
 
 const Login = ({ navigation }) => {
     const { dispatch } = useAuth()
-    const { control, handleSubmit, setError } = useForm();
+    const { control, handleSubmit, setError, formState } = useForm();
 
     const onSubmit = async (values) => {
         const { success, status, data } = await login(dispatch, values);
@@ -78,7 +78,11 @@ const Login = ({ navigation }) => {
                     </Link>
                 </FormContainer>
                 <Row size={1}>
-                    <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                    <Button
+                        onPress={handleSubmit(onSubmit)}
+                        fullWidth
+                        disabled={!formState.isValid}
+                    >
                         Iniciar sesión
                     </Button>
                 </Row>

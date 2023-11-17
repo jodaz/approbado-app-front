@@ -30,15 +30,18 @@ const CompleteProfile = ({ navigation }) => {
     const previousData = route.params;
 
     const onSubmit = async values => {
+        const { names, last_name, phone } = values
+
         const formData = {
             ...previousData,
-            ...values
+            names: `${names} ${last_name}`,
+            phone: phone
         }
 
         const { status, data, success } = await getCode(formData);
 
         if (success) {
-            navigation.navigate(Routes.ConfirmPhone, data)
+            navigation.navigate(Routes.ConfirmPhone, formData)
         } else {
             if (status == 422) {
                 setFormErrors(setError, data)
@@ -84,6 +87,7 @@ const CompleteProfile = ({ navigation }) => {
                         name="phone"
                         control={control}
                         placeholder='Teléfono'
+                        keyboardType='number-pad'
                     />
                 </Row>
             </FormContainer>

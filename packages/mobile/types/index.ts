@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ImageProps, StyleProp, TextInputProps } from 'react-native';
+import { ImageProps, StyleProp, TextInputProps, PressableProps } from 'react-native';
 
 type ColorThemeType = 'primary' | 'secondary' | 'error';
 
@@ -13,7 +13,7 @@ export interface IComp {
     children: React.ReactNode
 }
 
-export interface IButtonProps extends IComp {
+export interface IButtonProps extends PressableProps {
     onPress?: () => void;
     bgColor: ColorThemeType;
     variant?: VariantType;

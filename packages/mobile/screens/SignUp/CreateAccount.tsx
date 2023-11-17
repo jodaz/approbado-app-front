@@ -31,7 +31,7 @@ const CreateAccount = ({ navigation }) => {
         const { success, status, data } = await createAccountStep1(values);
 
         if (success) {
-            navigation.navigate(Routes.CompleteProfile, data)
+            navigation.navigate(Routes.CompleteProfile, values)
         } else {
             if (status == 422) {
                 setFormErrors(setError, data)

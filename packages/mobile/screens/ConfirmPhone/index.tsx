@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StyleSheet } from 'react-native';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { useRoute } from '@react-navigation/native';
 import { Routes } from '../routes';
 import { registerAndValidateCode } from '@approbado/lib/services/auth.services';
@@ -45,25 +45,16 @@ const ConfirmPhone = ({ navigation }) => {
 
     const input = React.useRef<OTPTextView>(null);
 
-    const handleCellTextChange = async (text: string, i: number) => {
-        if (i === 0) {
-            // const clippedText = await Clipboard.getString();
-            // if (clippedText.slice(0, 1) === text) {
-            //   input.current?.setValue(clippedText, true);
-            // }
-        }
-    };
-
-    const onSubmit = async values => {
+    const onSubmit = async () => {
         const formData = {
             ...previousData,
-            ...values
+            code: otpInput
         }
 
         const { success, data, status } = await registerAndValidateCode(formData);
 
         if (success) {
-            navigation.navigate(Routes.ConfirmPhone, data)
+            navigation.navigate(Routes.Login)
         } else {
             if (status == 422) {
                 setFormErrors(setError, data)
@@ -88,8 +79,8 @@ const ConfirmPhone = ({ navigation }) => {
                     <OTPTextView
                         ref={input}
                         handleTextChange={setOtpInput}
-                        handleCellTextChange={handleCellTextChange}
-                        inputCount={4}
+                        // handleCellTextChange={handleCellTextChange}
+                        inputCount={6}
                         keyboardType="numeric"
                         textInputStyle={style.inputContainer}
                     />
@@ -100,8 +91,15 @@ const ConfirmPhone = ({ navigation }) => {
                     >
                         Esto podria tardar algunos minutos dependiento de tu conectividad.
                     </LightText>
-                    <Button
+                    {/* <Button
                         onPress={handleSubmit(onSubmit)}
+                        fullWidth
+                    >
+                        Siguiente
+                    </Button> */}
+                    <Button
+                        onPress={onSubmit}
+                        disabled={otpInput.length < 6}
                         fullWidth
                     >
                         Siguiente
