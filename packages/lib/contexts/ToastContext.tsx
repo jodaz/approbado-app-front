@@ -27,7 +27,7 @@ function authReducer(state: IToast, action: ToastAction): IToast {
                 ...state,
                 isOpen: true,
                 message: action.payload.message,
-                color: action.payload
+                color: action.payload.color
             }
         }
         case ToastActionType.CLOSE_NOTIFICATION: {

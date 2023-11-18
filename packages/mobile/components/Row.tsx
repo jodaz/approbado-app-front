@@ -6,7 +6,8 @@ const StyledRow = styled.View`
     margin-bottom: ${props => props.theme.space[props.size]};
     width: 100%;
     align-items: ${props => props.align};
-    justify-content: ${props => props.justify}
+    justify-content: ${props => props.justify};
+    flex-direction: ${props => props.direction};
 `
 
 const Row = ({ children, ...restProps }: IRowProps) : JSX.Element => (
@@ -18,6 +19,7 @@ const Row = ({ children, ...restProps }: IRowProps) : JSX.Element => (
 Row.defaultProps = {
     size: 1,
     align: 'unset',
+    direction: 'column',
     justify: 'unset'
 }
 

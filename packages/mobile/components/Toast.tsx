@@ -1,13 +1,13 @@
 import React from "react";
 import { Text } from "react-native";
-import { Check } from "lucide-react-native";
+import { Check, XCircle } from "lucide-react-native";
 import { closeToast, useToast } from '@approbado/lib/contexts/ToastContext'
 import styled from "styled-components/native";
 
 const colors = {
-    success: 'green',
-    error: 'red',
-    info: 'blue'
+    success: '#00B94A',
+    error: '#E02340',
+    info: '#2280ED'
 }
 
 const ToastDiv = styled.View`
@@ -19,7 +19,7 @@ const ToastDiv = styled.View`
 `
 
 const InnerContainer = styled.View`
-    background-color: #00B94A;
+    background-color: ${props => props.color};
     width: 90%;
     border-radius: 5px;
     padding: 20px;
@@ -47,9 +47,12 @@ const Toast = () => {
     if (!isOpen) return null;
 
     return(
-        <ToastDiv color={colors.success}>
-            <InnerContainer color={colors.success}>
-                <Check color='#fff' size={24} />
+        <ToastDiv>
+            <InnerContainer color={colors[color]}>
+                {(color == 'success')
+                    ? <Check color='#fff' size={24} />
+                    : <XCircle color='#fff' size={24} />
+                }
                 <Text style={{
                     color: '#FFF',
                     fontWeight: 'bold',

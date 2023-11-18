@@ -14,8 +14,12 @@ import {
 } from '../../components';
 import { LockIcon } from 'lucide-react-native';
 import { Routes } from '../routes';
+import { setNewPassword } from '@approbado/lib/services/reset-password.services';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
+import { useRoute } from '@react-navigation/native';
 import CheckSolid from '@approbado/lib/icons/CheckSolid.svg'
 import styled from 'styled-components/native';
+import setFormErrors from '@approbado/lib/utils/setFormErrors';
 
 const FormContainer = styled.View`
     margin-top: 60px;
@@ -48,12 +52,31 @@ const Continue = ({ navigation }) => (
 )
 
 const CreateNewPassword = ({ navigation }) => {
-    const { control, handleSubmit, watch } = useForm();
+    const { control, handleSubmit, setError, formState } = useForm();
     const [isVerified, setIsVerified] = React.useState<boolean>(false)
-    const password = watch("password", "");
+    const { dispatch: dispatchToast } = useToast()
+    const route = useRoute()
+    const previousData = route.params;
 
     const onSubmit = async (values) => {
-        setIsVerified(true)
+        const { status, success, data } = await setNewPassword({
+            ...previousData,
+            ...values
+        })
+
+        if (success) {
+            setIsVerified(true)
+        } else {
+            if (status == 422) {
+                setFormErrors(setError, data)
+            } else {
+                await openToast(
+                    dispatchToast,
+                    'error',
+                    'Ha ocurrido un error'
+                )
+            }
+        }
     };
 
     if (isVerified) return <Continue navigation={navigation} />
@@ -85,7 +108,7 @@ const CreateNewPassword = ({ navigation }) => {
                         </Row>
                         <Row size={1}>
                             <TextInput
-                                name="confirm_password"
+                                name="password_confirmed"
                                 validations={CONFIRM_PASSWORD}
                                 control={control}
                                 placeholder='Confirma tu contraseña'
@@ -95,7 +118,11 @@ const CreateNewPassword = ({ navigation }) => {
                         </Row>
                     </Row>
                     <Row size={4}>
-                        <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                        <Button
+                            onPress={handleSubmit(onSubmit)}
+                            fullWidth
+                            disabled={!formState.isValid}
+                        >
                             Guardar cambios
                         </Button>
                     </Row>
