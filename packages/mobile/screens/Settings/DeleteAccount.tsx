@@ -11,7 +11,7 @@ import Row from '../../components/Row';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
 const DeleteAccount = () => {
-    const { handleSubmit } = useForm();
+    const { handleSubmit, formState } = useForm();
     const { dispatch } = useAuth()
     const { dispatch: dispatchToast } = useToast()
 
@@ -44,6 +44,8 @@ const DeleteAccount = () => {
                         variant='outlined'
                         onPress={handleSubmit(onSubmit)}
                         fullWidth
+                        disabled={!formState.isValid || formState.isSubmitting}
+                        isLoading={formState.isSubmitting}
                     >
                         Eliminar cuenta
                     </Button>

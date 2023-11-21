@@ -38,16 +38,19 @@ const style = StyleSheet.create({
 const ValidateCodeModal = ({ isOpen, toggleModal, navigation }) => {
     const [otpInput, setOtpInput] = React.useState<string>("");
     const { dispatch: dispatchToast } = useToast()
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const input = React.useRef<OTPTextView>(null);
 
     const onSubmit = async () => {
+        setIsLoading(true)
         const formData = {
             token: otpInput
         }
         const { status, success } = await verifyToken(formData)
 
         if (success) {
+            setIsLoading(false)
             await openToast(
                 dispatchToast,
                 'success',
@@ -55,6 +58,7 @@ const ValidateCodeModal = ({ isOpen, toggleModal, navigation }) => {
             )
             navigation.navigate(Routes.CreateNewPassword, formData)
         } else {
+            setIsLoading(false)
             if (status == 422) {
                 await openToast(
                     dispatchToast,
@@ -91,6 +95,8 @@ const ValidateCodeModal = ({ isOpen, toggleModal, navigation }) => {
                     </Row>
                     <Row size={4}>
                         <Button
+                            disabled={otpInput.length < 6 || isLoading}
+                            isLoading={isLoading}
                             onPress={onSubmit}
                             fullWidth
                         >

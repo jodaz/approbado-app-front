@@ -75,7 +75,8 @@ const Security = ({ navigation }) => {
                     </Row>
                     <Row size={6}>
                         <Button
-                            disabled={!formState.isValid}
+                            disabled={!formState.isValid || formState.isSubmitting}
+                            isLoading={formState.isSubmitting}
                             onPress={handleSubmit(onSubmit)}
                             fullWidth
                         >

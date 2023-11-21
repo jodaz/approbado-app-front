@@ -59,15 +59,18 @@ const CreateNewPassword = ({ navigation }) => {
     const previousData = route.params;
 
     const onSubmit = async (values) => {
-        const { status, success, data } = await setNewPassword({
+        const formData = {
             ...previousData,
             ...values
-        })
+        }
+        console.log(formData)
+        const { status, success, data } = await setNewPassword(formData)
 
         if (success) {
             setIsVerified(true)
         } else {
             if (status == 422) {
+                console.log(data)
                 setFormErrors(setError, data)
             } else {
                 await openToast(
@@ -121,7 +124,8 @@ const CreateNewPassword = ({ navigation }) => {
                         <Button
                             onPress={handleSubmit(onSubmit)}
                             fullWidth
-                            disabled={!formState.isValid}
+                            disabled={!formState.isValid || formState.isSubmitting}
+                            isLoading={formState.isSubmitting}
                         >
                             Guardar cambios
                         </Button>

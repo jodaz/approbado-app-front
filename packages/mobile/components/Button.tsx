@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ActivityIndicator } from 'react-native';
 import { IButtonProps } from '../types'
 import styled from 'styled-components/native'
 
@@ -29,10 +30,14 @@ const ButtonText = styled.Text`
 const Button = ({
     children,
     fontWeight,
+    isLoading,
+    disabled,
     ...rest
 } : IButtonProps) : JSX.Element => (
-    <ButtonContainer {...rest}>
-        <ButtonText fontWeight={fontWeight}>{children}</ButtonText>
+    <ButtonContainer disabled={disabled} {...rest}>
+        {!isLoading ? (
+            <ButtonText fontWeight={fontWeight}>{children}</ButtonText>
+        ) : <ActivityIndicator color='#fff' />}
     </ButtonContainer>
 )
 

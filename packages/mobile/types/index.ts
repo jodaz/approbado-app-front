@@ -20,6 +20,7 @@ export interface IButtonProps extends PressableProps {
     fontWeight?: number;
     fullWidth?: boolean;
     color: ColorThemeType;
+    isLoading?: boolean;
 }
 
 export interface ITextProps extends IComp {

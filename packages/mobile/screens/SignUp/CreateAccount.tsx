@@ -84,7 +84,8 @@ const CreateAccount = ({ navigation }) => {
                 <Button
                     onPress={handleSubmit(onSubmit)}
                     fullWidth
-                    disabled={!formState.isValid}
+                    disabled={!formState.isValid || formState.isSubmitting}
+                    isLoading={formState.isSubmitting}
                 >
                     Crear una cuenta
                 </Button>

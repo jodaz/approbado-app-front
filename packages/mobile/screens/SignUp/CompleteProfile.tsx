@@ -94,7 +94,8 @@ const CompleteProfile = ({ navigation }) => {
 
             <Row size={1}>
                 <Button
-                    disabled={!formState.isValid}
+                    disabled={!formState.isValid || formState.isSubmitting}
+                    isLoading={formState.isSubmitting}
                     onPress={handleSubmit(onSubmit)}
                     fullWidth
                 >

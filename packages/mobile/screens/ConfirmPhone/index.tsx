@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { StyleSheet } from 'react-native';
-import { Controller, useForm } from 'react-hook-form';
 import { useRoute } from '@react-navigation/native';
 import { Routes } from '../routes';
 import { registerAndValidateCode } from '@approbado/lib/services/auth.services';
@@ -11,7 +10,6 @@ import Text from '../../components/Text';
 import Container from '../../components/Container';
 import InnerContainer from '../../components/InnerContainer';
 import OTPTextView from 'react-native-otp-textinput';
-import setFormErrors from '@approbado/lib/utils/setFormErrors';
 
 const LightText = styled(Text)`
     color: ${props => props.theme.palette.info.light};
@@ -39,7 +37,7 @@ const style = StyleSheet.create({
 });
 
 const ConfirmPhone = ({ navigation }) => {
-    const { control, handleSubmit, setError } = useForm();
+    const [isLoading, setIsLoading] = React.useState(false);
     const { dispatch: dispatchToast } = useToast()
     const route = useRoute()
     const previousData = route.params;
@@ -48,14 +46,16 @@ const ConfirmPhone = ({ navigation }) => {
     const input = React.useRef<OTPTextView>(null);
 
     const onSubmit = async () => {
+        setIsLoading(true)
         const formData = {
             ...previousData,
             code: otpInput
         }
 
-        const { success, data, status } = await registerAndValidateCode(formData);
+        const { success } = await registerAndValidateCode(formData);
 
         if (success) {
+            setIsLoading(false)
             await openToast(
                 dispatchToast,
                 'success',
@@ -63,9 +63,12 @@ const ConfirmPhone = ({ navigation }) => {
             )
             navigation.navigate(Routes.Login)
         } else {
-            if (status == 422) {
-                setFormErrors(setError, data)
-            }
+            setIsLoading(false)
+            await openToast(
+                dispatchToast,
+                'error',
+                'Ha ocurrido un error.'
+            )
         }
     };
 
@@ -106,7 +109,8 @@ const ConfirmPhone = ({ navigation }) => {
                     </Button> */}
                     <Button
                         onPress={onSubmit}
-                        disabled={otpInput.length < 6}
+                        disabled={otpInput.length < 6 || isLoading}
+                        isLoading={isLoading}
                         fullWidth
                     >
                         Siguiente

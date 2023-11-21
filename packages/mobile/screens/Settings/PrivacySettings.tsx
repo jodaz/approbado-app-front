@@ -23,7 +23,7 @@ const FormContainer = styled.View`
 const PrivacySettings = ({ navigation }) => {
     const { state: { user }, dispatch } = useAuth()
     const { dispatch: dispatchToast } = useToast()
-    const { control, handleSubmit } = useForm({
+    const { control, handleSubmit, formState } = useForm({
         defaultValues: {
             show_name: user?.profile.show_name,
             public_profile: user?.profile.public_profile
@@ -66,7 +66,12 @@ const PrivacySettings = ({ navigation }) => {
                         />
                     </Row>
                     <Row size={6}>
-                        <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                        <Button
+                            onPress={handleSubmit(onSubmit)}
+                            fullWidth
+                            disabled={!formState.isValid || formState.isSubmitting}
+                            isLoading={formState.isSubmitting}
+                        >
                             Guardar cambios
                         </Button>
                     </Row>

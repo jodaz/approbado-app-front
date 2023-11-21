@@ -74,7 +74,8 @@ const ForgetPassword = ({ navigation }) => {
                     </Row>
                     <Row size={4}>
                         <Button
-                            disabled={!formState.isValid}
+                            disabled={!formState.isValid || formState.isSubmitting}
+                            isLoading={formState.isSubmitting}
                             onPress={handleSubmit(onSubmit)}
                             fullWidth
                         >

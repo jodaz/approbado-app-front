@@ -51,6 +51,7 @@ export async function setNewPassword(values) {
             data: data
         }
     } catch (error) {
+        console.log(error)
         return {
             success: false,
             status: error.response.status,
