@@ -29,6 +29,7 @@ export interface ITextProps extends IComp {
     fontSize?: number;
     style?: StyleProp;
     align?: TextAlignType;
+    transform?: 'lowercase' | 'uppercase' | 'unset';
 }
 
 export interface ILinkProps extends ITextProps {

@@ -14,6 +14,7 @@ const StyledText = styled.Text`
         : props.theme.palette.text.secondary
     };
     lineHeight: 24px;
+    textTransform: ${props.transform};
     text-align: ${props => props.align};
 `;
 
@@ -27,6 +28,7 @@ Text.defaultProps = {
     fontSize: 20,
     fontWeight: 600,
     color: 'primary',
+    transform: 'unset',
     align: 'left'
 }
 
