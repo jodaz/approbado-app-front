@@ -14,7 +14,6 @@ const StyledText = styled.Text`
         : props.theme.palette.text.secondary
     };
     lineHeight: 24px;
-    textTransform: ${props.transform};
     text-align: ${props => props.align};
 `;
 
