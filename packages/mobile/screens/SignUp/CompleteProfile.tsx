@@ -88,6 +88,7 @@ const CompleteProfile = ({ navigation }) => {
                         control={control}
                         placeholder='Teléfono'
                         keyboardType='number-pad'
+                        validations={PHONE}
                     />
                 </Row>
             </FormContainer>

@@ -27,7 +27,6 @@ Text.defaultProps = {
     fontSize: 20,
     fontWeight: 600,
     color: 'primary',
-    transform: 'unset',
     align: 'left'
 }
 
