@@ -71,7 +71,7 @@ const TextInput = ({
                         {...restInputProps}
                     />
                 </InputContainer>
-                {error ? <ErrorText>{validations.messages[error.type]}</ErrorText> : null}
+                {(error && validations) ? <ErrorText>{validations.messages[error.type]}</ErrorText> : null}
             </RootContainer>
         )}
         name={name}

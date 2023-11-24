@@ -65,7 +65,7 @@ const Profile = ({ navigation }) => {
                     </BioText>
                 </Row>
                 <Row size={2} align='center'>
-                    <Button>
+                    <Button onPress={() => navigation.navigate(Routes.EditProfile)}>
                         Editar perfil
                     </Button>
                 </Row>

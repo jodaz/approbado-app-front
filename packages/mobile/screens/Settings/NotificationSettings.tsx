@@ -3,14 +3,14 @@ import { useForm } from 'react-hook-form';
 import { SafeAreaView } from 'react-native';
 import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
+import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import Row from '../../components/Row';
 import Button from '../../components/Button';
 import Checkbox from '../../components/Checkbox';
 import Container from '../../components/Container';
 import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
-import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
-import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
 const FormContainer = styled.View`
     margin-top: 40px;

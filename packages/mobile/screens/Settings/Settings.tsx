@@ -1,26 +1,13 @@
 import React from 'react';
-import Text from '../../components/Text';
 import { SafeAreaView } from 'react-native';
 import Row from '../../components/Row';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
-import { IComp } from '../../types';
 import { Routes } from '../routes';
-import { ChevronRight } from 'lucide-react-native';
 import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
-
-interface INavButtonProps extends IComp {
-    navigation: any;
-    to: string;
-}
-
-const StyledNavButton = styled.TouchableOpacity`
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-`
+import { NavButton } from '../../components';
 
 const FormContainer = styled.View`
     margin-top: 40px;
@@ -29,15 +16,6 @@ const FormContainer = styled.View`
     align-items: center;
     margin-bottom: 20px;
 `
-
-const NavButton = ({ navigation, children, to } : INavButtonProps ) : JSX.Element => (
-    <StyledNavButton onPress={() => navigation.navigate(to)}>
-        <Text fontSize={18} fontWeight={400}>
-            {children}
-        </Text>
-        <ChevronRight size={24} color='#000' />
-    </StyledNavButton>
-)
 
 const Settings = ({ navigation }) => {
     const { dispatch } = useAuth();
@@ -51,46 +29,21 @@ const Settings = ({ navigation }) => {
             <Container>
                 <TitleBar title="Configuraciones" />
                 <FormContainer>
-                    <Row size={2}>
-                        <NavButton
-                            navigation={navigation}
-                            to={Routes.PrivacySettings}
-                        >
-                            Privacidad
-                        </NavButton>
-                    </Row>
-                    <Row size={2}>
-                        <NavButton
-                            navigation={navigation}
-                            to={Routes.Memberships}
-                        >
-                            Membresías
-                        </NavButton>
-                    </Row>
-                    <Row size={2}>
-                        <NavButton
-                            navigation={navigation}
-                            to={Routes.NotificationSettings}
-                        >
-                            Notificaciones
-                        </NavButton>
-                    </Row>
-                    <Row size={2}>
-                        <NavButton
-                            navigation={navigation}
-                            to={Routes.Security}
-                        >
-                            Contraseña
-                        </NavButton>
-                    </Row>
-                    <Row size={2}>
-                        <NavButton
-                            navigation={navigation}
-                            to={Routes.DeleteAccount}
-                        >
-                            Cuenta
-                        </NavButton>
-                    </Row>
+                    <NavButton to={Routes.PrivacySettings}>
+                        Privacidad
+                    </NavButton>
+                    <NavButton to={Routes.Memberships}>
+                        Membresías
+                    </NavButton>
+                    <NavButton to={Routes.NotificationSettings}>
+                        Notificaciones
+                    </NavButton>
+                    <NavButton to={Routes.Security}>
+                        Contraseña
+                    </NavButton>
+                    <NavButton to={Routes.DeleteAccount}>
+                        Cuenta
+                    </NavButton>
                     <Row size={6} align='start'>
                         <Button variant="text" onPress={onLogout}>
                             Cerrar sesión
