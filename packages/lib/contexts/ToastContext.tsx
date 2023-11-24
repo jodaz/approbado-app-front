@@ -65,7 +65,7 @@ export async function openToast(dispatch: any, color: string, message: string) {
     dispatch({
         type: ToastActionType.OPEN_NOTIFICATION,
         payload: {
-            color: color && 'success',
+            color: color ? color : 'success',
             message: message
         }
     })
