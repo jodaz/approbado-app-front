@@ -17,8 +17,14 @@ const CreateForum = ({ navigation }) => {
     const [themes, setThemes] = React.useState(null);
     const [categories, setCategories] = React.useState(null);
 
-    const onSubmit = async (values) => {
-        const { success, status, data } = await createForum(values);
+    const onSubmit = async ({ trivias_ids, categories_ids, ...restValues }) => {
+        const formData = {
+            ...restValues,
+            trivias_ids: [trivias_ids],
+            categories_ids: [categories_ids]
+        }
+        console.log(formData)
+        const { success, status, data } = await createForum(formData);
 
         if (success) {
             await openToast(
@@ -26,10 +32,17 @@ const CreateForum = ({ navigation }) => {
                 'success',
                 '¡Publicación realizada!'
             )
-            navigation.navigate(Routes.CompleteProfile, values)
+            navigation.navigate(Routes.Forum)
         } else {
             if (status == 422) {
                 setFormErrors(setError, data)
+            } else {
+                console.log(data)
+                await openToast(
+                    dispatch,
+                    'error',
+                    'Ha ocurrido un error.'
+                )
             }
         }
     };
@@ -66,38 +79,51 @@ const CreateForum = ({ navigation }) => {
                 </Button>
             </Row>
             <Row size={1}>
-                <SelectInput
-                    label='Trivia'
-                    name='theme_id'
-                    control={control}
-                    validations={TITLE}
-                    placeholder='Seleccione un tema'
-                    options={themes}
-                    labelField='name'
-                    valueField='id'
-                />
+                {themes ? (
+                    <SelectInput
+                        label='Trivia'
+                        name='trivias_ids'
+                        control={control}
+                        placeholder='Seleccione un tema'
+                        options={themes}
+                        labelField='name'
+                        valueField='id'
+                    />
+                ) : null}
             </Row>
             <Row size={1}>
                 <TextInput
                     label='Título'
-                    name='title'
+                    name='message'
                     control={control}
-                    validations={TITLE}
                     placeholder='Ingresa un título de foro'
+                    validations={TITLE}
                 />
             </Row>
             <Row size={1}>
                 <TextInput
                     label='Descripción'
-                    name='description'
+                    name='summary'
                     control={control}
                     placeholder='Ingresa una descripción (opcional)'
                     multiline
                 />
             </Row>
+            <Row size={1}>
+                {categories ? (
+                    <SelectInput
+                        label='Categoría'
+                        name='categories_ids'
+                        control={control}
+                        placeholder='Seleccione una categoría'
+                        options={categories}
+                        labelField='name'
+                        valueField='id'
+                    />
+                ) : null}
+            </Row>
             <Row size={2}>
                 <Button
-                    disabled={!formState.isValid || formState.isSubmitting}
                     isLoading={formState.isSubmitting}
                     fullWidth
                     onPress={handleSubmit(onSubmit)}

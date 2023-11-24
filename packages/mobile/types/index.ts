@@ -68,6 +68,7 @@ export interface ISelectProps {
     control: any;
     name: string;
     options: any;
+    multiple?: boolean;
     label?: string;
     labelField?: string;
     valueField?: string;

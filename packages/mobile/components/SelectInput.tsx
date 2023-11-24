@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Controller } from 'react-hook-form';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import styled from 'styled-components/native';
 import Label from './Label';
 import Error from './ErrorText';
@@ -23,7 +24,15 @@ const SelectInput = ({
     labelField,
     valueField
 } : ISelectProps) => {
-  const [value, setValue] = useState(null);
+
+  const renderItem = item => {
+    return (
+      <View style={styles.item}>
+        <Text style={styles.selectedTextStyle}>{item.label}</Text>
+        <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
+      </View>
+    );
+  };
 
   return (
     <Controller
@@ -51,11 +60,10 @@ const SelectInput = ({
                     valueField={valueField}
                     placeholder={placeholder}
                     searchPlaceholder={placeholder}
-                    value={value}
                     onChange={item => {
-                        onChange(item.value)
-                        setValue(item.value);
+                        onChange(item[valueField])
                     }}
+                    {...restField}
                 />
                 {(error && validations) ? <Error>{validations.messages[error.type]}</Error> : null}
             </RootContainer>
@@ -99,6 +107,36 @@ const styles = StyleSheet.create({
   },
   inputSearchStyle: {
     height: 40,
+    fontSize: 16,
+  },
+  item: {
+    padding: 17,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  selectedStyle: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 14,
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    marginTop: 8,
+    marginRight: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+  textSelectedStyle: {
+    marginRight: 5,
     fontSize: 16,
   },
 });
