@@ -63,3 +63,15 @@ export interface ICheckboxProps {
     name: string;
     label: string;
 }
+
+export interface ISelectProps {
+    control: any;
+    name: string;
+    options: any;
+    label?: string;
+    labelField?: string;
+    valueField?: string;
+    placeholder?: string;
+    validations?: any;
+    defaultValue?: string;
+}

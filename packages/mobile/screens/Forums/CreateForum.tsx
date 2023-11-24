@@ -5,12 +5,17 @@ import { TITLE } from '@approbado/lib/utils/validations'
 import { createForum } from '@approbado/lib/services/forums.services'
 import { Routes } from '../routes';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
+import { listTrivias } from '@approbado/lib/services/trivias.services'
+import { listCategories } from '@approbado/lib/services/categories.services'
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
 import Container from '../../components/Container';
+import SelectInput from '../../components/SelectInput';
 
 const CreateForum = ({ navigation }) => {
     const { control, handleSubmit, setError, formState } = useForm();
     const { dispatch } = useToast()
+    const [themes, setThemes] = React.useState(null);
+    const [categories, setCategories] = React.useState(null);
 
     const onSubmit = async (values) => {
         const { success, status, data } = await createForum(values);
@@ -29,9 +34,30 @@ const CreateForum = ({ navigation }) => {
         }
     };
 
+    const fetchThemes = React.useCallback(async () => {
+        const { success, data } = await listTrivias()
+
+        if (success) {
+            setThemes(data);
+        }
+    }, []);
+
+    const fetchCategories = React.useCallback(async () => {
+        const { success, data } = await listCategories()
+
+        if (success) {
+            setCategories(data);
+        }
+    }, []);
+
+    React.useEffect(() => {
+        fetchThemes();
+        fetchCategories();
+    }, [])
+
     return (
         <Container>
-            <Row align='center' justify='space-between' size={2}>
+            <Row align='center' direction='row' justify='space-between' size={2}>
                 <Text>
                     Crear nuevo debate
                 </Text>
@@ -40,11 +66,24 @@ const CreateForum = ({ navigation }) => {
                 </Button>
             </Row>
             <Row size={1}>
+                <SelectInput
+                    label='Trivia'
+                    name='theme_id'
+                    control={control}
+                    validations={TITLE}
+                    placeholder='Seleccione un tema'
+                    options={themes}
+                    labelField='name'
+                    valueField='id'
+                />
+            </Row>
+            <Row size={1}>
                 <TextInput
                     label='Título'
                     name='title'
                     control={control}
                     validations={TITLE}
+                    placeholder='Ingresa un título de foro'
                 />
             </Row>
             <Row size={1}>
@@ -52,7 +91,8 @@ const CreateForum = ({ navigation }) => {
                     label='Descripción'
                     name='description'
                     control={control}
-                    validations={TITLE}
+                    placeholder='Ingresa una descripción (opcional)'
+                    multiline
                 />
             </Row>
             <Row size={2}>

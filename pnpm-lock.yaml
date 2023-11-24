@@ -137,6 +137,9 @@ importers:
       react-native:
         specifier: 0.72.3
         version: 0.72.3(@babel/core@7.23.2)(@babel/preset-env@7.23.2)(react@18.2.0)
+      react-native-element-dropdown:
+        specifier: ^2.10.0
+        version: 2.10.0(react-native@0.72.3)(react@18.2.0)
       react-native-otp-textinput:
         specifier: ^1.1.3
         version: 1.1.3(react-native@0.72.3)
@@ -8253,6 +8256,18 @@ packages:
 
   /react-lifecycles-compat@3.0.4:
     resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+    dev: false
+
+  /react-native-element-dropdown@2.10.0(react-native@0.72.3)(react@18.2.0):
+    resolution: {integrity: sha512-aFjw0JbUIKGkqklHxDm8aDCZW6Q1GICP7pIHc0sllvpWpEamItzOwAMV4G1mBIKxED77Mp+nkq9p0Dhsr/faVw==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '*'
+      react-native: '*'
+    dependencies:
+      lodash: 4.17.21
+      react: 18.2.0
+      react-native: 0.72.3(@babel/core@7.23.2)(@babel/preset-env@7.23.2)(react@18.2.0)
     dev: false
 
   /react-native-otp-textinput@1.1.3(react-native@0.72.3):

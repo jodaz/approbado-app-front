@@ -1,7 +1,9 @@
 import * as React from 'react'
 import { Controller } from 'react-hook-form';
 import { ITextInputProps } from '../types';
+import Label from './Label';
 import styled from 'styled-components/native';
+import Error from './ErrorText';
 
 const Input = styled.TextInput`
     width: 100%;
@@ -19,18 +21,6 @@ const InputContainer = styled.View`
     alignItems: center;
     padding: 10px;
     border-radius: 4px;
-`;
-
-const ErrorText = styled.Text`
-    color: ${props => props.theme.palette.error.main};
-`;
-
-const LabelText = styled.Text`
-    color: ${props => props.theme.palette.info.light};
-    font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
 `;
 
 const RootContainer = styled.View`
@@ -56,9 +46,9 @@ const TextInput = ({
         }) => (
             <RootContainer>
                 {label ? (
-                    <LabelText>
+                    <Label>
                         {label}
-                    </LabelText>
+                    </Label>
                 ) : null}
                 <InputContainer>
                     {icon ? React.cloneElement(icon, {
@@ -71,7 +61,7 @@ const TextInput = ({
                         {...restInputProps}
                     />
                 </InputContainer>
-                {(error && validations) ? <ErrorText>{validations.messages[error.type]}</ErrorText> : null}
+                {(error && validations) ? <Error>{validations.messages[error.type]}</Error> : null}
             </RootContainer>
         )}
         name={name}
