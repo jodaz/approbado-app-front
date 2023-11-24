@@ -1,17 +1,13 @@
 import * as React from "react";
-import { Routes } from "../routes";
 import { ScrollView, Dimensions } from "react-native";
-import { X, Check } from "lucide-react-native";
 import { useAuth, getUser } from "@approbado/lib/contexts/AuthContext";
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { NAME, EMAIL, USERNAME } from "@approbado/lib/utils/validations";
-import { Image, TextInput, NavButton } from "../../components";
+import { TextInput, Row } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateSettings } from '@approbado/lib/services/settings.services'
+import EditProfileHeader from "./components/EditProfileHeader";
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
-import Button from "../../components/Button";
-import Row from "../../components/Row";
-import Text from "../../components/Text";
 import styled from "styled-components/native";
 
 const { width } = Dimensions.get("window");
@@ -65,28 +61,11 @@ const EditSocialProfile = ({ navigation }) => {
     return (
         <ScrollView>
             <Container>
-                <Row
-                    size={2}
-                    align="center"
-                    justify="space-between"
-                    direction="row"
-                >
-                    <Button
-                        disabled={formState.isSubmitting}
-                        variant="text"
-                        onPress={() => navigation.goBack()}
-                    >
-                        <X size={24} color="#000" />
-                    </Button>
-                    <Text fontSize={16}>Datos de contacto</Text>
-                    <Button
-                        disabled={formState.isSubmitting}
-                        variant="text"
-                        onPress={handleSubmit(onSubmit)}
-                    >
-                        <Check size={24} color="#000" />
-                    </Button>
-                </Row>
+                <EditProfileHeader
+                    isSubmitting={formState.isSubmitting}
+                    onSubmit={handleSubmit(onSubmit)}
+                    title='Redes sociales'
+                />
                 <Row size={1} align="center">
                     <TextInput
                         name="linkedin"

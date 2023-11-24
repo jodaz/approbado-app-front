@@ -35,7 +35,7 @@ const Profile = ({ navigation }) => {
     const { state: { user } } = useAuth();
 
     return (
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
             <Container>
                 <Row size={2} align='space-between'>
                     <NavButton navigation={navigation} to={Routes.Settings} />
