@@ -98,6 +98,17 @@ export const NAME = {
     },
 };
 
+export const TITLE = {
+    rules: {
+        required: true,
+        pattern: /^[a-zA-Z ]*$/,
+    },
+    messages: {
+        pattern: "Introduzca un título válido",
+        required: "Campo requerido.",
+    },
+};
+
 export const LAST_NAME = {
     rules: NAME.rules,
     messages: {

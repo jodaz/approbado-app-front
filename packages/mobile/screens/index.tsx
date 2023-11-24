@@ -17,23 +17,23 @@ const Stack = createNativeStackNavigator();
 const MainScreen = () => {
     const { state } = useAuth();
 
-    if (!state.isAuth) {
-        return (
-            <Stack.Navigator
-                screenOptions={{ headerShown: false }}
-                initialRouteName={Routes.Onboarding}
-            >
-                <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
-                <Stack.Screen name={Routes.Presentation} component={Presentation}  />
-                <Stack.Screen name={Routes.Login} component={Login}  />
-                <Stack.Screen name={Routes.SignUp} component={CreateAccount}  />
-                <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
-                <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
-                <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
-                <Stack.Screen name={Routes.CreateNewPassword} component={CreateNewPassword}  />
-            </Stack.Navigator>
-        )
-    }
+    // if (!state.isAuth) {
+    //     return (
+    //         <Stack.Navigator
+    //             screenOptions={{ headerShown: false }}
+    //             initialRouteName={Routes.Onboarding}
+    //         >
+    //             <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
+    //             <Stack.Screen name={Routes.Presentation} component={Presentation}  />
+    //             <Stack.Screen name={Routes.Login} component={Login}  />
+    //             <Stack.Screen name={Routes.SignUp} component={CreateAccount}  />
+    //             <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
+    //             <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
+    //             <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
+    //             <Stack.Screen name={Routes.CreateNewPassword} component={CreateNewPassword}  />
+    //         </Stack.Navigator>
+    //     )
+    // }
 
     return (
         <Stack.Navigator

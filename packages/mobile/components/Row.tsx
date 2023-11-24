@@ -7,7 +7,7 @@ const StyledRow = styled.View`
     width: 100%;
     align-items: ${props => props.align};
     justify-content: ${props => props.justify};
-    flex-direction: ${props => props.direction};
+    flex-direction: row;
 `
 
 const Row = ({ children, ...restProps }: IRowProps) : JSX.Element => (

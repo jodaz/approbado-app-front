@@ -16,5 +16,6 @@ export const Routes = {
     Profile: 'Profile',
     Game: 'Game',
     Forum: 'Forum',
+    CreateForum: 'CreateForum',
     CreateNewPassword: 'CreateNewPassword'
 }

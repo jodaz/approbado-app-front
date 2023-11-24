@@ -1,17 +1,21 @@
 import * as React from 'react'
-import { useForm } from 'react-hook-form';
-import Container from '../../components/Container';
-import Text from '../../components/Text';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Routes } from '../routes';
+import ListForum from './ListForum';
+import CreateForum from './CreateForum';
+
+const Stack = createNativeStackNavigator()
 
 const Forum = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
-
-    const onSubmit = async (values) => {
-    };
 
     return (
-        <Container>
-        </Container>
+        <Stack.Navigator
+            screenOptions={{ headerShown: false }}
+            initialRouteName={Routes.Forum}
+        >
+            <Stack.Screen name={Routes.Forum} component={ListForum}  />
+            <Stack.Screen name={Routes.CreateForum} component={CreateForum} />
+        </Stack.Navigator>
     );
 }
 

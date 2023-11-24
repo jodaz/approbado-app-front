@@ -19,6 +19,8 @@ const InnerContainer = styled.View`
     flexDirection: column;
     alignItems: center;
     width: ${width * .9}px;
+    position: relative;
+    flex: 1;
 `
 
 const Container = ({ children } : IComp) : JSX.Element => (

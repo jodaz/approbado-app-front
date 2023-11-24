@@ -9,6 +9,7 @@ import {
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import Forum from '../screens/Forums';
+import CreateForum from '../screens/Forums/CreateForum';
 import Game from '../screens/Game';
 
 const Tab = createBottomTabNavigator();

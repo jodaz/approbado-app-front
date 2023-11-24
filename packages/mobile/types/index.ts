@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ImageProps, StyleProp, TextInputProps, PressableProps } from 'react-native';
+import { StyleProp, TextInputProps, PressableProps } from 'react-native';
 
 type ColorThemeType = 'primary' | 'secondary' | 'error';
 
@@ -20,6 +20,7 @@ export interface IButtonProps extends PressableProps {
     fontWeight?: number;
     fullWidth?: boolean;
     color: ColorThemeType;
+    icon?: React.ReactNode;
     isLoading?: boolean;
 }
 
@@ -43,6 +44,7 @@ export interface ITextInputProps extends TextInputProps {
     validations?: any;
     icon?: React.ReactNode,
     secureTextEntry?: boolean;
+    label?: string;
 }
 
 export interface ITitleBarProps {
