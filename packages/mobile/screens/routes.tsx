@@ -21,5 +21,6 @@ export const Routes = {
     Game: 'Game',
     Forum: 'Forum',
     CreateForum: 'CreateForum',
+    Chat: 'Chat',
     CreateNewPassword: 'CreateNewPassword'
 }
