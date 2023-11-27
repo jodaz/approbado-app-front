@@ -3,14 +3,15 @@ import { deleteAccount } from '@approbado/lib/services/settings.services';
 import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
+import { Routes } from '../routes';
 import Container from '../../components/Container';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import TitleBar from '../../components/TitleBar';
 import Row from '../../components/Row';
-import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
-const DeleteAccount = () => {
+const DeleteAccount = ({ navigation }) => {
     const { handleSubmit, formState } = useForm();
     const { dispatch } = useAuth()
     const { dispatch: dispatchToast } = useToast()
@@ -25,6 +26,7 @@ const DeleteAccount = () => {
                 'Su cuenta ha sido eliminada'
             )
             logout(dispatch)
+            navigation.navigate(Routes.Onboarding)
         }
     };
 

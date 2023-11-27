@@ -2,6 +2,7 @@ import * as React from 'react'
 import { IAuth, AuthContextType } from '../types/providers';
 import { getUserProfile, loginUser, socialLoginRequest } from '../services/auth.services';
 import { IComp } from '../types';
+import { User } from '../types/models';
 import CONFIG_NAMES from '../env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -9,6 +10,7 @@ enum AuthActionType {
     LOGIN = 'LOGIN',
     LOGOUT = 'LOGOUT',
     SET_USER = 'SET_USER',
+    SET_STATE = 'SET_STATE',
     TOGGLE_LOADING_USER = 'TOGGLE_LOADING_USER'
 }
 
@@ -32,15 +34,25 @@ const setLocalCredentials = async (token: string) => {
 
 const AuthContext = React.createContext<AuthContextType>({ state: initialState, dispatch: () => null })
 
-const getInitialState = async () => {
+export async function getInitialState(dispatch: any) {
     const localInitialState = initialState;
-    const token = await AsyncStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);
+
+    const token = await AsyncStorage.getItem(CONFIG_NAMES.AUTH_TOKEN)
 
     if (token) {
         localInitialState.token = token;
+        localInitialState.isAuth = true;
+        localInitialState.user = JSON.parse(await AsyncStorage.getItem('user'));
+
+        dispatch({
+            type: AuthActionType.SET_STATE,
+            payload: localInitialState
+        })
+
+        return true;
     }
 
-    return localInitialState;
+    return false;
 }
 
 function authReducer(state: IAuth, action: AuthAction): IAuth {
@@ -65,6 +77,12 @@ function authReducer(state: IAuth, action: AuthAction): IAuth {
                 isAuth: true
             }
         }
+        case AuthActionType.SET_STATE: {
+            return {
+                ...state,
+                ...action.payload
+            }
+        }
         case AuthActionType.LOGOUT: {
             return initialState
         }
@@ -77,7 +95,7 @@ function authReducer(state: IAuth, action: AuthAction): IAuth {
 
 export const AuthProvider: React.FC<IComp> = ({ children }) => {
     //@ts-ignore
-    const [state, dispatch] = React.useReducer(authReducer, getInitialState())
+    const [state, dispatch] = React.useReducer(authReducer, initialState)
 
     return (
         <AuthContext.Provider value={{ state, dispatch }}>
@@ -109,7 +127,9 @@ export async function getUser(dispatch: any) {
             payload: data
         })
 
-        return { success: true }
+        await AsyncStorage.setItem('user', JSON.stringify(data));
+
+        return { success, status, data }
     } else {
         return { success, status, data};
     }
@@ -158,9 +178,11 @@ export async function socialLogin(dispatch: any, values: any) {
 }
 
 export async function logout(dispatch: any) {
-    dispatch({ type: AuthActionType.LOGOUT })
-
     await AsyncStorage.removeItem(CONFIG_NAMES.AUTH_TOKEN)
+
+    await AsyncStorage.removeItem('user')
+
+    dispatch({ type: AuthActionType.LOGOUT })
 
     return { success: true }
 }

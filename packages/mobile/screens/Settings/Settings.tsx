@@ -1,13 +1,13 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
+import { Routes } from '../routes';
+import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
+import { NavButton } from '../../components';
 import Row from '../../components/Row';
 import Button from '../../components/Button';
 import Container from '../../components/Container';
 import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
-import { Routes } from '../routes';
-import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
-import { NavButton } from '../../components';
 
 const FormContainer = styled.View`
     margin-top: 40px;
@@ -22,6 +22,7 @@ const Settings = ({ navigation }) => {
 
     const onLogout = async () => {
         await logout(dispatch)
+        navigation.navigate(Routes.Onboarding)
     }
 
     return (

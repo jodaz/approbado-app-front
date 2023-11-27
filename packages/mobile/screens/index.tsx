@@ -1,6 +1,8 @@
+import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from "./routes";
-import { useAuth } from '@approbado/lib/contexts/AuthContext';
+import { useAuth, getInitialState } from '@approbado/lib/contexts/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 import Onboarding from "./onboarding"
 import Presentation from "./presentation"
 import Login from "./Login"
@@ -20,31 +22,32 @@ import Chat from './Chat';
 const Stack = createNativeStackNavigator();
 
 const MainScreen = () => {
-    const { state } = useAuth();
+    const { state, dispatch: authDispatch } = useAuth()
+    const navigation = useNavigation()
 
-    if (!state.isAuth) {
-        return (
-            <Stack.Navigator
-                screenOptions={{ headerShown: false }}
-                initialRouteName={Routes.Onboarding}
-            >
-                <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
-                <Stack.Screen name={Routes.Presentation} component={Presentation}  />
-                <Stack.Screen name={Routes.Login} component={Login}  />
-                <Stack.Screen name={Routes.SignUp} component={CreateAccount}  />
-                <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
-                <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
-                <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
-                <Stack.Screen name={Routes.CreateNewPassword} component={CreateNewPassword}  />
-            </Stack.Navigator>
-        )
+    const handleAuthentication = async () => {
+        const hasToken = await getInitialState(authDispatch)
+
+        if (hasToken) {
+            navigation.navigate(Routes.Home)
+        }
     }
+
+    React.useEffect(() => { handleAuthentication() }, [])
 
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName={Routes.Home}
+            initialRouteName={Routes.Onboarding}
         >
+            <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
+            <Stack.Screen name={Routes.Presentation} component={Presentation}  />
+            <Stack.Screen name={Routes.Login} component={Login}  />
+            <Stack.Screen name={Routes.SignUp} component={CreateAccount}  />
+            <Stack.Screen name={Routes.CompleteProfile} component={CompleteProfile}  />
+            <Stack.Screen name={Routes.ForgetPassword} component={ForgetPassword}  />
+            <Stack.Screen name={Routes.ConfirmPhone} component={ConfirmPhone}  />
+            <Stack.Screen name={Routes.CreateNewPassword} component={CreateNewPassword}  />
             <Stack.Screen name={Routes.Home} component={BottomNav}  />
             <Stack.Screen name={Routes.Settings} component={SettingsStack} />
             <Stack.Screen name={Routes.EditProfile} component={EditProfileInformation} />
