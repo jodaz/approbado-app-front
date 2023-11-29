@@ -18,6 +18,7 @@ import EditOcupation from './EditProfile/EditOcupation';
 import EditSocialProfile from './EditProfile/EditSocialProfile';
 import EditProfileContact from './EditProfile/EditProfileContact';
 import Chat from './Chat';
+import ShowPost from './Forums/ShowPost';
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,7 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.EditProfileOcupation} component={EditOcupation} />
             <Stack.Screen name={Routes.EditProfileSocial} component={EditSocialProfile} />
             <Stack.Screen name={Routes.Chat} component={Chat} />
+            <Stack.Screen name={Routes.ShowPost} component={ShowPost} />
         </Stack.Navigator>
     )
 }

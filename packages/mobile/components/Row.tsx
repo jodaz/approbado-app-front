@@ -4,9 +4,9 @@ import { IRowProps } from '../types';
 const StyledRow = styled.View`
     margin-top: ${props => props.theme.space[props.size]};
     margin-bottom: ${props => props.theme.space[props.size]};
-    width: 100%;
     align-items: ${props => props.align};
     justify-content: ${props => props.justify};
+    width: 100%;
     flex-direction: ${props => props.direction};
 `
 

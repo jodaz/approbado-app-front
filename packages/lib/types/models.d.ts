@@ -65,3 +65,53 @@ export interface Profile {
     updated_at:                      Date;
     user_id:                         number;
 }
+
+export interface Post {
+    id:            number;
+    message:       string;
+    summary:       string;
+    type:          string;
+    created_by:    number;
+    parent_id:     null;
+    created_at:    Date;
+    updated_at:    null;
+    deleted_at:    null;
+    commentsCount: string;
+    owner:         Owner;
+    categories:    Category[];
+    trivias:       Trivia[];
+}
+
+export interface Category {
+    id:         number;
+    name:       string;
+    created_at: Date;
+    updated_at: null;
+}
+
+export interface Owner {
+    id:            number;
+    names:         string;
+    last_name:     string;
+    user_name:     string;
+    bio:           string;
+    picture:       string;
+    email:         string;
+    rol:           null;
+    is_registered: boolean;
+    phone:         string;
+    created_at:    Date;
+    updated_at:    Date;
+    verified_at:   null;
+}
+
+export interface Trivia {
+    id:                  number;
+    name:                string;
+    cover:               null;
+    is_free:             boolean;
+    grant_certification: boolean;
+    category_id:         number;
+    created_at:          Date;
+    updated_at:          null;
+}

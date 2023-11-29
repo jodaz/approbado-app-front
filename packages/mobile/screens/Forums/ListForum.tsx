@@ -1,20 +1,28 @@
 import * as React from 'react'
-import { useForm } from 'react-hook-form';
 import { Plus } from 'lucide-react-native';
 import { Routes } from '../routes';
+import { getPosts } from '@approbado/lib/services/forums.services.ts';
+import { Post } from '@approbado/lib/types/models'
 import Container from '../../components/Container';
-import Text from '../../components/Text';
 import FloatingButton from '../../components/FloatingButton';
-import styled from 'styled-components/native';
+import PostCard from '../../components/PostCard';
 
-const ListForum = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
+const ListPosts = ({ navigation }) => {
+    const [posts, setPosts] = React.useState<Post[] | []>([]);
 
-    const onSubmit = async (values) => {
-    };
+    const fetchData = async () => {
+        const { success, data } = await getPosts();
 
+        if (success) {
+            setPosts(previousState => [...previousState, ...data])
+        }
+    }
+
+    React.useEffect(() => { fetchData() }, [])
+    console.log(posts)
     return (
         <Container>
+            {posts.map((post: Post, index: number) => <PostCard post={post} />)}
             <FloatingButton
                 icon={<Plus />}
                 onPress={() => navigation.navigate(Routes.CreateForum)}
@@ -23,4 +31,4 @@ const ListForum = ({ navigation }) => {
     );
 }
 
-export default ListForum
+export default ListPosts

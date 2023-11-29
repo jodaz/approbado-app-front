@@ -22,5 +22,6 @@ export const Routes = {
     Forum: 'Forum',
     CreateForum: 'CreateForum',
     Chat: 'Chat',
-    CreateNewPassword: 'CreateNewPassword'
+    CreateNewPassword: 'CreateNewPassword',
+    ShowPost: 'ShowPost'
 }

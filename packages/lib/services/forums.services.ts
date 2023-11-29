@@ -6,16 +6,16 @@ const defaultParams = {
     page: 0
 }
 
-export async function getForums({ query = defaultParams }) {
+export async function getPosts() {
     try {
-        const response = await apiProvider.get('/forums', {
-            params: query
+        const { status, data } = await apiProvider.get('/forums', {
+            params: defaultParams
         })
 
         return {
             success: true,
-            status: response.status,
-            data: response.data,
+            status: status,
+            data: data.data,
         }
     }catch (error){
         return {
