@@ -1,4 +1,5 @@
 import { apiProvider } from "../api";
+import getQueryFromParams from "../utils/getQueryFromParams";
 
 const defaultParams = {
     filter: {},
@@ -6,10 +7,10 @@ const defaultParams = {
     page: 0
 }
 
-export async function getPosts() {
+export async function getPosts(query = {}) {
     try {
         const { status, data } = await apiProvider.get('/forums', {
-            params: defaultParams
+            params: getQueryFromParams({ ...defaultParams, ...query })
         })
 
         return {
@@ -26,10 +27,10 @@ export async function getPosts() {
     }
 }
 
-export async function getForumsByUser({ query = defaultParams, id }) {
+export async function getUserPosts(id, query = {}) {
     try {
         const response = await apiProvider.get(`/forums/user/${id}`, {
-            params: query
+            params: { ...defaultParams, ...query}
         })
 
         return {
@@ -46,7 +47,7 @@ export async function getForumsByUser({ query = defaultParams, id }) {
     }
 }
 
-export async function getForum({ id }) {
+export async function getForum(id) {
     try {
         const response = await apiProvider.get(`/forums/${id}`)
 
@@ -82,7 +83,7 @@ export async function createForum(values) {
     }
 }
 
-export async function editForum({ values, id }) {
+export async function editForum(values, id) {
     try {
         const response = await apiProvider.put(`/forums/${id}`, values)
 

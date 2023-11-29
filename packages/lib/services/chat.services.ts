@@ -1,5 +1,5 @@
-import { apiProvider, fileProvider } from "../api";
-import formDataHandler from '../utils/formDataHandler'
+import { apiProvider } from "../api";
+import getQueryFromParams from "../utils/getQueryFromParams";
 
 const defaultParams = {
     filter: {},
@@ -7,10 +7,10 @@ const defaultParams = {
     page: 0
 }
 
-export async function getChats({ query = defaultParams }) {
+export async function getChats(query = {}) {
     try {
         const response = await apiProvider.get('/chats', {
-            params: query
+            params: getQueryFromParams({ ...defaultParams, ...query })
         })
 
         return {
@@ -45,7 +45,7 @@ export async function sendInvitation(values) {
     }
 }
 
-export async function getSingleChat({ id }) {
+export async function getSingleChat(id: number) {
     try {
         const response = await apiProvider.get(`/chats/${id}`)
 
@@ -62,7 +62,7 @@ export async function getSingleChat({ id }) {
     }
 }
 
-export async function deleteChat({ id }) {
+export async function deleteChat(id: number) {
     try {
         const response = await apiProvider.delete(`/chat/${id}`)
 

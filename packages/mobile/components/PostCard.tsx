@@ -24,7 +24,7 @@ const PostCard = ({ post } : Post ) : JSX.Element => {
     })
 
     return (
-        <Pressable onPress={handleNavigate}>
+        <Pressable onPress={handleNavigate} key={post.id}>
             <Row size={3} direction='row' align='start'>
                 <Image source={post.owner.picture} />
                 <Row size={2}>
