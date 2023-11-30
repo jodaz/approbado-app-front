@@ -23,7 +23,7 @@ const profileSliders = [
         options: {
             tabBarLabel: 'Publicaciones'
         }
-    },
+    }
 ];
 
 export default profileSliders

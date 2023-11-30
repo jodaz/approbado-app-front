@@ -36,8 +36,6 @@ const MainScreen = () => {
 
     React.useEffect(() => { handleAuthentication() }, [])
 
-    return <BottomNav />
-
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}

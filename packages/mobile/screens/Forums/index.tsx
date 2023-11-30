@@ -6,7 +6,7 @@ import CreateForum from './CreateForum';
 
 const Stack = createNativeStackNavigator()
 
-const Forum = ({ navigation }) => {
+const Forum = () => {
 
     return (
         <Stack.Navigator
