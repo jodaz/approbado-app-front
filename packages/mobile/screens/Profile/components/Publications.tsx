@@ -18,7 +18,7 @@ const Container = styled.View`
     width: ${width - 40}px;
 `
 
-const About = () => {
+const Publications = () => {
     const { state: { user } } = useAuth();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
 
@@ -55,4 +55,4 @@ const About = () => {
     );
 }
 
-export default About
+export default Publications

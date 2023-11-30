@@ -7,6 +7,7 @@ import Forum from '@approbado/lib/illustrations/Forum.svg'
 import Forum2 from '@approbado/lib/illustrations/Forum2.svg'
 import Ribbon from '@approbado/lib/illustrations/Ribbon.svg'
 import styled from 'styled-components/native';
+import { useAuth } from '@approbado/lib/contexts/AuthContext'
 
 const { width } = Dimensions.get('window');
 
@@ -18,7 +19,8 @@ const Container = styled.View`
     width: ${width - 40}px;
 `
 
-const Achievements = ({ user }) => {
+const Achievements = () => {
+    const { state: { user } } = useAuth();
 
     return (
         <Container>

@@ -3,6 +3,7 @@ import { ScrollView, Linking, Dimensions } from 'react-native';
 import { GraduationCap, Mail } from 'lucide-react-native';
 import { Button, Text } from '../../../components';
 import { Link } from 'lucide-react-native';
+import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import TwitterX from '@approbado/lib/icons/TwitterX.svg'
 import Linkedin from '@approbado/lib/icons/Linkedin.svg'
 import Row from '../../../components/Row';
@@ -78,8 +79,10 @@ const SocialLinks = ({ profile }) => {
     )
 }
 
-const About = ({ user }) => (
-    <ScrollView>
+const About = () => {
+    const { state: { user } } = useAuth();
+
+    return (
         <Container>
             <AboutInformationItem
                 icon={<Mail />}
@@ -97,7 +100,7 @@ const About = ({ user }) => (
                 <SocialLinks profile={user.profile} />
             ) : null}
         </Container>
-    </ScrollView>
-);
+    );
+}
 
 export default About
