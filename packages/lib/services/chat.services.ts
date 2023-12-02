@@ -16,7 +16,25 @@ export async function getChats(query = {}) {
         return {
             success: true,
             status: response.status,
-            data: response.data,
+            data: response.data.data,
+        }
+    }catch (error){
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
+export async function sendMessage(id: number, values: any) {
+    try {
+        const response = await apiProvider.post(`/chats/${id}/messages`, values)
+
+        return {
+            success: true,
+            status: response.status,
+            data: response.data.data,
         }
     }catch (error){
         return {

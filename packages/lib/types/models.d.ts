@@ -105,6 +105,21 @@ export interface Owner {
     verified_at:   null;
 }
 
+export interface Chat {
+    id:           number;
+    name:         null;
+    is_private:   boolean;
+    created_at:   string;
+    updated_at:   null;
+    participants: Participant[];
+    messages:     any[];
+    notification: Notification;
+}
+
+export interface Participant extends Owner {
+  status:        string;
+}
+
 export interface Trivia {
     id:                  number;
     name:                string;
@@ -114,4 +129,17 @@ export interface Trivia {
     category_id:         number;
     created_at:          Date;
     updated_at:          null;
+}
+
+export interface Notification {
+    id:            number;
+    data:          string;
+    long_data:     string;
+    type:          string;
+    created_by:    number;
+    chat_id:       number;
+    post_id:       null;
+    membership_id: null;
+    created_at:    string;
+    updated_at:    null;
 }
