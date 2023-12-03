@@ -1,17 +1,17 @@
 import * as React from 'react'
-import { getChats } from '@approbado/lib/services/chat.services'
+import { Container } from '../../../components';
 import { Chat } from '@approbado/lib/types/models'
-import { ScrollView } from 'react-native';
-import ChatCard from './ChatCard';
-import EmptyChat from './EmptyChat';
+import ChatHeader from './ChatHeader';
+import ChatForm from './ChatForm';
 
 const UserChat = ({ route, navigation }) => {
     const chat = route.params.chat;
 
     return (
-        <ScrollView>
-
-        </ScrollView>
+        <Container>
+            <ChatHeader user={chat.participants[0]} />
+            <ChatForm chat_id={chat.id} />
+        </Container>
     );
 }
 

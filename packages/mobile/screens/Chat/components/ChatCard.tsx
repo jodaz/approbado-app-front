@@ -2,8 +2,9 @@ import React from 'react';
 import { Chat } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
-import styled from 'styled-components/native';
 import { Image, Text, Row } from '../../../components';
+import truncateString from '@approbado/lib/utils/truncateString'
+import styled from 'styled-components/native';
 
 const Pressable = styled.Pressable`
     display: flex;
@@ -16,7 +17,7 @@ const ChatCard = ({ item } : Chat ) : JSX.Element => {
     const navigation = useNavigation();
 
     const handleNavigate = () => navigation.navigate(Routes.UserChat, {
-        chat: chat
+        chat: item
     })
 
     return (
@@ -26,6 +27,13 @@ const ChatCard = ({ item } : Chat ) : JSX.Element => {
                 <Row size={2}>
                     <Text fontSize={18}>
                         {item.participants[1].user_name}
+                    </Text>
+                    <Text
+                        fontSize={18}
+                        color="secondary"
+                        fontWeight={400}
+                    >
+                        {truncateString('hola askaj fkjafj akakf', 20)}
                     </Text>
                 </Row>
             </Row>

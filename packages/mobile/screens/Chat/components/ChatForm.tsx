@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import SendIcon from '@mui/icons-material/Send';
+import { Row } from '../../../components';
 import { useForm } from "react-hook-form";
-import TextInput from '../../components/TextInput';
-import { LoadingButton } from '@mui/lab';
 import { sendMessage } from '@approbado/lib/services/chat.services'
+import { StyleSheet, Text } from 'react-native';
+import ChatInput from './ChatInput';
 
 type ChatFormValues = {
     message: string;
@@ -36,34 +34,21 @@ const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {
     }, [chat_id]);
 
     return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            position: 'relative',
-            boxShadow: '0px -4px 8px rgba(0, 0, 0, 0.08)'
-        }} component="form" onSubmit={handleSubmit(onSubmit)}>
-            <Box sx={{ p: 1, color: 'black' }}>
-                <TextInput
-                    name='message'
-                    control={control}
-                    placeholder='Escribir un mensaje'
-                    endAdornment={
-                        <LoadingButton
-                            color="primary"
-                            variant="contained"
-                            loading={isSubmitting}
-                            type="submit"
-                        >
-                            Enviar
-                        </LoadingButton>
-                    }
-                    sx={{
-                        bgcolor: '#E6EBEF'
-                    }}
-                />
-            </Box>
-        </Box>
+        <Row direction='row'>
+            <ChatInput
+                style={classes.input}
+                name='message'
+                control={control}
+                placeholder='Escribir un mensaje'
+            />
+        </Row>
     );
 }
+
+const classes = StyleSheet.create({
+    input: {
+        borderRadius: 20
+    }
+})
 
 export default ChatForm
