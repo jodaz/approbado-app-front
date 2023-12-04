@@ -37,7 +37,7 @@ const PrivacySettings = ({ navigation }) => {
             await getUser(dispatch)
             await openToast(
                 dispatchToast,
-                'primary',
+                'success',
                 'Configuraciones actualizadas'
             )
             navigation.navigate(Routes.Settings)
