@@ -8,6 +8,7 @@ import PopularPosts from './components/PopularPosts';
 import UnansweredPosts from './components/UnansweredPosts';
 import NewPosts from './components/NewPosts';
 import FloatingButton from '../../components/FloatingButton';
+import BottomDrawer from '../../components/BottomDrawer';
 
 const screens = [
     {

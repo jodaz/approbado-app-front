@@ -25,5 +25,6 @@ export const Routes = {
     InviteChat: 'InviteChat',
     UserChat: 'UserChat', // Chat entre usuarios
     CreateNewPassword: 'CreateNewPassword',
-    ShowPost: 'ShowPost'
+    ShowPost: 'ShowPost',
+    EditPost: 'EditPost'
 }

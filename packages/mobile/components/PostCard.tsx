@@ -8,6 +8,8 @@ import Text from './Text';
 import Row from './Row';
 import Image from './Image';
 import PostDescription from './PostDescription';
+import { MoreVertical } from 'lucide-react-native';
+import { TouchableOpacity } from 'react-native';
 
 const Pressable = styled.Pressable`
     display: flex;
@@ -16,7 +18,12 @@ const Pressable = styled.Pressable`
     width: 100%;
 `
 
-const PostCard = ({ post } : Post ) : JSX.Element => {
+interface IPostCardProps {
+    post: Post;
+    openDrawerMenu?: () => void;
+}
+
+const PostCard = ({ post, openDrawerMenu } : IPostCardProps ) : JSX.Element => {
     const navigation = useNavigation();
 
     const handleNavigate = () => navigation.navigate(Routes.ShowPost, {
@@ -28,9 +35,17 @@ const PostCard = ({ post } : Post ) : JSX.Element => {
             <Row size={3} direction='row' align='start'>
                 <Image source={post.owner.picture} />
                 <Row size={2}>
-                    <Text fontSize={18}>
-                        {post.message}
-                    </Text>
+                    <Row size={2} direction='row'>
+                        <Text fontSize={18}>
+                            {post.message}
+                        </Text>
+                        <TouchableOpacity onPress={() => openDrawerMenu(post)}>
+                            <MoreVertical
+                                color='#000'
+                                size={24}
+                            />
+                        </TouchableOpacity>
+                    </Row>
                     <Row size={1} direction='row'>
                         <Text fontSize={16} color='secondary'>
                             Por{' '}

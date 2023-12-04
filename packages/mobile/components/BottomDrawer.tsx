@@ -41,7 +41,7 @@ const BottomDrawer = ({ isOpen, handleClose, children } : IBottomDrawerProps) =>
         }} onPress={handleClose}/>
         <Content>
             {React.Children.map(children, (child) => (
-                <Row>
+                <Row size={1} justify='start' direction="row">
                     {React.cloneElement(child)}
                 </Row>
             ))}
