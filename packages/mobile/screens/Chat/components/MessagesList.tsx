@@ -6,6 +6,7 @@ import { getSingleChat } from '@approbado/lib/services/chat.services'
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import MessageCard from './MessageCard';
 import CONFIG_NAMES from '@approbado/lib/env'
+import { FlatList, View } from 'react-native';
 
 interface IMessagesListProps {
     chat: Chat;
@@ -16,16 +17,22 @@ const socket = socketIOClient(CONFIG_NAMES.SOURCE)
 const MessagesList = ({ chat } : IMessagesListProps ) => {
     const [messages, setMessages] = React.useState<any>(chat.messages);
     const { state: { user } } = useAuth()
+    const flatListRef = React.useRef(null);
 
-    const fetchMessages = React.useCallback(async () => {
+    const scrollToBottom = () => {
+        flatListRef.current.scrollToEnd({ animated: true });
+    };
+
+    const fetchMessages = async () => {
         const { success, data } = await getSingleChat(chat.id)
 
         if (success) {
             const { messages: arrMessages } = data;
 
             setMessages(arrMessages);
+            scrollToBottom()
         }
-    }, [chat.id]);
+    };
 
     const getNextMessage = (index: number) => {
         if (messages.length > index) return messages[index];
@@ -44,15 +51,19 @@ const MessagesList = ({ chat } : IMessagesListProps ) => {
     }
 
     return (
-        <Container>
-            {messages.map((message: any, index:number) => (
-                <MessageCard
-                    next={getNextMessage(index + 1)}
-                    message={message}
-                    userID={user.id}
-                />
-            ))}
-        </Container>
+        <View style={{ flex: 1, width: '100%' }}>
+            <FlatList
+                ref={flatListRef}
+                data={messages}
+                renderItem={({ item, index }) => (
+                    <MessageCard
+                        next={getNextMessage(index + 1)}
+                        message={item}
+                        userID={user.id}
+                    />
+                )}
+            />
+        </View>
     );
 }
 

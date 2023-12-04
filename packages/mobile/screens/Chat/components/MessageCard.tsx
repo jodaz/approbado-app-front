@@ -47,7 +47,7 @@ const MessageCard: React.FC<MessageCard> = ({ message, next, userID }) => {
     if (userID != message.user_id) {
         return (
             <MessageRootContainer key={message.id}>
-                <Image source={message.user?.picture} />
+                {/* <Image source={message.user?.picture} /> */}
                 <ReceptorMessage>
                     <Text fontWeight={400} align='left' color="primary">
                         {message.message}

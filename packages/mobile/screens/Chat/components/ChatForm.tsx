@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Row } from '../../../components';
 import { useForm } from "react-hook-form";
 import { sendMessage } from '@approbado/lib/services/chat.services'
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 import ChatInput from './ChatInput';
 
 type ChatFormValues = {
@@ -12,6 +13,10 @@ type ChatFormValues = {
 interface IChatFormProps {
     chat_id: number;
 }
+
+const Container = styled(Row)`
+    background-color: #fff;
+`
 
 const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {
     const { control, handleSubmit, setValue, formState: {
@@ -25,7 +30,7 @@ const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {
 
     const onSubmit = React.useCallback(async (values: ChatFormValues) => {
         if (values.message) {
-            const { success, data } = await sendMessage(chat_id, values)
+            const { success } = await sendMessage(chat_id, values)
 
             if (success) {
                 setValue('message', '')
@@ -34,14 +39,15 @@ const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {
     }, [chat_id]);
 
     return (
-        <Row direction='row'>
+        <Container direction='row'>
             <ChatInput
                 style={classes.input}
                 name='message'
                 control={control}
                 placeholder='Escribir un mensaje'
+                onHandleSubmit={handleSubmit(onSubmit)}
             />
-        </Row>
+        </Container>
     );
 }
 

@@ -2,12 +2,14 @@ import * as React from 'react'
 import { Controller } from 'react-hook-form';
 import { ITextInputProps } from '../../../types';
 import styled from 'styled-components/native';
+import { TouchableOpacity } from 'react-native';
+import { SendHorizonal, SendHorizontal } from 'lucide-react-native';
 
 const Input = styled.TextInput`
-    width: 100%;
     height: 45px;
     font-size: 16px;
     padding: 0 10px;
+    flex: 1;
 `;
 
 const InputContainer = styled.View`
@@ -15,16 +17,26 @@ const InputContainer = styled.View`
     border: ${props => `1px solid ${props.theme.palette.primary.light}`};
     flexDirection: row;
     height: fit-content;
-    width: 100%;
     alignItems: center;
     padding: 10px;
     border-radius: 24px;
+    flex: 1;
 `;
 
 const RootContainer = styled.View`
     display: flex;
-    flexDirection: column;
+    flexDirection: row;
+    align-items: center;
+    width: 100%;
 `
+
+const Button = styled.TouchableOpacity`
+    padding: 10px;
+`
+
+interface IChatInputProps extends ITextInputProps {
+    onHandleSubmit?: () => void;
+}
 
 const ChatInput = ({
     control,
@@ -34,8 +46,9 @@ const ChatInput = ({
     icon,
     label,
     defaultValue,
+    onHandleSubmit,
     ...restInputProps
-} : ITextInputProps) : JSX.Element => (
+} : IChatInputProps) : JSX.Element => (
     <Controller
         control={control}
         render={({
@@ -50,6 +63,9 @@ const ChatInput = ({
                         {...restInputProps}
                     />
                 </InputContainer>
+                <Button onPress={onHandleSubmit}>
+                    <SendHorizontal color='#2280ED' size={24} />
+                </Button>
             </RootContainer>
         )}
         name={name}
