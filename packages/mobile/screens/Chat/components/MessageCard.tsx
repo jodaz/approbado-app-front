@@ -1,11 +1,12 @@
 import * as React from 'react'
-import { Text } from '../../../components';
+import { Image, Text } from '../../../components';
 import format from 'date-fns/format';
 import styled from 'styled-components/native';
 
 interface MessageCard {
+    next: any;
     message: any;
-    isReceptor?: boolean;
+    userID: number;
 }
 
 const MessageRootContainer: React.FC<{sender?: boolean | null}> = styled.View`
@@ -40,20 +41,23 @@ const SenderMessage: React.FC<any> = styled(GeneralMessage)`
     background-color: ${props => props.theme.palette.primary.light}
 `
 
-const MessageCard: React.FC<MessageCard> = ({ message, isReceptor }) => {
+const MessageCard: React.FC<MessageCard> = ({ message, next, userID }) => {
     const messageTime = format(new Date(message.created_at), 'h:mm a');
 
-    if (isReceptor) {
+    if (userID != message.user_id) {
         return (
             <MessageRootContainer key={message.id}>
+                <Image source={message.user?.picture} />
                 <ReceptorMessage>
                     <Text fontWeight={400} align='left' color="primary">
                         {message.message}
                     </Text>
                 </ReceptorMessage>
-                <Text fontSize={14} fontWeight={400} align='left' color="primary">
-                    {messageTime}
-                </Text>
+                {next?.user_id != message.user_id ? (
+                    <Text fontSize={14} fontWeight={400} align='left' color="primary">
+                        {messageTime}
+                    </Text>
+                ) : null}
             </MessageRootContainer>
         );
     }
@@ -65,9 +69,11 @@ const MessageCard: React.FC<MessageCard> = ({ message, isReceptor }) => {
                     {message.message}
                 </Text>
             </SenderMessage>
-            <Text fontSize={14} fontWeight={400} align='left' color="primary">
-                {messageTime}
-            </Text>
+            {next?.user_id != message.user_id ? (
+                <Text fontSize={14} fontWeight={400} align='left' color="primary">
+                    {messageTime}
+                </Text>
+            ) : null}
         </MessageRootContainer>
     );
 }
