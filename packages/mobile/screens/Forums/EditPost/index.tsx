@@ -28,7 +28,6 @@ const EditPost = ({ route, navigation }) => {
     const { dispatch } = useToast()
     const [themes, setThemes] = React.useState(null);
     const [categories, setCategories] = React.useState(null);
-    console.log(JSON.stringify(post, null, 2));
 
     const onSubmit = async values => {
 
@@ -81,7 +80,7 @@ const EditPost = ({ route, navigation }) => {
                 <Text>
                     Editar debate
                 </Text>
-                <Button variant='text' onPress={() => navigation.navigate(Routes.Forum)}>
+                <Button variant='text' onPress={() => navigation.goBack()}>
                     Cancelar
                 </Button>
             </Row>

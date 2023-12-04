@@ -101,7 +101,7 @@ export async function editForum(values, id) {
     }
 }
 
-export async function deleteForum({ id }) {
+export async function deletePost(id) {
     try {
         const response = await apiProvider.delete(`/forums/${id}`)
 

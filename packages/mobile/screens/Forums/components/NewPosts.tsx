@@ -12,6 +12,7 @@ import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
+import DeletePost from './DeletePost';
 
 const NewPosts = () => {
     const [posts, setPosts] = React.useState<Post[] | []>([]);
@@ -20,7 +21,15 @@ const NewPosts = () => {
     // This state would determine if the drawer sheet is visible or not
     const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
     const [selectedPost, setSelectedPost] = React.useState<null | Post>(null)
+    const [openDelete, setOpenDelete] = React.useState<boolean | number>(false);
 
+    const onDeletePost = postID => {
+        const newPosts = posts.filter(({ id }) => id != postID)
+
+        setPosts(newPosts);
+    }
+
+    const toggleDelete = (value = false) => setOpenDelete(value);
     // Function to open the bottom sheet
     const handleOpenBottomSheet = (post: Post) => {
         setSelectedPost(post)
@@ -81,6 +90,7 @@ const NewPosts = () => {
                 <DrawerButton
                     icon={<Trash2 />}
                     onPress={() => {
+                        toggleDelete(selectedPost.id)
                         handleCloseBottomSheet()
                     }}
                 >
@@ -95,6 +105,11 @@ const NewPosts = () => {
                     Reportar
                 </DrawerButton>
             </BottomDrawer>
+            <DeletePost
+                isOpen={openDelete}
+                toggleModal={toggleDelete}
+                onDeletePost={onDeletePost}
+            />
         </ScrollView>
     );
 }
