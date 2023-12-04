@@ -1,6 +1,13 @@
 import * as React from 'react'
 import { useForm } from 'react-hook-form';
-import { Button, Row, Text, TextInput } from '../../components';
+import {
+    Container,
+    SelectInput,
+    Button,
+    Row,
+    Text,
+    TextInput
+} from '../../components';
 import { TITLE } from '@approbado/lib/utils/validations'
 import { createForum } from '@approbado/lib/services/forums.services'
 import { Routes } from '../routes';
@@ -8,8 +15,6 @@ import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { listTrivias } from '@approbado/lib/services/trivias.services'
 import { listCategories } from '@approbado/lib/services/categories.services'
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
-import Container from '../../components/Container';
-import SelectInput from '../../components/SelectInput';
 
 const CreateForum = ({ navigation }) => {
     const { control, handleSubmit, setError, formState } = useForm();

@@ -1,7 +1,13 @@
 import * as React from 'react'
 import { getPosts } from '@approbado/lib/services/forums.services.ts';
 import { Post } from '@approbado/lib/types/models'
-import { BottomDrawer, DrawerButton, PostCard } from '../../../components';
+import {
+    BottomDrawer,
+    DrawerButton,
+    PostCard,
+    Container,
+    Text
+} from '../../../components';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
@@ -38,6 +44,16 @@ const NewPosts = () => {
     }
 
     React.useEffect(() => { fetchData() }, [])
+
+    if (!posts.length) {
+        return (
+            <Container>
+                <Text>
+                    Sin publicaciones
+                </Text>
+            </Container>
+        )
+    }
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
