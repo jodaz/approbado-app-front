@@ -112,8 +112,20 @@ export interface Chat {
     created_at:   string;
     updated_at:   null;
     participants: Participant[];
-    messages:     any[];
+    messages:     Message[];
     notification: Notification;
+}
+
+export interface Message {
+    id:         number;
+    message:    string;
+    file:       null;
+    user_id:    number;
+    chat_id:    number;
+    read_at:    null;
+    created_at: string;
+    updated_at: null;
+    user:       Participant;
 }
 
 export interface Participant extends Owner {

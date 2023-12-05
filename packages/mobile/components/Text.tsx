@@ -8,7 +8,7 @@ const { width } = Dimensions.get('window');
 const StyledText = styled.Text`
     font-weight: ${props => props.fontWeight};
     font-size: ${({ fontSize }) => fontSize}px;
-    width: calc(90% * ${width})px;
+    width: fit-content;
     color: ${props => (props.color == 'primary')
         ? props.theme.palette.text.primary
         : props.theme.palette.text.secondary
