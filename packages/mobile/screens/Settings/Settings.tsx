@@ -3,9 +3,12 @@ import { SafeAreaView } from 'react-native';
 import { Routes } from '../routes';
 import { logout, useAuth } from '@approbado/lib/contexts/AuthContext';
 import { NavButton } from '../../components';
-import Row from '../../components/Row';
-import Button from '../../components/Button';
-import Container from '../../components/Container';
+import {
+    Row,
+    Button,
+    Container,
+    Text
+} from '../../components';
 import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
 
@@ -28,7 +31,11 @@ const Settings = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <TitleBar title="Configuraciones" />
+                <TitleBar>
+                    <Text fontSize={18} fontWeight={600}>
+                        Configuraciones
+                    </Text>
+                </TitleBar>
                 <FormContainer>
                     <NavButton to={Routes.PrivacySettings}>
                         Privacidad

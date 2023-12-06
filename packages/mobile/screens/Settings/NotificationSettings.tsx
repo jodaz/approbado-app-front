@@ -5,10 +5,13 @@ import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import Row from '../../components/Row';
-import Button from '../../components/Button';
-import Checkbox from '../../components/Checkbox';
-import Container from '../../components/Container';
+import {
+    Text,
+    Container,
+    Button,
+    Row,
+    Checkbox
+} from '../../components';
 import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
 
@@ -51,7 +54,11 @@ const NotificationSettings = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <TitleBar title="Ajustes de seguridad" />
+                <TitleBar>
+                    <Text fontSize={18} fontWeight={600}>
+                    Ajustes de seguridad
+                    </Text>
+                </TitleBar>
                 <FormContainer>
                     <Row size={1}>
                         <Checkbox

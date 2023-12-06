@@ -48,7 +48,7 @@ export interface ITextInputProps extends TextInputProps {
 }
 
 export interface ITitleBarProps {
-    title: string;
+    component: any;
 }
 
 export interface IRowProps extends IComp {

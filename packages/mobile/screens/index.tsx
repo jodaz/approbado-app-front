@@ -22,6 +22,7 @@ import ShowPost from './Forums/ShowPost';
 import InviteChat from './Chat/components/InviteChat';
 import UserChat from './Chat/components/UserChat';
 import EditPost from './Forums/EditPost';
+import ReportPost from './Forums/ReportPost';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +63,7 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.ShowPost} component={ShowPost} />
             <Stack.Screen name={Routes.UserChat} component={UserChat} />
             <Stack.Screen name={Routes.EditPost} component={EditPost} />
+            <Stack.Screen name={Routes.ReportPost} component={ReportPost} />
             <Stack.Screen name={Routes.InviteChat} component={InviteChat} />
         </Stack.Navigator>
     )

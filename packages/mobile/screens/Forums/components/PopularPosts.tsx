@@ -89,6 +89,9 @@ const PopularPosts = () => {
                 <DrawerButton
                     icon={<AlertTriangle />}
                     onPress={() => {
+                        navigation.navigate(Routes.ReportPost, {
+                            post: selectedPost
+                        })
                         handleCloseBottomSheet()
                     }}
                 >

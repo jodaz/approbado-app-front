@@ -155,3 +155,10 @@ export interface Notification {
     created_at:    string;
     updated_at:    null;
 }
+
+export interface ReportReason {
+    id:         number;
+    item:       string;
+    created_at: string;
+    updated_at: null;
+}

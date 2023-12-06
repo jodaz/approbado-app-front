@@ -3,19 +3,21 @@ import styled from 'styled-components/native';
 import Text from './Text';
 import { ArrowLeft } from 'lucide-react-native'
 import { useNavigation } from '@react-navigation/native';
-import { ITitleBarProps } from '../types';
+import { IComp } from '../types';
 
 const NavContainer = styled.View`
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 const NavButton = styled.TouchableOpacity`
     margin-right: ${props => props.theme.space[5]};
 `
 
-const TitleBar = ({ title }: ITitleBarProps) : JSX.Element => {
+const TitleBar = ({ children }: IComp) : JSX.Element => {
     const navigation = useNavigation()
 
     const handleGoBack = () => {
@@ -27,9 +29,8 @@ const TitleBar = ({ title }: ITitleBarProps) : JSX.Element => {
             <NavButton onPress={handleGoBack}>
                 <ArrowLeft color='#000' size={24} />
             </NavButton>
-            <Text fontSize={18} fontWeight={600}>
-                {title}
-            </Text>
+            {children}
+            <NavButton onPress={handleGoBack} />
         </NavContainer>
     );
 }

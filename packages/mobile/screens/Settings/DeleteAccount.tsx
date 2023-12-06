@@ -33,7 +33,11 @@ const DeleteAccount = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <TitleBar title="Ajustes de cuenta" />
+                <TitleBar>
+                    <Text fontSize={18} fontWeight={600}>
+                        Eliminar cuenta
+                    </Text>
+                </TitleBar>
                 <Row size={4}>
                     <Text fontSize={16} fontWeight={400}>
                         Al realizar el proceso de eliminar tu cuenta de approbado.com,

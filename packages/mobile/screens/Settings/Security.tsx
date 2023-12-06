@@ -3,12 +3,15 @@ import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { CONFIRM_PASSWORD, PASSWORD } from '@approbado/lib/utils/validations';
 import { updatePassword } from '@approbado/lib/services/settings.services';
-import Container from '../../components/Container';
-import Button from '../../components/Button';
+import {
+    Row,
+    Button,
+    Container,
+    Text
+} from '../../components';
 import styled from 'styled-components/native';
 import TitleBar from '../../components/TitleBar';
 import TextInput from '../../components/TextInput';
-import Row from '../../components/Row';
 import setFormErrors from '@approbado/lib/utils/setFormErrors';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 
@@ -44,7 +47,11 @@ const Security = ({ navigation }) => {
     return (
         <SafeAreaView>
             <Container>
-                <TitleBar title="Ajustes de seguridad" />
+                <TitleBar>
+                    <Text fontSize={18} fontWeight={600}>
+                        Ajustes de seguridad
+                    </Text>
+                </TitleBar>
                 <FormContainer>
                     <Row size={1}>
                         <TextInput
