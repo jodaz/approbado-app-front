@@ -9,12 +9,15 @@ import Row from './Row';
 import Image from './Image';
 import PostDescription from './PostDescription';
 import { MoreVertical } from 'lucide-react-native';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 const Pressable = styled.Pressable`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    padding: ${props => props.theme.space[4]};
+    margin-top: ${props => props.theme.space[4]};
+    margin-bottom: ${props => props.theme.space[4]};
     width: 100%;
 `
 
@@ -32,36 +35,34 @@ const PostCard = ({ post, openDrawerMenu } : IPostCardProps ) : JSX.Element => {
 
     return (
         <Pressable onPress={handleNavigate} key={post.id}>
-            <Row size={3} direction='row' align='start'>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Image source={post.owner.picture} />
-                <Row size={2}>
-                    <Row size={2} direction='row'>
-                        <Text fontSize={18}>
-                            {post.message}
-                        </Text>
-                        <TouchableOpacity onPress={() => openDrawerMenu(post)}>
-                            <MoreVertical
-                                color='#000'
-                                size={24}
-                            />
-                        </TouchableOpacity>
-                    </Row>
-                    <Row size={1} direction='row'>
+                <View style={{ flex: 1, flexDirection: 'column' }}>
+                    <Text fontSize={18}>
+                        {post.message}
+                    </Text>
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
                         <Text fontSize={16} color='secondary'>
                             Por{' '}
                         </Text>
                         <Text fontSize={16}>
                             {post.owner.user_name}
                         </Text>
-                    </Row>
+                    </View>
                     <Row size={1} direction='row'>
                         {post.categories.map((item: Category, i: number) => (
                             <CategoryPill item={item} />
                         ))}
                     </Row>
                     <PostDescription post={post} />
-                </Row>
-            </Row>
+                </View>
+            </View>
+            <TouchableOpacity onPress={() => openDrawerMenu(post)}>
+                <MoreVertical
+                    color='#000'
+                    size={24}
+                />
+            </TouchableOpacity>
         </Pressable>
     )
 }

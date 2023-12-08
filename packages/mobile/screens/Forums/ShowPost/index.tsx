@@ -38,7 +38,7 @@ const ShowPost = ({ route }) => {
                         </Row>
                     </Row>
                 </Row>
-                <Text fontSize={16}>
+                <Text fontSize={18} fontWeight={400}>
                     {post.summary}
                 </Text>
                 <Row size={1} direction='row'>
