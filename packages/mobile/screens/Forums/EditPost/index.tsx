@@ -4,7 +4,7 @@ import {
     Row,
     TextInput,
     Text,
-    SelectInput,
+    MultiSelectInput,
     Button
 } from '../../../components';
 import styled from 'styled-components/native';
@@ -17,9 +17,9 @@ import { listCategories } from '@approbado/lib/services/categories.services'
 
 const EditPost = ({ route, navigation }) => {
     const post = route.params.post;
-    const { control, handleSubmit, formState } = useForm({
+    const { control, handleSubmit, formState, watch } = useForm({
         defaultValues: {
-            title: post.message,
+            message: post.message,
             summary: post.summary,
             trivias_ids: post.trivias.map(({ id }) => id),
             categories_ids: post.categories.map(({ id }) => id)
@@ -30,7 +30,6 @@ const EditPost = ({ route, navigation }) => {
     const [categories, setCategories] = React.useState(null);
 
     const onSubmit = async values => {
-
         const { success, status, data } = await editForum(post.id, values);
 
         if (success) {
@@ -42,6 +41,7 @@ const EditPost = ({ route, navigation }) => {
             navigation.goBack()
         } else {
             if (status == 422) {
+                console.log(data)
             } else {
                 console.log(data)
                 await openToast(
@@ -102,32 +102,30 @@ const EditPost = ({ route, navigation }) => {
                     multiline
                 />
             </Row>
-            {/* <Row size={1}>
-                {categories ? (
-                    <SelectInput
-                        label='Categoría'
+            {categories ? (
+                <Row size={1}>
+                    <MultiSelectInput
+                        label='Categorías'
+                        control={control}
                         name='categories_ids'
-                        control={control}
-                        placeholder='Seleccione una categoría'
                         options={categories}
-                        labelField='name'
                         valueField='id'
+                        labelField='name'
                     />
-                ) : null}
-            </Row>
-            <Row size={1}>
-                {themes ? (
-                    <SelectInput
-                        label='Trivia'
-                        name='trivias_ids'
+                </Row>
+            ) : null}
+            {themes ? (
+                <Row size={1}>
+                    <MultiSelectInput
+                        label='Trivias'
                         control={control}
-                        placeholder='Seleccione un tema'
+                        name='trivias_ids'
                         options={themes}
-                        labelField='name'
                         valueField='id'
+                        labelField='name'
                     />
-                ) : null}
-            </Row> */}
+                </Row>
+            ) : null}
             <Row size={2}>
                 <Button
                     isLoading={formState.isSubmitting}

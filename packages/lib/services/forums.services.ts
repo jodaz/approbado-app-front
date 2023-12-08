@@ -83,7 +83,7 @@ export async function createForum(values) {
     }
 }
 
-export async function editForum(values, id) {
+export async function editForum(id, values) {
     try {
         const response = await apiProvider.put(`/forums/${id}`, values)
 

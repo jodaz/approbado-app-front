@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
 import { Controller } from 'react-hook-form';
-import AntDesign from '@expo/vector-icons/AntDesign';
 import styled from 'styled-components/native';
 import Label from './Label';
 import Error from './ErrorText';
@@ -24,15 +23,6 @@ const SelectInput = ({
     labelField,
     valueField
 } : ISelectProps) => {
-
-  const renderItem = item => {
-    return (
-      <View style={styles.item}>
-        <Text style={styles.selectedTextStyle}>{item.label}</Text>
-        <AntDesign style={styles.icon} color="black" name="Safety" size={20} />
-      </View>
-    );
-  };
 
   return (
     <Controller
