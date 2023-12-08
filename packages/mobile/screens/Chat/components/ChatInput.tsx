@@ -4,6 +4,7 @@ import { ITextInputProps } from '../../../types';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import { SendHorizonal, SendHorizontal } from 'lucide-react-native';
+import PhotoInput from '../../../components/PhotoInput';
 
 const Input = styled.TextInput`
     height: 45px;
@@ -36,6 +37,7 @@ const Button = styled.TouchableOpacity`
 
 interface IChatInputProps extends ITextInputProps {
     onHandleSubmit?: () => void;
+    chat_id?: any;
 }
 
 const ChatInput = ({
@@ -47,6 +49,7 @@ const ChatInput = ({
     label,
     defaultValue,
     onHandleSubmit,
+    chat_id,
     ...restInputProps
 } : IChatInputProps) : JSX.Element => (
     <Controller
@@ -63,6 +66,7 @@ const ChatInput = ({
                         {...restInputProps}
                     />
                 </InputContainer>
+                <PhotoInput chat_id={chat_id} />
                 <Button onPress={onHandleSubmit}>
                     <SendHorizontal color='#2280ED' size={24} />
                 </Button>

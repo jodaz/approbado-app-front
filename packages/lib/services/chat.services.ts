@@ -1,4 +1,4 @@
-import { apiProvider } from "../api";
+import { apiProvider, fileProvider } from "../api";
 import getQueryFromParams from "../utils/getQueryFromParams";
 
 const defaultParams = {
@@ -29,7 +29,8 @@ export async function getChats(query = {}) {
 
 export async function sendMessage(id: number, values: any) {
     try {
-        const response = await apiProvider.post(`/chats/${id}/messages`, values)
+        console.log(values)
+        const response = await fileProvider.post(`/chats/${id}/messages`, values)
 
         return {
             success: true,

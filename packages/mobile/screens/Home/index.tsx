@@ -1,14 +1,11 @@
 import * as React from 'react'
-import { useForm } from 'react-hook-form';
 import Container from '../../components/Container';
-import { Text, Button, Row } from '../../components';
+import { Button, Row } from '../../components';
 import { Routes } from '../routes';
 import { Mail } from 'lucide-react-native';
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
-import BottomDrawer from '../../components/BottomDrawer';
 
 const Home = ({ navigation }) => {
-    const { control, handleSubmit } = useForm();
 
     return (
         <Container>

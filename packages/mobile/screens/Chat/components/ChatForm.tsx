@@ -5,7 +5,6 @@ import { sendMessage } from '@approbado/lib/services/chat.services'
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import ChatInput from './ChatInput';
-
 type ChatFormValues = {
     message: string;
 }
@@ -19,9 +18,7 @@ const Container = styled(Row)`
 `
 
 const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {
-    const { control, handleSubmit, setValue, formState: {
-        isSubmitting
-    }} = useForm<ChatFormValues>({
+    const { control, handleSubmit, setValue } = useForm<ChatFormValues>({
         reValidateMode: "onBlur",
         defaultValues: {
             message: ''
@@ -46,6 +43,7 @@ const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {
                 control={control}
                 placeholder='Escribir un mensaje'
                 onHandleSubmit={handleSubmit(onSubmit)}
+                chat_id={chat_id}
             />
         </Container>
     );

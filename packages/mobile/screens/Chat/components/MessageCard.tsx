@@ -49,9 +49,15 @@ const MessageCard: React.FC<MessageCard> = ({ message, next, userID }) => {
             <MessageRootContainer key={message.id}>
                 {/* <Image source={message.user?.picture} /> */}
                 <ReceptorMessage>
-                    <Text fontWeight={400} align='left' color="primary">
-                        {message.message}
-                    </Text>
+                    {message.message ? (
+                        <Text fontWeight={400} align='left' color="primary">
+                            {message.message}
+                        </Text>
+                    ) : null}
+
+                    {message.file ? (
+                        <Image source={message.file} />
+                    ) : null}
                 </ReceptorMessage>
                 {next?.user_id != message.user_id ? (
                     <Text fontSize={14} fontWeight={400} align='left' color="primary">
@@ -65,9 +71,15 @@ const MessageCard: React.FC<MessageCard> = ({ message, next, userID }) => {
     return (
         <MessageRootContainer key={message.id} sender>
             <SenderMessage>
-                <Text fontWeight={400} align='left' color="primary">
-                    {message.message}
-                </Text>
+                {message.message ? (
+                    <Text fontWeight={400} align='left' color="primary">
+                        {message.message}
+                    </Text>
+                ) : null}
+
+                {message.file ? (
+                    <Image source={message.file} />
+                ) : null}
             </SenderMessage>
             {next?.user_id != message.user_id ? (
                 <Text fontSize={14} fontWeight={400} align='left' color="primary">
