@@ -3,10 +3,10 @@ import { ArrowLeft, PenSquare } from 'lucide-react-native';
 import { Row, Text } from '../../components';
 import { Routes } from '../routes';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import EmptyChat from './components/EmptyChat';
 import ChatList from './components/ChatList';
 import Tabs from '../../components/Tabs';
 import styled from 'styled-components/native';
+import ChatInvitations from './components/ChatInvitations';
 
 const screens = [
     {
@@ -18,7 +18,7 @@ const screens = [
     },
     {
         name: 'Invitations',
-        component: ChatList,
+        component: ChatInvitations,
         options: {
             tabBarLabel: 'Invitaciones'
         }

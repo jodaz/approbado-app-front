@@ -5,12 +5,12 @@ import { ScrollView } from 'react-native';
 import ChatCard from './ChatCard';
 import EmptyChat from './EmptyChat';
 
-const ChatList = () => {
+const ChatInvitations = () => {
     const [chats, setChats] = React.useState<Chat[] | []>([]);
 
     const fetchChats = React.useCallback(async () => {
         const { success, data } = await getChats({
-            filter: { status: 'accepted' }
+            filter: { status: 'pending' }
         })
 
         if (success) {
@@ -25,7 +25,7 @@ const ChatList = () => {
     if (!chats.length) {
         return (
             <EmptyChat
-                title={'Aún no tienes mensajes'}
+                title={'No tienes invitaciones'}
                 subtitle='Invita a una persona para iniciar una conversación'
             />
         )
@@ -38,4 +38,4 @@ const ChatList = () => {
     );
 }
 
-export default ChatList
+export default ChatInvitations
