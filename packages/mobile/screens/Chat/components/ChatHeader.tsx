@@ -3,20 +3,27 @@ import { Row, Image, Text } from '../../../components'
 import { User } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native'
 import { ArrowLeft } from 'lucide-react-native'
+import styled from 'styled-components/native'
+
+const Container = styled(Row)`
+    padding-left: ${props => props.theme.space[2]};
+    padding-right: ${props => props.theme.space[2]}
+`
 
 const ChatHeader: React.FC<{ user: User }> = ({ user }) => {
     const navigation = useNavigation();
 
     return (
-        <Row
-            direction='row'
-            size={1}
+        <Container
             align='center'
+            direction='row'
+            justify='space-between'
+            size={4}
         >
             <ArrowLeft
-                color='#000'
                 size={24}
-                onClick={() => navigation.goBack()}
+                color='#000'
+                onPress={() => navigation.goBack()}
             />
             <Row
                 direction='row'
@@ -28,7 +35,7 @@ const ChatHeader: React.FC<{ user: User }> = ({ user }) => {
                     {user.names}
                 </Text>
             </Row>
-        </Row>
+        </Container>
     )
 }
 

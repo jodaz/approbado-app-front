@@ -37,7 +37,12 @@ const Chat = ({ navigation }) => {
 
     return (
         <Container>
-            <Row align='center' direction='row' justify='space-between' size={2}>
+            <Row
+                align='center'
+                direction='row'
+                justify='space-between'
+                size={6}
+            >
                 <ArrowLeft
                     size={24}
                     color='#000'
@@ -52,6 +57,9 @@ const Chat = ({ navigation }) => {
                     onPress={() => navigation.navigate(Routes.InviteChat)}
                 />
             </Row>
+            <Tab.Navigator tabBar={Tabs}>
+                {screens.map(screen => <Tab.Screen {...screen} />)}
+            </Tab.Navigator>
         </Container>
     );
 }
