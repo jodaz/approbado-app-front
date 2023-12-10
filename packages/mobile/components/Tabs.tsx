@@ -1,9 +1,14 @@
 import * as React from 'react'
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import TabIndicator from './TabIndicator';
 
 const Tabs = ({ state, descriptors, navigation, position }) => (
-    <View style={{ flexDirection: 'row' }}>
+    <ScrollView
+        style={{ flexDirection: 'row', maxHeight: 30 }}
+        scrollEnabled
+        horizontal
+        showsHorizontalScrollIndicator={false}
+    >
         {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
             const label =
@@ -50,7 +55,7 @@ const Tabs = ({ state, descriptors, navigation, position }) => (
                 </TabIndicator>
             )
         })}
-    </View>
+    </ScrollView>
 );
 
 export default Tabs

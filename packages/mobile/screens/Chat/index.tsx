@@ -52,9 +52,6 @@ const Chat = ({ navigation }) => {
                     onPress={() => navigation.navigate(Routes.InviteChat)}
                 />
             </Row>
-            <Tab.Navigator tabBar={Tabs}>
-                {screens.map(screen => <Tab.Screen {...screen} />)}
-            </Tab.Navigator>
         </Container>
     );
 }

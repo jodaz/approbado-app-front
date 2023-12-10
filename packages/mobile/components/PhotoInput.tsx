@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Camera } from 'lucide-react-native';
+import { sendMessage } from '@approbado/lib/services/chat.services'
 import * as ImagePicker from 'expo-image-picker';
 import styled from 'styled-components/native';
 import formDataHandler from '@approbado/lib/utils/formDataHandler'
-import { sendMessage } from '@approbado/lib/services/chat.services'
 
 const Button = styled.TouchableOpacity`
     padding: 10px;
