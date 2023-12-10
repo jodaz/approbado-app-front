@@ -2,13 +2,12 @@ import React from 'react';
 import { Chat } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
-import { Image, Text, Row } from '../../../components';
-import format from 'date-fns/format';
+import { Image, Text } from '../../../components';
+import { View } from 'react-native';
+import { es } from 'date-fns/locale'
 import truncateString from '@approbado/lib/utils/truncateString'
 import styled from 'styled-components/native';
-import { View } from 'react-native';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
-import { es } from 'date-fns/locale'
 
 const Pressable = styled.Pressable`
     display: flex;

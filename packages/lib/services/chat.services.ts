@@ -64,6 +64,28 @@ export async function sendInvitation(values) {
     }
 }
 
+export async function updateInvitation(values) {
+    try {
+        const { chat_id, status } = values;
+
+        const response = await apiProvider.put(`/chats/status/${chat_id}`, {
+            status: status
+        })
+
+        return {
+            success: true,
+            status: response.status,
+            data: response.data,
+        }
+    }catch (error){
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
 export async function getSingleChat(id: number) {
     try {
         const response = await apiProvider.get(`/chats/${id}`)

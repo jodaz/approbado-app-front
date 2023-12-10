@@ -2,8 +2,8 @@ import * as React from 'react'
 import { getChats } from '@approbado/lib/services/chat.services'
 import { Chat } from '@approbado/lib/types/models'
 import { ScrollView } from 'react-native';
-import ChatCard from './ChatCard';
 import EmptyChat from './EmptyChat';
+import ChatInvitation from './ChatInvitation';
 
 const ChatInvitations = () => {
     const [chats, setChats] = React.useState<Chat[] | []>([]);
@@ -33,7 +33,7 @@ const ChatInvitations = () => {
 
     return (
         <ScrollView>
-            {chats.map((chat: Chat) => <ChatCard item={chat} />)}
+            {chats.map((chat: Chat) => <ChatInvitation item={chat} />)}
         </ScrollView>
     );
 }
