@@ -1,6 +1,6 @@
 import defaultAxios from 'axios';
 import CONFIG_NAMES from '../configs'
-console.log(CONFIG_NAMES)
+
 const jsonInstance = defaultAxios.create({
     baseURL: CONFIG_NAMES.SOURCE,
     withCredentials: false
