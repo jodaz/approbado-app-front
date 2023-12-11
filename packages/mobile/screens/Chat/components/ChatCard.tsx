@@ -31,7 +31,7 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
         : null;
     const [datetime, setDatetime] = React.useState(null)
     const chatName = !item.is_private
-        ? item.participants.find(({ id } : User) => id == user_id).user_name
+        ? item.participants.find(({ id } : User) => id !== user_id).user_name
         : item.name;
 
     const handleNavigate = () => navigation.navigate(Routes.UserChat, {

@@ -46,6 +46,10 @@ const MessagesList = ({ chat } : IMessagesListProps ) => {
         return () => socket.disconnect();
     }, [])
 
+    React.useEffect(() => {
+        fetchMessages()
+    }, [])
+
     if (!messages) {
         return null;
     }

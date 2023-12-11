@@ -13,8 +13,9 @@ interface IChatFormProps {
     chat_id: number;
 }
 
-const Container = styled(Row)`
+const Container = styled.View`
     background-color: #fff;
+
 `
 
 const ChatForm: React.FC<IChatFormProps> = ({ chat_id }) => {

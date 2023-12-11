@@ -29,6 +29,8 @@ const RootContainer = styled.View`
     flexDirection: row;
     align-items: center;
     width: 100%;
+    background-color: white;
+    padding: ${props => props.theme.space[2]}
 `
 
 const Button = styled.TouchableOpacity`
