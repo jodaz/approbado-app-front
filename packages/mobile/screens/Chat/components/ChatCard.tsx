@@ -1,5 +1,5 @@
 import React from 'react';
-import { Chat } from '@approbado/lib/types/models'
+import { Chat, User } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { Image, Text } from '../../../components';
@@ -19,12 +19,20 @@ const Pressable = styled.Pressable`
     width: 100%;
 `
 
-const ChatCard = ({ item } : Chat ) : JSX.Element => {
+interface IChatCardProps {
+    item: Chat,
+    user_id: number
+}
+
+const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
     const navigation = useNavigation();
     const lastMessage = item.messages.length
         ? item.messages[0]
         : null;
     const [datetime, setDatetime] = React.useState(null)
+    const chatName = !item.is_private
+        ? item.participants.find(({ id } : User) => id == user_id).user_name
+        : item.name;
 
     const handleNavigate = () => navigation.navigate(Routes.UserChat, {
         chat: item
@@ -54,7 +62,7 @@ const ChatCard = ({ item } : Chat ) : JSX.Element => {
                 <Image source={item.participants[1].picture} />
                 <View style={{ flex: 1, flexDirection: 'column' }}>
                     <Text fontSize={18}>
-                        {item.participants[1].user_name}
+                        {chatName}
                     </Text>
                     <Text
                         fontSize={18}
