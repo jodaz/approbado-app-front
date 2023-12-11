@@ -50,7 +50,7 @@ jobs:
       with:
         switches: -avzr --delete
         path: /packages/admin/build
-        remote_path: /var/www/html/admin
+        remote_path: /approbado-app-front
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: ${{ secrets.SSH_USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
@@ -59,7 +59,7 @@ jobs:
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -avzr --delete
-        path: /packages/app/build
+        remote_path: /approbado-app-front
         remote_path: /var/www/html/app
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: ${{ secrets.SSH_USERNAME }}
