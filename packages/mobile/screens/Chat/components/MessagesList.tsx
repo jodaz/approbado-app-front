@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Container } from '../../../components';
-import socketIOClient from 'socket.io-client'
 import { Chat } from '@approbado/lib/types/models'
 import { getSingleChat } from '@approbado/lib/services/chat.services'
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import MessageCard from './MessageCard';
 import CONFIG_NAMES from '@approbado/lib/env'
 import { FlatList, View } from 'react-native';
+import socketIOClient from 'socket.io-client'
 
 interface IMessagesListProps {
     chat: Chat;
@@ -40,15 +39,21 @@ const MessagesList = ({ chat } : IMessagesListProps ) => {
         return null;
     }
 
-    React.useEffect(() => {
-        socket.on("new_message", () => fetchMessages());
+    const getLastMessage = (index: number) => {
+        if (index >= 0 && messages.length > index) return messages[index];
 
-        return () => socket.disconnect();
-    }, [])
+        return null;
+    }
 
     React.useEffect(() => {
         fetchMessages()
     }, [])
+
+    React.useEffect(() => {
+        socket.on("new_message", () => fetchMessages());
+
+        return () => socket.disconnect();
+    }, [socket])
 
     if (!messages) {
         return null;
@@ -62,8 +67,10 @@ const MessagesList = ({ chat } : IMessagesListProps ) => {
                 renderItem={({ item, index }) => (
                     <MessageCard
                         next={getNextMessage(index + 1)}
+                        last={getLastMessage(index - 1)}
                         message={item}
                         userID={user.id}
+                        isPrivate={chat?.is_private}
                     />
                 )}
             />
