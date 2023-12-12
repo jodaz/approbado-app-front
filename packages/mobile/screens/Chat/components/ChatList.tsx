@@ -3,10 +3,12 @@ import { getChats } from '@approbado/lib/services/chat.services'
 import { Chat } from '@approbado/lib/types/models'
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import { ScrollView } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import ChatCard from './ChatCard';
 import EmptyChat from './EmptyChat';
 
 const ChatList = () => {
+    const isFocused = useIsFocused();
     const { state: { user } } = useAuth();
     const [chats, setChats] = React.useState<Chat[] | []>([]);
 
@@ -22,7 +24,7 @@ const ChatList = () => {
 
     React.useEffect(() => {
         fetchChats();
-    }, [])
+    }, [isFocused])
 
     if (!chats.length) {
         return (

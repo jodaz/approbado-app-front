@@ -9,11 +9,12 @@ import {
     Text
 } from '../../../components';
 import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
 
 const PopularPosts = () => {
+    const isFocused = useIsFocused();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
     const navigation = useNavigation();
 
@@ -43,7 +44,7 @@ const PopularPosts = () => {
         }
     }
 
-    React.useEffect(() => { fetchData() }, [])
+    React.useEffect(() => { fetchData() }, [isFocused])
 
     if (!posts.length) {
         return (

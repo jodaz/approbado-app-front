@@ -4,11 +4,13 @@ import { Chat } from '@approbado/lib/types/models'
 import { ScrollView } from 'react-native';
 import EmptyChat from './EmptyChat';
 import ChatInvitation from './ChatInvitation';
+import { useIsFocused } from '@react-navigation/native';
 
 const ChatInvitations = () => {
+    const isFocused = useIsFocused();
     const [chats, setChats] = React.useState<Chat[] | []>([]);
 
-    const fetchChats = React.useCallback(async () => {
+    const fetch = React.useCallback(async () => {
         const { success, data } = await getChats({
             filter: { status: 'pending' }
         })
@@ -19,8 +21,8 @@ const ChatInvitations = () => {
     }, []);
 
     React.useEffect(() => {
-        fetchChats();
-    }, [])
+        fetch();
+    }, [isFocused])
 
     if (!chats.length) {
         return (

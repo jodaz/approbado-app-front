@@ -9,15 +9,15 @@ import {
     Text
 } from '../../../components';
 import { ScrollView } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
 import DeletePost from './DeletePost';
 
 const NewPosts = () => {
+    const isFocused = useIsFocused();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
     const navigation = useNavigation();
-    console.log(posts);
     // This state would determine if the drawer sheet is visible or not
     const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
     const [selectedPost, setSelectedPost] = React.useState<null | Post>(null)
@@ -52,7 +52,7 @@ const NewPosts = () => {
         }
     }
 
-    React.useEffect(() => { fetchData() }, [])
+    React.useEffect(() => { fetchData() }, [isFocused])
 
     if (!posts.length) {
         return (
