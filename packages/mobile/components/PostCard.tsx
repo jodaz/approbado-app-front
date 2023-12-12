@@ -15,9 +15,9 @@ const Pressable = styled.Pressable`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding: ${props => props.theme.space[4]};
-    margin-top: ${props => props.theme.space[4]};
-    margin-bottom: ${props => props.theme.space[4]};
+    padding: ${props => props.theme.space[2]};
+    margin-top: ${props => props.theme.space[1]};
+    margin-bottom: ${props => props.theme.space[1]};
     width: 100%;
 `
 

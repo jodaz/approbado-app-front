@@ -4,7 +4,8 @@ import {
     Text,
     Row,
     Image,
-    CategoryPill
+    CategoryPill,
+    TitleBar
 } from '../../../components';
 import { Category } from '@approbado/lib/types/models'
 import styled from 'styled-components/native';
@@ -22,6 +23,13 @@ const ShowPost = ({ route }) => {
     return (
         <Container>
             <StyledContainer>
+                <Row size={1} direction='row'>
+                    <TitleBar>
+                        <Text fontSize={18}>
+                            Ver post
+                        </Text>
+                    </TitleBar>
+                </Row>
                 <Row size={1} direction='row'>
                     <Image source={post.owner.picture} />
                     <Row size={1} direction='column'>
