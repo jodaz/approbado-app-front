@@ -21,12 +21,7 @@ const InviteChat = ({ navigation }) => {
     const selectedUsers = watch('users_ids') ? watch('users_ids') : []
 
     const onSubmit = async values => {
-        const submmitData = {
-            users_ids: values.users_ids,
-            is_private: values.users_ids.length < 2
-        }
-
-        const { success, status, data } = await sendInvitation(submmitData);
+        const { success, status, data } = await sendInvitation(values);
 
         if (success) {
             await openToast(
@@ -52,7 +47,12 @@ const InviteChat = ({ navigation }) => {
     };
 
     const fetchUsers = React.useCallback(async () => {
-        const { success, data } = await listUsers()
+        const { success, data } = await listUsers({
+            filter: {
+                rol: 'user',
+                notCurrent: true
+            }
+        })
 
         if (success) {
             setUsers(data);

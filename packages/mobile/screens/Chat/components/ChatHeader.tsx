@@ -17,7 +17,7 @@ const ChatHeader: React.FC<{ name: string }> = ({ name }) => {
             align='center'
             direction='row'
             justify='space-between'
-            size={4}
+            size={5}
         >
             <ArrowLeft
                 size={24}

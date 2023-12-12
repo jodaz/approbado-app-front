@@ -32,11 +32,19 @@ const StyledButton = styled(Button)`
     margin-right: ${props => props.theme.space[1]};
 `
 
-const ChatInvitation = ({ item } : Chat ) : JSX.Element => {
+interface IChatCardProps {
+    item: Chat,
+    user_id: number
+}
+
+const ChatInvitation = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
     const { dispatch } = useToast()
     const [disabled, setDisabled] = React.useState(false);
     const [datetime, setDatetime] = React.useState(null)
     const [message, setMessage] = React.useState<null | string>(null)
+    const chatName = item.is_private
+        ? item.participants.find(({ id } : User) => id !== user_id).user_name
+        : item.name;
     const navigation = useNavigation();
 
     const handleNavigate = () => navigation.navigate(Routes.UserChat, {
@@ -112,7 +120,7 @@ const ChatInvitation = ({ item } : Chat ) : JSX.Element => {
                     flexDirection: 'column'
                 }}>
                     <Text fontSize={18}>
-                        {truncateString(item.participants[1].user_name, 20)}
+                        {truncateString(chatName, 20)}
                     </Text>
                     <Row direction='row' size={2}>
                         {message ? (

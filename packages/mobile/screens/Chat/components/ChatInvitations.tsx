@@ -2,12 +2,14 @@ import * as React from 'react'
 import { getChats } from '@approbado/lib/services/chat.services'
 import { Chat } from '@approbado/lib/types/models'
 import { ScrollView } from 'react-native';
+import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import EmptyChat from './EmptyChat';
 import ChatInvitation from './ChatInvitation';
 import { useIsFocused } from '@react-navigation/native';
 
 const ChatInvitations = () => {
     const isFocused = useIsFocused();
+    const { state: { user } } = useAuth();
     const [chats, setChats] = React.useState<Chat[] | []>([]);
 
     const fetch = React.useCallback(async () => {
@@ -35,7 +37,12 @@ const ChatInvitations = () => {
 
     return (
         <ScrollView>
-            {chats.map((chat: Chat) => <ChatInvitation item={chat} />)}
+            {chats.map((chat: Chat) => (
+                <ChatInvitation
+                    item={chat}
+                    user_id={user?.id}
+                />
+            ))}
         </ScrollView>
     );
 }

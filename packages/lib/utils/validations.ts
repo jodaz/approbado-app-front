@@ -16,9 +16,13 @@ const globalUserEmail = {
 }
 
 export const USERNAME = {
-    ...globalUserEmail,
+    rules: {
+        ...globalUserEmail.rules,
+        pattern: /^[A-Za-z]+$/
+    },
     messages: {
         ...globalUserEmail.messages,
+        pattern: "Solo puede contener letras.",
         unique: 'El usuario ha sido registrado'
     }
 }
@@ -90,7 +94,7 @@ export const EMAIL = {
 export const NAME = {
     rules: {
         required: true,
-        pattern: /^[a-zA-Z ]*$/,
+        pattern: /^[^0-9]*$/,
     },
     messages: {
         pattern: "Introduzca un nombre válido",
@@ -101,7 +105,7 @@ export const NAME = {
 export const TITLE = {
     rules: {
         required: true,
-        pattern: /^[a-zA-Z ]*$/,
+        pattern: /^[^0-9]*$/,
     },
     messages: {
         pattern: "Introduzca un título válido",
