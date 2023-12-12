@@ -8,6 +8,8 @@ import { es } from 'date-fns/locale'
 import truncateString from '@approbado/lib/utils/truncateString'
 import styled from 'styled-components/native';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
+import socketIOClient from 'socket.io-client'
+import CONFIG_NAMES from '@approbado/lib/env'
 
 const Pressable = styled.Pressable`
     display: flex;
@@ -19,7 +21,8 @@ const Pressable = styled.Pressable`
     width: 100%;
 `
 
-const MessageCountContainer = styled.View`
+const Notification = styled.View`
+    display: ${props => props.isHidden ? 'none' : 'flex'};
     background-color: ${props => props.theme.palette.info.main};
     padding: ${props => props.theme.space[1]};
     border-radius: 50px;
@@ -28,6 +31,7 @@ const MessageCountContainer = styled.View`
     flex-direction: row;
     margin-right: ${props => props.theme.space[1]}
 `
+const socket = socketIOClient(CONFIG_NAMES.SOURCE)
 
 // const MessageText = styled.Text`
 //     color: #fff;
@@ -47,6 +51,7 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
         ? item.messages[0]
         : null;
     const [datetime, setDatetime] = React.useState(null)
+    const [newMessage, setNewMessage] = React.useState(false)
     const chatName = !item.is_private
         ? item.participants.find(({ id } : User) => id !== user_id).user_name
         : item.name;
@@ -73,6 +78,16 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
         }
     }, [])
 
+    React.useEffect(() => {
+        socket.on("new_message", data => {
+            if (data.chat_id == item.id) {
+                setNewMessage(true);
+            }
+        });
+
+        return () => socket.disconnect();
+    }, [socket])
+
     return (
         <Pressable onPress={handleNavigate} key={item.id}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
@@ -97,11 +112,13 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
                     alignItems: 'center',
                     justifyContent: 'space-between'
                 }}>
-                    <MessageCountContainer>
-                        {/* <MessageText>
+                    {/* <Notification>
+                        <MessageText>
                             6
-                        </MessageText> */}
-                    </MessageCountContainer>
+                        </MessageText>
+                    </Notification> */}
+
+                    <Notification isHidden={!newMessage} />
                     <Text fontSize={16} fontWeight={400}>
                         {datetime}
                     </Text>
