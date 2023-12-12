@@ -17,7 +17,7 @@ import DeletePost from './DeletePost';
 const NewPosts = () => {
     const [posts, setPosts] = React.useState<Post[] | []>([]);
     const navigation = useNavigation();
-
+    console.log(posts);
     // This state would determine if the drawer sheet is visible or not
     const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
     const [selectedPost, setSelectedPost] = React.useState<null | Post>(null)

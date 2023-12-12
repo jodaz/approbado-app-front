@@ -20,7 +20,7 @@ const TabName = styled(Text)`
         ? props.theme.palette.info.main
         : props.theme.palette.text.secondary
     };
-    height: 20px;
+    height: 30px;
     padding-left: ${props => props.theme.space[2]};
     padding-right: ${props => props.theme.space[2]};
 `

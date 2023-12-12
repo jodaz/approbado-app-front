@@ -19,6 +19,25 @@ const Pressable = styled.Pressable`
     width: 100%;
 `
 
+const MessageCountContainer = styled.View`
+    background-color: ${props => props.theme.palette.info.main};
+    padding: ${props => props.theme.space[2]};
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-right: ${props => props.theme.space[2]}
+`
+
+const MessageText = styled.Text`
+    color: #fff;
+    font-weight: 800;
+    height: fit-content;
+    width: fit-content;
+`
+
 interface IChatCardProps {
     item: Chat,
     user_id: number
@@ -75,9 +94,20 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
                         }
                     </Text>
                 </View>
-                <Text fontSize={16} fontWeight={400}>
-                    {datetime}
-                </Text>
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}>
+                    <MessageCountContainer>
+                        <MessageText>
+                            6
+                        </MessageText>
+                    </MessageCountContainer>
+                    <Text fontSize={16} fontWeight={400}>
+                        {datetime}
+                    </Text>
+                </View>
             </View>
         </Pressable>
     )
