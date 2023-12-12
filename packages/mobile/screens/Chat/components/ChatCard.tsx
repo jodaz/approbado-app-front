@@ -85,8 +85,10 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
             }
         });
 
-        return () => socket.disconnect();
-    }, [socket])
+        return () => {
+            socket.off('new_message')
+        }
+    }, [])
 
     return (
         <Pressable onPress={handleNavigate} key={item.id}>

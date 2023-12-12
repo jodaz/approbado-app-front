@@ -5,16 +5,16 @@ import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import MessageCard from './MessageCard';
 import CONFIG_NAMES from '@approbado/lib/env'
 import { FlatList, View } from 'react-native';
-import socketIOClient from 'socket.io-client'
+import socketIO from 'socket.io-client'
 
 interface IMessagesListProps {
     chat: Chat;
 }
 
-const socket = socketIOClient(CONFIG_NAMES.SOURCE)
+const socket = socketIO.connect(CONFIG_NAMES.SOURCE)
 
 const MessagesList = ({ chat } : IMessagesListProps ) => {
-    const [messages, setMessages] = React.useState<any>(chat.messages);
+    const [messages, setMessages] = React.useState<any>([]);
     const { state: { user } } = useAuth()
     const flatListRef = React.useRef(null);
 
@@ -46,14 +46,15 @@ const MessagesList = ({ chat } : IMessagesListProps ) => {
     }
 
     React.useEffect(() => {
-        fetchMessages()
-    }, [])
-
-    React.useEffect(() => {
+        if (!messages.length) {
+            fetchMessages()
+        }
         socket.on("new_message", () => fetchMessages());
 
-        return () => socket.disconnect();
-    }, [socket])
+        return () => {
+            socket.off('new_message')
+        }
+    }, [])
 
     if (!messages) {
         return null;
