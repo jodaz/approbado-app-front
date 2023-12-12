@@ -6,7 +6,8 @@ import {
     Container,
     Text,
     Button,
-    SelectInput
+    MultiSelectInput,
+    TextInput
 } from '../../../components';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { Routes } from '../../routes';
@@ -14,13 +15,14 @@ import { useForm } from 'react-hook-form';
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
 
 const InviteChat = ({ navigation }) => {
-    const { control, handleSubmit, setError, formState } = useForm();
+    const { control, handleSubmit, setError, formState, watch } = useForm();
     const { dispatch } = useToast()
     const [users, setUsers] = React.useState(null);
+    const selectedUsers = watch('users_ids') ? watch('users_ids') : []
 
     const onSubmit = async values => {
         const submmitData = {
-            users_ids: [values.users_ids],
+            users_ids: values.users_ids,
             is_private: values.users_ids.length < 2
         }
 
@@ -32,7 +34,9 @@ const InviteChat = ({ navigation }) => {
                 'success',
                 '¡Invitación realizada!'
             )
-            navigation.navigate(Routes.Chat)
+            navigation.navigate(Routes.UserChat, {
+                chat: data
+            })
         } else {
             if (status == 422) {
                 setFormErrors(setError, data)
@@ -71,7 +75,7 @@ const InviteChat = ({ navigation }) => {
             </Row>
             <Row size={1}>
                 {users ? (
-                    <SelectInput
+                    <MultiSelectInput
                         label='Usuario'
                         name='users_ids'
                         control={control}
@@ -82,6 +86,15 @@ const InviteChat = ({ navigation }) => {
                     />
                 ) : null}
             </Row>
+            {selectedUsers.length > 1 ? (
+                <Row size={1}>
+                    <TextInput
+                        control={control}
+                        name='name'
+                        placeholder='Nombre del chat'
+                    />
+                </Row>
+            ) : null}
             <Row size={2}>
                 <Button
                     isLoading={formState.isSubmitting}
