@@ -32,7 +32,7 @@ const InnerContainer = styled.ScrollView`
     margin: 0 auto;
 `
 
-const CreateForum = ({ navigation }) => {
+const CreatePost = ({ navigation }) => {
     const { control, handleSubmit, setError, formState } = useForm();
     const { dispatch } = useToast()
     const [themes, setThemes] = React.useState(null);
@@ -158,4 +158,4 @@ const CreateForum = ({ navigation }) => {
     );
 }
 
-export default CreateForum
+export default CreatePost
