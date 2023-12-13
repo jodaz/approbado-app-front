@@ -13,12 +13,14 @@ import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
 import DeletePost from './DeletePost';
+import { useAuth } from '@approbado/lib/contexts/AuthContext';
 
 const NewPosts = () => {
     const isFocused = useIsFocused();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
     const navigation = useNavigation();
     // This state would determine if the drawer sheet is visible or not
+    const { state: { user } } = useAuth()
     const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
     const [selectedPost, setSelectedPost] = React.useState<null | Post>(null)
     const [openDelete, setOpenDelete] = React.useState<boolean | number>(false);
@@ -72,42 +74,52 @@ const NewPosts = () => {
                     post={post}
                 />
             ))}
-            <BottomDrawer
-                isOpen={isBottomSheetOpen}
-                handleClose={handleCloseBottomSheet}
-            >
-                <DrawerButton
-                    icon={<Edit2 />}
-                    onPress={() => {
-                        navigation.navigate(Routes.EditPost, {
-                            post: selectedPost
-                        });
-                        handleCloseBottomSheet()
-                    }}
-                >
-                    Editar
-                </DrawerButton>
-                <DrawerButton
-                    icon={<Trash2 />}
-                    onPress={() => {
-                        toggleDelete(selectedPost.id)
-                        handleCloseBottomSheet()
-                    }}
-                >
-                    Eliminar
-                </DrawerButton>
-                <DrawerButton
-                    icon={<AlertTriangle />}
-                    onPress={() => {
-                        navigation.navigate(Routes.ReportPost, {
-                            post: selectedPost
-                        })
-                        handleCloseBottomSheet()
-                    }}
-                >
-                    Reportar
-                </DrawerButton>
-            </BottomDrawer>
+            {selectedPost ? (
+                <>
+                    <BottomDrawer
+                        isOpen={isBottomSheetOpen}
+                        handleClose={handleCloseBottomSheet}
+                    >
+                        {(selectedPost.owner.id == user.id) ? (
+                            <DrawerButton
+                                icon={<Edit2 />}
+                                onPress={() => {
+                                    navigation.navigate(Routes.EditPost, {
+                                        post: selectedPost
+                                    });
+                                    handleCloseBottomSheet()
+                                }}
+                            >
+                                Editar
+                            </DrawerButton>
+                        ) : null}
+                        {(selectedPost.owner.id == user.id) ? (
+                            <DrawerButton
+                                icon={<Trash2 />}
+                                onPress={() => {
+                                    toggleDelete(selectedPost.id)
+                                    handleCloseBottomSheet()
+                                }}
+                            >
+                                Eliminar
+                            </DrawerButton>
+                        ) : null}
+                        {(selectedPost.owner.id != user.id) ? (
+                            <DrawerButton
+                                icon={<AlertTriangle />}
+                                onPress={() => {
+                                    navigation.navigate(Routes.ReportPost, {
+                                        post: selectedPost
+                                    })
+                                    handleCloseBottomSheet()
+                                }}
+                            >
+                                Reportar
+                            </DrawerButton>
+                        ) : null}
+                    </BottomDrawer>
+                </>
+            ) : null}
             <DeletePost
                 isOpen={openDelete}
                 toggleModal={toggleDelete}

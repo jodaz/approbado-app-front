@@ -40,11 +40,17 @@ const BottomDrawer = ({ isOpen, handleClose, children } : IBottomDrawerProps) =>
             width: width
         }} onPress={handleClose}/>
         <Content>
-            {React.Children.map(children, (child) => (
-                <Row size={1} justify='start' direction="row">
-                    {React.cloneElement(child)}
-                </Row>
-            ))}
+            {React.Children.map(children, (child) => {
+                if (React.isValidElement(child)) {
+                    return (
+                        <Row size={1} justify='start' direction="row">
+                            {React.cloneElement(child)}
+                        </Row>
+                    )
+                }
+
+                return null;
+            })}
         </Content>
     </Modal>
 )
