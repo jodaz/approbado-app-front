@@ -35,7 +35,7 @@ const TabIndicator = ({ children, active, ...restProps } : ITabIndicatorProps) =
         ]}
         {...restProps}
     >
-            <TabName isActive={active}>
+        <TabName isActive={active}>
             {children}
         </TabName>
     </Indicator>
