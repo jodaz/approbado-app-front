@@ -11,7 +11,7 @@ const colors = {
 }
 
 const ToastDiv = styled.View`
-    top: 70px;
+    bottom: 70px;
     width: 100%;
     position: absolute;
     flex-direction: row;
