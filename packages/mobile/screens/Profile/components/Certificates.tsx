@@ -1,7 +1,9 @@
 import * as React from 'react'
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import CertificateCard from '../components/CertificateCard';
+import { Text } from '../../../components';
+import { verticalScale } from '../../../styles/scaling';
 
 const certificates = [
     {
@@ -25,14 +27,19 @@ const Certificates = () => {
     const ref = React.useRef()
 
     return (
-        <FlatList
-            ref={ref}
-            data={certificates}
-            renderItem={({ item }) => <CertificateCard {...item} />}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            nestedScrollEnabled
-        />
+        <View>
+            <Text color='secondary'>
+                Certificaciones
+            </Text>
+            <FlatList
+                ref={ref}
+                data={certificates}
+                renderItem={({ item }) => <CertificateCard {...item} />}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                nestedScrollEnabled
+            />
+        </View>
     );
 }
 
