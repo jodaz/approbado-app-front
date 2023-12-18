@@ -3,14 +3,37 @@ import { Settings } from 'lucide-react-native';
 import { Routes } from '../routes';
 import { Pressable, Dimensions } from 'react-native';
 import { useAuth } from '@approbado/lib/contexts/AuthContext';
-import { Image } from '../../components';
-import Button from '../../components/Button';
-import Row from '../../components/Row';
-import Text from '../../components/Text';
+import { Button, Text, Row, Image } from '../../components';
 import styled from 'styled-components/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Tabs from '../../components/Tabs';
-import profileSliders from './profileSliders';
+import About from "./components/About";
+import Achievements from "./components/Achievements";
+import Publications from "./components/Publications";
+
+const profileSliders = [
+    {
+        name: 'Achievements',
+        component: Achievements,
+        options: {
+            tabBarLabel: 'Logros'
+        }
+    },
+    {
+        name: 'About',
+        component: About,
+        options: {
+            tabBarLabel: 'Sobre mí'
+        }
+    },
+    {
+        name: 'Publications',
+        component: Publications,
+        options: {
+            tabBarLabel: 'Publicaciones'
+        }
+    }
+];
 
 const { width } = Dimensions.get('window');
 
@@ -25,11 +48,12 @@ const BioText = styled(Text)`
     padding-right: ${props => props.theme.space[3]};
 `
 
-const Container = styled.View`
+const Container = styled.ScrollView`
     margin: 0 auto;
     padding-top: ${(props) => props.theme.space[6]};
     width: ${width * .9}px;
     height: 100%;
+    flex: 1;
 `
 
 const Profile = ({ navigation }) => {
@@ -37,7 +61,12 @@ const Profile = ({ navigation }) => {
     const Tab = createMaterialTopTabNavigator()
 
     return (
-        <Container>
+        <Container
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={{
+                flex: 1
+            }}
+        >
             <Row size={2} align='space-between'>
                 <NavButton navigation={navigation} to={Routes.Settings} />
             </Row>

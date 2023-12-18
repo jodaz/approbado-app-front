@@ -8,13 +8,11 @@ import Forum2 from '@approbado/lib/illustrations/Forum2.svg'
 import Ribbon from '@approbado/lib/illustrations/Ribbon.svg'
 import styled from 'styled-components/native';
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
+import Certificates from './Certificates';
 
 const { width } = Dimensions.get('window');
 
-const Container = styled.View`
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+const Container = styled.ScrollView`
     padding-top: ${(props) => props.theme.space[2]};
     width: ${width - 40}px;
 `
@@ -45,6 +43,9 @@ const Achievements = () => {
                     amount={user?.awards.length}
                     text='Certificaciones'
                 />
+            </Row>
+            <Row size={1}>
+                <Certificates />
             </Row>
         </Container>
     );

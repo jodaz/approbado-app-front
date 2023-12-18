@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { ScrollView, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { getPosts } from '@approbado/lib/services/forums.services.ts';
 import { Post } from '@approbado/lib/types/models'
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
@@ -10,10 +10,7 @@ import styled from 'styled-components/native';
 
 const { width } = Dimensions.get('window');
 
-const Container = styled.View`
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+const Container = styled.ScrollView`
     padding-top: ${(props) => props.theme.space[2]};
     width: ${width - 40}px;
 `
@@ -37,21 +34,19 @@ const Publications = () => {
     React.useEffect(() => { fetchData() }, [])
 
     return (
-        <ScrollView>
-            <Container>
-                {posts.length ? (
-                    <>
-                        {posts.map((item: Post) => <PostCard post={item} />)}
-                    </>
-                ) : (
-                    <Row size={1} align='center'>
-                        <Text fontWeight={400}>
-                            No tiene publicaciones disponibles
-                        </Text>
-                    </Row>
-                )}
-            </Container>
-        </ScrollView>
+        <Container>
+            {posts.length ? (
+                <>
+                    {posts.map((item: Post) => <PostCard post={item} />)}
+                </>
+            ) : (
+                <Row size={1} align='center'>
+                    <Text fontWeight={400}>
+                        No tiene publicaciones disponibles
+                    </Text>
+                </Row>
+            )}
+        </Container>
     );
 }
 

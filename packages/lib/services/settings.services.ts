@@ -2,8 +2,7 @@ import { apiProvider } from "../api";
 
 export async function updateSettings(values: any) {
     try {
-        const response = await apiProvider.post(`/profile`, values)
-        const { data } = response
+        const { data } = await apiProvider.post(`/profile`, values)
 
         return {
             success: true,

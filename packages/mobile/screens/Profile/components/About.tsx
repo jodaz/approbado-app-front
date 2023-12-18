@@ -11,13 +11,9 @@ import styled from 'styled-components/native';
 
 const { width } = Dimensions.get('window');
 
-const Container = styled.View`
-    flex-direction: column;
-    align-items: cener;
-    justify-content: center;
+const Container = styled.ScrollView`
     padding-top: ${(props) => props.theme.space[2]};
-    width: ${width - 60}px;
-    padding-left: ${(props) => props.theme.space[4]};
+    width: ${width - 40}px;
 `
 
 const Container2 = styled.View`
@@ -28,8 +24,10 @@ const Container2 = styled.View`
     padding-left: ${(props) => props.theme.space[3]};
 `
 
-const AboutInformationItem = ({ icon, title, info }) => (
-    <Row size={2} align='start' justify='center' direction='row'>
+const AboutInformationItem = ({ icon, title, children }) => (
+    <Row size={2} align='start' justify='start' direction='row' style={{
+        marginLeft: 20
+    }}>
         {React.cloneElement(icon, {
             color: '#000',
             size: 24
@@ -38,46 +36,26 @@ const AboutInformationItem = ({ icon, title, info }) => (
             <Text color='secondary'>
                 {title}
             </Text>
-            <Text fontWeight={400}>
-                {info}
-            </Text>
+            {children}
         </Container2>
     </Row>
 )
 
-const SocialLinks = ({ profile }) => {
-    const handleOpenLink = (page, username) => {
-        Linking.openURL(`https://${page}.com/${username}`)
-    }
-    return (
-        <Row size={2} align='start' justify='center' direction='row'>
-            <Link color='#000' size={24} />
-            <Container2>
-                <Text color='secondary'>
-                    Redes sociales
-                </Text>
-                <Row size={2} direction='row' align='center'>
-                    {profile?.linkedin ? (
-                        <Button
-                            variant='text'
-                            onPress={() => handleOpenLink('linkedin', profile.linkedin)}
-                        >
-                            <Linkedin />
-                        </Button>
-                    ) : null}
-                    {profile?.twitter ? (
-                        <Button
-                            variant='text'
-                            onPress={() => handleOpenLink('twitter', profile.twitter)}
-                        >
-                            <TwitterX height={72} width={72} />
-                        </Button>
-                    ) : null}
-                </Row>
-            </Container2>
-        </Row>
-    )
+type IhandleOpenLink = (
+    page: string,
+    username: string
+) => any;
+
+const handleOpenLink: IhandleOpenLink = (page, username) => {
+    Linking.openURL(`https://${page}.com/${username}`)
 }
+
+const ButtonIconLink = styled(Button)`
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+`
 
 const About = () => {
     const { state: { user } } = useAuth();
@@ -87,17 +65,45 @@ const About = () => {
             <AboutInformationItem
                 icon={<Mail />}
                 title='Email'
-                info={user.email}
-            />
+            >
+                <Text fontWeight={400}>
+                    {user.email}
+                </Text>
+            </AboutInformationItem>
             {user?.profile?.ocupation ? (
                 <AboutInformationItem
                     icon={<GraduationCap />}
                     title='Ocupación'
-                    info={user.profile.ocupation}
-                />
+                >
+                    <Text fontWeight={400}>
+                        {user.profile.ocupation}
+                    </Text>
+                </AboutInformationItem>
             ) : null}
             {(user?.profile?.twitter || user?.profile?.linkedin) ? (
-                <SocialLinks profile={user.profile} />
+                <AboutInformationItem
+                    icon={<Link />}
+                    title='Redes sociales'
+                >
+                    <Row direction="row">
+                        {user?.profile?.linkedin ? (
+                            <ButtonIconLink
+                                variant='text'
+                                onPress={() => handleOpenLink('linkedin', user?.profile.linkedin)}
+                            >
+                                <Linkedin />
+                            </ButtonIconLink>
+                        ) : null}
+                        {user?.profile?.twitter ? (
+                            <ButtonIconLink
+                                variant='text'
+                                onPress={() => handleOpenLink('twitter', user?.profile.twitter)}
+                            >
+                                <TwitterX height={72} width={72} />
+                            </ButtonIconLink>
+                        ) : null}
+                    </Row>
+                </AboutInformationItem>
             ) : null}
         </Container>
     );

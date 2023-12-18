@@ -55,7 +55,8 @@ export interface IRowProps extends IComp {
     size?: number;
     align?: FlexboxAlignType;
     justify?: FlexboxAlignType;
-    direction?: 'column' | 'row'
+    direction?: 'column' | 'row';
+    style?: any;
 }
 
 export interface ICheckboxProps {
