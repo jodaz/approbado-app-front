@@ -1,19 +1,17 @@
 import * as React from 'react'
-import { Dimensions } from 'react-native';
-import styled from 'styled-components/native';
 import { ITextProps } from '../types';
-
-const { width } = Dimensions.get('window');
+import { scaleFontSize } from '../styles/scaling';
+import styled from 'styled-components/native';
 
 const StyledText = styled.Text`
     font-weight: ${props => props.fontWeight};
-    font-size: ${({ fontSize }) => fontSize}px;
+    font-size: ${({ fontSize }) => scaleFontSize(fontSize)}px;
     width: fit-content;
     color: ${props => (props.color == 'primary')
         ? props.theme.palette.text.primary
         : props.theme.palette.text.secondary
     };
-    lineHeight: 24px;
+    lineHeight: ${({ fontSize }) => scaleFontSize(fontSize * 1.25)}px;
     text-align: ${props => props.align};
 `;
 

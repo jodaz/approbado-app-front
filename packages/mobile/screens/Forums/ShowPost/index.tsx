@@ -10,11 +10,12 @@ import {
 import { Category } from '@approbado/lib/types/models'
 import styled from 'styled-components/native';
 import PostDescription from '../../../components/PostDescription';
+import { horizontalScale } from '../../../styles/scaling';
 
 const StyledContainer = styled.View`
     width: 100%;
     height: fit-content;
-    padding: ${props => props.theme.space[2]}
+    padding-horizontal: ${props => horizontalScale(props.theme.space[1])}px;
 `
 
 const ShowPost = ({ route }) => {

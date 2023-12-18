@@ -9,19 +9,20 @@ import {
     MultiSelectInput,
     Button
 } from '../../../components';
-import styled from 'styled-components/native';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { useForm } from 'react-hook-form';
 import { TITLE } from '@approbado/lib/utils/validations'
 import { editForum } from '@approbado/lib/services/forums.services'
 import { listTrivias } from '@approbado/lib/services/trivias.services'
 import { listCategories } from '@approbado/lib/services/categories.services'
+import { verticalScale } from '../../../styles/scaling';
+import styled from 'styled-components/native';
 
 const { width, height } = Dimensions.get('window');
 
 const Container = styled.ScrollView`
     height: ${height}px;
-    padding-top: ${(props) => props.theme.space[6]};
+    padding-top: ${(props) => verticalScale(props.theme.space[6])};
     width: ${width}px;
 `
 

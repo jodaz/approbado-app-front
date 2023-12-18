@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { ScrollView } from 'react-native';
+import { verticalScale } from '../styles/scaling';
 import TabIndicator from './TabIndicator';
 
 const Tabs = ({ state, descriptors, navigation, position }) => (
     <ScrollView
-        style={{ flexDirection: 'row', maxHeight: 40, height: 40 }}
+        style={{ flexDirection: 'row', maxHeight: verticalScale(30), height: verticalScale(30) }}
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}

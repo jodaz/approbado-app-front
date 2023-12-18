@@ -10,14 +10,15 @@ import Image from './Image';
 import PostDescription from './PostDescription';
 import { MoreVertical } from 'lucide-react-native';
 import { TouchableOpacity, View } from 'react-native';
+import { horizontalScale, verticalScale } from '../styles/scaling';
 
 const Pressable = styled.Pressable`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding: ${props => props.theme.space[2]};
-    margin-top: ${props => props.theme.space[1]};
-    margin-bottom: ${props => props.theme.space[1]};
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
     width: 100%;
 `
 

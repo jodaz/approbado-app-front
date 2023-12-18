@@ -2,11 +2,15 @@ import React from 'react';
 import Text from './Text';
 import { Controller } from 'react-hook-form';
 import styled from 'styled-components/native';
+import { horizontalScale, scaleFontSize, verticalScale } from '../styles/scaling';
+
 
 const StyledRadioButton = styled.TouchableOpacity`
-    padding: ${props => props.theme.space[2]};
-    margin: ${props => props.theme.space[2]};
-    border-radius: 6px;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    margin-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    margin-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    border-radius: ${scaleFontSize(6)}px;
     gap: 10px;
     border: 2px solid ${props => props.isSelected
         ? props.theme.palette.info.main
@@ -28,8 +32,8 @@ const OuterRadioView = styled.View`
 `
 
 const InnerRadioView = styled.View`
-    height: 12px;
-    width: 12px;
+    height: ${verticalScale(12)}px;
+    width: ${horizontalScale(12)}px;
     border-radius: 6px;
     background: ${props => props.theme.palette.info.main};
 `

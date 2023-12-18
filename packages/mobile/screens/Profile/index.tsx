@@ -4,6 +4,7 @@ import { Routes } from '../routes';
 import { Pressable, Dimensions } from 'react-native';
 import { useAuth } from '@approbado/lib/contexts/AuthContext';
 import { Button, Text, Row, Image } from '../../components';
+import { horizontalScale, verticalScale } from '../../styles/scaling';
 import styled from 'styled-components/native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Tabs from '../../components/Tabs';
@@ -44,13 +45,12 @@ const NavButton = ({ navigation, to } : any ) : JSX.Element => (
 )
 
 const BioText = styled(Text)`
-    padding-left: ${props => props.theme.space[3]};
-    padding-right: ${props => props.theme.space[3]};
+    padding-horizontal: ${props => horizontalScale(props.theme.space[3])}px;
 `
 
 const Container = styled.ScrollView`
     margin: 0 auto;
-    padding-top: ${(props) => props.theme.space[6]};
+    padding-top: ${(props) => verticalScale(props.theme.space[6])}px;
     width: ${width * .9}px;
     height: 100%;
     flex: 1;

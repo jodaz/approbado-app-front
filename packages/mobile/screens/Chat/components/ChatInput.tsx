@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Controller } from 'react-hook-form';
 import { ITextInputProps } from '../../../types';
 import styled from 'styled-components/native';
-import { TouchableOpacity } from 'react-native';
-import { SendHorizonal, SendHorizontal } from 'lucide-react-native';
+import { SendHorizontal } from 'lucide-react-native';
 import PhotoInput from '../../../components/PhotoInput';
+import { horizontalScale, verticalScale } from '../../../styles/scaling';
 
 const Input = styled.TextInput`
     height: 45px;
@@ -19,7 +19,8 @@ const InputContainer = styled.View`
     flexDirection: row;
     height: fit-content;
     alignItems: center;
-    padding: 10px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
     border-radius: 24px;
     flex: 1;
 `;
@@ -30,7 +31,8 @@ const RootContainer = styled.View`
     align-items: center;
     width: 100%;
     background-color: white;
-    padding: ${props => props.theme.space[2]}
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
 `
 
 const Button = styled.TouchableOpacity`

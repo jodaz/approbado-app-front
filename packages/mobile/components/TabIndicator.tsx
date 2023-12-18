@@ -2,6 +2,7 @@ import React from 'react'
 import Text from './Text';
 import styled from 'styled-components/native';
 import { IComp } from '../types';
+import { horizontalScale, verticalScale } from '../styles/scaling';
 
 interface ITabIndicatorProps extends IComp {
     active: boolean;
@@ -11,8 +12,8 @@ interface ITabIndicatorProps extends IComp {
 
 const Indicator = styled.TouchableOpacity`
     borderRadius: 2px;
-    marginEnd: 10px;
-    padding-bottom: 10px;
+    marginEnd: ${horizontalScale(10)}px;
+    padding-bottom: ${verticalScale(5)}px;
 `
 
 const TabName = styled(Text)`
@@ -20,9 +21,8 @@ const TabName = styled(Text)`
         ? props.theme.palette.info.main
         : props.theme.palette.text.secondary
     };
-    height: 30px;
-    padding-left: ${props => props.theme.space[2]};
-    padding-right: ${props => props.theme.space[2]};
+    height: ${verticalScale(25)}px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
 `
 
 const TabIndicator = ({ children, active, ...restProps } : ITabIndicatorProps) => (

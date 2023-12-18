@@ -7,6 +7,7 @@ import { NAME, LAST_NAME, USERNAME } from "@approbado/lib/utils/validations";
 import { Image, TextInput, NavButton } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateProfile } from '@approbado/lib/services/profile.services'
+import { horizontalScale, verticalScale } from "../../styles/scaling";
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
 import EditProfileHeader from "./components/EditProfileHeader";
 import Row from "../../components/Row";
@@ -19,10 +20,10 @@ const Container = styled.View`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-top: ${(props) => props.theme.space[6]};
     width: ${width * 0.9}px;
-    padding-left: ${(props) => props.theme.space[2]};
-    padding-right: ${(props) => props.theme.space[2]};
+    padding-top: ${(props) => verticalScale(props.theme.space[6])}px;
+    width: ${width * 0.9}px;
+    padding-horizontal: ${(props) => horizontalScale(props.theme.space[2])}px;
 `;
 
 const EditProfileInformation = ({ navigation }) => {

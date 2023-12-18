@@ -3,6 +3,7 @@ import {
 } from 'react-native';
 import { IComp } from '../types';
 import styled from 'styled-components/native';
+import { verticalScale } from '../styles/scaling';
 
 const { width, height } = Dimensions.get('window');
 
@@ -11,7 +12,7 @@ const StyledView = styled.View`
     align-items: center;
     justify-content: space-between;
     height: ${height}px;
-    padding-top: ${(props) => props.theme.space[6]};
+    padding-top: ${(props) => verticalScale(props.theme.space[6])}px;
     width: ${width}px;
 `
 

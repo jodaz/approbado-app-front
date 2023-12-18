@@ -9,7 +9,7 @@ const Home = ({ navigation }) => {
 
     return (
         <Container>
-            <Row size={2} align='center' direction='row' justify='space-between'>
+            <Row size={1} align='center' direction='row' justify='space-between'>
                 <Logotipo />
                 <Button variant='text' onPress={() => navigation.navigate(Routes.Chat)}>
                     <Mail size={24} color='#000' />

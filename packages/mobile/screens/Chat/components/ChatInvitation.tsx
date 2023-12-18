@@ -15,21 +15,23 @@ import { updateInvitation } from '@approbado/lib/services/chat.services'
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import truncateString from '@approbado/lib/utils/truncateString'
 import styled from 'styled-components/native';
+import { horizontalScale, verticalScale } from '../../../styles/scaling';
 
 const Container = styled.View`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding: ${props => props.theme.space[2]};
-    margin-top: ${props => props.theme.space[1]};
-    margin-bottom: ${props => props.theme.space[1]};
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
     width: 100%;
 `
 
 const StyledButton = styled(Button)`
     width: fit-content;
-    padding: ${props => props.theme.space[2]};
-    margin-right: ${props => props.theme.space[1]};
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    margin-right: ${props => props.theme.space[1]}px;
 `
 
 interface IChatCardProps {

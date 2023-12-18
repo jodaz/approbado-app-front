@@ -10,26 +10,28 @@ import styled from 'styled-components/native';
 import formatDistanceToNowStrict from 'date-fns/formatDistanceToNowStrict';
 import socketIOClient from 'socket.io-client'
 import CONFIG_NAMES from '@approbado/lib/env'
+import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 
 const Pressable = styled.Pressable`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding: ${props => props.theme.space[2]};
-    margin-top: ${props => props.theme.space[1]};
-    margin-bottom: ${props => props.theme.space[1]};
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
     width: 100%;
 `
 
 const Notification = styled.View`
     display: ${props => props.isHidden ? 'none' : 'flex'};
     background-color: ${props => props.theme.palette.info.main};
-    padding: ${props => props.theme.space[1]};
-    border-radius: 50px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[1])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[1])}px;
+    border-radius: ${scaleFontSize(50)}px;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-    margin-right: ${props => props.theme.space[1]}
+    margin-right: ${props => horizontalScale(props.theme.space[1])}px
 `
 const socket = socketIOClient(CONFIG_NAMES.SOURCE)
 

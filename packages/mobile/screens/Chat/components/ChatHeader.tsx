@@ -3,10 +3,10 @@ import { Row, Text } from '../../../components'
 import { useNavigation } from '@react-navigation/native'
 import { ArrowLeft } from 'lucide-react-native'
 import styled from 'styled-components/native'
+import { horizontalScale } from '../../../styles/scaling'
 
 const Container = styled(Row)`
-    padding-left: ${props => props.theme.space[2]};
-    padding-right: ${props => props.theme.space[2]};
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
 `
 
 const ChatHeader: React.FC<{ name: string }> = ({ name }) => {

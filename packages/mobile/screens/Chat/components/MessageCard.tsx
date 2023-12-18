@@ -4,6 +4,7 @@ import { Message } from '@approbado/lib/types/models'
 import format from 'date-fns/format';
 import styled from 'styled-components/native';
 import { View } from 'react-native';
+import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 
 interface MessageCard {
     next: Message;
@@ -30,7 +31,7 @@ const GeneralMessage: React.FC<any> = styled.View`
     position: relative;
     padding: 20px;
     width: fit-content;
-    margin-bottom: ${props => props.theme.space[1]};
+    margin-bottom: ${props => verticalScale(props.theme.space[1])}px;
     border-radius: 8px;
     font-weight: 400;
     flex-direction: row;
@@ -66,8 +67,8 @@ const MessageCard: React.FC<MessageCard> = ({ last, message, next, userID, isPri
             }}>
                 {last?.user_id !== message.user_id ? (
                     <Image source={message?.user?.picture} style={{
-                        marginLeft: 10,
-                        borderRadius: 50
+                        marginLeft: horizontalScale(10),
+                        borderRadius: scaleFontSize(50)
                     }}/>
                 ) : null}
                 <MessageRootContainer key={message.id} first={last?.user_id !== message.user_id}>

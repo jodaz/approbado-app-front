@@ -1,7 +1,12 @@
 import React from "react";
-import { Text } from "react-native";
 import { Check, XCircle } from "lucide-react-native";
 import { closeToast, useToast } from '@approbado/lib/contexts/ToastContext'
+import {
+    horizontalScale,
+    scaleFontSize,
+    verticalScale
+} from "../styles/scaling";
+import Text from "./Text";
 import styled from "styled-components/native";
 
 const colors = {
@@ -11,7 +16,7 @@ const colors = {
 }
 
 const ToastDiv = styled.View`
-    bottom: 70px;
+    bottom: ${verticalScale(50)}px;
     width: 100%;
     position: absolute;
     flex-direction: row;
@@ -21,8 +26,9 @@ const ToastDiv = styled.View`
 const InnerContainer = styled.View`
     background-color: ${props => props.color};
     width: 90%;
-    border-radius: 5px;
-    padding: 20px;
+    border-radius: ${scaleFontSize(6)}px;
+    padding-vertical: ${verticalScale(16)}px;
+    padding-horizontal: ${horizontalScale(16)}px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -50,15 +56,15 @@ const Toast = () => {
         <ToastDiv>
             <InnerContainer color={colors[color]}>
                 {(color == 'success')
-                    ? <Check color='#fff' size={24} />
-                    : <XCircle color='#fff' size={24} />
+                    ? <Check color='#fff' size={scaleFontSize(32)} />
+                    : <XCircle color='#fff' size={scaleFontSize(32)} />
                 }
                 <Text style={{
                     color: '#FFF',
-                    fontWeight: 'bold',
-                    marginLeft: 10,
-                    fontSize: 16,
-                }}>{message}</Text>
+                    marginLeft: horizontalScale(10)
+                }}>
+                    {message}
+                </Text>
             </InnerContainer>
         </ToastDiv>
     )

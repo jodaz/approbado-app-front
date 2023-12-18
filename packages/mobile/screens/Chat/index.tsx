@@ -41,7 +41,7 @@ const Chat = ({ navigation }) => {
                 align='center'
                 direction='row'
                 justify='space-between'
-                size={6}
+                size={5}
             >
                 <ArrowLeft
                     size={24}

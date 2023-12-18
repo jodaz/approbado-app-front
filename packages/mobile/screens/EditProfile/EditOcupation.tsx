@@ -3,11 +3,11 @@ import { ScrollView, Dimensions } from "react-native";
 import { useAuth, getUser } from "@approbado/lib/contexts/AuthContext";
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { NAME, EMAIL, USERNAME } from "@approbado/lib/utils/validations";
-import { TextInput } from "../../components";
+import { TextInput, Row } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateSettings } from '@approbado/lib/services/settings.services'
+import { horizontalScale, verticalScale } from "../../styles/scaling";
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
-import Row from "../../components/Row";
 import styled from "styled-components/native";
 import EditProfileHeader from "./components/EditProfileHeader";
 
@@ -17,10 +17,9 @@ const Container = styled.View`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-top: ${(props) => props.theme.space[6]};
+    padding-top: ${(props) => verticalScale(props.theme.space[6])}px;
     width: ${width * 0.9}px;
-    padding-left: ${(props) => props.theme.space[2]};
-    padding-right: ${(props) => props.theme.space[2]};
+    padding-horizontal: ${(props) => horizontalScale(props.theme.space[2])}px;
 `;
 
 const EditOcupation = ({ navigation }) => {

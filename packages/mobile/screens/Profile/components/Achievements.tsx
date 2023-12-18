@@ -1,20 +1,21 @@
 import * as React from 'react'
 import { Dimensions } from 'react-native';
-import Row from '../../../components/Row';
+import { horizontalScale, verticalScale } from '../../../styles/scaling';
+import { useAuth } from '@approbado/lib/contexts/AuthContext'
+import { Row } from '../../../components';
 import ProfileInformationCard from '../components/ProfileInformationCard';
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import Forum from '@approbado/lib/illustrations/Forum.svg'
 import Forum2 from '@approbado/lib/illustrations/Forum2.svg'
 import Ribbon from '@approbado/lib/illustrations/Ribbon.svg'
 import styled from 'styled-components/native';
-import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import Certificates from './Certificates';
 
 const { width } = Dimensions.get('window');
 
 const Container = styled.ScrollView`
-    padding-top: ${(props) => props.theme.space[2]};
-    width: ${width - 40}px;
+    padding-top: ${(props) => verticalScale(props.theme.space[2])};
+    width: ${width - horizontalScale(40)}px;
 `
 
 const Achievements = () => {

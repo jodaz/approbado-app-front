@@ -18,12 +18,13 @@ import { listTrivias } from '@approbado/lib/services/trivias.services'
 import { listCategories } from '@approbado/lib/services/categories.services'
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
 import styled from 'styled-components/native';
+import { verticalScale } from '../../styles/scaling';
 
 const { width, height } = Dimensions.get('window');
 
 const Container = styled.ScrollView`
     height: ${height}px;
-    padding-top: ${(props) => props.theme.space[6]};
+    padding-top: ${(props) => verticalScale(props.theme.space[2])}px;
     width: ${width}px;
 `
 

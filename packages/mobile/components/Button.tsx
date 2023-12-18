@@ -1,14 +1,19 @@
 import * as React from 'react'
 import { ActivityIndicator } from 'react-native';
 import { IButtonProps } from '../types'
+import {
+    horizontalScale,
+    scaleFontSize,
+    verticalScale
+} from '../styles/scaling';
 import styled from 'styled-components/native'
 
 const ButtonContainer = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
-    padding-vertical: 16px;
-    padding-horizontal: 48px;
-    border-radius: 6px;
+    padding-vertical: ${verticalScale(12)}px;
+    padding-horizontal: ${horizontalScale(24)}px;
+    border-radius: ${scaleFontSize(6)}px;
     color: #000;
     background-color: ${props =>
         props.disabled
@@ -24,7 +29,7 @@ const ButtonContainer = styled.TouchableOpacity`
 
 const ButtonText = styled.Text`
     font-weight: ${props => props.fontWeight};
-    font-size: 16px;
+    font-size: ${scaleFontSize(18)}px;
 `;
 
 const Button = ({
@@ -37,7 +42,7 @@ const Button = ({
     <ButtonContainer disabled={disabled} {...rest}>
         {!isLoading ? (
             <ButtonText fontWeight={fontWeight}>{children}</ButtonText>
-        ) : <ActivityIndicator color='#fff' />}
+        ) : <ActivityIndicator color={'#000'} size={scaleFontSize(24)} />}
     </ButtonContainer>
 )
 

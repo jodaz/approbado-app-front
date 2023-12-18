@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components/native';
-import Text from './Text';
 import { ArrowLeft } from 'lucide-react-native'
 import { useNavigation } from '@react-navigation/native';
 import { IComp } from '../types';
+import { horizontalScale } from '../styles/scaling';
 
 const NavContainer = styled.View`
     display: flex;
@@ -14,7 +14,7 @@ const NavContainer = styled.View`
 `;
 
 const NavButton = styled.TouchableOpacity`
-    margin-right: ${props => props.theme.space[5]};
+    margin-right: ${props => horizontalScale(props.theme.space[5])}px;
 `
 
 const TitleBar = ({ children }: IComp) : JSX.Element => {

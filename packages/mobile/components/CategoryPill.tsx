@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Category } from '@approbado/lib/types/models'
+import { horizontalScale, scaleFontSize, verticalScale } from '../styles/scaling';
 
 const StyledText = styled.Text`
-    padding: 6px 10px;
+    padding-vertical: ${verticalScale(6)}px;
+    padding-horizontal: ${horizontalScale(10)}px;
     background-color: #BFD8F4;
     color: ${props => props.theme.palette.info.main};
     width: fit-content;
     max-width: fit-content;
-    border-radius: 6px;
+    border-radius: ${scaleFontSize(6)}px;
     fontWeight: 600;
-    margin-right: ${props => props.theme.space[1]};
+    margin-right: ${props => horizontalScale(props.theme.space[1])}px;
 `
 
 const CategoryPill = ({ item } : Category ) : JSX.Element => (

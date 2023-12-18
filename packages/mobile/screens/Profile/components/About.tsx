@@ -8,11 +8,12 @@ import TwitterX from '@approbado/lib/icons/TwitterX.svg'
 import Linkedin from '@approbado/lib/icons/Linkedin.svg'
 import Row from '../../../components/Row';
 import styled from 'styled-components/native';
+import { horizontalScale, verticalScale } from '../../../styles/scaling';
 
 const { width } = Dimensions.get('window');
 
 const Container = styled.ScrollView`
-    padding-top: ${(props) => props.theme.space[2]};
+    padding-top: ${(props) => verticalScale(props.theme.space[2])};
     width: ${width - 40}px;
 `
 
@@ -21,7 +22,7 @@ const Container2 = styled.View`
     width: 100%;
     alignItems: flex-start;
     justifyContent: flex-start;
-    padding-left: ${(props) => props.theme.space[3]};
+    padding-left: ${(props) => horizontalScale(props.theme.space[3])};
 `
 
 const AboutInformationItem = ({ icon, title, children }) => (
