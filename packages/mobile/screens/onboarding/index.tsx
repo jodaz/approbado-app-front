@@ -4,8 +4,9 @@ import { FlatList, Dimensions, SafeAreaView } from 'react-native';
 import slides from './slides';
 import Slide from './Slide'
 import Footer from './Footer';
+import styled from 'styled-components/native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const Onboarding = ({ navigation }) => {
     const ref = React.useRef();

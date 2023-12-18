@@ -68,7 +68,7 @@ const About = () => {
                 title='Email'
             >
                 <Text fontWeight={400}>
-                    {user.email}
+                    {user?.email}
                 </Text>
             </AboutInformationItem>
             {user?.profile?.ocupation ? (

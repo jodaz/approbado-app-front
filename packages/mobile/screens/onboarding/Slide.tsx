@@ -1,11 +1,25 @@
 import {
     Image,
+    Dimensions,
     ImageSourcePropType,
 } from 'react-native';
+import {
+    Button,
+    Text
+} from '../../components'
 import ButtonGroup from '../../components/ButtonGroup';
-import Button from '../../components/Button';
-import Text from '../../components/Text';
-import Container from '../../components/Container';
+import styled from 'styled-components/native';
+
+const { width, height } = Dimensions.get('window');
+
+const Container = styled.View`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: ${width}px;
+    height: ${height}px;
+`
 
 type SlideProps = {
     title: string;
