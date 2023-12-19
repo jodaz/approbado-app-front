@@ -1,9 +1,9 @@
 import * as React from 'react'
-import Container from '../../components/Container';
-import { Button, Row } from '../../components';
+import { Button, Container, Row } from '../../components';
 import { Routes } from '../routes';
 import { Mail } from 'lucide-react-native';
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
+import QuickTrivia from './components/QuickTrivia';
 
 const Home = ({ navigation }) => {
 
@@ -14,6 +14,9 @@ const Home = ({ navigation }) => {
                 <Button variant='text' onPress={() => navigation.navigate(Routes.Chat)}>
                     <Mail size={24} color='#000' />
                 </Button>
+            </Row>
+            <Row size={1}>
+                <QuickTrivia />
             </Row>
         </Container>
     );
