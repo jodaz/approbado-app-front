@@ -4,7 +4,6 @@ import { Controller } from 'react-hook-form';
 import styled from 'styled-components/native';
 import { horizontalScale, scaleFontSize, verticalScale } from '../styles/scaling';
 
-
 const StyledRadioButton = styled.TouchableOpacity`
     padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
     padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
