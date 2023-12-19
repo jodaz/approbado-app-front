@@ -3,8 +3,9 @@ import { deletePost } from '@approbado/lib/services/forums.services.ts';
 import { Modal, TouchableOpacity, Dimensions } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import { Row, Container, Text, Button } from '../../../components';
+import { Row, Text, Button } from '../../../components';
 import styled from 'styled-components/native';
+import { horizontalScale, verticalScale } from '../../../styles/scaling';
 
 const { height, width } = Dimensions.get('screen')
 
@@ -17,7 +18,8 @@ const Content = styled.View`
     background-color: white;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 23px;
+    padding-horizontal: ${horizontalScale(23)}px;
+    padding-vertical: ${verticalScale(23)}px;
     bottom: 0;
     border-width: 1px;
     border-color: ${props => props.theme.palette.secondary.light};
@@ -42,8 +44,6 @@ const DeletePost = ({ isOpen, toggleModal, onDeletePost }) => {
         }
     }, [isOpen]);
 
-    console.log(isOpen);
-
     return (
         <Modal
             animationType="fade"
@@ -57,8 +57,8 @@ const DeletePost = ({ isOpen, toggleModal, onDeletePost }) => {
                 width: width
             }} onPress={() => toggleModal(false)}/>
             <Content>
-                <Row size={4}>
-                    <Text fontSize={16} fontWeight={400}>
+                <Row size={2}>
+                    <Text fontSize={18} fontWeight={400}>
                         ¿Está seguro que desea eliminar este post?
                     </Text>
                 </Row>

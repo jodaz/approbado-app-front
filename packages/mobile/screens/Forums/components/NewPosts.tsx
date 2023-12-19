@@ -12,8 +12,8 @@ import { ScrollView } from 'react-native';
 import { useIsFocused, useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
-import DeletePost from './DeletePost';
 import { useAuth } from '@approbado/lib/contexts/AuthContext';
+import DeletePost from './DeletePost';
 
 const NewPosts = () => {
     const isFocused = useIsFocused();

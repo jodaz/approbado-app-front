@@ -7,10 +7,15 @@ import {
     CategoryPill,
     TitleBar
 } from '../../../components';
+import { horizontalScale } from '../../../styles/scaling';
+import { useForm } from 'react-hook-form';
 import { Category } from '@approbado/lib/types/models'
+import { createComment } from '@approbado/lib/services/comments.services'
+import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import styled from 'styled-components/native';
 import PostDescription from '../../../components/PostDescription';
-import { horizontalScale } from '../../../styles/scaling';
+import CommentList from '../components/CommentsList';
+import CommentInput from '../components/CommentInput';
 
 const StyledContainer = styled.View`
     width: 100%;
@@ -19,7 +24,27 @@ const StyledContainer = styled.View`
 `
 
 const ShowPost = ({ route }) => {
+    const { control, handleSubmit } = useForm()
+    const { dispatch } = useToast();
     const post = route.params.post;
+
+    const onSubmit = async (values) => {
+        const response = await createComment({
+            summary: values.message,
+            parent_id: post.id
+        })
+
+        if (response.success) {
+            openToast(dispatch, {
+                message: '¡Respuesta enviada!'
+            })
+        } else {
+            openToast(dispatch, {
+                message: 'Ha ocurrido un error.',
+                color: 'error'
+            })
+        }
+    }
 
     return (
         <Container>
@@ -56,6 +81,12 @@ const ShowPost = ({ route }) => {
                     ))}
                 </Row>
                 <PostDescription post={post} />
+                <CommentInput
+                    control={control}
+                    name='message'
+                    onHandleSubmit={handleSubmit(onSubmit)}
+                />
+                <CommentList post={post} />
             </StyledContainer>
         </Container>
     );
