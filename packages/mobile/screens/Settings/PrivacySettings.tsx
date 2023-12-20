@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { SafeAreaView } from 'react-native';
 import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
@@ -50,7 +49,6 @@ const PrivacySettings = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView>
             <Container>
                 <TitleBar>
                     <Text fontSize={18} fontWeight={600}>
@@ -84,7 +82,6 @@ const PrivacySettings = ({ navigation }) => {
                     </Row>
                 </FormContainer>
             </Container>
-        </SafeAreaView>
     );
 };
 

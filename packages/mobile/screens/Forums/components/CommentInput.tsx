@@ -68,7 +68,6 @@ const CommentInput = ({
                         {...restField}
                         {...restInputProps}
                         multiline
-                        onContentSizeChange={(e) => console.log(e.nativeEvent.contentSize.height)}
                     />
                     <Button onPress={onHandleSubmit}>
                         <SendHorizontal color='#2280ED' size={24} />

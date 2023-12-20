@@ -2,10 +2,12 @@ import * as React from "react";
 import { X, Check } from "lucide-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Row, Text } from "../../../components";
+import { horizontalScale, verticalScale } from "../../../styles/scaling";
 import styled from "styled-components/native";
 
 const Button = styled.TouchableOpacity`
-    padding: ${props => props.theme.space[2]};
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
 `
 
 interface IEditProfileHeader {
@@ -19,7 +21,6 @@ const EditProfileHeader = ({ onSubmit, isSubmitting, title } : IEditProfileHeade
 
     return (
         <Row
-            size={2}
             align="center"
             justify="space-between"
             direction="row"

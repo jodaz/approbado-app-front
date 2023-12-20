@@ -4,7 +4,7 @@ import { ScrollView, Dimensions } from "react-native";
 import { useAuth, getUser } from "@approbado/lib/contexts/AuthContext";
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { NAME, LAST_NAME, USERNAME } from "@approbado/lib/utils/validations";
-import { Image, TextInput, NavButton } from "../../components";
+import { Image, TextInput, NavButton, Container } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateProfile } from '@approbado/lib/services/profile.services'
 import { horizontalScale, verticalScale } from "../../styles/scaling";
@@ -15,16 +15,6 @@ import Text from "../../components/Text";
 import styled from "styled-components/native";
 
 const { width } = Dimensions.get("window");
-
-const Container = styled.View`
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: ${width * 0.9}px;
-    padding-top: ${(props) => verticalScale(props.theme.space[6])}px;
-    width: ${width * 0.9}px;
-    padding-horizontal: ${(props) => horizontalScale(props.theme.space[2])}px;
-`;
 
 const EditProfileInformation = ({ navigation }) => {
     const {

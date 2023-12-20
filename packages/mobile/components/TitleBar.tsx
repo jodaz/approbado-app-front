@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { ArrowLeft } from 'lucide-react-native'
 import { useNavigation } from '@react-navigation/native';
 import { IComp } from '../types';
-import { horizontalScale } from '../styles/scaling';
+import { horizontalScale, verticalScale } from '../styles/scaling';
 
 const NavContainer = styled.View`
     display: flex;
@@ -11,6 +11,7 @@ const NavContainer = styled.View`
     width: 100%;
     align-items: center;
     justify-content: space-between;
+    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
 `;
 
 const NavButton = styled.TouchableOpacity`

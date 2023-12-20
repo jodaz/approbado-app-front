@@ -31,33 +31,31 @@ const DeleteAccount = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView>
-            <Container>
-                <TitleBar>
-                    <Text fontSize={18} fontWeight={600}>
-                        Eliminar cuenta
-                    </Text>
-                </TitleBar>
-                <Row size={4}>
-                    <Text fontSize={16} fontWeight={400}>
-                        Al realizar el proceso de eliminar tu cuenta de approbado.com,
-                        tu nombre visible dentro de la plataforma, tu @usuario y toda
-                        la información relacionada dentro de la plataforma ya no se podrán ver en approbado.com
-                    </Text>
-                </Row>
-                <Row size={4}>
-                    <Button
-                        variant='outlined'
-                        onPress={handleSubmit(onSubmit)}
-                        fullWidth
-                        disabled={!formState.isValid || formState.isSubmitting}
-                        isLoading={formState.isSubmitting}
-                    >
-                        Eliminar cuenta
-                    </Button>
-                </Row>
-            </Container>
-        </SafeAreaView>
+        <Container>
+            <TitleBar>
+                <Text fontSize={18} fontWeight={600}>
+                    Eliminar cuenta
+                </Text>
+            </TitleBar>
+            <Row size={4}>
+                <Text fontSize={16} fontWeight={400}>
+                    Al realizar el proceso de eliminar tu cuenta de approbado.com,
+                    tu nombre visible dentro de la plataforma, tu @usuario y toda
+                    la información relacionada dentro de la plataforma ya no se podrán ver en approbado.com
+                </Text>
+            </Row>
+            <Row size={4}>
+                <Button
+                    variant='outlined'
+                    onPress={handleSubmit(onSubmit)}
+                    fullWidth
+                    disabled={!formState.isValid || formState.isSubmitting}
+                    isLoading={formState.isSubmitting}
+                >
+                    Eliminar cuenta
+                </Button>
+            </Row>
+        </Container>
     );
 }
 

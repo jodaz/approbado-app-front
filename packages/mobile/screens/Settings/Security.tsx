@@ -45,54 +45,52 @@ const Security = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView>
-            <Container>
-                <TitleBar>
-                    <Text fontSize={18} fontWeight={600}>
-                        Ajustes de seguridad
-                    </Text>
-                </TitleBar>
-                <FormContainer>
-                    <Row size={1}>
-                        <TextInput
-                            name="curr_password"
-                            validations={PASSWORD}
-                            control={control}
-                            placeholder='Ingresa contraseña'
-                            secureTextEntry
-                        />
-                    </Row>
-                    <Row size={1}>
-                        <TextInput
-                            name="new_password"
-                            validations={CONFIRM_PASSWORD}
-                            control={control}
-                            placeholder='Ingresa contraseña'
-                            secureTextEntry
-                        />
-                    </Row>
-                    <Row size={1}>
-                        <TextInput
-                            name="new_password_confirmed"
-                            validations={CONFIRM_PASSWORD}
-                            control={control}
-                            placeholder='Ingresa contraseña'
-                            secureTextEntry
-                        />
-                    </Row>
-                    <Row size={6}>
-                        <Button
-                            disabled={!formState.isValid || formState.isSubmitting}
-                            isLoading={formState.isSubmitting}
-                            onPress={handleSubmit(onSubmit)}
-                            fullWidth
-                        >
-                            Guardar cambios
-                        </Button>
-                    </Row>
-                </FormContainer>
-            </Container>
-        </SafeAreaView>
+        <Container>
+            <TitleBar>
+                <Text fontSize={18} fontWeight={600}>
+                    Ajustes de seguridad
+                </Text>
+            </TitleBar>
+            <FormContainer>
+                <Row size={1}>
+                    <TextInput
+                        name="curr_password"
+                        validations={PASSWORD}
+                        control={control}
+                        placeholder='Ingresa contraseña'
+                        secureTextEntry
+                    />
+                </Row>
+                <Row size={1}>
+                    <TextInput
+                        name="new_password"
+                        validations={CONFIRM_PASSWORD}
+                        control={control}
+                        placeholder='Ingresa contraseña'
+                        secureTextEntry
+                    />
+                </Row>
+                <Row size={1}>
+                    <TextInput
+                        name="new_password_confirmed"
+                        validations={CONFIRM_PASSWORD}
+                        control={control}
+                        placeholder='Ingresa contraseña'
+                        secureTextEntry
+                    />
+                </Row>
+                <Row size={6}>
+                    <Button
+                        disabled={!formState.isValid || formState.isSubmitting}
+                        isLoading={formState.isSubmitting}
+                        onPress={handleSubmit(onSubmit)}
+                        fullWidth
+                    >
+                        Guardar cambios
+                    </Button>
+                </Row>
+            </FormContainer>
+        </Container>
     );
 }
 

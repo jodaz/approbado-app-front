@@ -1,6 +1,5 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { SafeAreaView } from 'react-native';
 import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
@@ -52,50 +51,48 @@ const NotificationSettings = ({ navigation }) => {
     };
 
     return (
-        <SafeAreaView>
-            <Container>
-                <TitleBar>
-                    <Text fontSize={18} fontWeight={600}>
-                    Ajustes de seguridad
-                    </Text>
-                </TitleBar>
-                <FormContainer>
-                    <Row size={1}>
-                        <Checkbox
-                            control={control}
-                            label="Recibir notificaciones generales"
-                            name="general_notifications"
-                        />
-                    </Row>
-                    <Row size={1}>
-                        <Checkbox
-                            control={control}
-                            label="Recibir notificaciones sobre comentarios"
-                            name="showNotification_mobile_app"
-                        />
-                    </Row>
-                    <Row size={1}>
-                        <Checkbox
-                            control={control}
-                            label="Recibir notificaciones sobre mensajería"
-                            name="showNotification_email"
-                        />
-                    </Row>
-                    <Row size={1}>
-                        <Checkbox
-                            control={control}
-                            label="Recibir notificaciones sobre actualización de cuenta"
-                            name="showNotification_about_account"
-                        />
-                    </Row>
-                    <Row size={6}>
-                        <Button onPress={handleSubmit(onSubmit)} fullWidth>
-                            Guardar cambios
-                        </Button>
-                    </Row>
-                </FormContainer>
-            </Container>
-        </SafeAreaView>
+        <Container>
+            <TitleBar>
+                <Text fontSize={18} fontWeight={600}>
+                Ajustes de seguridad
+                </Text>
+            </TitleBar>
+            <FormContainer>
+                <Row size={1}>
+                    <Checkbox
+                        control={control}
+                        label="Recibir notificaciones generales"
+                        name="general_notifications"
+                    />
+                </Row>
+                <Row size={1}>
+                    <Checkbox
+                        control={control}
+                        label="Recibir notificaciones sobre comentarios"
+                        name="showNotification_mobile_app"
+                    />
+                </Row>
+                <Row size={1}>
+                    <Checkbox
+                        control={control}
+                        label="Recibir notificaciones sobre mensajería"
+                        name="showNotification_email"
+                    />
+                </Row>
+                <Row size={1}>
+                    <Checkbox
+                        control={control}
+                        label="Recibir notificaciones sobre actualización de cuenta"
+                        name="showNotification_about_account"
+                    />
+                </Row>
+                <Row size={6}>
+                    <Button onPress={handleSubmit(onSubmit)} fullWidth>
+                        Guardar cambios
+                    </Button>
+                </Row>
+            </FormContainer>
+        </Container>
     );
 };
 
