@@ -30,6 +30,9 @@ const ButtonContainer = styled.TouchableOpacity`
 const ButtonText = styled.Text`
     font-weight: ${props => props.fontWeight};
     font-size: ${scaleFontSize(18)}px;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
 `;
 
 const Button = ({

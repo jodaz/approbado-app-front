@@ -2,11 +2,12 @@ import React from 'react';
 import { Post } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
-import { scaleFontSize, verticalScale } from '../../../styles/scaling';
+import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 import { View } from 'react-native';
 import { Text, Image, Button } from '../../../components';
 import styled from 'styled-components/native';
 import { Heart, InfoIcon } from 'lucide-react-native';
+import LikeButton from './LikeButton';
 
 const Pressable = styled.Pressable`
     display: flex;
@@ -21,6 +22,15 @@ interface ICommentCardProps {
     comment: Post;
     openDrawerMenu?: () => void;
 }
+
+const IconButton = styled.Pressable`
+    padding-vertical: ${props => verticalScale(props.theme.space[1])}px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[1])}px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+`
 
 const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
     const navigation = useNavigation();
@@ -45,13 +55,10 @@ const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
                         {comment?.summary}
                     </Text>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <Button variant='text'>
-                            <Heart color='#6D6D6D' size={scaleFontSize(24)} />
-                            {comment?.likesCount}
-                        </Button>
-                        <Button variant='text' onPress={handleReport}>
+                        <LikeButton comment={comment} />
+                        <IconButton variant='text' onPress={handleReport}>
                             <InfoIcon color='#6D6D6D' size={scaleFontSize(24)} />
-                        </Button>
+                        </IconButton>
                     </View>
                 </View>
             </View>

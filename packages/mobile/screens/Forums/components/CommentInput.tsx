@@ -19,8 +19,8 @@ const InputContainer = styled.View`
     flexDirection: row;
     height: fit-content;
     alignItems: flex-end;
-    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
-    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    padding-horizontal: ${props => horizontalScale(props.theme.space[1])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[1])}px;
     border-radius: ${scaleFontSize(24)}px;
     background-color: #fff;
     flex: 1;
@@ -35,7 +35,8 @@ const RootContainer = styled.View`
 `
 
 const Button = styled.TouchableOpacity`
-    padding: 10px;
+    padding-vertical: ${verticalScale(10)}px;
+    padding-horizontal: ${horizontalScale(2)}px;
 `
 
 interface ICommentInputProps extends ITextInputProps {
@@ -63,7 +64,7 @@ const CommentInput = ({
             <RootContainer>
                 <InputContainer>
                     <Input
-                        placeholder={placeholder}
+                        placeholder='Escribe una respuesta'
                         onChangeText={onChange}
                         {...restField}
                         {...restInputProps}
