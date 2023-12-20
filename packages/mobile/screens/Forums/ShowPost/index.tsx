@@ -16,6 +16,7 @@ import styled from 'styled-components/native';
 import PostDescription from '../../../components/PostDescription';
 import CommentList from '../components/CommentsList';
 import CommentInput from '../components/CommentInput';
+import { ScrollView } from 'react-native';
 
 const StyledContainer = styled.View`
     width: 100%;
@@ -48,46 +49,48 @@ const ShowPost = ({ route }) => {
 
     return (
         <Container>
-            <StyledContainer>
-                <Row size={1} direction='row'>
-                    <TitleBar>
-                        <Text fontSize={18}>
-                            Ver post
-                        </Text>
-                    </TitleBar>
-                </Row>
-                <Row size={1} direction='row'>
-                    <Image source={post.owner.picture} />
-                    <Row size={1} direction='column'>
-                        <Text fontSize={18}>
-                            {post.message}
-                        </Text>
-                        <Row size={1} direction='row'>
-                            <Text fontSize={16} color='secondary'>
-                                Por{' '}
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <StyledContainer>
+                    <Row size={1} direction='row'>
+                        <TitleBar>
+                            <Text fontSize={18}>
+                                Ver post
                             </Text>
-                            <Text fontSize={16}>
-                                {post.owner.user_name}
+                        </TitleBar>
+                    </Row>
+                    <Row size={1} direction='row'>
+                        <Image source={post.owner.picture} />
+                        <Row size={1} direction='column'>
+                            <Text fontSize={18}>
+                                {post.message}
                             </Text>
+                            <Row size={1} direction='row'>
+                                <Text fontSize={16} color='secondary'>
+                                    Por{' '}
+                                </Text>
+                                <Text fontSize={16}>
+                                    {post.owner.user_name}
+                                </Text>
+                            </Row>
                         </Row>
                     </Row>
-                </Row>
-                <Text fontSize={18} fontWeight={400}>
-                    {post.summary}
-                </Text>
-                <Row size={1} direction='row'>
-                    {post.categories.map((item: Category, i: number) => (
-                        <CategoryPill item={item} />
-                    ))}
-                </Row>
-                <PostDescription post={post} />
+                    <Text fontSize={18} fontWeight={400}>
+                        {post.summary}
+                    </Text>
+                    <Row size={1} direction='row'>
+                        {post.categories.map((item: Category, i: number) => (
+                            <CategoryPill item={item} />
+                        ))}
+                    </Row>
+                    <PostDescription post={post} />
+                </StyledContainer>
                 <CommentInput
                     control={control}
                     name='message'
                     onHandleSubmit={handleSubmit(onSubmit)}
                 />
                 <CommentList post={post} />
-            </StyledContainer>
+            </ScrollView>
         </Container>
     );
 }

@@ -6,7 +6,8 @@ import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/s
 import styled from 'styled-components/native';
 
 const Input = styled.TextInput`
-    height: 45px;
+    min-height: 50px;
+    max-height: 150px;
     font-size: 16px;
     padding: 0 10px;
     flex: 1;
@@ -17,7 +18,7 @@ const InputContainer = styled.View`
     border: ${props => `2px solid ${props.theme.palette.primary.light}`};
     flexDirection: row;
     height: fit-content;
-    alignItems: center;
+    alignItems: flex-end;
     padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
     padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
     border-radius: ${scaleFontSize(24)}px;
@@ -66,6 +67,8 @@ const CommentInput = ({
                         onChangeText={onChange}
                         {...restField}
                         {...restInputProps}
+                        multiline
+                        onContentSizeChange={(e) => console.log(e.nativeEvent.contentSize.height)}
                     />
                     <Button onPress={onHandleSubmit}>
                         <SendHorizontal color='#2280ED' size={24} />
