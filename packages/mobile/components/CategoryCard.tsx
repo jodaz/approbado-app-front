@@ -28,7 +28,7 @@ const CategoryCard = ({ category }: { category: Category }) : JSX.Element => {
     })
 
     return (
-        <Pressable onPress={handleNavigate} key={category?.id} style={{
+        <Pressable key={category?.id} style={{
             shadowColor: '#000',
             shadowOffset: {
                 width: 0,
