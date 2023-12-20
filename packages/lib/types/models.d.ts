@@ -139,8 +139,10 @@ export interface Trivia {
     is_free:             boolean;
     grant_certification: boolean;
     category_id:         number;
-    created_at:          Date;
+    created_at:          string;
     updated_at:          null;
+    subthemesCount?:      string;
+    filesCount?:          string;
 }
 
 export interface Notification {

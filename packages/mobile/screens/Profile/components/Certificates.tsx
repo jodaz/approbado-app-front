@@ -3,7 +3,6 @@ import { FlatList, View } from 'react-native';
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import CertificateCard from '../components/CertificateCard';
 import { Text } from '../../../components';
-import { verticalScale } from '../../../styles/scaling';
 
 const certificates = [
     {
