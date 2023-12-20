@@ -85,6 +85,7 @@ export interface Post {
 export interface Category {
     id:         number;
     name:       string;
+    triviasCount: number;
     created_at: Date;
     updated_at: null;
 }

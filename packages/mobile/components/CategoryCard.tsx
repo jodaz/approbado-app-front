@@ -1,5 +1,5 @@
 import React from 'react';
-import { Trivia } from '@approbado/lib/types/models'
+import { Category } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../screens/routes';
 import { horizontalScale, scaleFontSize, verticalScale } from '../styles/scaling';
@@ -15,20 +15,20 @@ const Pressable = styled.Pressable`
     margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
     width: 100%;
     height: ${verticalScale(100)}px;
-    background-color: #FBBC08;
+    background-color: ${props => props.theme.palette.primary.light};
     border-radius: ${scaleFontSize(12)}px;
     position: relative;
 `
 
-const TriviaCard = ({ trivia }: { trivia: Trivia }) : JSX.Element => {
+const CategoryCard = ({ category }: { category: Category }) : JSX.Element => {
     const navigation = useNavigation();
 
-    const handleNavigate = () => navigation.navigate(Routes.SelectTrivia, {
-        trivia: trivia
+    const handleNavigate = () => navigation.navigate(Routes.ShowCategory, {
+        category: category
     })
 
     return (
-        <Pressable onPress={handleNavigate} key={trivia?.id} style={{
+        <Pressable onPress={handleNavigate} key={category?.id} style={{
             shadowColor: '#000',
             shadowOffset: {
                 width: 0,
@@ -40,18 +40,18 @@ const TriviaCard = ({ trivia }: { trivia: Trivia }) : JSX.Element => {
         }}>
             <Row size={1}>
                 <Text fontSize={24}>
-                    {trivia?.name}
+                    {category?.name}
                 </Text>
             </Row>
             <Row size={1}>
                 <Text fontSize={20} fontWeight={400}>
-                    {trivia?.subthemesCount}
+                    {category?.triviasCount}
 
-                    {trivia?.subthemesCount > 1 ? ' temas' : ' tema'}
+                    {category?.triviasCount > 1 ? ' trivias' : ' trivia'}
                 </Text>
             </Row>
         </Pressable>
     )
 }
 
-export default TriviaCard;
+export default CategoryCard;

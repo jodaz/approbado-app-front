@@ -1,14 +1,14 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Container, Row } from '../../components';
+import { FloatingButton } from '../../components';
+import { Plus, Search } from 'lucide-react-native';
+import { Routes } from '../routes';
+import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Tabs from '../../components/Tabs';
 import PopularPosts from './components/PopularPosts';
 import UnansweredPosts from './components/UnansweredPosts';
 import NewPosts from './components/NewPosts';
-import { FloatingButton } from '../../components';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
-import { Plus, Search } from 'lucide-react-native';
-import { Routes } from '../routes';
 
 const screens = [
     {
