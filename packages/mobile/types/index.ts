@@ -1,9 +1,11 @@
 import * as React from 'react'
 import { StyleProp, TextInputProps, PressableProps } from 'react-native';
 
-type ColorThemeType = 'primary' | 'secondary' | 'error';
+type ColorThemeType = 'primary' | 'secondary' | 'error' | 'text' | 'info';
 
 type VariantType = 'outlined' | 'text' | 'contained';
+
+type VariantColorType = 'primary' | 'secondary' | 'main';
 
 type TextAlignType = 'right' | 'left' | 'center';
 
@@ -30,6 +32,7 @@ export interface ITextProps extends IComp {
     fontSize?: number;
     style?: StyleProp;
     align?: TextAlignType;
+    variant?: VariantColorType;
 }
 
 export interface ILinkProps extends ITextProps {

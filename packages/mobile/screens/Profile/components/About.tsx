@@ -34,7 +34,7 @@ const AboutInformationItem = ({ icon, title, children }) => (
             size: 24
         })}
         <Container2>
-            <Text color='secondary'>
+            <Text variant='secondary'>
                 {title}
             </Text>
             {children}

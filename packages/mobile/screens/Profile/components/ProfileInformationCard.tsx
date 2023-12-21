@@ -42,7 +42,7 @@ const ProfileInformationCard = ({ image, amount, text } : IProfileInformationCar
             <Text fontSize={16} fontWeight={600}>
                 {amount ? amount : 0}
             </Text>
-            <Text fontSize={16} fontWeight={600} color='secondary'>
+            <Text fontSize={16} fontWeight={600} variant='secondary'>
                 {text}
             </Text>
         </ContentContainer>

@@ -37,7 +37,7 @@ const Presentation = ({ navigation }) => {
                 </Row>
                 <Row size={1} align='center'>
                     <Button
-                        bgColor='primary'
+                        bgvariant='primary'
                         variant="contained"
                         onPress={handleCreateAccount}
                         fullWidth
@@ -47,7 +47,7 @@ const Presentation = ({ navigation }) => {
                 </Row>
                 <Row size={1} align='center'>
                     <Button
-                        bgColor='secondary'
+                        bgvariant='secondary'
                         variant="outlined"
                         onPress={handleLogin}
                         fullWidth

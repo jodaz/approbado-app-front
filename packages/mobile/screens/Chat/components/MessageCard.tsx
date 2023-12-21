@@ -74,12 +74,12 @@ const MessageCard: React.FC<MessageCard> = ({ last, message, next, userID, isPri
                 <MessageRootContainer key={message.id} first={last?.user_id !== message.user_id}>
                     <ReceptorMessage>
                         {(last?.user_id !== message.user_id && isPrivate) ? (
-                            <Text fontSize={16} fontWeight={800} align='left' color="primary">
+                            <Text fontSize={16} fontWeight={800} align='left' variant='secondary'>
                                 @{message?.user?.user_name}
                             </Text>
                         ) : null}
                         {message.message ? (
-                            <Text fontWeight={400} align='left' color="primary">
+                            <Text fontWeight={400} align='left' variant='secondary'>
                                 {message.message}
                             </Text>
                         ) : null}
@@ -88,7 +88,7 @@ const MessageCard: React.FC<MessageCard> = ({ last, message, next, userID, isPri
                         ) : null}
                     </ReceptorMessage>
                     {next?.user_id != message.user_id ? (
-                        <Text fontSize={14} fontWeight={400} align='left' color="primary">
+                        <Text fontSize={14} fontWeight={400} align='left' variant='secondary'>
                             {messageTime}
                         </Text>
                     ) : null}
@@ -101,7 +101,7 @@ const MessageCard: React.FC<MessageCard> = ({ last, message, next, userID, isPri
         <MessageRootContainer key={message.id} sender>
             <SenderMessage>
                 {message.message ? (
-                    <Text fontWeight={400} align='left' color="primary">
+                    <Text fontWeight={400} align='left' variant='secondary'>
                         {message.message}
                     </Text>
                 ) : null}
@@ -111,7 +111,7 @@ const MessageCard: React.FC<MessageCard> = ({ last, message, next, userID, isPri
                 ) : null}
             </SenderMessage>
             {next?.user_id != message.user_id ? (
-                <Text fontSize={14} fontWeight={400} align='left' color="primary">
+                <Text fontSize={14} fontWeight={400} align='left' variant='secondary'>
                     {messageTime}
                 </Text>
             ) : null}

@@ -43,7 +43,7 @@ const PostCard = ({ post, openDrawerMenu } : IPostCardProps ) : JSX.Element => {
                         {post.message}
                     </Text>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
-                        <Text fontSize={16} color='secondary'>
+                        <Text fontSize={16} variant='secondary'>
                             Por{' '}
                         </Text>
                         <Text fontSize={16}>

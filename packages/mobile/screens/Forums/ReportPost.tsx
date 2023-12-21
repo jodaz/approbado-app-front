@@ -76,7 +76,7 @@ const ReportPost = ({ route, navigation }) => {
                 </Text>
             </Row>
             <Row size={1}>
-                <Text align='center' color='secondary'>
+                <Text align='center' variant='secondary'>
                     Ayúdanos a entender el problema
                 </Text>
             </Row>
@@ -104,7 +104,7 @@ const ReportPost = ({ route, navigation }) => {
             <Row size={2}>
                 <Text
                     align='center'
-                    color='primary'
+                    variant='primary'
                     fontSize={16}
                     fontWeight={400}
                 >

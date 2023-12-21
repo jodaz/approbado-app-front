@@ -45,12 +45,12 @@ const CertificateCard = ({ image, name, title } : ICertificateCard) : JSX.Elemen
             <Text
                 fontSize={16}
                 fontWeight={600}
-                color='primary'
+                variant='primary'
                 align='center'
             >
                 {name}
             </Text>
-            <Text fontSize={16} fontWeight={600} color='primary'>
+            <Text fontSize={16} fontWeight={600} variant='primary'>
                 {title}
             </Text>
         </ContentContainer>

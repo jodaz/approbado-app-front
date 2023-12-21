@@ -58,7 +58,7 @@ const ForgetPassword = ({ navigation }) => {
                         </Text>
                     </Row>
                     <Row size={1} align='center'>
-                        <Text align='center' fontSize={16} fontWeight={400} color='secondary'>
+                        <Text align='center' fontSize={16} fontWeight={400} variant='secondary'>
                             Valida tu correo electrónico para recibir un código de recuperación.
                         </Text>
                     </Row>

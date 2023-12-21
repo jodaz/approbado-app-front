@@ -50,7 +50,7 @@ const Slide = ({ title, image, buttons, skip, next } : SlideProps) => {
                 {buttons.discard && (
                     <Button
                         onPress={skip}
-                        bgColor='secondary'
+                        bgvariant='secondary'
                         variant='text'
                         fontWeight={400}
                     >

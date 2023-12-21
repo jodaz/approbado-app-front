@@ -18,7 +18,7 @@ const PostDescription = ({ post } : Post ) : JSX.Element => (
             size={20}
             style={{ marginRight: 5 }}
         />
-        <Text fontSize={15} color='secondary'>
+        <Text fontSize={15} variant='secondary'>
             {formattedDate(post.created_at)}
         </Text>
         <View style={{ marginRight: 10 }} />
@@ -27,7 +27,7 @@ const PostDescription = ({ post } : Post ) : JSX.Element => (
             size={20}
             style={{ marginRight: 5 }}
         />
-        <Text fontSize={15} color='secondary'>
+        <Text fontSize={15} variant='secondary'>
             {post.commentsCount}
         </Text>
     </Row>

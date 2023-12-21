@@ -27,7 +27,7 @@ const Certificates = () => {
 
     return (
         <View>
-            <Text color='secondary'>
+            <Text variant='secondary'>
                 Certificaciones
             </Text>
             <FlatList

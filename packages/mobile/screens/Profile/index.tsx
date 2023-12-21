@@ -82,14 +82,14 @@ const Profile = ({ navigation }) => {
                 <Text fontSize={16}>{user?.names}</Text>
             </Row>
             <Row size={1} align='center'>
-                <Text fontSize={16} color='secondary'>@{user?.user_name}</Text>
+                <Text fontSize={16} variant='secondary'>@{user?.user_name}</Text>
             </Row>
             <Row size={1} align='center'>
                 <BioText
                     fontWeight={400}
                     fontSize={16}
                     align='center'
-                    color='primary'
+                    variant='primary'
                 >
                     {user?.bio}
                 </BioText>

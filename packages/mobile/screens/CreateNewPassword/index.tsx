@@ -94,7 +94,7 @@ const CreateNewPassword = ({ navigation }) => {
                         </Text>
                     </Row>
                     <Row size={1} align='center'>
-                        <Text align='center' fontSize={16} fontWeight={400} color='secondary'>
+                        <Text align='center' fontSize={16} fontWeight={400} variant='secondary'>
                             Es el momento de crear una nueva contraseña para tu cuenta.
                         </Text>
                     </Row>

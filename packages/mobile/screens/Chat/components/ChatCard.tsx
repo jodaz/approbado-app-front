@@ -102,7 +102,7 @@ const ChatCard = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
                     </Text>
                     <Text
                         fontSize={18}
-                        color="secondary"
+                        color="text"
                         fontWeight={400}
                     >
                         {lastMessage

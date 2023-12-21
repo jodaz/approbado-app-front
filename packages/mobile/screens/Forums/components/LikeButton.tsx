@@ -38,7 +38,7 @@ const LikeButton = ({ comment } : ILikeButtonProps ) : JSX.Element => {
     return (
         <IconButton onPress={handleLike}>
             <Heart color={likeStatus ? '#E02340' : '#6D6D6D'} size={scaleFontSize(24)} />
-            <Text fontSize={18} color='secondary' align='center'>
+            <Text fontSize={18} variant='secondary' align='center'>
                 {'  '}{likesCount} likes
             </Text>
         </IconButton>

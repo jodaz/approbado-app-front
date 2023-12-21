@@ -65,7 +65,7 @@ const ShowPost = ({ route }) => {
                                 {post.message}
                             </Text>
                             <Row size={1} direction='row'>
-                                <Text fontSize={16} color='secondary'>
+                                <Text fontSize={16} variant='secondary'>
                                     Por{' '}
                                 </Text>
                                 <Text fontSize={16}>

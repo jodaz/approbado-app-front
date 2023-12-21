@@ -24,7 +24,7 @@ const RecentTrivias = () => {
     return (
         <Row>
             <Row justify='space-between' direction='row'>
-                <Text color='primary' fontSize={22}>
+                <Text variant='primary' fontSize={22}>
                     Trivias recientes
                 </Text>
                 <ArrowRight color='#000' size={24} />

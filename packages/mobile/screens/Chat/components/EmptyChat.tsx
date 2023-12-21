@@ -13,12 +13,12 @@ const EmptyChat = ({ title, subtitle } : IEmptyChatProps) => (
             <Messages />
         </Row>
         <Row size={1} justify='center' align='center'>
-            <Text color="secondary" fontSize={20} fontWeight={600}>
+            <Text variant="primary" fontSize={20} fontWeight={600}>
                 {title}
             </Text>
         </Row>
         <Row size={1} justify='center' align='center'>
-            <Text align='center' color="secondary" fontSize={16} fontWeight={400}>
+            <Text align='center' variant="secondary" fontSize={16} fontWeight={400}>
                 {subtitle}
             </Text>
         </Row>
