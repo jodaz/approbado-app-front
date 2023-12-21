@@ -22,7 +22,7 @@ const IconButton = styled.Pressable`
 const LikeButton = ({ comment } : ILikeButtonProps ) : JSX.Element => {
     const [likeStatus, setLikeStatus] = React.useState(parseInt(comment?.likeUser));
     const [likesCount, setLikesCount] = React.useState(parseInt(comment?.likesCount))
-    console.log(JSON.stringify(comment, null, ' '))
+
     const handleLike = async () => {
         setLikeStatus(!likeStatus)
 

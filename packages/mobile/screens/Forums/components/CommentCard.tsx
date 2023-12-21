@@ -4,17 +4,16 @@ import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 import { View } from 'react-native';
-import { Text, Image, Button } from '../../../components';
+import { Text, Image } from '../../../components';
+import { InfoIcon } from 'lucide-react-native';
 import styled from 'styled-components/native';
-import { Heart, InfoIcon } from 'lucide-react-native';
 import LikeButton from './LikeButton';
 
 const Pressable = styled.Pressable`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
-    margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[1])}px;
     width: 100%;
 `
 
@@ -24,7 +23,6 @@ interface ICommentCardProps {
 }
 
 const IconButton = styled.Pressable`
-    padding-vertical: ${props => verticalScale(props.theme.space[1])}px;
     padding-horizontal: ${props => horizontalScale(props.theme.space[1])}px;
     display: flex;
     align-items: center;

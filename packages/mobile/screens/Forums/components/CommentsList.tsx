@@ -1,9 +1,10 @@
 import * as React from 'react'
-import { Text, Row } from "../../../components"
+import { Text } from "../../../components"
 import { Post } from '@approbado/lib/types/models'
 import { getComments } from '@approbado/lib/services/comments.services.ts';
 import { useIsFocused } from "@react-navigation/native";
 import { ScrollView } from 'react-native';
+import { socket } from '@approbado/lib/utils/socket'
 import CommentCard from './CommentCard';
 
 interface ICommentListProps {
@@ -13,6 +14,7 @@ interface ICommentListProps {
 const CommentList = ({ post } : ICommentListProps) => {
     const isFocused = useIsFocused()
     const [comments, setComments] = React.useState<any>([])
+    const [totalComments, setTotalComments] = React.useState(parseInt(post?.commentsCount));
 
     const fetchData = async () => {
         const { success, data } = await getComments({
@@ -27,11 +29,24 @@ const CommentList = ({ post } : ICommentListProps) => {
         }
     }
 
+    React.useEffect(() => {
+        socket.on("new_comment", (comment: Post) => {
+            if (comment.parent_id == post.id) {
+                setComments((state: Post[]) => [comment, ...state])
+                setTotalComments(prev => prev + 1);
+            }
+        });
+
+        return () => {
+            socket.off('new_comment')
+        }
+    }, [])
+
     React.useEffect(() => { fetchData() }, [isFocused, post.id])
 
     return (
         <>
-            <Text>{post.commentsCount} Respuestas</Text>
+            <Text>{totalComments} Respuestas</Text>
             <ScrollView showsVerticalScrollIndicator={false}>
                 {comments.map((post: Post, index: number) => (
                     <CommentCard

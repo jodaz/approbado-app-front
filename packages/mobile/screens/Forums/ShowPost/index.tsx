@@ -25,7 +25,7 @@ const StyledContainer = styled.View`
 `
 
 const ShowPost = ({ route }) => {
-    const { control, handleSubmit } = useForm()
+    const { control, handleSubmit, reset } = useForm()
     const { dispatch } = useToast();
     const post = route.params.post;
 
@@ -36,14 +36,18 @@ const ShowPost = ({ route }) => {
         })
 
         if (response.success) {
-            openToast(dispatch, {
-                message: '¡Respuesta enviada!'
-            })
+            reset();
+            await openToast(
+                dispatch,
+                'success',
+                'Comentario publicado.'
+            )
         } else {
-            openToast(dispatch, {
-                message: 'Ha ocurrido un error.',
-                color: 'error'
-            })
+            await openToast(
+                dispatch,
+                'error',
+                'Ha ocurrido un error.'
+            )
         }
     }
 

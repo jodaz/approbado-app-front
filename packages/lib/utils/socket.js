@@ -1,6 +1,7 @@
 import socketIOClient from "socket.io-client";
-import CONFIG_NAMES from '../configs'
-const socket = socketIOClient(CONFIG_NAMES.SOURCE)
+import CONFIG_NAMES from '../env'
+
+export const socket = socketIOClient(CONFIG_NAMES.SOURCE)
 
 function newMessage(cb) {
     socket.on('new_message', data => console.log(data));
