@@ -41,7 +41,7 @@ const Button = styled.TouchableOpacity`
 
 interface ICommentInputProps extends ITextInputProps {
     onHandleSubmit?: () => void;
-    post_id?: any;
+    disabled?: boolean;
 }
 
 const CommentInput = ({
@@ -52,8 +52,8 @@ const CommentInput = ({
     icon,
     label,
     defaultValue,
+    disabled,
     onHandleSubmit,
-    post_id,
     ...restInputProps
 } : ICommentInputProps) : JSX.Element => (
     <Controller
@@ -64,14 +64,15 @@ const CommentInput = ({
             <RootContainer>
                 <InputContainer>
                     <Input
+                        editable={!disabled}
                         placeholder='Escribe una respuesta'
                         onChangeText={onChange}
                         {...restField}
                         {...restInputProps}
                         multiline
                     />
-                    <Button onPress={onHandleSubmit}>
-                        <SendHorizontal color='#2280ED' size={24} />
+                    <Button disabled={disabled} onPress={onHandleSubmit}>
+                        <SendHorizontal color={disabled ? 'gray' : '#2280ED'} size={24} />
                     </Button>
                 </InputContainer>
             </RootContainer>

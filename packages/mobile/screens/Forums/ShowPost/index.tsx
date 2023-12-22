@@ -25,7 +25,7 @@ const StyledContainer = styled.View`
 `
 
 const ShowPost = ({ route }) => {
-    const { control, handleSubmit, reset } = useForm()
+    const { control, handleSubmit, reset, formState: { isSubmitting } } = useForm()
     const { dispatch } = useToast();
     const post = route.params.post;
 
@@ -92,6 +92,7 @@ const ShowPost = ({ route }) => {
                     control={control}
                     name='message'
                     onHandleSubmit={handleSubmit(onSubmit)}
+                    disabled={isSubmitting}
                 />
                 <CommentList post={post} />
             </ScrollView>
