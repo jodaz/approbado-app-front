@@ -1,5 +1,6 @@
 import React from 'react';
 import { Post } from '@approbado/lib/types/models'
+import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
 import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
@@ -31,6 +32,7 @@ const IconButton = styled.Pressable`
 `
 
 const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
+    const { state: { user } } = useAuth()
     const navigation = useNavigation();
 
     const handleNavigate = () => navigation.navigate(Routes.ShowComment, {
@@ -68,13 +70,15 @@ const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
                             {comment?.commentsCount}
                         </Text>
                         <LikeButton comment={comment} />
-                        <IconButton variant='text' onPress={handleReport}>
-                            <InfoIcon
-                                color='#6D6D6D'
-                                size={scaleFontSize(24)}
-                                style={{ marginRight: 5 }}
-                            />
-                        </IconButton>
+                        {(comment?.owner?.id != user?.id) ? (
+                            <IconButton onPress={handleReport}>
+                                <InfoIcon
+                                    color='#6D6D6D'
+                                    size={scaleFontSize(24)}
+                                    style={{ marginRight: 5 }}
+                                />
+                            </IconButton>
+                        ) : null}
                     </View>
                 </View>
             </View>
