@@ -10,6 +10,7 @@ const StyledText = styled.Text`
     color: ${props => props.theme.palette[props.color][props.variant]};
     lineHeight: ${({ fontSize }) => scaleFontSize(fontSize * 1.25)}px;
     text-align: ${props => props.align};
+    letter-spacing: ${scaleFontSize(0.5)}px;
 `;
 
 const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (

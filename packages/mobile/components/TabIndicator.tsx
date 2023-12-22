@@ -30,12 +30,12 @@ const TabIndicator = ({ children, active, ...restProps } : ITabIndicatorProps) =
         style={[
             active && {
                 borderBottomColor: '#2280ED',
-                borderBottomWidth: 4
+                borderBottomWidth: verticalScale(4)
             }
         ]}
         {...restProps}
     >
-        <TabName isActive={active}>
+        <TabName fontSize={22} isActive={active}>
             {children}
         </TabName>
     </Indicator>

@@ -5,7 +5,7 @@ import { Routes } from '../../routes';
 import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 import { View } from 'react-native';
 import { Text, Image } from '../../../components';
-import { InfoIcon } from 'lucide-react-native';
+import { InfoIcon, MessageSquare } from 'lucide-react-native';
 import styled from 'styled-components/native';
 import LikeButton from './LikeButton';
 
@@ -52,10 +52,28 @@ const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
                     <Text fontSize={18} fontWeight={400}>
                         {comment?.summary}
                     </Text>
-                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                    <View style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        justifyContent: 'start',
+                        flexWrap: 'wrap'
+                    }}>
+                        <MessageSquare
+                            color='#6D6D6D'
+                            size={24}
+                            style={{ marginRight: 5 }}
+                        />
+                        <Text fontSize={18} variant='secondary'>
+                            {comment?.commentsCount}
+                        </Text>
                         <LikeButton comment={comment} />
                         <IconButton variant='text' onPress={handleReport}>
-                            <InfoIcon color='#6D6D6D' size={scaleFontSize(24)} />
+                            <InfoIcon
+                                color='#6D6D6D'
+                                size={scaleFontSize(24)}
+                                style={{ marginRight: 5 }}
+                            />
                         </IconButton>
                     </View>
                 </View>

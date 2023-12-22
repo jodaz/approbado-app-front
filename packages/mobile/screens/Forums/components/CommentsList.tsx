@@ -46,7 +46,7 @@ const CommentList = ({ post } : ICommentListProps) => {
 
     return (
         <>
-            <Text>{totalComments} Respuestas</Text>
+            {totalComments ? <Text>{totalComments} Respuestas</Text> : null}
             <ScrollView showsVerticalScrollIndicator={false}>
                 {comments.map((post: Post, index: number) => (
                     <CommentCard

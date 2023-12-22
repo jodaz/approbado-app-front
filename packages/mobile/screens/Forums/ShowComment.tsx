@@ -6,17 +6,17 @@ import {
     Image,
     CategoryPill,
     TitleBar
-} from '../../../components';
-import { horizontalScale } from '../../../styles/scaling';
+} from './../../components';
+import { horizontalScale } from './../../styles/scaling';
 import { useForm } from 'react-hook-form';
 import { Category } from '@approbado/lib/types/models'
 import { createComment } from '@approbado/lib/services/comments.services'
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import styled from 'styled-components/native';
-import PostDescription from '../../../components/PostDescription';
-import CommentList from '../components/CommentsList';
-import CommentInput from '../components/CommentInput';
 import { ScrollView } from 'react-native';
+import styled from 'styled-components/native';
+import PostDescription from './../../components/PostDescription';
+import CommentList from './components/CommentsList';
+import CommentInput from './components/CommentInput';
 
 const StyledContainer = styled.View`
     width: 100%;
@@ -24,15 +24,15 @@ const StyledContainer = styled.View`
     padding-horizontal: ${props => horizontalScale(props.theme.space[1])}px;
 `
 
-const ShowPost = ({ route }) => {
+const ShowComment = ({ route }) => {
     const { control, handleSubmit, reset, formState: { isSubmitting } } = useForm()
     const { dispatch } = useToast();
-    const post = route.params.post;
+    const comment = route.params.comment;
 
     const onSubmit = async (values) => {
         const response = await createComment({
             summary: values.message,
-            parent_id: post.id
+            parent_id: comment.id
         })
 
         if (response.success) {
@@ -51,6 +51,8 @@ const ShowPost = ({ route }) => {
         }
     }
 
+    console.log(JSON.stringify(comment, null, ' '))
+
     return (
         <Container>
             <ScrollView showsVerticalScrollIndicator={false}>
@@ -63,30 +65,21 @@ const ShowPost = ({ route }) => {
                         </TitleBar>
                     </Row>
                     <Row size={1} direction='row'>
-                        <Image source={post.owner.picture} />
+                        <Image source={comment?.owner.picture} />
                         <Row size={1} direction='column'>
-                            <Text fontSize={18}>
-                                {post.message}
+                            <Text>
+                                {comment?.owner?.names}
                             </Text>
                             <Row size={1} direction='row'>
-                                <Text fontSize={16} variant='secondary'>
-                                    Por{' '}
-                                </Text>
-                                <Text fontSize={16}>
-                                    {post.owner.user_name}
+                                <Text fontSize={18} variant="secondary">
+                                    @{comment?.owner?.user_name}
                                 </Text>
                             </Row>
                         </Row>
                     </Row>
                     <Text fontSize={18} fontWeight={400}>
-                        {post.summary}
+                        {comment?.summary}
                     </Text>
-                    <Row size={1} direction='row'>
-                        {post.categories.map((item: Category, i: number) => (
-                            <CategoryPill item={item} />
-                        ))}
-                    </Row>
-                    <PostDescription post={post} />
                 </StyledContainer>
                 <CommentInput
                     control={control}
@@ -94,10 +87,10 @@ const ShowPost = ({ route }) => {
                     onHandleSubmit={handleSubmit(onSubmit)}
                     disabled={isSubmitting}
                 />
-                <CommentList post={post} />
+                <CommentList post={comment} />
             </ScrollView>
         </Container>
     );
 }
 
-export default ShowPost
+export default ShowComment
