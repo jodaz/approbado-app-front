@@ -9,6 +9,7 @@ import { Text, Image } from '../../../components';
 import { InfoIcon, MessageSquare } from 'lucide-react-native';
 import styled from 'styled-components/native';
 import LikeButton from './LikeButton';
+import DeleteComment from './DeleteButton';
 
 const Pressable = styled.Pressable`
     display: flex;
@@ -70,6 +71,7 @@ const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
                             {comment?.commentsCount}
                         </Text>
                         <LikeButton comment={comment} />
+                        {(comment?.owner?.id == user?.id) ? <DeleteComment comment={comment} /> : null}
                         {(comment?.owner?.id != user?.id) ? (
                             <IconButton onPress={handleReport}>
                                 <InfoIcon

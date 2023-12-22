@@ -42,6 +42,20 @@ const CommentList = ({ post } : ICommentListProps) => {
         }
     }, [])
 
+    React.useEffect(() => {
+        socket.on("delete_comment", (comment: Post) => {
+            if (comment.parent_id == post.id) {
+                const newComments = comments.filter((item: Post) => item.id != comment.id)
+                setComments(newComments)
+                setTotalComments(prev => prev - 1);
+            }
+        });
+
+        return () => {
+            socket.off('delete_comment')
+        }
+    }, [])
+
     React.useEffect(() => { fetchData() }, [isFocused, post.id])
 
     return (

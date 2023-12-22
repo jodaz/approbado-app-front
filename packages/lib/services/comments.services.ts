@@ -82,6 +82,7 @@ export async function editComment(id, values) {
 }
 
 export async function deleteComment(id) {
+    console.log(id)
     try {
         const response = await apiProvider.delete(`/comments/${id}`)
 
