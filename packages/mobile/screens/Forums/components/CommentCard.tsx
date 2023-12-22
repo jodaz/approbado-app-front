@@ -36,8 +36,8 @@ const CommentCard = ({ comment } : ICommentCardProps ) : JSX.Element => {
     const { state: { user } } = useAuth()
     const navigation = useNavigation();
 
-    const handleNavigate = () => navigation.navigate(Routes.ShowComment, {
-        comment: comment
+    const handleNavigate = () => navigation.navigate(Routes.ShowPost, {
+        post: comment
     })
 
     const handleReport = () => navigation.navigate(Routes.ReportPost, {

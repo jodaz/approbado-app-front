@@ -68,7 +68,6 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.ReportPost} component={ReportPost} />
             <Stack.Screen name={Routes.InviteChat} component={InviteChat} />
             <Stack.Screen name={Routes.CreateForum} component={CreatePost} />
-            <Stack.Screen name={Routes.ShowComment} component={ShowComment} />
         </Stack.Navigator>
     )
 }
