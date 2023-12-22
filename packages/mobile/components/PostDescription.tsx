@@ -6,6 +6,7 @@ import { Calendar, MessageSquare } from 'lucide-react-native';
 import Text from './Text';
 import Row from './Row';
 import { View } from 'react-native';
+import LikeButton from '../screens/Forums/components/LikeButton';
 
 const formattedDate = (date: string) => format(parseISO(date), "dd 'de' MMMM, yyyy", {
     locale: es
@@ -30,6 +31,7 @@ const PostDescription = ({ post } : Post ) : JSX.Element => (
         <Text fontSize={15} variant='secondary'>
             {post.commentsCount}
         </Text>
+        {post?.type == 'Comentario' ? <LikeButton comment={post} /> : null}
     </Row>
 )
 
