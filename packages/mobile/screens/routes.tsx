@@ -30,6 +30,6 @@ export const Routes = {
     ReportPost: 'ReportPost',
     QuickTrivia: 'QuickTrivia',
     ScheduleGame: 'ScheduleGame',
-    SelectTrivia: 'SelectTrivia',
+    ShowTrivia: 'ShowTrivia',
     ShowCategory: 'ShowCategory'
 }

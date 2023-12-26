@@ -23,7 +23,7 @@ const Pressable = styled.Pressable`
 const TriviaCard = ({ trivia }: { trivia: Trivia }) : JSX.Element => {
     const navigation = useNavigation();
 
-    const handleNavigate = () => navigation.navigate(Routes.SelectTrivia, {
+    const handleNavigate = () => navigation.navigate(Routes.ShowTrivia, {
         trivia: trivia
     })
 

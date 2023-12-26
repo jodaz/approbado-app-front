@@ -120,7 +120,7 @@ export interface Chat {
 export interface Message {
     id:         number;
     message:    string;
-    file:       null;
+    file?:       string;
     user_id:    number;
     chat_id:    number;
     read_at:    null;
@@ -164,4 +164,14 @@ export interface ReportReason {
     item:       string;
     created_at: string;
     updated_at: null;
+}
+
+export interface File {
+    id:          number;
+    title:       string;
+    file:        string;
+    size:        string;
+    subtheme_id: number;
+    created_at:  string;
+    updated_at:  null;
 }
