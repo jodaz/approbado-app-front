@@ -1,19 +1,19 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Container, Row } from '../../components';
+import { Container, Row, TriviaCard } from '../../components';
 import { Routes } from '../routes';
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Tabs from '../../components/Tabs';
-import RecentTrivias from './components/RecentTrivias';
 import Resources from './components/Files';
+import Syllabus from './components/Syllabus';
 
 const Stack = createNativeStackNavigator()
 
 const screens = [
     {
         name: 'themes',
-        component: RecentTrivias,
+        component: Syllabus,
         options: {
             tabBarLabel: 'Temario'
         }
@@ -35,6 +35,9 @@ const TriviasContainer = ({ route }) => {
         <Container>
             <Row size={2} align='center' direction='row' justify='space-between'>
                 <Logotipo />
+            </Row>
+            <Row size={2} align='center' direction='row' justify='space-between'>
+                <TriviaCard trivia={trivia} />
             </Row>
             <Tab.Navigator initialRouteName="Trivias" tabBar={Tabs}>
                 {screens.map(screen => (

@@ -16,7 +16,7 @@ export interface User {
     posts:         any[];
     discussion:    any[];
     comments:      any[];
-    awards:        any[];
+    awards:        Award[];
     memberships:   Membership[];
 }
 
@@ -174,4 +174,28 @@ export interface File {
     subtheme_id: number;
     created_at:  string;
     updated_at:  null;
+}
+
+export interface Award {
+    id:             number;
+    file:           string;
+    icon_winner:    string;
+    title:          string;
+    min_points:     number;
+    type:           string;
+    trivia_id:      number;
+    created_at:     string;
+    updated_at:     null;
+    subthemesCount: string;
+    subthemes?:      Subtheme[];
+}
+
+export interface Subtheme {
+    id:         number;
+    name:       string;
+    duration:   number;
+    trivia_id:  number;
+    award_id:   number;
+    created_at: string;
+    updated_at: string;
 }

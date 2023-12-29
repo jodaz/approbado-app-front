@@ -35,7 +35,9 @@ const TriviasContainer = () => {
             <Row size={2} align='center' direction='row' justify='space-between'>
                 <Logotipo />
             </Row>
-            <Tab.Navigator initialRouteName="Trivias" tabBar={Tabs}>
+            <Tab.Navigator initialRouteName="Trivias" tabBar={Tabs} screenOptions={{
+                tabBarScrollEnabled: true
+            }}>
                 {screens.map(screen => <Tab.Screen {...screen} />)}
             </Tab.Navigator>
         </Container>

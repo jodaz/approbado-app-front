@@ -16,7 +16,9 @@ const Resources = ({ route }) => {
 
     const fetchResources = async () => {
         const { success, data } = await listFiles({
-            trivia_id: trivia.id
+            filter: {
+                trivia_id: trivia.id
+            }
         });
 
         if (success) {
