@@ -9,8 +9,9 @@ const { width, height } = Dimensions.get('window');
 
 const StyledView = styled.ScrollView`
     padding-vertical: ${(props) => verticalScale(props.theme.space[4])}px;
-    padding-horizontal: ${(props) => horizontalScale(props.theme.space[2])}px;
+    padding-horizontal: ${(props) => horizontalScale(props.theme.space[4])}px;
     width: ${width}px;
+    height: ${height}px;
     position: relative;
 `
 

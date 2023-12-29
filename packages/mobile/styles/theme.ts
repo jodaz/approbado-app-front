@@ -29,7 +29,8 @@ export const theme = {
         },
         text: {
             primary: '#000',
-            secondary: '#6D6D6D'
+            secondary: '#6D6D6D',
+            white: '#fff'
         }
     },
     space: [
