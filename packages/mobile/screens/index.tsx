@@ -26,6 +26,7 @@ import ReportPost from './Forums/ReportPost';
 import CreatePost from './Forums/CreatePost';
 import ShowTrivia from './Game/ShowTrivia';
 import SelectTrivia from './Game/SelectTrivia';
+import TriviaRules from './Game/TriviaRules';
 
 const Stack = createNativeStackNavigator();
 
@@ -71,6 +72,7 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.CreateForum} component={CreatePost} />
             <Stack.Screen name={Routes.ShowTrivia} component={ShowTrivia} />
             <Stack.Screen name={Routes.SelectTrivia} component={SelectTrivia} />
+            <Stack.Screen name={Routes.TriviaRules} component={TriviaRules} />
         </Stack.Navigator>
     )
 }
