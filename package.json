@@ -3,11 +3,12 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build:app": "pnpm -F @approbado/web @approbado/app run build",
-    "build:admin": "pnpm -F @approbado/admin run build",
     "start:web": "pnpm -F @approbado/web run start",
     "start:admin": "pnpm -F @approbado/admin run start",
-    "start:mobile": "pnpm -F @approbado/mobile run start"
+    "start:mobile": "pnpm -F @approbado/mobile run start",
+    "build:web": "pnpm -F @approbado/web @approbado/app run build",
+    "build:admin": "pnpm -F @approbado/admin run build",
+    "build:mobile": "pnpm -F @approbado/mobile run build:apk"
   },
   "nohoist": [
     "expo"
