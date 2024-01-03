@@ -12,5 +12,14 @@
   },
   "nohoist": [
     "expo"
-  ]
+  ],
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@babel/*",
+        "expo-modules-*",
+        "typescript"
+      ]
+    }
+  }
 }
