@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import DefaultLinkBehavior from '@approbado/lib/components/LinkBehavior'
 import { styled } from '@material-ui/core/styles'
 import { useTriviaDispatch } from "@approbado/lib/hooks/useTriviaSelect"
-import CONFIG_NAMES from '@approbado/lib/configs';
+import CONFIG_NAMES from '@approbado/lib/env';
 
 const LinkBehavior = styled(DefaultLinkBehavior)(() => ({
     'textDecoration': 'none',

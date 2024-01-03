@@ -1,5 +1,5 @@
 import jwtDecode from 'jwt-decode';
-import CONFIG_NAMES from '../configs';
+import CONFIG_NAMES from '@approbado/lib/env';
 
 export const loadState = () => {
     try {

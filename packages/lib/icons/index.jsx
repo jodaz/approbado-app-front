@@ -47,7 +47,7 @@ export {
     LuTrash2 as Trash2,
     LuStar as Star,
     LuDownload as Download,
-    LuEdit as Edit,
+    LuFileEdit as Edit,
     LuPlus as Plus,
     LuCamera as Camera,
     LuTag as Tag

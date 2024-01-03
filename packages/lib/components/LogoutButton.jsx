@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { Logout } from '@approbado/lib/icons'
 import { useUserDispatch } from '@approbado/lib/hooks/useUserState'
 import { useHistory } from 'react-router-dom'
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 
 const useStyles = makeStyles(theme => ({
     button: {

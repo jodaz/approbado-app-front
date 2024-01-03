@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useInput } from 'react-admin';
 import { useDropzone } from 'react-dropzone';
 import { Camera } from '@approbado/lib/icons'
-import CONFIG_NAMES from '../configs';
+import CONFIG_NAMES from '@approbado/lib/env';
 
 const useStyles = makeStyles(
     theme => ({

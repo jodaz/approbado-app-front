@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import { makeStyles } from '@material-ui/core'
 import { ReactComponent as PDFIcon } from '@approbado/lib/icons/PDF.svg'
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 import Link from '@material-ui/core/Link'
 import IconButton from '@material-ui/core/IconButton'
 import { downloadFile } from '@approbado/lib/services/files.services';

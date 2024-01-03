@@ -1,5 +1,5 @@
 import apiClient from '@jodaz_/data-provider';
-import CONFIG_NAMES from '../configs'
+import CONFIG_NAMES from '@approbado/lib/env'
 
 const providers = apiClient(`${CONFIG_NAMES.SOURCE}`, {
   offsetPageNum: -1,

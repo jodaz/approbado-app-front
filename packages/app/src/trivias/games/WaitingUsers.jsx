@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box'
 import makeStyles from '@material-ui/styles/makeStyles'
 import socketIOClient from "socket.io-client";
 import UserCardCheck from '../components/UserCardCheck'
-import CONFIG_NAMES from '@approbado/lib/configs'
+import CONFIG_NAMES from '@approbado/lib/env'
 import {
     Balance
 } from '@approbado/lib/icons'

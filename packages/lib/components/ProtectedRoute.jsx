@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
-import CONFIG_NAMES from '../configs'
+import CONFIG_NAMES from '@approbado/lib/env'
 
 function ProtectedRoute({ component: Component, layout: Layout, ...restOfProps }) {
     const isAuthenticated = localStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);

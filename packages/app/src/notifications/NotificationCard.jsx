@@ -8,7 +8,7 @@ import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import makeStyles from '@material-ui/styles/makeStyles';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import Skeleton from "@material-ui/lab/Skeleton";

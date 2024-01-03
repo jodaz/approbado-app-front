@@ -1,41 +1,14 @@
 {
-  "name": "Approbado",
+  "name": "@approbado/monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "version": "1.0.0",
   "scripts": {
-    "build:app": "yarn workspace @approbado/app run build",
-    "build:admin": "yarn workspace @approbado/admin run build",
-    "start:app": "yarn workspace @approbado/app run start",
-    "start:admin": "yarn workspace @approbado/admin run start",
-    "start:mobile": "yarn workspace @approbado/mobile run start"
-  },
-  "dependencies": {
-    "@date-io/date-fns": "1.x",
-    "@jodaz_/data-provider": "^1.1.5",
-    "@material-ui/lab": "^4.0.0-alpha.61",
-    "@material-ui/pickers": "^3.3.10",
-    "@vitejs/plugin-react": "^4.0.4",
-    "clsx": "^1.1.1",
-    "date-fns": "^2.30.0",
-    "format-string-by-pattern": "^1.2.2",
-    "history": "^4.10.1",
-    "js-file-download": "^0.4.12",
-    "jwt-decode": "^3.1.2",
-    "query-string": "^7.0.1",
-    "react": "^17.0.2",
-    "react-admin": "^3.17.2",
-    "react-admin-color-input": "^3.0.0-beta.0",
-    "react-dom": "^17.0.2",
-    "react-facebook-login": "^4.1.1",
-    "react-final-form-listeners": "^1.0.3",
-    "react-google-login": "^5.2.2",
-    "react-icons": "^4.10.1",
-    "socket.io-client": "^4.2.0",
-    "vite": "^4.4.7",
-    "vite-plugin-svgr": "^3.2.0"
+    "build:app": "pnpm -F @approbado/admin @approbado/app run build",
+    "build:admin": "pnpm -F @approbado/admin @approbado/admin run build",
+    "start:app": "pnpm -F @approbado/admin @approbado/app run start",
+    "start:admin": "pnpm -F @approbado/admin run start",
+    "dev:test": "pnpm -F @approbado/test run dev",
+    "start:mobile": "pnpm -F @approbado/admin @approbado/mobile run start"
   },
   "nohoist": [
     "expo"

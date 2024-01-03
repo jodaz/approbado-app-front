@@ -13,7 +13,7 @@ import { ThemeProvider, createMuiTheme } from '@material-ui/core';
 import { Link } from 'react-router-dom'
 import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
-import CONFIG_NAMES from '@approbado/lib/configs';
+import CONFIG_NAMES from '@approbado/lib/env';
 import { Lock, User } from '@approbado/lib/icons';
 
 const validate = (values) => {
