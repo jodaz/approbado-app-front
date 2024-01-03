@@ -6,7 +6,7 @@ import { theme } from '@approbado/lib/styles';
 import queryString from 'query-string'
 import Spinner from '../components/Spinner';
 import { useUserDispatch } from '@approbado/lib/hooks/useUserState'
-import CONFIG_NAMES from '../configs'
+import CONFIG_NAMES from '@approbado/lib/env'
 import { useHistory } from 'react-router-dom'
 
 const Authenticate = () => {

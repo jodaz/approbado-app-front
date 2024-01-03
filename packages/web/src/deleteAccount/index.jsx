@@ -8,7 +8,7 @@ import { ReactComponent as DeleteIllustration } from '@approbado/lib/illustratio
 import Confirm from '@approbado/lib/layouts/Confirm';
 import Button from '@material-ui/core/Button';
 import { apiProvider as axios } from '@approbado/lib/api'
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 
 const DeleteAccount = () => {
     const [loading, setLoading] = React.useState(false)

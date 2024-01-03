@@ -8,7 +8,7 @@ import Spinner from '@approbado/lib/components/Spinner'
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import RecentReports from '../components/RecentReports'
 import { useParams } from 'react-router-dom'
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 import RestrictButton from '../components/RestrictButton'
 import { axios } from '@approbado/lib/providers';
 

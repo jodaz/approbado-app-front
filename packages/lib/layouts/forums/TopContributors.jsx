@@ -6,7 +6,7 @@ import Emoji from '@approbado/lib/components/Emoji'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 import ReplyIcon from '@approbado/lib/icons/ReplyIcon';
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'

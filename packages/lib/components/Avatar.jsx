@@ -1,5 +1,5 @@
 import { Avatar as MuiAvatar } from '@material-ui/core'
-import CONFIG_NAMES from "../configs"
+import CONFIG_NAMES from "@approbado/lib/env"
 
 const Avatar = ({ source, alt, ...restProps }) => (
     <MuiAvatar

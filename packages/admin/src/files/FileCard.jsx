@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MoreHorizontal, File } from '@approbado/lib/icons'
 import Card from '@material-ui/core/Card';
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 import CardHeader from '@material-ui/core/CardHeader';
 import PropTypes from 'prop-types'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';

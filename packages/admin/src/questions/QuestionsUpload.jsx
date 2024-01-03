@@ -8,7 +8,7 @@ import UploadFileButton from '@approbado/lib/components/UploadFileButton'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Link from '@material-ui/core/Link'
-import configs from '@approbado/lib/configs'
+import configs from '@approbado/lib/env'
 
 const validate = (values) => {
     const errors = {};

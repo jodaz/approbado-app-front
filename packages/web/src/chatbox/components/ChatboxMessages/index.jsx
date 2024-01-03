@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import MessageCard from './MessageCard'
 import socketIOClient from "socket.io-client";
-import CONFIG_NAMES from '@approbado/lib/configs'
+import CONFIG_NAMES from '@approbado/lib/env'
 import { useParams } from 'react-router-dom'
 import { apiProvider as axios } from '@approbado/lib/api'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
