@@ -1,20 +1,22 @@
 import defaultAxios from 'axios';
-import CONFIG_NAMES from '../configs'
+import ENV from '../env'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const jsonInstance = defaultAxios.create({
-    baseURL: CONFIG_NAMES.SOURCE,
+    baseURL: ENV.API,
     withCredentials: false
 });
 
 const blobInstance = defaultAxios.create({
-    baseURL: CONFIG_NAMES.SOURCE,
+    baseURL: ENV.API,
     withCredentials: false,
     responseType: 'blob'
 });
 
 // Request interceptor
-const interceptorsFunc = (config) => {
-    const token = localStorage.getItem(CONFIG_NAMES.AUTH_TOKEN);
+const interceptorsFunc = async (config) => {
+    // const token = localStorage.getItem();
+    const token = await AsyncStorage.getItem(ENV.AUTH_TOKEN);
 
     const newConfig = config;
 
@@ -23,7 +25,7 @@ const interceptorsFunc = (config) => {
         newConfig.headers.Authorization = `Bearer ${token}`;
     }
 
-    return newConfig;
+    return config;
 };
 
 jsonInstance.interceptors.request.use(interceptorsFunc, (err) => Promise.reject(err));

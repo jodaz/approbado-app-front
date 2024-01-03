@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Approbado",
+    "slug": "approbado",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/ApprobadoLogo1024.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.approbado.approbado"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/ApprobadoLogo1024.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.approbado.approbado"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+        [
+            "expo-image-picker",
+            {
+                "photosPermission": "Select and upload images",
+                "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+            }
+        ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "62d5a083-e875-48b2-b985-1557d5674967"
+      }
+    }
+  }
+}

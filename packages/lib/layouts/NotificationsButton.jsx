@@ -8,7 +8,7 @@ import {
 import { Bell } from '../icons';
 import { useHistory } from 'react-router-dom'
 import socketIOClient from "socket.io-client";
-import CONFIG_NAMES from '@approbado/lib/configs'
+import CONFIG_NAMES from '@approbado/lib/env'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 
 const CustomIconButton = styled(IconButton)(({ theme }) => ({
