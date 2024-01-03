@@ -8,5 +8,5 @@ if (process.env.WEB) {
 } else {
     ENV = NATIVE_ENV;
 }
-
+console.log(process.env)
 export default ENV;
