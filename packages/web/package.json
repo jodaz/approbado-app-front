@@ -1,5 +1,5 @@
 {
-  "name": "@approbado/app",
+  "name": "@approbado/web",
   "version": "0.1.0",
   "description": "Users webapp",
   "private": true,
@@ -25,5 +25,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@approbado/lib": "workspace:^"
   }
 }
