@@ -46,11 +46,11 @@ jobs:
         REACT_APP_NAME: 'admin'
 
     - name: Build Users App
-      run: pnpm run build:app
+      run: pnpm run build:web
       env:
-        REACT_APP_NAME: 'app'
+        REACT_APP_NAME: 'web'
 
-    - name: 📂 Deploy Admin App
+    - name: 📂 Deploy Admin frontend
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -avzr --delete
@@ -60,12 +60,12 @@ jobs:
         remote_user: ${{ secrets.SSH_USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
 
-    - name: 📂 Deploy Users App
+    - name: 📂 Deploy Users web
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -avzr --delete
-        path: /packages/app/build
-        remote_path: /var/www/html/app
+        path: /packages/web/build
+        remote_path: /var/www/html/web
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: ${{ secrets.SSH_USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
