@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
-import { uploadQuestionsFile } from '@approbado/lib/services/question.service'
 import { useParams, useHistory } from 'react-router-dom'
+import { upload } from '@approbado/lib/services/questions.services'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import UploadFileButton from '@approbado/lib/components/UploadFileButton'
@@ -30,7 +30,7 @@ const QuestionsUpload = () => {
         setLoading(true)
         const data = { trivia_id: trivia_id, subtheme_id: subtheme_id, file: file.rawFile };
 
-        const response = await uploadQuestionsFile(data);
+        const response = await upload(data);
 
         if (response.success) {
             setLoading(false)

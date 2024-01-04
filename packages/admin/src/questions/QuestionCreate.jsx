@@ -14,9 +14,10 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MuiButton from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core'
 import { unmarkOptions, validate } from './questionsFormUtils'
+import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { create } from '@approbado/lib/services/questions.services'
 import FormHelperText from '@material-ui/core/FormHelperText';
 import TextInput from '@approbado/lib/components/TextInput'
-import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import SelectLevelInput from './SelectQuestionLevelInput'
 import SelectFileInput from './SelectQuestionFileInput'
 import SelectAclaratoryInput from './SelectAclaratoryInput'
@@ -48,13 +49,13 @@ const QuestionCreate = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const { data } = await axios.post('/questions', {
+            const { success } = await create({
                 ...values,
                 subtheme_id: subtheme_id,
                 trivia_id: trivia_id
             })
 
-            if (data) {
+            if (success) {
                 history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions`)
                 showNotification('¡Has creado una nueva pregunta!')
             }

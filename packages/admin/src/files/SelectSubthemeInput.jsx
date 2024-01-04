@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { listSubthemes } from '@approbado/lib/services/subthemes.service'
+import { listSubthemes } from '@approbado/lib/services/subthemes.services'
 import { useParams } from 'react-router-dom'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import SelectInput from '@approbado/lib/components/SelectInput'
