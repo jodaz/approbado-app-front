@@ -35,7 +35,7 @@ jobs:
     - name: pnpm-setup
       uses: pnpm/action-setup@v2
       with:
-        version: 8
+        version: 8.7.5
 
     - name: Install dependencies
       run: pnpm i --force
