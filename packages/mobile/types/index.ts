@@ -19,6 +19,8 @@ export interface IButtonProps extends PressableProps {
     onPress?: () => void;
     bgColor: ColorThemeType;
     variant?: VariantType;
+    textVariant?: string;
+    textColor?: string;
     fontWeight?: number;
     fullWidth?: boolean;
     color: ColorThemeType;

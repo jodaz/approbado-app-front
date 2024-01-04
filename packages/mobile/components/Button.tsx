@@ -7,6 +7,7 @@ import {
     verticalScale
 } from '../styles/scaling';
 import styled from 'styled-components/native'
+import Text from './Text';
 
 const ButtonContainer = styled.TouchableOpacity`
     align-items: center;
@@ -27,9 +28,7 @@ const ButtonContainer = styled.TouchableOpacity`
     width: ${props => props.fullWidth ? '100%' : 'unset'}
 `;
 
-const ButtonText = styled.Text`
-    font-weight: ${props => props.fontWeight};
-    font-size: ${scaleFontSize(18)}px;
+const ButtonText = styled(Text)`
     align-items: center;
     flex-direction: row;
     display: flex;
@@ -39,12 +38,20 @@ const Button = ({
     children,
     fontWeight,
     isLoading,
+    textVariant,
+    textColor,
     disabled,
     ...rest
 } : IButtonProps) : JSX.Element => (
     <ButtonContainer disabled={disabled} {...rest}>
         {!isLoading ? (
-            <ButtonText fontWeight={fontWeight}>{children}</ButtonText>
+            <ButtonText
+                color={textColor}
+                variant={textVariant}
+                fontWeight={fontWeight}
+            >
+                {children}
+            </ButtonText>
         ) : <ActivityIndicator color={'#000'} size={scaleFontSize(24)} />}
     </ButtonContainer>
 )
@@ -53,7 +60,8 @@ Button.defaultProps = {
     bgColor: 'primary',
     variant: 'contained',
     fontWeight: 600,
-    color: 'secondary'
+    color: 'secondary',
+    textVariant: 'main'
 }
 
 export default Button

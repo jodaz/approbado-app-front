@@ -51,7 +51,12 @@ const Settings = ({ navigation }) => {
                     Cuenta
                 </NavButton>
                 <Row size={6} align='start'>
-                    <Button variant="text" onPress={onLogout}>
+                    <Button
+                        textColor="error"
+                        textVariant="main"
+                        variant='text'
+                        onPress={onLogout}
+                    >
                         Cerrar sesión
                     </Button>
                 </Row>
