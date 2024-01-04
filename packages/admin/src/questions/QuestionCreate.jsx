@@ -48,7 +48,11 @@ const QuestionCreate = () => {
 
     const handleSubmit = async (values) => {
         try {
-            const { data } = await axios.post('/questions', values)
+            const { data } = await axios.post('/questions', {
+                ...values,
+                subtheme_id: subtheme_id,
+                trivia_id: trivia_id
+            })
 
             if (data) {
                 history.push(`/trivias/${trivia_id}/subthemes/${subtheme_id}/questions`)
