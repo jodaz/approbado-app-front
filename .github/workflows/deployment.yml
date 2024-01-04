@@ -41,12 +41,12 @@ jobs:
       run: pnpm i --force
 
     - name: Build admin app
-      run: pnpm run build:admin --if-present
+      run: pnpm run build:admin
       env:
         REACT_APP_NAME: 'admin'
 
     - name: Build Users App
-      run: pnpm run build:app --if-present
+      run: pnpm run build:app
       env:
         REACT_APP_NAME: 'app'
 
