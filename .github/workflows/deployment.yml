@@ -31,17 +31,16 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - name: Install dependencies
-      run: npm i --force
+      run: pnpm i --force
 
     - name: Build admin app
-      run: npm run build:admin --if-present
+      run: pnpm run build:admin --if-present
       env:
         REACT_APP_NAME: 'admin'
 
     - name: Build Users App
-      run: npm run build:app --if-present
+      run: pnpm run build:app --if-present
       env:
         REACT_APP_NAME: 'app'
 
