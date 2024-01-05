@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useForm } from 'react-hook-form';
-import { Image, ActivityIndicator } from 'react-native';
+import { Image, ActivityIndicator, Linking } from 'react-native';
 import { ReportReason } from '@approbado/lib/types/models'
 import {
     Container,
@@ -108,7 +108,15 @@ const ReportPost = ({ route, navigation }) => {
                     fontSize={16}
                     fontWeight={400}
                 >
-                    Para más infomación sobre advertencia y sanciones, click aquí
+                    Para más infomación sobre advertencia y sanciones,
+                    <Text
+                        color="info"
+                        variant="main"
+                        onPress={() => Linking.openURL('https://www.lipsum.com/')}
+                        decoration='underline'
+                    >
+                        click aquí
+                    </Text>
                 </Text>
             </Row>
         </Container>

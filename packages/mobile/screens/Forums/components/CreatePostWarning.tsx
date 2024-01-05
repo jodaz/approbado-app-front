@@ -93,9 +93,7 @@ const CreatePostWarning = () => {
                                             color="info"
                                             variant="main"
                                             onPress={() => Linking.openURL('https://www.lipsum.com/')}
-                                            style={{
-                                                textDecorationLine: 'underline'
-                                            }}
+                                            decoration='underline'
                                         >
                                             click aquí
                                         </Text>

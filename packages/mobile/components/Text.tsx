@@ -11,6 +11,7 @@ const StyledText = styled.Text`
     lineHeight: ${({ fontSize }) => scaleFontSize(fontSize * 1.25)}px;
     text-align: ${props => props.align};
     letter-spacing: ${scaleFontSize(0.5)}px;
+    text-decoration: ${props => props.decoration};
 `;
 
 const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (
@@ -23,6 +24,7 @@ Text.defaultProps = {
     fontSize: 20,
     fontWeight: 600,
     color: 'text',
+    decoration: 'none',
     variant: 'primary',
     align: 'left'
 }

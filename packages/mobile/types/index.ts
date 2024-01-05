@@ -11,6 +11,8 @@ type TextAlignType = 'right' | 'left' | 'center';
 
 type FlexboxAlignType = 'center' | 'start' | 'end' | 'unset' | 'space-between';
 
+type TextDecorationType = 'none' | 'underline';
+
 export interface IComp {
     children: React.ReactNode
 }
@@ -35,6 +37,8 @@ export interface ITextProps extends IComp {
     style?: StyleProp;
     align?: TextAlignType;
     variant?: VariantColorType;
+    decoration?: TextDecorationType;
+    onPress?: () => void;
 }
 
 export interface ILinkProps extends ITextProps {
