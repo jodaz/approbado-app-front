@@ -34,5 +34,8 @@ export const Routes = {
     SelectTrivia: 'SelectTrivia',
     TriviaRules: 'TriviaRules',
     ScheduleTrivia: 'ScheduleTrivia',
-    ShowCategory: 'ShowCategory'
+    ShowCategory: 'ShowCategory',
+    Events: 'Events',
+    CreateEvent: 'CreateEvent',
+    Notifications: 'Notifications',
 }
