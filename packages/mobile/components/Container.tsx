@@ -7,7 +7,7 @@ import styled from 'styled-components/native';
 
 const { width, height } = Dimensions.get('window');
 
-const StyledView = styled.ScrollView`
+const StyledView = styled.View`
     padding-vertical: ${(props) => verticalScale(props.theme.space[4])}px;
     padding-horizontal: ${(props) => horizontalScale(props.theme.space[4])}px;
     width: ${width}px;
@@ -16,9 +16,7 @@ const StyledView = styled.ScrollView`
 `
 
 const Container = ({ children } : IComp) : JSX.Element => (
-    <StyledView contentContainerStyle={{
-        flex: 1,
-    }}>
+    <StyledView>
         {children}
     </StyledView>
 )
