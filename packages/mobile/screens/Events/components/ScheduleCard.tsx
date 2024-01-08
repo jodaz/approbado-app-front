@@ -2,7 +2,7 @@ import React from 'react';
 import { Schedule } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
-import { Text, Row } from '../../../components';
+import { Text, Row, Button } from '../../../components';
 import { MoreHorizontal } from 'lucide-react-native';
 import { TouchableOpacity, View } from 'react-native';
 import { horizontalScale, verticalScale } from '../../../styles/scaling';
@@ -37,9 +37,10 @@ const Pressable = styled.Pressable`
 interface IScheduleCardProps {
     item: Schedule;
     openDrawerMenu?: () => void;
+    accessTrivia?: boolean;
 }
 
-const ScheduleCard = ({ item, openDrawerMenu } : IScheduleCardProps ) : JSX.Element => {
+const ScheduleCard = ({ item, openDrawerMenu, accessTrivia } : IScheduleCardProps ) : JSX.Element => {
     const navigation = useNavigation();
 
     const handleNavigate = () => navigation.navigate(Routes.ShowSchedule, {
@@ -57,7 +58,7 @@ const ScheduleCard = ({ item, openDrawerMenu } : IScheduleCardProps ) : JSX.Elem
             shadowRadius: 12,
             elevation: 6,
             borderLeftColor: item.level.color,
-            borderLeftWidth: 6
+            borderLeftWidth: 6,
         }} color={item.level.color}>
             <View style={{
                 flex: 1,
@@ -83,13 +84,26 @@ const ScheduleCard = ({ item, openDrawerMenu } : IScheduleCardProps ) : JSX.Elem
                         {format(new Date(item.starts_at), 'p')}
                     </Text>
                 </Row>
+                {accessTrivia ? (
+                    <Row>
+                        <Button onPress={() => navigation.navigate(Routes.Game, {
+                            item: item
+                        })}>
+                            Ingresar
+                        </Button>
+                    </Row>
+                ) : null}
+                <TouchableOpacity style={{
+                    position: 'absolute',
+                    top: 10,
+                    right: 10
+                }}>
+                    <MoreHorizontal
+                        color='#000'
+                        size={24}
+                    />
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-                <MoreHorizontal
-                    color='#000'
-                    size={24}
-                />
-            </TouchableOpacity>
         </Pressable>
     )
 }
