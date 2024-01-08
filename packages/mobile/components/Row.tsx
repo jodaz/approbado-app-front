@@ -3,8 +3,7 @@ import { IRowProps } from '../types';
 import { verticalScale } from '../styles/scaling';
 
 const StyledRow = styled.View`
-    margin-top: ${props => verticalScale(props.theme.space[props.size])}px;
-    margin-bottom: ${props => verticalScale(props.theme.space[props.size])}px;
+    margin-vertical: ${props => verticalScale(props.theme.space[props.size])}px;
     align-items: ${props => props.align};
     justify-content: ${props => props.justify};
     width: 100%;

@@ -37,6 +37,8 @@ export const Routes = {
     ShowCategory: 'ShowCategory',
     Events: 'Events',
     CreateEvent: 'CreateEvent',
+    ShowSchedule: 'ShowSchedule',
+    EditEvent: 'EditEvent',
     Notifications: 'Notifications',
     CreateEventStepOne: 'CreateEventStepOne',
     CreateEventStepTwo: 'CreateEventStepTwo',
