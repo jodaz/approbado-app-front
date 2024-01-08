@@ -17,7 +17,6 @@ import EditProfileInformation from './EditProfile/EditProfileInformation';
 import EditOcupation from './EditProfile/EditOcupation';
 import EditSocialProfile from './EditProfile/EditSocialProfile';
 import EditProfileContact from './EditProfile/EditProfileContact';
-import Chat from './Chat';
 import ShowPost from './Forums/ShowPost';
 import InviteChat from './Chat/components/InviteChat';
 import UserChat from './Chat/components/UserChat';
@@ -27,6 +26,8 @@ import CreatePost from './Forums/CreatePost';
 import ShowTrivia from './Game/ShowTrivia';
 import SelectTrivia from './Game/SelectTrivia';
 import TriviaRules from './Game/TriviaRules';
+import CreateEvent from './Events/CreateEvent';
+import CreateEventSuccess from './Events/CreateEventSuccess';
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,8 @@ const MainScreen = () => {
             initialRouteName={Routes.Onboarding}
         >
             <Stack.Screen name={Routes.Onboarding} component={Onboarding}  />
+            <Stack.Screen name={Routes.CreateEvent} component={CreateEvent}  />
+            <Stack.Screen name={Routes.CreateEventSuccess} component={CreateEventSuccess}  />
             <Stack.Screen name={Routes.Presentation} component={Presentation}  />
             <Stack.Screen name={Routes.Login} component={Login}  />
             <Stack.Screen name={Routes.SignUp} component={CreateAccount}  />
@@ -63,7 +66,6 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.EditProfileContact} component={EditProfileContact} />
             <Stack.Screen name={Routes.EditProfileOcupation} component={EditOcupation} />
             <Stack.Screen name={Routes.EditProfileSocial} component={EditSocialProfile} />
-            <Stack.Screen name={Routes.Chat} component={Chat} />
             <Stack.Screen name={Routes.ShowPost} component={ShowPost} />
             <Stack.Screen name={Routes.UserChat} component={UserChat} />
             <Stack.Screen name={Routes.EditPost} component={EditPost} />

@@ -49,39 +49,39 @@ const PrivacySettings = ({ navigation }) => {
     };
 
     return (
-            <Container>
-                <TitleBar>
-                    <Text fontSize={18} fontWeight={600}>
-                    Ajustes de privacidad
-                    </Text>
-                </TitleBar>
-                <FormContainer>
-                    <Row size={1}>
-                        <Checkbox
-                            control={control}
-                            label="Mostrar mi nombre cuando vean mi perfil"
-                            name="show_name"
-                        />
-                    </Row>
-                    <Row size={1}>
-                        <Checkbox
-                            control={control}
-                            label="Permitir que otras personas puedan ver mi perfil como público"
-                            name="public_profile"
-                        />
-                    </Row>
-                    <Row size={6}>
-                        <Button
-                            onPress={handleSubmit(onSubmit)}
-                            fullWidth
-                            disabled={!formState.isValid || formState.isSubmitting}
-                            isLoading={formState.isSubmitting}
-                        >
-                            Guardar cambios
-                        </Button>
-                    </Row>
-                </FormContainer>
-            </Container>
+        <Container>
+            <TitleBar>
+                <Text fontSize={18} fontWeight={600}>
+                Ajustes de privacidad
+                </Text>
+            </TitleBar>
+            <FormContainer>
+                <Row size={1}>
+                    <Checkbox
+                        control={control}
+                        label="Mostrar mi nombre cuando vean mi perfil"
+                        name="show_name"
+                    />
+                </Row>
+                <Row size={1}>
+                    <Checkbox
+                        control={control}
+                        label="Permitir que otras personas puedan ver mi perfil como público"
+                        name="public_profile"
+                    />
+                </Row>
+                <Row size={6}>
+                    <Button
+                        onPress={handleSubmit(onSubmit)}
+                        fullWidth
+                        disabled={!formState.isValid || formState.isSubmitting}
+                        isLoading={formState.isSubmitting}
+                    >
+                        Guardar cambios
+                    </Button>
+                </Row>
+            </FormContainer>
+        </Container>
     );
 };
 
