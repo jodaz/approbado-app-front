@@ -13,6 +13,7 @@ const StyledView = styled.View`
     width: ${width}px;
     height: ${height}px;
     position: relative;
+    flex: 1;
 `
 
 const Container = ({ children } : IComp) : JSX.Element => (

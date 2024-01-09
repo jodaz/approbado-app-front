@@ -6,10 +6,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { theme } from './styles/theme';
 import { AuthProvider } from '@approbado/lib/contexts/AuthContext';
 import { ToastProvider } from '@approbado/lib/contexts/ToastContext';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { BottomSheetProvider } from './contexts/BottomSheetContext';
 import { useFonts } from 'expo-font';
 import MainScreen from './screens';
 import Toast from './components/Toast';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function App() {
     const [fontsLoaded, fontError] = useFonts({
@@ -37,18 +38,20 @@ export default function App() {
     }
 
     return (
-        <AuthProvider>
-            <ToastProvider>
-                <ThemeProvider theme={theme}>
-                    <SafeAreaProvider>
-                        <NavigationContainer onReady={onLayoutRootView}>
-                            <StatusBar style="auto" />
-                            <MainScreen />
-                            <Toast />
-                        </NavigationContainer>
-                    </SafeAreaProvider>
-                </ThemeProvider>
-            </ToastProvider>
-        </AuthProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <AuthProvider>
+                <ToastProvider>
+                    <ThemeProvider theme={theme}>
+                        <BottomSheetProvider>
+                            <NavigationContainer onReady={onLayoutRootView}>
+                                <StatusBar style="auto" />
+                                <MainScreen />
+                                <Toast />
+                            </NavigationContainer>
+                        </BottomSheetProvider>
+                    </ThemeProvider>
+                </ToastProvider>
+            </AuthProvider>
+        </GestureHandlerRootView>
     );
 }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Container, Row, Text, TitleBar } from '../../../components';
+import { Container, LoadingScreen, Row, Text, TitleBar } from '../../../components';
 import { getSchedule } from '@approbado/lib/services/schedules.services'
 import ScheduleCard from '../components/ScheduleCard';
 import truncateString from '@approbado/lib/utils/truncateString'
@@ -16,7 +16,7 @@ const EventInfoItem = ({ title, data }) => (
     </Row>
 )
 
-const ShowSchedule = ({ route, navigation }) => {
+const ShowSchedule = ({ route }) => {
     const schedule = route.params.item
     const [data, setData] = React.useState(null)
 
@@ -30,7 +30,7 @@ const ShowSchedule = ({ route, navigation }) => {
 
     React.useEffect(() => { fetchSchedules() }, [])
 
-    if (!schedule) return null;
+    if (!data) return <LoadingScreen />
 
     return (
         <Container>

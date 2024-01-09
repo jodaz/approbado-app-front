@@ -5,9 +5,9 @@ import {
     Container,
     Text
 } from '../../components';
-import { Routes } from '../routes';
 import { FlatList, View } from 'react-native';
 import { listSchedules } from '@approbado/lib/services/schedules.services'
+import { Routes } from '../routes';
 import TitleBar from '../../components/TitleBar';
 import NoSchedules from './components/NoSchedules';
 import ScheduleCard from './components/ScheduleCard';
@@ -39,9 +39,7 @@ const Events = ({ navigation }) => {
                     Eventos
                 </Text>
             </TitleBar>
-            <View style={{
-                height: '80%'
-            }}>
+            <View>
                 {!schedules ? <NoSchedules /> : <ListEvents data={schedules} />}
             </View>
             <Row>

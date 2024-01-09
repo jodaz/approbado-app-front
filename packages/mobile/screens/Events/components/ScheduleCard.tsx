@@ -2,13 +2,14 @@ import React from 'react';
 import { Schedule } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
-import { Text, Row, Button } from '../../../components';
-import { MoreHorizontal } from 'lucide-react-native';
+import { Text, Row, Button, DrawerButton } from '../../../components';
+import { Edit2, MoreHorizontal, Trash2 } from 'lucide-react-native';
 import { TouchableOpacity, View } from 'react-native';
 import { horizontalScale, verticalScale } from '../../../styles/scaling';
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import styled from 'styled-components/native';
+import { useBottomSheet } from '../../../contexts/BottomSheetContext';
 
 const Dot = styled.View`
     height: 5px;
@@ -20,10 +21,11 @@ const Dot = styled.View`
     border-radius: 50px;
 `;
 
-const Pressable = styled.Pressable`
+const StyledCard = styled.TouchableOpacity`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    height: fit-content;
     background: #fff;
     padding-vertical: ${props => verticalScale(props.theme.space[3])}px;
     padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
@@ -36,19 +38,40 @@ const Pressable = styled.Pressable`
 
 interface IScheduleCardProps {
     item: Schedule;
-    openDrawerMenu?: () => void;
     accessTrivia?: boolean;
 }
 
-const ScheduleCard = ({ item, openDrawerMenu, accessTrivia } : IScheduleCardProps ) : JSX.Element => {
+const ScheduleCard = ({ item, accessTrivia } : IScheduleCardProps ) : JSX.Element => {
     const navigation = useNavigation();
+    const bottomSheet = useBottomSheet()
 
     const handleNavigate = () => navigation.navigate(Routes.ShowSchedule, {
         item: item
     })
 
+    const content = () => (
+        <View style={{
+            paddingHorizontal: horizontalScale(20)
+        }}>
+            <DrawerButton icon={<Edit2 />} onPress={() => navigation.navigate(Routes.EditEvent, {
+                item: item
+            })}>
+                Editar
+            </DrawerButton>
+            <DrawerButton icon={<Trash2 />} onPress={() => navigation.navigate(Routes.EditEvent, {
+                item: item
+            })}>
+                Eliminar
+            </DrawerButton>
+        </View>
+    )
+
+    const showOptions = () => bottomSheet.expand({
+        renderContent: () => content
+    });
+
     return (
-        <Pressable onPress={handleNavigate} key={item.id} style={{
+        <StyledCard key={item.id} style={{
             shadowColor: '#000',
             shadowOffset: {
                 width: 0,
@@ -59,7 +82,7 @@ const ScheduleCard = ({ item, openDrawerMenu, accessTrivia } : IScheduleCardProp
             elevation: 6,
             borderLeftColor: item.level.color,
             borderLeftWidth: 6,
-        }} color={item.level.color}>
+        }} color={item.level.color} onPress={handleNavigate}>
             <View style={{
                 flex: 1,
                 flexDirection: 'column',
@@ -97,14 +120,14 @@ const ScheduleCard = ({ item, openDrawerMenu, accessTrivia } : IScheduleCardProp
                     position: 'absolute',
                     top: 10,
                     right: 10
-                }}>
+                }} onPress={showOptions}>
                     <MoreHorizontal
                         color='#000'
                         size={24}
                     />
                 </TouchableOpacity>
             </View>
-        </Pressable>
+        </StyledCard>
     )
 }
 
