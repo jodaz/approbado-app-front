@@ -1,3 +1,5 @@
+import * as React from 'react'
+import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -11,17 +13,24 @@ import Toast from './components/Toast';
 
 export default function App() {
     const [fontsLoaded, fontError] = useFonts({
-        'NotoSans-Thin': require('../lib/fonts/NotoSans-Thin.ttf'),
-        'NotoSans-ExtraLight': require('../lib/fonts/NotoSans-ExtraLight.ttf'),
-        'NotoSans-Light': require('../lib/fonts/NotoSans-Light.ttf'),
-        'NotoSans-Regular': require('../lib/fonts/NotoSans-Regular.ttf'),
-        'NotoSans-Medium': require('../lib/fonts/NotoSans-Medium.ttf'),
-        'NotoSans-SemiBold': require('../lib/fonts/NotoSans-SemiBold.ttf'),
-        'NotoSans-Bold': require('../lib/fonts/NotoSans-Bold.ttf'),
-        'NotoSans-ExtraBold': require('../lib/fonts/NotoSans-ExtraBold.ttf'),
-        'NotoSans-Black': require('../lib/fonts/NotoSans-Black.ttf'),
+        'NotoSans-Thin': require('./assets/fonts/NotoSans-Thin.ttf'),
+        'NotoSans-ExtraLight': require('./assets/fonts/NotoSans-ExtraLight.ttf'),
+        'NotoSans-Light': require('./assets/fonts/NotoSans-Light.ttf'),
+        'NotoSans-Regular': require('./assets/fonts/NotoSans-Regular.ttf'),
+        'NotoSans-Medium': require('./assets/fonts/NotoSans-Medium.ttf'),
+        'NotoSans-SemiBold': require('./assets/fonts/NotoSans-SemiBold.ttf'),
+        'NotoSans-Bold': require('./assets/fonts/NotoSans-Bold.ttf'),
+        'NotoSans-ExtraBold': require('./assets/fonts/NotoSans-ExtraBold.ttf'),
+        'NotoSans-Black': require('./assets/fonts/NotoSans-Black.ttf'),
     });
 
+    const onLayoutRootView = React.useCallback(async () => {
+        if (fontsLoaded || fontError) {
+          await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded, fontError]);
+
+    React.useEffect
 
     if (!fontsLoaded && !fontError) {
         return null;
@@ -32,7 +41,7 @@ export default function App() {
             <ToastProvider>
                 <ThemeProvider theme={theme}>
                     <SafeAreaProvider>
-                        <NavigationContainer>
+                        <NavigationContainer onReady={onLayoutRootView}>
                             <StatusBar style="auto" />
                             <MainScreen />
                             <Toast />
