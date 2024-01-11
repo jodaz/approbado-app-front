@@ -11,6 +11,9 @@ import { listSubthemes } from '@approbado/lib/services/subthemes.services'
 import { Routes } from '../../routes';
 import { ScrollView } from 'react-native';
 import { useForm } from 'react-hook-form';
+import SelectTriviaInput from '../components/SelectTriviaInput';
+import SelectLevelInput from '../components/SelectLevelInput';
+import SelectThemeInput from '../components/SelectThemeInput';
 
 const StepTwo = ({ navigation }) => {
     const [trivias, setTrivias] = React.useState(null)
@@ -64,45 +67,9 @@ const StepTwo = ({ navigation }) => {
                     placeholder='DD/MM'
                 />
             </Row>
-            <Row>
-                {trivias ? (
-                    <SelectInput
-                        label='Trivia'
-                        name='trivias_ids'
-                        control={control}
-                        placeholder='Seleccione un tema'
-                        options={trivias}
-                        labelField='name'
-                        valueField='id'
-                    />
-                ) : null}
-            </Row>
-            <Row>
-                {levels ? (
-                    <SelectInput
-                        label='Trivia'
-                        name='levels_ids'
-                        control={control}
-                        placeholder='Seleccione un nivel'
-                        options={levels}
-                        labelField='name'
-                        valueField='id'
-                    />
-                ) : null}
-            </Row>
-            <Row>
-                {subthemes ? (
-                    <SelectInput
-                        label='Tema'
-                        name='subthemes_ids'
-                        control={control}
-                        placeholder='Seleccione un tema'
-                        options={subthemes}
-                        labelField='name'
-                        valueField='id'
-                    />
-                ) : null}
-            </Row>
+            <SelectTriviaInput control={control} />
+            <SelectLevelInput control={control} />
+            <SelectThemeInput control={control} />
             <Row>
                 <Button onPress={() => navigation.navigate(Routes.CreateEventStepThree)}>
                     Agendar una reunión

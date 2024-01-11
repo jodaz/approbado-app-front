@@ -34,7 +34,6 @@ const MultiSelectInput = ({
     label,
     placeholder = 'Seleccione'
 } : IMultiSelectProps) => {
-    const [selected, setSelected] = useState(defaultValue);
 
     return (
         <Controller

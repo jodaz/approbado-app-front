@@ -36,7 +36,7 @@ const StepThree = ({ navigation }) => {
                 <Checkbox
                     control={control}
                     label='Enviar recordatorio de 30 minutos antes de la reunión'
-                    name='reminder'
+                    name='notify_before'
                 />
             </Row>
             <Row>

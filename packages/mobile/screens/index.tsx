@@ -29,6 +29,7 @@ import TriviaRules from './Game/TriviaRules';
 import CreateEvent from './Events/CreateEvent';
 import CreateEventSuccess from './Events/CreateEventSuccess';
 import ShowSchedule from './Events/ShowSchedule';
+import EditSchedule from './Events/EditSchedule';
 
 const Stack = createNativeStackNavigator();
 
@@ -64,6 +65,7 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.CreateNewPassword} component={CreateNewPassword}  />
             <Stack.Screen name={Routes.Home} component={BottomNav}  />
             <Stack.Screen name={Routes.Settings} component={SettingsStack} />
+            <Stack.Screen name={Routes.EditSchedule} component={EditSchedule} />
             <Stack.Screen name={Routes.EditProfile} component={EditProfileInformation} />
             <Stack.Screen name={Routes.EditProfileContact} component={EditProfileContact} />
             <Stack.Screen name={Routes.EditProfileOcupation} component={EditOcupation} />

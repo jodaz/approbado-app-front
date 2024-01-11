@@ -49,18 +49,28 @@ const ScheduleCard = ({ item, accessTrivia } : IScheduleCardProps ) : JSX.Elemen
         item: item
     })
 
+    const handleEdit = () => {
+        navigation.navigate(Routes.EditSchedule, {
+            item: item
+        })
+        bottomSheet.collapse()
+    }
+
+    const handleDelete = () => {
+        navigation.navigate(Routes.EditSchedule, {
+            item: item
+        })
+        bottomSheet.collapse()
+    }
+
     const content = () => (
         <View style={{
             paddingHorizontal: horizontalScale(20)
         }}>
-            <DrawerButton icon={<Edit2 />} onPress={() => navigation.navigate(Routes.EditEvent, {
-                item: item
-            })}>
+            <DrawerButton icon={<Edit2 />} onPress={handleEdit}>
                 Editar
             </DrawerButton>
-            <DrawerButton icon={<Trash2 />} onPress={() => navigation.navigate(Routes.EditEvent, {
-                item: item
-            })}>
+            <DrawerButton icon={<Trash2 />} onPress={handleDelete}>
                 Eliminar
             </DrawerButton>
         </View>

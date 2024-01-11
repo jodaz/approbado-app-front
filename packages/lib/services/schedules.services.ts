@@ -43,14 +43,14 @@ export async function createSchedule(data) {
 
 export async function editSchedule(id, data) {
     try {
-        const formData = await formDataHandler(data)
-        const response = await fileProvider.put(`/schedules/${id}`, formData)
+        const response = await apiProvider.put(`/schedules/${id}`, data)
 
         return {
             success: true,
             data: response.data,
         }
     }catch (error){
+        console.log(error)
         return {
             success: false,
             status: error.response.status,

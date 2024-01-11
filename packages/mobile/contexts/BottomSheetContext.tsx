@@ -35,7 +35,7 @@ export const BottomSheetProvider = ({ children }: IComp) => {
     const [options, setOptions] = React.useState<CustomBottomSheet>({ ...DEFAULT_OPTIONS });
 
     const collapseBottomSheet = React.useCallback(() => {
-        bottomSheetRef.current?.collapse();
+        bottomSheetRef.current?.close();
         setOptions({ ...DEFAULT_OPTIONS });
     }, []);
 
@@ -49,7 +49,7 @@ export const BottomSheetProvider = ({ children }: IComp) => {
         }),
         [collapseBottomSheet],
     );
-
+        console.log(options)
     return (
       <BottomSheetContext.Provider value={bottomSheetContext}>
           {children}
