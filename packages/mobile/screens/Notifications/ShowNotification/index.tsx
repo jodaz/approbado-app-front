@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Container, LoadingScreen, Row, Text, TitleBar } from '../../../components';
 import { getSchedule } from '@approbado/lib/services/schedules.services'
-import { Linking } from 'react-native';
 import ScheduleCard from '../components/ScheduleCard';
 import truncateString from '@approbado/lib/utils/truncateString'
+import { Linking } from 'react-native';
 
 const EventInfoItem = ({ title, data }) => (
     <Row>
@@ -16,7 +16,7 @@ const EventInfoItem = ({ title, data }) => (
     </Row>
 )
 
-const ShowNotification = ({ route }) => {
+const ShowSchedule = ({ route }) => {
     const schedule = route.params.item
     const [data, setData] = React.useState(null)
 
@@ -91,4 +91,4 @@ const ShowNotification = ({ route }) => {
     )
 }
 
-export default ShowNotification
+export default ShowSchedule

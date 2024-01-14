@@ -1,27 +1,20 @@
 import * as React from 'react'
-import {
-    Container,
-    Text
-} from '../../components';
-import NoNotifications from './components/NoNotifications';
-import TitleBar from '../../components/TitleBar';
-import { View } from 'react-native';
+import { Routes } from '../routes';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import NotificationsHomeScreen from './NotificationsHomeScreen';
+import ShowNotification from '../Events/ShowSchedule';
+
+const Stack = createNativeStackNavigator();
 
 const Notifications = ({ navigation }) => {
-
     return (
-        <Container>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                    Notificaciones
-                </Text>
-            </TitleBar>
-            <View style={{
-                height: 300
-            }}>
-                <NoNotifications />
-            </View>
-        </Container>
+        <Stack.Navigator
+            screenOptions={{ headerShown: false }}
+            initialRouteName={Routes.Notifications}
+        >
+            <Stack.Screen name={Routes.Notifications} component={NotificationsHomeScreen}  />
+            <Stack.Screen name={Routes.ShowNotification} component={ShowNotification}  />
+        </Stack.Navigator>
     );
 }
 
