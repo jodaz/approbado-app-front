@@ -2,7 +2,7 @@ import React from 'react';
 import { Notification } from '@approbado/lib/types/models'
 import { useNavigation } from '@react-navigation/native';
 import { Routes } from '../../routes';
-import { Text, Row, DrawerButton } from '../../../components';
+import { Text, Row, DrawerButton, Image } from '../../../components';
 import { MoreHorizontal, Trash2 } from 'lucide-react-native';
 import { TouchableOpacity, View } from 'react-native';
 import { horizontalScale, verticalScale } from '../../../styles/scaling';
@@ -16,15 +16,16 @@ import RenderHtml from 'react-native-render-html';
 
 const StyledCard = styled.TouchableOpacity`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-direction: row;
-    height: fit-content;
+    height: ${verticalScale(80)}px;
     padding-vertical: ${props => verticalScale(props.theme.space[3])}px;
     padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
     margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
     border-color: ${props => props.theme.palette.secondary.light};
     width: 100%;
     border-bottom-width: 1px;
+    align-items: flex-start;
 `
 
 interface INotificationCardProps {
@@ -72,10 +73,11 @@ const NotificationCard = ({ item, refresh } : INotificationCardProps ) : JSX.Ele
 
     return (
         <StyledCard key={item.id} onPress={handleNavigate}>
+            <Image source={item.user.picture} />
             <View style={{
                 flex: 1,
                 flexDirection: 'column',
-                height: '100%'
+                height: 50
             }}>
                 <Row size={1} style={{
                     width: 200
@@ -84,9 +86,10 @@ const NotificationCard = ({ item, refresh } : INotificationCardProps ) : JSX.Ele
                         <RenderHtml
                             source={{ html: item.data }}
                             baseStyle={{
-                                fontSize: 18
+                                fontSize: 18,
+                                width: 300
                             }}
-                            contentWidth={100}
+                            contentWidth={300}
                         />
                     </Text>
                 </Row>
@@ -105,17 +108,17 @@ const NotificationCard = ({ item, refresh } : INotificationCardProps ) : JSX.Ele
                         })}
                     </Text>
                 </Row>
-                <TouchableOpacity style={{
-                    position: 'absolute',
-                    top: 10,
-                    right: 10
-                }} onPress={showOptions}>
-                    <MoreHorizontal
-                        color='#000'
-                        size={24}
-                    />
-                </TouchableOpacity>
             </View>
+            <TouchableOpacity style={{
+                position: 'absolute',
+                top: 10,
+                right: 10
+            }} onPress={showOptions}>
+                <MoreHorizontal
+                    color='#000'
+                    size={24}
+                />
+            </TouchableOpacity>
         </StyledCard>
     )
 }

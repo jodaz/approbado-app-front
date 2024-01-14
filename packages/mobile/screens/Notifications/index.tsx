@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Routes } from '../routes';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import NotificationsHomeScreen from './NotificationsHomeScreen';
-import ShowNotification from '../Events/ShowSchedule';
+import ShowNotification from './ShowNotification';
 
 const Stack = createNativeStackNavigator();
 
