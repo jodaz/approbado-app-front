@@ -11,6 +11,7 @@ import RecentTrivias from './components/RecentTrivias';
 import styled from 'styled-components';
 import Notifications from '../Notifications';
 import Events from '../Events';
+import Chat from '../Chat';
 
 const Stack = createNativeStackNavigator();
 
@@ -49,13 +50,14 @@ const HomeScreen = ({ navigation }) => {
     );
 }
 
-const Home = ({ navigation }) => (
+const Home = () => (
     <Stack.Navigator
         screenOptions={{ headerShown: false }}
         initialRouteName={Routes.Home}
     >
         <Stack.Screen name={Routes.Home} component={HomeScreen}  />
-        <Stack.Screen name={Routes.Notifications} component={Notifications}  />
+        <Stack.Screen name={Routes.Notifications} component={Notifications} />
+        <Stack.Screen name={Routes.Chat} component={Chat}  />
         <Stack.Screen name={Routes.Events} component={Events}  />
     </Stack.Navigator>
 );
