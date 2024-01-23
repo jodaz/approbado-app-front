@@ -41,5 +41,6 @@ export const Routes = {
     CreateEventStepOne: 'CreateEventStepOne',
     CreateEventStepTwo: 'CreateEventStepTwo',
     CreateEventStepThree: 'CreateEventStepThree',
+    Play: 'Play',
     CreateEventSuccess: 'CreateEventSuccess'
 }
