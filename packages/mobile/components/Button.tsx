@@ -10,6 +10,7 @@ import styled from 'styled-components/native'
 import Text from './Text';
 
 const ButtonContainer = styled.TouchableOpacity`
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding-vertical: ${verticalScale(12)}px;
@@ -41,9 +42,19 @@ const Button = ({
     textVariant,
     textColor,
     disabled,
+    icon,
     ...rest
 } : IButtonProps) : JSX.Element => (
     <ButtonContainer disabled={disabled} {...rest}>
+        {icon ? (
+            <>
+                {React.cloneElement(icon, {
+                    size: 24,
+                    color: '#000',
+                    marginRight: 10
+                })}
+            </>
+        ) : null}
         {!isLoading ? (
             <ButtonText
                 color={textColor}

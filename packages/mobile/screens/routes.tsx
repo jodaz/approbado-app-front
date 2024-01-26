@@ -44,5 +44,6 @@ export const Routes = {
     Play: 'Play',
     CreateEventSuccess: 'CreateEventSuccess',
     CheckAnswers: 'CheckAnswers',
+    LoadingTriviaTeam: 'LoadingTriviaTeam',
     WinLevel: 'WinLevel'
 }

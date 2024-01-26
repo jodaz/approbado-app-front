@@ -31,6 +31,7 @@ import CreateEventSuccess from './Events/CreateEventSuccess';
 import Play from './Game/Play';
 import CheckAnswers from './Game/CheckAnswers';
 import WinLevel from './Game/WinLevel';
+import LoadingTriviaTeam from './Game/LoadingTriviaTeam';
 
 const Stack = createNativeStackNavigator();
 
@@ -79,8 +80,9 @@ const MainScreen = () => {
             <Stack.Screen name={Routes.SelectTrivia} component={SelectTrivia} />
             <Stack.Screen name={Routes.TriviaRules} component={TriviaRules} />
             <Stack.Screen name={Routes.Play} component={Play} />
-            <Stack.Screen name={Routes.CheckAnswers} component={CheckAnswers}  /> */}
-            <Stack.Screen name={Routes.WinLevel} component={WinLevel}  />
+            <Stack.Screen name={Routes.CheckAnswers} component={CheckAnswers}
+            <Stack.Screen name={Routes.WinLevel} component={WinLevel}  /> */}
+            <Stack.Screen name={Routes.LoadingTriviaTeam} component={LoadingTriviaTeam} />
         </Stack.Navigator>
     )
 }
