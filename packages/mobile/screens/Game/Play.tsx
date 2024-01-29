@@ -10,7 +10,7 @@ import {
 import {
     Timer
 } from 'lucide-react-native';
-import { ScrollView, View } from 'react-native'
+import { ScrollView, View, Image } from 'react-native'
 import { useForm } from 'react-hook-form';
 import { Question } from '@approbado/lib/types/models'
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
@@ -58,6 +58,20 @@ const question = {
     ]
 }
 
+const User = {
+    image: require('../../assets/user.jpeg'),
+    fullName: "Federico"
+}
+
+const UserImage = ({ user, size = 50, style }) => (
+    <Image source={user.image} style={{
+        borderRadius: 50,
+        height: verticalScale(size),
+        width: verticalScale(size),
+        ...style
+    }} />
+)
+
 const CountdownTimer = ({ seconds } : { seconds: number }) => {
     const [count, setCount] = React.useState(seconds);
 
@@ -102,6 +116,33 @@ const Play = props => {
                 </TitleBar>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Row size={3} align='center' direction='row' justify='space-between'>
+                        <View style={{
+                            flexDirection: 'column',
+                            alignItems: 'start'
+                        }}>
+                            <Text fontSize={18}>
+                                Tú
+                            </Text>
+                            <UserImage user={User} size={30} />
+                        </View>
+                        <View style={{
+                            flexDirection: 'column',
+                            alignItems: 'start'
+                        }}>
+                            <Text fontSize={18}>
+                                Tus amigos
+                            </Text>
+                            <View style={{
+                                flexDirection: 'row'
+                            }}>
+                                <UserImage user={User} size={30} style={{ marginLeft: -10 }}/>
+                                <UserImage user={User} size={30} style={{ marginLeft: -10 }} />
+                                <UserImage user={User} size={30} style={{ marginLeft: -10 }} />
+                                <UserImage user={User} size={30} style={{ marginLeft: -10 }} />
+                            </View>
+                        </View>
+                    </Row>
+                    <Row size={3} align='center' direction='row' justify='space-between'>
                         <Text>
                             Pregunta 1 / 16
                         </Text>
@@ -139,7 +180,11 @@ const Play = props => {
                 paddingVertical: verticalScale(10),
                 paddingHorizontal: horizontalScale(10)
             }}>
-                <Button onPress={() => console.log("saltar")} >
+                <Button  variant='text'
+                    textColor='primary'
+                    textVariant='light'
+                    onPress={() => console.log("saltar")}
+                >
                     Saltar
                 </Button>
                 <Button onPress={handleSubmit(onSubmit)} disabled={!formState?.isDirty}>

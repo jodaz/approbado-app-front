@@ -47,7 +47,7 @@ const TabButton = ({ children, isFocused }) => (
 const BottomNav = () => (
     <Tab.Navigator
         initialRouteName={Routes.Home}
-        screenOptions={({ route, navigation }) => ({
+        screenOptions={({ route }) => ({
             tabBarIcon: ({ focused }) => {
                 const { name } = route;
 

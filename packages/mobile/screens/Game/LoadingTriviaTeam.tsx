@@ -1,11 +1,10 @@
 import * as React from 'react'
 import {
     Button,
-    Container,
     Row,
     Text
 } from '../../components';
-import { ScrollView, View, Image, FlatList } from 'react-native'
+import { View, Image, FlatList } from 'react-native'
 import { horizontalScale, scaleFontSize, verticalScale } from '../../styles/scaling';
 import { Link } from 'lucide-react-native';
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
