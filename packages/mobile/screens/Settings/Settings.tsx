@@ -5,10 +5,8 @@ import { NavButton } from '../../components';
 import {
     Row,
     Button,
-    Container,
-    Text
+    Container
 } from '../../components';
-import TitleBar from '../../components/TitleBar';
 import styled from 'styled-components/native';
 
 const FormContainer = styled.View`
@@ -29,38 +27,31 @@ const Settings = ({ navigation }) => {
 
     return (
         <Container>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                    Configuraciones
-                </Text>
-            </TitleBar>
-            <FormContainer>
-                <NavButton to={Routes.PrivacySettings}>
-                    Privacidad
-                </NavButton>
-                <NavButton to={Routes.Memberships}>
-                    Membresías
-                </NavButton>
-                <NavButton to={Routes.NotificationSettings}>
-                    Notificaciones
-                </NavButton>
-                <NavButton to={Routes.Security}>
-                    Contraseña
-                </NavButton>
-                <NavButton to={Routes.DeleteAccount}>
-                    Cuenta
-                </NavButton>
-                <Row size={6} align='start'>
-                    <Button
-                        textColor="error"
-                        textVariant="main"
-                        variant='text'
-                        onPress={onLogout}
-                    >
-                        Cerrar sesión
-                    </Button>
-                </Row>
-            </FormContainer>
+            <NavButton to={Routes.PrivacySettings}>
+                Privacidad
+            </NavButton>
+            <NavButton to={Routes.Memberships}>
+                Membresías
+            </NavButton>
+            <NavButton to={Routes.NotificationSettings}>
+                Notificaciones
+            </NavButton>
+            <NavButton to={Routes.Security}>
+                Contraseña
+            </NavButton>
+            <NavButton to={Routes.DeleteAccount}>
+                Cuenta
+            </NavButton>
+            <Row size={6} align='start'>
+                <Button
+                    textColor="error"
+                    textVariant="main"
+                    variant='text'
+                    onPress={onLogout}
+                >
+                    Cerrar sesión
+                </Button>
+            </Row>
         </Container>
     );
 }

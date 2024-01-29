@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from '../routes';
+import { HeaderBack } from '../../components';
 import DeleteAccount from './DeleteAccount';
 import Security from './Security';
 import NotificationSettings from './NotificationSettings';
@@ -11,15 +12,45 @@ const Stack = createNativeStackNavigator();
 
 const SettingsStack = () => (
     <Stack.Navigator
-        screenOptions={{ headerShown: false }}
+        screenOptions={{
+            headerStyle: {
+                backgroundColor: '#f0f0f0'
+            },
+            headerShadowVisible: false,
+            headerLeft: props => <HeaderBack {...props} />
+        }}
         initialRouteName={Routes.Settings}
     >
-        <Stack.Screen name={Routes.Settings} component={Settings} />
-        <Stack.Screen name={Routes.PrivacySettings} component={PrivacySettings} />
-        <Stack.Screen name={Routes.NotificationSettings} component={NotificationSettings}  />
-        <Stack.Screen name={Routes.Security} component={Security}  />
-        <Stack.Screen name={Routes.DeleteAccount} component={DeleteAccount}  />
-        <Stack.Screen name={Routes.Memberships} component={Memberships}  />
+        <Stack.Screen
+            options={{ title: 'Configuraciones '}}
+            name={Routes.Settings}
+            component={Settings}
+        />
+        <Stack.Screen
+            options={{ title: 'Ajustes de privacidad '}}
+            name={Routes.PrivacySettings}
+            component={PrivacySettings}
+        />
+        <Stack.Screen
+            options={{ title: 'Ajustes de notificaciones' }}
+            name={Routes.NotificationSettings}
+            component={NotificationSettings}
+        />
+        <Stack.Screen
+            options={{ title: 'Ajustes de seguridad' }}
+            name={Routes.Security}
+            component={Security}
+        />
+        <Stack.Screen
+            options={{ title: 'Ajustes de cuenta' }}
+            name={Routes.DeleteAccount}
+            component={DeleteAccount}
+        />
+        <Stack.Screen
+            options={{ title: 'Membresía' }}
+            name={Routes.Memberships}
+            component={Memberships}
+        />
     </Stack.Navigator>
 )
 

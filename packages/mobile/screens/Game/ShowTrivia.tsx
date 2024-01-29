@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Container, Row, TriviaCard } from '../../components';
+import { Row, TriviaCard, MainHeader } from '../../components';
+import { View } from 'react-native';
 import { Routes } from '../routes';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Tabs from '../../components/Tabs';
 import Resources from './components/Files';
 import Syllabus from './components/Syllabus';
@@ -32,10 +32,7 @@ const TriviasContainer = ({ route }) => {
     const Tab = createMaterialTopTabNavigator();
 
     return (
-        <Container>
-            <Row size={2} align='center' direction='row' justify='space-between'>
-                <Logotipo />
-            </Row>
+        <View style={{ flex: 1, paddingHorizontal: 10 }}>
             <Row size={2} align='center' direction='row' justify='space-between'>
                 <TriviaCard trivia={trivia} />
             </Row>
@@ -47,14 +44,20 @@ const TriviasContainer = ({ route }) => {
                     />
                 ))}
             </Tab.Navigator>
-        </Container>
+        </View>
     );
 }
 
 const ShowTrivia = props => {
     return (
         <Stack.Navigator
-            screenOptions={{ headerShown: false }}
+            screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#f0f0f0'
+                },
+                headerShadowVisible: false,
+                headerTitle: (props) => <MainHeader {...props} />
+            }}
             initialRouteName={Routes.ShowTrivia}
         >
             <Stack.Screen

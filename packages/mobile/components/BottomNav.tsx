@@ -9,7 +9,7 @@ import {
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
 import Forum from '../screens/Forums';
-import Game from '../screens/Game';
+import TriviasStack from '../screens/Game/TriviasStack';
 import styled from 'styled-components/native';
 
 const Tab = createBottomTabNavigator();
@@ -42,7 +42,6 @@ const TabButton = ({ children, isFocused }) => (
         <TabIndicator isFocused={isFocused} />
     </>
 )
-
 
 const BottomNav = () => (
     <Tab.Navigator
@@ -98,7 +97,7 @@ const BottomNav = () => (
         })}
     >
         <Tab.Screen name={Routes.Home} component={Home} />
-        <Tab.Screen name={Routes.Game} component={Game} />
+        <Tab.Screen name={Routes.Game} component={TriviasStack} />
         <Tab.Screen name={Routes.Forum} component={Forum} />
         <Tab.Screen name={Routes.Profile} component={Profile} />
     </Tab.Navigator>

@@ -15,11 +15,6 @@ const CreateEvent = ({ navigation }) => {
             paddingHorizontal: 20,
             paddingVertical: 20
         }}>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                    Agendar una trivia
-                </Text>
-            </TitleBar>
             <Tab.Navigator
                 initialRouteName={Routes.CreateEventStepOne}
                 tabBar={TabsCarousel}
