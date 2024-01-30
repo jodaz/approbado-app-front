@@ -3,10 +3,8 @@ import {
     Button,
     Container,
     Row,
-    Text,
-    TitleBar
+    Text
 } from '../../components';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import { useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import SelectTypeButton from './components/SelectTypeButton';
@@ -16,11 +14,6 @@ const SelectTrivia = props => {
 
     return (
         <Container>
-            <TitleBar>
-                <Row size={2} align='center' direction='row' justify='start'>
-                    <Logotipo />
-                </Row>
-            </TitleBar>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Row size={1}>
                     <Text fontSize={24}>

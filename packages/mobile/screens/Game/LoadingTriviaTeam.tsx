@@ -7,7 +7,6 @@ import {
 import { View, Image, FlatList } from 'react-native'
 import { horizontalScale, scaleFontSize, verticalScale } from '../../styles/scaling';
 import { Link } from 'lucide-react-native';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import styled from 'styled-components';
 
 const StyledMessageContainer = styled.View`
@@ -49,9 +48,6 @@ const LoadingTriviaTeam = props => {
         <View style={{
             flex: 1
         }}>
-            <Row size={4} justify='center' align='center'>
-                <Logotipo />
-            </Row>
             <Row align='center'>
                 <UserCard user={User} />
             </Row>

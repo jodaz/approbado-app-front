@@ -28,9 +28,6 @@ const ListTrivias = () => {
 
     return (
         <Container>
-            <Row size={2} align='center' direction='row' justify='space-between'>
-                <Logotipo />
-            </Row>
             <Tab.Navigator initialRouteName="Trivias" tabBar={Tabs} screenOptions={{
                 tabBarScrollEnabled: true
             }}>

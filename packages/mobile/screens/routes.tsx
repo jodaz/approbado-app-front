@@ -46,5 +46,6 @@ export const Routes = {
     CheckAnswers: 'CheckAnswers',
     LoadingResults: 'LoadingResults',
     LoadingTriviaTeam: 'LoadingTriviaTeam',
-    WinLevel: 'WinLevel'
+    WinLevel: 'WinLevel',
+    ListTrivias: 'ListTrivias'
 }

@@ -10,16 +10,23 @@ import WinLevel from './WinLevel';
 import LoadingTriviaTeam from './LoadingTriviaTeam';
 import LoadingResults from './LoadingResults';
 import ListTrivias from './ListTrivias';
+import TriviaHeader from './components/TriviaHeader';
 
 const Stack = createNativeStackNavigator()
 
 const TriviasStack = () => (
     <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-        initialRouteName={Routes.Game}
+        screenOptions={{
+            headerTitle: () => <TriviaHeader />,
+            headerStyle: {
+                backgroundColor: '#f0f0f0'
+            },
+            headerShadowVisible: false
+        }}
+        initialRouteName={Routes.ListTrivias}
     >
         <Stack.Screen
-            name={Routes.Game}
+            name={Routes.ListTrivias}
             component={ListTrivias}
          />
         <Stack.Screen

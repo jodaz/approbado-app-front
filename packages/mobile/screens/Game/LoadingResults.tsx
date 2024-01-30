@@ -7,7 +7,6 @@ import {
 import { View, Image, FlatList } from 'react-native'
 import { horizontalScale, scaleFontSize, verticalScale } from '../../styles/scaling';
 import { Scale, Clock } from 'lucide-react-native';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 
 const User = {
     image: require('../../assets/user.jpeg'),
@@ -55,9 +54,6 @@ const UserCard = ({ user, size = 50, isWaiting = false }) => (
 const LoadingResults = props => {
     return (
         <Container>
-            <Row size={4} justify='center' align='center'>
-                <Logotipo />
-            </Row>
             <Row size={3} align='center' direction='row' justify='space-between'>
                 <View style={{
                     flexDirection: 'row',

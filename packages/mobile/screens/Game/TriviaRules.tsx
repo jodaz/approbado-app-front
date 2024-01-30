@@ -3,15 +3,13 @@ import {
     Button,
     Container,
     Row,
-    Text,
-    TitleBar
+    Text
 } from '../../components';
 import {
     Clock,
     Layers,
     PlusCircle
 } from 'lucide-react-native';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import ClockIllustration from '@approbado/lib/illustrations/Clock.svg'
 import { ScrollView } from 'react-native'
 import AddFriendsModal from './components/AddFriendsModal';
@@ -22,11 +20,6 @@ const TriviaRules = props => {
 
     return (
         <Container>
-            <TitleBar>
-                <Row size={2} align='center' direction='row' justify='start'>
-                    <Logotipo />
-                </Row>
-            </TitleBar>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Row size={3} align='center' direction='row' justify='center'>
                     <ClockIllustration />

@@ -4,8 +4,7 @@ import {
     Container,
     RadioButton,
     Row,
-    Text,
-    TitleBar
+    Text
 } from '../../components';
 import {
     Timer
@@ -13,7 +12,6 @@ import {
 import { ScrollView, View, Image } from 'react-native'
 import { useForm } from 'react-hook-form';
 import { Question } from '@approbado/lib/types/models'
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import CountdownFormat from '@approbado/lib/components/CountdownFormat'
 import { horizontalScale, verticalScale } from '../../styles/scaling';
 import AnswerAlert from './components/AnswerAlert';
@@ -109,11 +107,6 @@ const Play = props => {
             flex: 1
         }}>
             <Container>
-                <TitleBar>
-                    <Row size={2} align='center' direction='row' justify='start'>
-                        <Logotipo />
-                    </Row>
-                </TitleBar>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <Row size={3} align='center' direction='row' justify='space-between'>
                         <View style={{

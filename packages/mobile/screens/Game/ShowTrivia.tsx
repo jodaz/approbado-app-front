@@ -50,20 +50,12 @@ const TriviasContainer = ({ route }) => {
 
 const ShowTrivia = props => {
     return (
-        <Stack.Navigator
-            screenOptions={{
-                headerStyle: {
-                    backgroundColor: '#f0f0f0'
-                },
-                headerShadowVisible: false,
-                headerTitle: (props) => <MainHeader {...props} />
-            }}
-            initialRouteName={Routes.ShowTrivia}
-        >
+        <Stack.Navigator initialRouteName={Routes.ShowTrivia}>
             <Stack.Screen
                 name={Routes.ShowTrivia}
                 component={TriviasContainer}
                 initialParams={props.route.params}
+                options={{ headerShown: false }}
             />
         </Stack.Navigator>
     )
