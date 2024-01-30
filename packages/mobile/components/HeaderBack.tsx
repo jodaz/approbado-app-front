@@ -1,19 +1,14 @@
 import { ArrowLeft } from 'lucide-react-native'
-import { horizontalScale } from "../styles/scaling";
 import { useNavigation } from '@react-navigation/native';
-import styled from 'styled-components/native';
-
-const NavButton = styled.TouchableOpacity`
-    margin-right: ${props => horizontalScale(props.theme.space[5])}px;
-`
+import { TouchableOpacity } from 'react-native';
 
 const HeaderBack = () => {
     const navigation = useNavigation();
 
     return (
-        <NavButton onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
             <ArrowLeft color='#000' size={24} />
-        </NavButton>
+        </TouchableOpacity>
     )
 }
 

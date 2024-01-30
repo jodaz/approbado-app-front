@@ -58,6 +58,11 @@ const MainScreen = () => {
                 component={OnboardingStack}
                 options={{ headerShown: false }}
             />
+            <Stack.Screen
+                name={Routes.Settings}
+                component={SettingsStack}
+                options={{ headerShown: false }}
+            />
 
             {/* Incomplete views */}
             <Stack.Screen
@@ -68,11 +73,6 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.CreateEventSuccess}
                 component={CreateEventSuccess}
-            />
-            <Stack.Screen
-                name={Routes.Settings}
-                component={SettingsStack}
-                options={{ headerShown: false }}
             />
             <Stack.Screen
                 name={Routes.EditProfile}
@@ -97,6 +97,9 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.UserChat}
                 component={UserChat}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.EditPost}
@@ -109,6 +112,9 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.InviteChat}
                 component={InviteChat}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.CreateForum}
