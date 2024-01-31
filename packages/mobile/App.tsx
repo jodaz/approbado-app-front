@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components/native';
 import { NavigationContainer } from '@react-navigation/native';
 import { theme } from './styles/theme';
 import { AuthProvider } from '@approbado/lib/contexts/AuthContext';
+import { GameProvider } from '@approbado/lib/contexts/GameContext';
 import { ToastProvider } from '@approbado/lib/contexts/ToastContext';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
@@ -30,15 +31,17 @@ export default function App() {
     return (
         <AuthProvider>
             <ToastProvider>
-                <ThemeProvider theme={theme}>
-                    <SafeAreaProvider>
-                        <NavigationContainer>
-                            <StatusBar style="auto" />
-                            <MainScreen />
-                            <Toast />
-                        </NavigationContainer>
-                    </SafeAreaProvider>
-                </ThemeProvider>
+                <GameProvider>
+                    <ThemeProvider theme={theme}>
+                        <SafeAreaProvider>
+                            <NavigationContainer>
+                                <StatusBar style="auto" />
+                                <MainScreen />
+                                <Toast />
+                            </NavigationContainer>
+                        </SafeAreaProvider>
+                    </ThemeProvider>
+                </GameProvider>
             </ToastProvider>
         </AuthProvider>
     );

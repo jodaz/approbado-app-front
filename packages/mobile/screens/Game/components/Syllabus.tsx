@@ -1,12 +1,14 @@
 import * as React from 'react'
-import { Text } from '../../../components';
-import { Award } from '@approbado/lib/types/models'
+import { Button, Text } from '../../../components';
+import { Award, Subtheme } from '@approbado/lib/types/models'
 import { listAwards } from '@approbado/lib/services/awards.services'
-import { ScrollView, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
+import { verticalScale } from '../../../styles/scaling';
 import { useIsFocused } from '@react-navigation/native';
+import { Routes } from '../../routes';
+import { useGame, setTrivia } from '@approbado/lib/contexts/GameContext';
 import AwardListItem from './AwardListItem';
 import styled from 'styled-components/native';
-import { verticalScale } from '../../../styles/scaling';
 
 const { width } = Dimensions.get('window');
 
@@ -18,11 +20,11 @@ const Container = styled.ScrollView`
     flex: 1;
 `
 
-
-const Syllabus = ({ route }) => {
+const Syllabus = ({ navigation, route }) => {
     const isFocused = useIsFocused();
-    const trivia = route.params.trivia
-    const [awards, setAwards] = React.useState<[] | File[]>([])
+    const trivia = route.params.trivia;
+    const { dispatch, state } = useGame()
+    const [awards, setAwards] = React.useState<[] | Award[]>([])
 
     const fetchAwards = async () => {
         const { success, data } = await listAwards({
@@ -39,8 +41,13 @@ const Syllabus = ({ route }) => {
         }
     }
 
-    React.useEffect(() => { fetchAwards() }, [isFocused])
+    const handleNavigate = () => {
+        setTrivia(dispatch, trivia);
+        navigation.navigate(Routes.SelectTrivia)
+    }
 
+    React.useEffect(() => { fetchAwards() }, [isFocused])
+    console.log(state.themes)
     if (!awards.length) {
         return (
             <Container>
@@ -58,9 +65,13 @@ const Syllabus = ({ route }) => {
                 flex: 1
             }}
         >
-            {awards.map((award: Award) => (
-                <AwardListItem award={award} />
-            ))}
+            {awards.map((award: Award) => <AwardListItem award={award} />)}
+            <Button
+                onPress={handleNavigate}
+                disabled={!state.themes.length}
+            >
+                Iniciar trivia
+            </Button>
         </Container>
     );
 }

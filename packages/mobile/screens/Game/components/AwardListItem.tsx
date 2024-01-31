@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions, View } from 'react-native';
-import { Award } from '@approbado/lib/types/models'
+import { Award, Subtheme } from '@approbado/lib/types/models'
 import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 import { Image, Text } from '../../../components';
 import styled from 'styled-components/native';
@@ -16,12 +16,20 @@ const Pressable = styled.Pressable`
     position: relative;
 `
 
-const AwardListItem = ({ award }: { award: Award }) : JSX.Element => {
+interface AwardListItem {
+    award: Award
+}
+
+const AwardListItem = ({ award }: AwardListItem) : JSX.Element => {
     const [open, setOpen] = React.useState(false);
 
     const toggleOpen = () => setOpen(!open);
 
-    const renderSubthemesList = () => award.subthemes.map(subtheme => <SubthemeItem subtheme={subtheme} />)
+    const renderSubthemesList = () => award.subthemes.map((subtheme: Subtheme) => (
+        <SubthemeItem
+            subtheme={subtheme}
+        />
+    ))
 
     return (
         <View style={{

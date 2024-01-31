@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from '../routes';
-import { HeaderBack, MainHeader } from '../../components';
+import SettingsHeader from './components/SettingsHeader';
 import DeleteAccount from './DeleteAccount';
 import Security from './Security';
 import NotificationSettings from './NotificationSettings';
@@ -17,7 +17,7 @@ const SettingsStack = () => (
                 backgroundColor: '#f0f0f0'
             },
             headerShadowVisible: false,
-            headerTitle: props => <MainHeader {...props} useChildren />
+            headerTitle: props => <SettingsHeader {...props} />
         }}
         initialRouteName={Routes.Settings}
     >

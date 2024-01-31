@@ -11,8 +11,10 @@ import {
 import { ScrollView, View } from 'react-native'
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
-import styled from 'styled-components';
-import { verticalScale } from '../../styles/scaling';
+import styled, { useTheme } from 'styled-components';
+import { horizontalScale, verticalScale } from '../../styles/scaling';
+import { Routes } from '../routes';
+import { useGame } from '@approbado/lib/contexts/GameContext';
 
 const question = {
     "id": 1,
@@ -66,83 +68,91 @@ const StyledPoints = styled.View`
     flex: 1;
 `
 
-const CheckAnswers = props => {
+const CheckAnswers = ({ navigation }) => {
+    const theme = useTheme();
+    const { state: {
+        questions,
+        currQuestion: current,
+        duration,
+        type
+    }, dispatch } = useGame()
 
     return (
         <View style={{
             flex: 1
         }}>
-            <Container>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                    <Row size={3} align='center' direction='row' justify='space-between'>
-                        <View style={{
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}>
-                            <Scale size={24} color='#000' />
-                            <Text align='center'>
-                                {' '} Derecho laboral
-                            </Text>
-                        </View>
-                    </Row>
-                    <Row size={4} justify='center' align='center'>
-                        <Stage1 />
-                    </Row>
-                    <Row direction='row'>
-                        <Text fontWeight={700} fontSize={24} align='center'>
-                            Excelente trivia!
+            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
+                paddingHorizontal: horizontalScale(theme.space[3])
+            }}>
+                <Row size={3} align='center' direction='row' justify='space-between'>
+                    <View style={{
+                        flexDirection: 'row',
+                        alignItems: 'center'
+                    }}>
+                        <Scale size={24} color='#000' />
+                        <Text align='center'>
+                            {' '} Derecho laboral
                         </Text>
-                    </Row>
-                    <Row align='center' direction='row'>
-                        <Text fontWeight={700} fontSize={24} align='center'>
-                            Estás {' '}
+                    </View>
+                </Row>
+                <Row size={4} justify='center' align='center'>
+                    <Stage1 />
+                </Row>
+                <Row direction='row'>
+                    <Text fontWeight={700} fontSize={24} align='center'>
+                        Excelente trivia!
+                    </Text>
+                </Row>
+                <Row align='center' direction='row'>
+                    <Text fontWeight={700} fontSize={24} align='center'>
+                        Estás {' '}
+                    </Text>
+                    <Logotipo />
+                </Row>
+                <Row align='center' direction='row'>
+                    <StyledPoints secondary>
+                        <Text fontSize={24} color='info' variant='main'>
+                            16/16
                         </Text>
-                        <Logotipo />
-                    </Row>
-                    <Row align='center' direction='row'>
-                        <StyledPoints secondary>
-                            <Text fontSize={24} color='info' variant='main'>
-                                16/16
-                            </Text>
-                            <Text fontSize={20} color='info' variant='main'>
-                                Aciertos
-                            </Text>
-                        </StyledPoints>
-                        <StyledPoints>
-                            <Text fontSize={24} color='primary' variant='light'>
-                                10
-                            </Text>
-                            <Text fontSize={20} color='primary' variant='light'>
-                                Ptos. ganados
-                            </Text>
-                        </StyledPoints>
-                    </Row>
-                    <Row align='center' direction='row'>
-                        <Text
-                            fontSize={20}
-                            decoration='underline'
-                            color='info'
-                            variant='main'
-                        >
-                            Ver respuestas
+                        <Text fontSize={20} color='info' variant='main'>
+                            Aciertos
                         </Text>
-                    </Row>
-                    <Row size={1}>
-                        <Button onPress={() => console.log("saltar")} >
-                            Ver más trivias
-                        </Button>
-                    </Row>
-                    <Row size={1}>
-                        <Button
-                            bgvariant='secondary'
-                            variant='outlined'
-                            fontWeight={400}
-                        >
-                            Salir
-                        </Button>
-                    </Row>
-                </ScrollView>
-            </Container>
+                    </StyledPoints>
+                    <StyledPoints>
+                        <Text fontSize={24} color='primary' variant='light'>
+                            10
+                        </Text>
+                        <Text fontSize={20} color='primary' variant='light'>
+                            Ptos. ganados
+                        </Text>
+                    </StyledPoints>
+                </Row>
+                <Row align='center' direction='row'>
+                    <Text
+                        fontSize={20}
+                        decoration='underline'
+                        color='info'
+                        variant='main'
+                    >
+                        Ver respuestas
+                    </Text>
+                </Row>
+                <Row size={1}>
+                    <Button onPress={() => navigation.navigate(Routes.ListTrivias)}>
+                        Ver más trivias
+                    </Button>
+                </Row>
+                <Row size={1}>
+                    <Button
+                        bgvariant='secondary'
+                        variant='outlined'
+                        fontWeight={400}
+                        onPress={() => navigation.navigate(Routes.ListTrivias)}
+                    >
+                        Salir
+                    </Button>
+                </Row>
+            </ScrollView>
         </View>
     )
 }

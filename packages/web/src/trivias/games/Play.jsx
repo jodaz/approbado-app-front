@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import ProgressBar from '../components/ProgressBar'
 import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
+import { getRightAnswer } from '@approbado/lib/utils'
 import Box from '@material-ui/core/Box'
 import AnswerPill from '../components/AnswerPill'
 import OptionsForm from '../components/OptionsForm'
@@ -37,16 +38,6 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const getAnswer = (question, answers) => {
-    if (!answers.length) return null;
-
-    const answer = answers.find(({ questionID }) => questionID == question.id)
-
-    if (!answer) return null;
-
-    return answer
-}
-
 export default function() {
     const {
         questions,
@@ -79,7 +70,7 @@ export default function() {
     }
 
     React.useEffect(() => {
-        const answer = getAnswer(currQuestion, answers)
+        const answer = getRightAnswer(currQuestion, answers)
 
         if (answer) {
             setIsRight(answer.is_right)

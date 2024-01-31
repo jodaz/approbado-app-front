@@ -29,6 +29,7 @@ const SelectTypeButton = ({ control, name, options }) => (
     <Controller
         control={control}
         name={name}
+        rules={{ required: true }}
         render={({ field: { onChange, value } }) => (
             <View style={{
                 flexDirection: 'row',

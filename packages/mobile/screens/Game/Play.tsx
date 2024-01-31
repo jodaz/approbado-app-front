@@ -11,50 +11,12 @@ import {
 } from 'lucide-react-native';
 import { ScrollView, View, Image } from 'react-native'
 import { useForm } from 'react-hook-form';
-import { Question } from '@approbado/lib/types/models'
-import CountdownFormat from '@approbado/lib/components/CountdownFormat'
+import { sendAnswer } from '@approbado/lib/services/answers.services'
 import { horizontalScale, verticalScale } from '../../styles/scaling';
+import { useGame, setAnswer, nextQuestion } from '@approbado/lib/contexts/GameContext';
+import { Routes } from '../routes';
 import AnswerAlert from './components/AnswerAlert';
-
-const question = {
-    "id": 1,
-    "num": null,
-    "description": "La respuesta a esta pregunta es la dos",
-    "explanation": "La respuesta correcta es la dos",
-    "explanation_type": false,
-    "subtheme_id": null,
-    "level_id": 1,
-    "trivia_id": null,
-    "file_id": 1,
-    "created_at": "2023-12-29T19:43:13.655Z",
-    "updated_at": null,
-    "options": [
-        {
-            "id": 1,
-            "statement": "Opcion 1",
-            "is_right": false,
-            "question_id": 1,
-            "created_at": "2023-12-29T19:43:13.676Z",
-            "updated_at": null
-        },
-        {
-            "id": 2,
-            "statement": "Opcion 2",
-            "is_right": true,
-            "question_id": 1,
-            "created_at": "2023-12-29T19:43:13.676Z",
-            "updated_at": null
-        },
-        {
-            "id": 3,
-            "statement": "Opcion 3",
-            "is_right": false,
-            "question_id": 1,
-            "created_at": "2023-12-29T19:43:13.676Z",
-            "updated_at": null
-        }
-    ]
-}
+import CountdownFormat from '@approbado/lib/components/CountdownFormat'
 
 const User = {
     image: require('../../assets/user.jpeg'),
@@ -71,7 +33,7 @@ const UserImage = ({ user, size = 50, style }) => (
 )
 
 const CountdownTimer = ({ seconds } : { seconds: number }) => {
-    const [count, setCount] = React.useState(seconds);
+    const [count, setCount] = React.useState(seconds * 60);
 
     React.useEffect(() => {
         const countdown = setInterval(() => {
@@ -91,16 +53,53 @@ const CountdownTimer = ({ seconds } : { seconds: number }) => {
     return <CountdownFormat seconds={count} />;
 };
 
-const Play = props => {
-    const { control, formState, handleSubmit } = useForm();
+const Play = ({ navigation }) => {
+    const { state: {
+        questions,
+        currQuestion: current,
+        duration,
+        type
+    }, dispatch } = useGame()
+    const currQuestion = questions[current]
+    const [currAnswer, setCurrentAnswer] = React.useState<any>(null)
+    const [correctAnswer, setCorrectAnswer] = React.useState<any>(null)
+    const { control, formState, handleSubmit, watch, reset } = useForm();
     const [isRight, setIsRight] = React.useState<null | boolean>(null);
+    const choice = watch('choice')
 
-    const onSubmit = async values => {
-        const answer = question.options.find(item => item.statement === values.choice)
-        const correctAnswer = question.options.find(item => item.is_right)
+    const onSubmit = async () => {
+        const { success } = await sendAnswer({
+            is_right: currAnswer.is_right,
+            option_id: currAnswer.id
+        })
 
-        setIsRight(answer.is_right)
+        if (success) {
+            reset()
+            setIsRight(null);
+            setAnswer(dispatch, currAnswer);
+            setCurrentAnswer(null)
+            if (current + 1 == questions.length) {
+                navigation.navigate(Routes.CheckAnswers)
+            } else {
+                passQuestion();
+            }
+        }
     };
+
+    React.useEffect(() => {
+        if (choice) {
+            const answer = currQuestion.options.find(item => item.statement === choice)
+            const correctAnswer = currQuestion.options.find(item => item.is_right)
+
+            setIsRight(answer?.is_right)
+            setCorrectAnswer(correctAnswer)
+            setCurrentAnswer(answer)
+        }
+    }, [choice, currQuestion]);
+
+    const passQuestion = () => {
+        nextQuestion(dispatch);
+    }
 
     return (
         <View style={{
@@ -108,7 +107,7 @@ const Play = props => {
         }}>
             <Container>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    <Row size={3} align='center' direction='row' justify='space-between'>
+                    {/* <Row size={3} align='center' direction='row' justify='space-between'>
                         <View style={{
                             flexDirection: 'column',
                             alignItems: 'start'
@@ -134,10 +133,10 @@ const Play = props => {
                                 <UserImage user={User} size={30} style={{ marginLeft: -10 }} />
                             </View>
                         </View>
-                    </Row>
+                    </Row> */}
                     <Row size={3} align='center' direction='row' justify='space-between'>
                         <Text>
-                            Pregunta 1 / 16
+                            Pregunta {current + 1} / {questions.length}
                         </Text>
                         <View style={{
                             flexDirection: 'row',
@@ -145,21 +144,36 @@ const Play = props => {
                         }}>
                             <Timer size={24} color='#000' />
                             <Text align='center'>
-                                {' '} <CountdownTimer seconds={1800} />
+                                {' '} <CountdownTimer seconds={duration} />
                             </Text>
                         </View>
                     </Row>
                     <Row size={1}>
                         <Text align='left' fontSize={22} fontWeight={400}>
-                            1. {question.description}
+                            1. {currQuestion.description}
                         </Text>
                     </Row>
                     <Row size={1}>
                         <RadioButton
                             control={control}
                             name='choice'
-                            options={question.options.map(item => item.statement)}
+                            options={currQuestion.options.map(item => item.statement)}
+                            disabled={currAnswer}
                         />
+                    </Row>
+                    <Row>
+                        {(type == 'Práctica' && isRight == false) ? (
+                            <Text fontWeight={600}>
+                                Respuesta correcta: {correctAnswer.statement}
+                            </Text>
+                        ) : null}
+                    </Row>
+                    <Row>
+                        {(currQuestion.explanation_type == isRight && currQuestion.explanation) ? (
+                            <Text fontSize={18}>
+                                Nota: {currQuestion.explanation}
+                            </Text>
+                        ) : null}
                     </Row>
                 </ScrollView>
             </Container>
@@ -176,11 +190,16 @@ const Play = props => {
                 <Button  variant='text'
                     textColor='primary'
                     textVariant='light'
-                    onPress={() => console.log("saltar")}
+                    onPress={passQuestion}
+                    disabled={currAnswer || formState.isSubmitting}
                 >
                     Saltar
                 </Button>
-                <Button onPress={handleSubmit(onSubmit)} disabled={!formState?.isDirty}>
+                <Button
+                    onPress={handleSubmit(onSubmit)}
+                    disabled={!currAnswer || formState.isSubmitting}
+                    isLoading={formState.isSubmitting}
+                >
                     Siguiente
                 </Button>
             </View>
