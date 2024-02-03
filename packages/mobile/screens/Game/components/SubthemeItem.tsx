@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { Text } from '../../../components';
 import { Subtheme } from '@approbado/lib/types/models'
 import { CheckCircle2 } from 'lucide-react-native';
-import { horizontalScale, verticalScale } from '../../../styles/scaling';
+import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
 import { useGame, addTheme, removeTheme } from '@approbado/lib/contexts/GameContext';
 import styled from 'styled-components/native';
 
@@ -12,10 +12,11 @@ const Container = styled.TouchableOpacity`
     flexDirection: row;
     align-items: center;
     justify-content: flex-start;
-    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    background-color: ${props => props.isSelected ? '#ECECFB' : '#FFF'};
+    border-radius: ${scaleFontSize(6)}px;
+    padding-vertical: ${verticalScale(12)}px;
+    padding-horizontal: ${horizontalScale(12)}px;
     margin-vertical: ${props => verticalScale(props.theme.space[0])}px;
-    padding-horizontal: ${props => horizontalScale(props.theme.space[2])}px;
-    background-color: ${props => props.isSelected ? '#ECECFB' : 'transparent'};
 `
 
 interface SubthemeItem {
@@ -37,8 +38,13 @@ const SubthemeItem = ({ subtheme }: SubthemeItem) => {
 
     return (
         <Container onPress={toggle} isSelected={isSelected}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Text align='left'>
+                    {subtheme.id}.
+                </Text>
+                <Text align='left' style={{
+                    marginLeft: 10
+                }}>
                     {subtheme.name}
                 </Text>
             </View>

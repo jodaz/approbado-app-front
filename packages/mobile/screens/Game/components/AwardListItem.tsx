@@ -6,14 +6,15 @@ import { Image, Text } from '../../../components';
 import styled from 'styled-components/native';
 import SubthemeItem from './SubthemeItem';
 
-const { width } = Dimensions.get('window')
-
 const Pressable = styled.Pressable`
     display: flex;
     align-items: start;
-    margin-horizontal: ${horizontalScale(width * .02)}px;
     margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
     position: relative;
+    border-radius: ${scaleFontSize(6)}px;
+    padding-vertical: ${verticalScale(12)}px;
+    padding-horizontal: ${horizontalScale(12)}px;
+    background-color: #fff;
 `
 
 interface AwardListItem {
@@ -38,7 +39,6 @@ const AwardListItem = ({ award }: AwardListItem) : JSX.Element => {
         }}>
             <Pressable onPress={toggleOpen} key={award?.id}>
                 <View style={{
-                    borderRadius: scaleFontSize(12),
                     flexDirection: 'row',
                     alignItems: 'center',
                 }}>
@@ -48,8 +48,14 @@ const AwardListItem = ({ award }: AwardListItem) : JSX.Element => {
                         alignItems: 'center',
                         justifyContent: 'flex-start'
                     }}>
-                        <Image source={award.file} />
-                        <Text align='center'>
+                        <Image
+                            source={award.file}
+                            height={20}
+                            width={20}
+                        />
+                        <Text align='center' style={{
+                            marginLeft: horizontalScale(10)
+                        }}>
                             {award.title}
                         </Text>
                     </View>

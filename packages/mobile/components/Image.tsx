@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { Image as NativeImage, ImageProps } from 'react-native';
-import CONFIG_NAMES from '@approbado/lib/env';
+import { horizontalScale, verticalScale } from '../styles/scaling';
+import CONFIG_NAMES from "@approbado/lib/env"
 
-const Image = ({ source, ...restProps }: ImageProps) : JSX.Element => (
-    <NativeImage
-        source={{ uri: `${CONFIG_NAMES.SOURCE}/${source}` }}
-        {...restProps}
-    />
+const Image = ({ source, width, height, ...restProps }: ImageProps) : JSX.Element => (
+    <NativeImage source={{ uri: `${CONFIG_NAMES.SOURCE}/${source}` }} style={{
+        width: verticalScale(width),
+        height: horizontalScale(height)
+    }} />
 )
 
 Image.defaultProps = {

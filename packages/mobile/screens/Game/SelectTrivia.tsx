@@ -15,6 +15,7 @@ import { horizontalScale } from '../../styles/scaling';
 import { useTheme } from 'styled-components';
 import { listQuestions } from '@approbado/lib/services/questions.services';
 import { listLevels } from '@approbado/lib/services/levels.services';
+import { Scale } from 'lucide-react-native';
 import SelectTypeButton from './components/SelectTypeButton';
 
 const SelectTrivia = ({ navigation }) => {
@@ -57,7 +58,7 @@ const SelectTrivia = ({ navigation }) => {
     }, [])
 
     return (
-        <ScrollView contentContainerStyle={{
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{
             paddingHorizontal: horizontalScale(theme.space[3])
         }}>
             <Row size={1}>
@@ -70,7 +71,7 @@ const SelectTrivia = ({ navigation }) => {
             </Row>
             <Row size={1}>
                 <Text fontSize={20}>
-                    {state.trivia.name}
+                    <Scale color='#000' size={24} />{' '}{state.trivia.name}
                 </Text>
             </Row>
             <Row size={1}>

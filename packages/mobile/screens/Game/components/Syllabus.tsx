@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Button, Text } from '../../../components';
-import { Award, Subtheme } from '@approbado/lib/types/models'
+import { Award } from '@approbado/lib/types/models'
 import { listAwards } from '@approbado/lib/services/awards.services'
 import { Dimensions } from 'react-native';
 import { verticalScale } from '../../../styles/scaling';
@@ -47,7 +47,7 @@ const Syllabus = ({ navigation, route }) => {
     }
 
     React.useEffect(() => { fetchAwards() }, [isFocused])
-    console.log(state.themes)
+
     if (!awards.length) {
         return (
             <Container>

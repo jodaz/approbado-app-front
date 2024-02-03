@@ -12,18 +12,6 @@ const HomeScreen = () => {
             <Row size={1}>
                 <QuickTrivia />
             </Row>
-            <Row size={1}>
-                <RecentTrivias />
-            </Row>
-            <Row size={1}>
-                <RecentTrivias />
-            </Row>
-            <Row size={1}>
-                <RecentTrivias />
-            </Row>
-            <Row size={1}>
-                <RecentTrivias />
-            </Row>
         </ScrollView>
     );
 }

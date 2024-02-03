@@ -9,12 +9,12 @@ import {
     Scale
 } from 'lucide-react-native';
 import { ScrollView, View } from 'react-native'
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
-import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import styled, { useTheme } from 'styled-components';
 import { horizontalScale, verticalScale } from '../../styles/scaling';
 import { Routes } from '../routes';
 import { useGame } from '@approbado/lib/contexts/GameContext';
+import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
+import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 
 const question = {
     "id": 1,
