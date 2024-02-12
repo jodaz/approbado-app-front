@@ -6,6 +6,7 @@ import {
     Text
 } from '../../components';
 import {
+    ExternalLink,
     Scale
 } from 'lucide-react-native';
 import { ScrollView, View } from 'react-native'
@@ -13,8 +14,10 @@ import styled, { useTheme } from 'styled-components';
 import { horizontalScale, verticalScale } from '../../styles/scaling';
 import { Routes } from '../routes';
 import { useGame } from '@approbado/lib/contexts/GameContext';
+import { useGetResponses } from '@approbado/lib/hooks/useGetResponses'
 import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
+import Answer from './components/Answer';
 
 const question = {
     "id": 1,
@@ -68,14 +71,35 @@ const StyledPoints = styled.View`
     flex: 1;
 `
 
+const StyledAnswerContainer = styled.View`
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    border-radius: 6px;
+    border-width: 1px;
+    padding-vertical: ${verticalScale(12)}px;
+    padding-horizontal: ${horizontalScale(12)}px;
+    border-color: ${props => props.isError
+       ? props.theme.palette.error.main
+       : props.theme.palette.info.success};
+`
+
 const CheckAnswers = ({ navigation }) => {
     const theme = useTheme();
     const { state: {
         questions,
         currQuestion: current,
         duration,
-        type
+        type,
+        totalPoints,
+        answers,
+        correctAnswers
     }, dispatch } = useGame()
+    const { responses } = useGetResponses(questions, answers)
+    const [showAnswers, setShowAnswers] = React.useState(false);
+
+    const toggleAnswers = () => setShowAnswers(!showAnswers)
 
     return (
         <View style={{
@@ -112,7 +136,7 @@ const CheckAnswers = ({ navigation }) => {
                 <Row align='center' direction='row'>
                     <StyledPoints secondary>
                         <Text fontSize={24} color='info' variant='main'>
-                            16/16
+                            {correctAnswers}/{questions.length}
                         </Text>
                         <Text fontSize={20} color='info' variant='main'>
                             Aciertos
@@ -120,7 +144,7 @@ const CheckAnswers = ({ navigation }) => {
                     </StyledPoints>
                     <StyledPoints>
                         <Text fontSize={24} color='primary' variant='light'>
-                            10
+                            {totalPoints}
                         </Text>
                         <Text fontSize={20} color='primary' variant='light'>
                             Ptos. ganados
@@ -133,10 +157,51 @@ const CheckAnswers = ({ navigation }) => {
                         decoration='underline'
                         color='info'
                         variant='main'
+                        onPress={toggleAnswers}
                     >
                         Ver respuestas
                     </Text>
                 </Row>
+                {showAnswers ? (
+                    <View>
+                        {responses.map((item, index) => (
+                            <Row align='left' direction='column'>
+                                <Text
+                                    fontSize={18}
+                                    fontWeight={400}
+                                >
+                                    {index+1}. {item.description}
+                                </Text>
+                            </Row>
+                        ))}
+                    </View>
+                ) : null}
+                {/* <Answer isRight>
+                    Si, pero hasta cierto punto
+                </Answer>
+                <Answer>
+                    Si, pero hasta cierto punto
+                </Answer>
+                <Row align='left' direction='column'>
+                    <Text
+                        fontSize={18}
+                        fontWeight={600}
+                    >
+                        Respuesta correcta: No, hay limitaciones para la renuncia de ciertos derechos
+                    </Text>
+                </Row>
+                <Row align='center' direction='row'>
+                    <Text
+                        fontSize={18}
+                        decoration='underline'
+                        color='secondary'
+                        variant='main'
+                        fontWeight={400}
+                    >
+                        Para más detalles ver recursos
+                    </Text>
+                    <ExternalLink color='#000' size={16} style={{ marginLeft: 4 }} />
+                </Row> */}
                 <Row size={1}>
                     <Button onPress={() => navigation.navigate(Routes.ListTrivias)}>
                         Ver más trivias

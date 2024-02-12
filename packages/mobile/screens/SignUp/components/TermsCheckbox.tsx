@@ -1,10 +1,10 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import { ICheckboxProps } from '../types';
-import { scaleFontSize } from '../styles/scaling';
+import { ICheckboxProps } from '../../../types';
+import { scaleFontSize } from '../../../styles/scaling';
 import { Check } from 'lucide-react-native';
+import { Text } from '../../../components';
 import styled from 'styled-components/native';
-import Text from './Text';
 
 const CheckboxContainer = styled.TouchableOpacity`
     flex-direction: row;
@@ -30,7 +30,7 @@ const StyledCheckbox = styled.View`
     align-items: center;
 `
 
-const Checkbox = ({ control, name, label, validations } : ICheckboxProps) : JSX.Element => (
+const TermsCheckbox = ({ control, name, validations } : ICheckboxProps) : JSX.Element => (
     <Controller
         control={control}
         render={({ field: { onChange, value } }) => (
@@ -42,7 +42,16 @@ const Checkbox = ({ control, name, label, validations } : ICheckboxProps) : JSX.
                     fontSize={17}
                     fontWeight={400}
                 >
-                    {label}
+                    Al registrarte estás aceptando los
+                    {' '}
+                    <Text
+                        fontSize={17}
+                        fontWeight={400}
+                    >
+                        términos y condiciones
+                    </Text>
+                    {' '}
+                    del servicio
                 </CheckboxLabel>
             </CheckboxContainer>
         )}
@@ -52,4 +61,4 @@ const Checkbox = ({ control, name, label, validations } : ICheckboxProps) : JSX.
     />
 );
 
-export default Checkbox;
+export default TermsCheckbox;

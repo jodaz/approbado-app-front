@@ -12,8 +12,9 @@ import {
 import { ScrollView, View, Image } from 'react-native'
 import { useForm } from 'react-hook-form';
 import { sendAnswer } from '@approbado/lib/services/answers.services'
+import { finishTrivia } from '@approbado/lib/services/trivias.services'
 import { horizontalScale, verticalScale } from '../../styles/scaling';
-import { useGame, setAnswer, nextQuestion } from '@approbado/lib/contexts/GameContext';
+import { useGame, setAnswer, nextQuestion, setResults } from '@approbado/lib/contexts/GameContext';
 import { Routes } from '../routes';
 import AnswerAlert from './components/AnswerAlert';
 import CountdownFormat from '@approbado/lib/components/CountdownFormat'
@@ -58,7 +59,9 @@ const Play = ({ navigation }) => {
         questions,
         currQuestion: current,
         duration,
-        type
+        type,
+        themes,
+        level
     }, dispatch } = useGame()
     const currQuestion = questions[current]
     const [currAnswer, setCurrentAnswer] = React.useState<any>(null)
@@ -78,13 +81,29 @@ const Play = ({ navigation }) => {
             setIsRight(null);
             setAnswer(dispatch, currAnswer);
             setCurrentAnswer(null)
+
             if (current + 1 == questions.length) {
-                navigation.navigate(Routes.CheckAnswers)
+                onFinishTrivia()
             } else {
                 passQuestion();
             }
         }
     };
+
+    const onFinishTrivia = async () => {
+        const { success, data } = await finishTrivia({
+            themes: themes,
+            level: 1,
+            type: type
+        });
+
+        if (success) {
+            setResults(data, dispatch)
+            navigation.navigate(Routes.CheckAnswers)
+        } else {
+            console.log(data)
+        }
+    }
 
     React.useEffect(() => {
         if (choice) {
@@ -150,7 +169,7 @@ const Play = ({ navigation }) => {
                     </Row>
                     <Row size={1}>
                         <Text align='left' fontSize={22} fontWeight={400}>
-                            1. {currQuestion.description}
+                            {current + 1}. {currQuestion.description}
                         </Text>
                     </Row>
                     <Row size={1}>

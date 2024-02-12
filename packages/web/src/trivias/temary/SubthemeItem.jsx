@@ -19,7 +19,7 @@ export default function SubthemeItem(props) {
             unsetSubtheme(id)
         }
     };
-
+    console.log(finished)
     return (
         <ListItem key={id} button onClick={handleToggle(id)} disabled={finished}>
             <ListItemText id={id} primary={name} />

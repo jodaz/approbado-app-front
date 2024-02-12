@@ -3,41 +3,41 @@ import { Image } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Routes } from '../routes';
 import { EMAIL, PASSWORD, USERNAME } from '@approbado/lib/utils/validations'
+import {
+    Text,
+    Button,
+    TextInput,
+    Row,
+    Checkbox,
+    Link,
+    Container
+} from '../../components';
 import { LockIcon, User2, Mail } from 'lucide-react-native';
-import Button from '../../components/Button';
-import styled from 'styled-components/native';
-import TextInput from '../../components/TextInput';
-import Text from '../../components/Text';
-import Link from '../../components/Link';
-import Container from '../../components/Container';
-import Row from '../../components/Row';
 import GoogleLoginButton from '../../components/GoogleLogin';
 import FacebookLoginButton from '../../components/FacebookLogin';
 import { createAccountStep1 } from '@approbado/lib/services/auth.services';
 import setFormErrors from '@approbado/lib/utils/setFormErrors';
+import TermsCheckbox from './components/TermsCheckbox';
 
-const FormContainer = styled.View`
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-`;
 
 const CreateAccount = ({ navigation }) => {
-    const { control, handleSubmit, setError, formState } = useForm();
+    const { control, handleSubmit, setError, formState, watch } = useForm();
+    const terms = watch('terms')
 
     const onSubmit = async (values) => {
-        const { success, status, data } = await createAccountStep1(values);
+        console.log(JSON.stringify(values, null, ' '))
+        // const { success, status, data } = await createAccountStep1(values);
 
-        if (success) {
-            navigation.navigate(Routes.CompleteProfile, values)
-        } else {
-            if (status == 422) {
-                setFormErrors(setError, data)
-            }
-        }
+        // if (success) {
+        //     navigation.navigate(Routes.CompleteProfile, values)
+        // } else {
+        //     if (status == 422) {
+        //         setFormErrors(setError, data)
+        //     }
+        // }
     };
+
+    console.log(terms)
 
     return (
         <Container>
@@ -49,42 +49,47 @@ const CreateAccount = ({ navigation }) => {
                     Crear una cuenta
                 </Text>
             </Row>
-            <FormContainer>
-                <Row size={1}>
-                    <TextInput
-                        name="user_name"
-                        validations={USERNAME}
-                        control={control}
-                        placeholder='Usuario'
-                        icon={<User2 />}
-                    />
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        name="email"
-                        validations={EMAIL}
-                        control={control}
-                        placeholder='Correo electrónico'
-                        icon={<Mail />}
-                        keyboardType={'email-address'}
-                    />
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        name="password"
-                        validations={PASSWORD}
-                        control={control}
-                        placeholder='Contraseña'
-                        secureTextEntry
-                        icon={<LockIcon />}
-                    />
-                </Row>
-            </FormContainer>
+            <Row size={1}>
+                <TextInput
+                    name="user_name"
+                    validations={USERNAME}
+                    control={control}
+                    placeholder='Usuario'
+                    icon={<User2 />}
+                />
+            </Row>
+            <Row size={1}>
+                <TextInput
+                    name="email"
+                    validations={EMAIL}
+                    control={control}
+                    placeholder='Correo electrónico'
+                    icon={<Mail />}
+                    keyboardType={'email-address'}
+                />
+            </Row>
+            <Row size={1}>
+                <TextInput
+                    name="password"
+                    validations={PASSWORD}
+                    control={control}
+                    placeholder='Contraseña'
+                    secureTextEntry
+                    icon={<LockIcon />}
+                />
+            </Row>
+            <Row size={1}>
+                <TermsCheckbox
+                    name='terms'
+                    validations={{ required: true }}
+                    control={control}
+                />
+            </Row>
             <Row size={2}>
                 <Button
                     onPress={handleSubmit(onSubmit)}
                     fullWidth
-                    disabled={!formState.isValid || formState.isSubmitting}
+                    disabled={!formState.isValid || formState.isSubmitting || !terms}
                     isLoading={formState.isSubmitting}
                 >
                     Crear una cuenta

@@ -9,6 +9,8 @@ export interface IGame {
     questions: [] | Question[];
     currQuestion: number; // Pregunta actual (Jugando)
     answers: [] | any,
+    totalPoints: number;
+    correctAnswers: number;
 }
 
 export type GameContextType = {

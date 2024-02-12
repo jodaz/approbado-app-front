@@ -5,7 +5,6 @@ import {
     Typography,
     makeStyles
 } from '@material-ui/core';
-import { apiProvider } from '@approbado/lib/api';
 import Button from '@approbado/lib/components/Button'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import AuthLayout from '../layouts/AuthLayout'
@@ -16,6 +15,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { useUserDispatch } from '@approbado/lib/hooks/useUserState'
 import TextInput from '@approbado/lib/components/TextInput'
 import PasswordInput from '@approbado/lib/components/PasswordInput'
+import { loginAdmin } from '@approbado/lib/services/auth.services';
 
 const validate = (values) => {
     const errors = {};
@@ -51,26 +51,27 @@ const Login = () => {
     const handleSubmit = React.useCallback(async (values) => {
         setLoading(true)
 
-        return await apiProvider.post(`/auth/admin-login`, values)
-            .then(async (res) => {
-                await setUser({
-                    user: res.data.user,
-                    token: res.data.token
-                });
-                await history.push('/');
+        const { success, data } = await loginAdmin(values);
 
-                setLoading(false);
-            }).catch(err => {
-                setLoading(false);
-
-                if (err.response.status == 500) {
-                    history.push('/error');
-                }
-
-                if (err.response.data.errors) {
-                    return err.response.data.errors;
-                }
+        if (success) {
+            await setUser({
+                user: data.user,
+                token: data.token
             });
+            await history.push('/');
+
+            setLoading(false);
+        } else {
+            setLoading(false);
+
+            if (err.response.status == 500) {
+                history.push('/error');
+            }
+
+            if (data) {
+                return data;
+            }
+        }
     }, [])
 
     return (
@@ -82,7 +83,6 @@ const Login = () => {
                         Administrador
                     </Typography>
                 </Box>
-
                 <InputContainer label='Correo electrónico' md={12}>
                     <TextInput
                         name="email"

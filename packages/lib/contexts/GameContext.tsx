@@ -11,7 +11,8 @@ enum GameActionType {
     RESET_GAME = 'RESET_GAME',
     SET_CONFIGS = 'SET_CONFIGS',
     NEXT_QUESTION = 'NEXT_QUESTION',
-    SET_ANSWER = 'SET_ANSWER'
+    SET_ANSWER = 'SET_ANSWER',
+    SET_RESULTS = 'SET_RESULTS'
 }
 
 interface GameAction {
@@ -27,7 +28,9 @@ const initialState: IGame = {
     duration: null,
     questions: [],
     answers: [],
-    currQuestion: 0
+    currQuestion: 0,
+    correctAnswers: 0,
+    totalPoints: 0
 }
 
 const GameContext = React.createContext<GameContextType>({ state: initialState, dispatch: () => null })
@@ -56,6 +59,13 @@ function gameReducer(state: IGame, action: GameAction): IGame {
             return {
                 ...state,
                 answers: [...state.answers, action.payload]
+            }
+        }
+        case GameActionType.SET_RESULTS: {
+            return {
+                ...state,
+                correctAnswers: action.payload.rights,
+                totalPoints: action.payload.points
             }
         }
         case GameActionType.ADD_THEME: {
@@ -111,6 +121,13 @@ export async function setTrivia(dispatch: any, trivia: Trivia) {
     dispatch({
         type: GameActionType.SET_TRIVIA,
         payload: trivia
+    })
+}
+
+export async function setResults(dispatch: any, data) {
+    dispatch({
+        type: GameActionType.SET_RESULTS,
+        payload: data
     })
 }
 

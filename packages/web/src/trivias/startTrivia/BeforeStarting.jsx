@@ -26,8 +26,6 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const getMaxTime = subthemes => subthemes.map(({ duration }) => duration).reduce((a, b) => a + b, 0)
-
 const BeforeStarting = () => {
     const { questions, selectedSubthemes, room } = useTriviaState()
     const [maxTime, setMaxTime] = React.useState(false)
