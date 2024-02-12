@@ -5,6 +5,7 @@ import { scaleFontSize } from '../../../styles/scaling';
 import { Check } from 'lucide-react-native';
 import { Text } from '../../../components';
 import styled from 'styled-components/native';
+import { Linking } from 'react-native';
 
 const CheckboxContainer = styled.TouchableOpacity`
     flex-direction: row;
@@ -46,7 +47,8 @@ const TermsCheckbox = ({ control, name, validations } : ICheckboxProps) : JSX.El
                     {' '}
                     <Text
                         fontSize={17}
-                        fontWeight={400}
+                        fontWeight={600}
+                        onPress={() => Linking.openURL('https://www.lipsum.com/')}
                     >
                         términos y condiciones
                     </Text>

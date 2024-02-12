@@ -8,9 +8,8 @@ import {
     Button,
     TextInput,
     Row,
-    Checkbox,
     Link,
-    Container
+    ScrollViewContainer
 } from '../../components';
 import { LockIcon, User2, Mail } from 'lucide-react-native';
 import GoogleLoginButton from '../../components/GoogleLogin';
@@ -25,22 +24,19 @@ const CreateAccount = ({ navigation }) => {
     const terms = watch('terms')
 
     const onSubmit = async (values) => {
-        console.log(JSON.stringify(values, null, ' '))
-        // const { success, status, data } = await createAccountStep1(values);
+        const { success, status, data } = await createAccountStep1(values);
 
-        // if (success) {
-        //     navigation.navigate(Routes.CompleteProfile, values)
-        // } else {
-        //     if (status == 422) {
-        //         setFormErrors(setError, data)
-        //     }
-        // }
+        if (success) {
+            navigation.navigate(Routes.CompleteProfile, values)
+        } else {
+            if (status == 422) {
+                setFormErrors(setError, data)
+            }
+        }
     };
 
-    console.log(terms)
-
     return (
-        <Container>
+        <ScrollViewContainer>
             <Row size={4} align='center'>
                 <Image source={require('../../assets/Logo.png')} />
             </Row>
@@ -112,7 +108,7 @@ const CreateAccount = ({ navigation }) => {
             <Link to={Routes.Login} align='center'>
                 Ingresa aquí
             </Link>
-        </Container>
+        </ScrollViewContainer>
     );
 }
 

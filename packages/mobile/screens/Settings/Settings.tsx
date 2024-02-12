@@ -5,17 +5,8 @@ import { NavButton } from '../../components';
 import {
     Row,
     Button,
-    Container
+    ScrollViewContainer
 } from '../../components';
-import styled from 'styled-components/native';
-
-const FormContainer = styled.View`
-    margin-top: 40px;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-`
 
 const Settings = ({ navigation }) => {
     const { dispatch } = useAuth();
@@ -26,7 +17,7 @@ const Settings = ({ navigation }) => {
     }
 
     return (
-        <Container>
+        <ScrollViewContainer>
             <NavButton to={Routes.PrivacySettings}>
                 Privacidad
             </NavButton>
@@ -52,7 +43,7 @@ const Settings = ({ navigation }) => {
                     Cerrar sesión
                 </Button>
             </Row>
-        </Container>
+        </ScrollViewContainer>
     );
 }
 

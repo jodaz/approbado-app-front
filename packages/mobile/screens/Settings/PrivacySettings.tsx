@@ -4,13 +4,11 @@ import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import TitleBar from '../../components/TitleBar';
-import styled from 'styled-components/native';
 import {
     Row,
     Button,
-    Container,
-    Checkbox
+    Checkbox,
+    ScrollViewContainer
 } from '../../components';
 
 const PrivacySettings = ({ navigation }) => {
@@ -40,7 +38,7 @@ const PrivacySettings = ({ navigation }) => {
     };
 
     return (
-        <Container>
+        <ScrollViewContainer>
             <Row size={1}>
                 <Checkbox
                     control={control}
@@ -65,7 +63,7 @@ const PrivacySettings = ({ navigation }) => {
                     Guardar cambios
                 </Button>
             </Row>
-        </Container>
+        </ScrollViewContainer>
     );
 };
 

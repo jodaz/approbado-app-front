@@ -5,7 +5,7 @@ import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import {
-    Container,
+    ScrollViewContainer,
     Button,
     Row,
     Checkbox
@@ -40,7 +40,7 @@ const NotificationSettings = ({ navigation }) => {
     };
 
     return (
-        <Container>
+        <ScrollViewContainer>
             <Row size={1}>
                 <Checkbox
                     control={control}
@@ -74,7 +74,7 @@ const NotificationSettings = ({ navigation }) => {
                     Guardar cambios
                 </Button>
             </Row>
-        </Container>
+        </ScrollViewContainer>
     );
 };
 
