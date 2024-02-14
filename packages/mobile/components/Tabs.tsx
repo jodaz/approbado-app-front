@@ -5,7 +5,13 @@ import TabIndicator from './TabIndicator';
 
 const Tabs = ({ state, descriptors, navigation, position }) => (
     <ScrollView
-        style={{ flexDirection: 'row', maxHeight: verticalScale(30), height: verticalScale(30) }}
+        style={{
+            flexDirection: 'row',
+            maxHeight: verticalScale(30),
+            height: verticalScale(30),
+            borderBottomColor: '#D1D1D1',
+            borderBottomWidth: 1
+        }}
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -22,15 +28,15 @@ const Tabs = ({ state, descriptors, navigation, position }) => (
             const isFocused = state.index === index;
 
             const onPress = () => {
-            const event = navigation.emit({
-                type: 'tabPress',
-                target: route.key,
-                canPreventDefault: true,
-            });
+                const event = navigation.emit({
+                    type: 'tabPress',
+                    target: route.key,
+                    canPreventDefault: true,
+                });
 
-            if (!isFocused && !event.defaultPrevented) {
-                navigation.navigate(route.name, route.params);
-            }
+                if (!isFocused && !event.defaultPrevented) {
+                    navigation.navigate(route.name, route.params);
+                }
             };
 
             const onLongPress = () => {

@@ -20,6 +20,26 @@ export async function loginUser(values) {
     }
 }
 
+export async function loginAdmin(values) {
+    try {
+        const response = await apiProvider.post(`/auth/admin-login`, values)
+
+        const { data } = response
+
+        return {
+            success: true,
+            data: data
+        }
+    } catch (error) {
+        console.log(error)
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
 export async function createAccountStep1(values) {
     try {
         const response = await apiProvider.post(`/auth/mobile/create-account-verification`, values)

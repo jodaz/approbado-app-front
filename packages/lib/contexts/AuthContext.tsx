@@ -2,7 +2,6 @@ import * as React from 'react'
 import { IAuth, AuthContextType } from '../types/providers';
 import { getUserProfile, loginUser, socialLoginRequest } from '../services/auth.services';
 import { IComp } from '../types';
-import { User } from '../types/models';
 import CONFIG_NAMES from '../env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

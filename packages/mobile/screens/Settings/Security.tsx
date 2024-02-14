@@ -1,27 +1,15 @@
 import * as React from 'react'
-import { SafeAreaView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { CONFIRM_PASSWORD, PASSWORD } from '@approbado/lib/utils/validations';
 import { updatePassword } from '@approbado/lib/services/settings.services';
 import {
     Row,
     Button,
-    Container,
-    Text
+    Container
 } from '../../components';
-import styled from 'styled-components/native';
-import TitleBar from '../../components/TitleBar';
 import TextInput from '../../components/TextInput';
 import setFormErrors from '@approbado/lib/utils/setFormErrors';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-
-const FormContainer = styled.View`
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-`;
 
 const Security = ({ navigation }) => {
     const { control, handleSubmit, setError, formState } = useForm();
@@ -46,50 +34,43 @@ const Security = ({ navigation }) => {
 
     return (
         <Container>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                    Ajustes de seguridad
-                </Text>
-            </TitleBar>
-            <FormContainer>
-                <Row size={1}>
-                    <TextInput
-                        name="curr_password"
-                        validations={PASSWORD}
-                        control={control}
-                        placeholder='Ingresa contraseña'
-                        secureTextEntry
-                    />
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        name="new_password"
-                        validations={CONFIRM_PASSWORD}
-                        control={control}
-                        placeholder='Ingresa contraseña'
-                        secureTextEntry
-                    />
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        name="new_password_confirmed"
-                        validations={CONFIRM_PASSWORD}
-                        control={control}
-                        placeholder='Ingresa contraseña'
-                        secureTextEntry
-                    />
-                </Row>
-                <Row size={6}>
-                    <Button
-                        disabled={!formState.isValid || formState.isSubmitting}
-                        isLoading={formState.isSubmitting}
-                        onPress={handleSubmit(onSubmit)}
-                        fullWidth
-                    >
-                        Guardar cambios
-                    </Button>
-                </Row>
-            </FormContainer>
+            <Row size={1}>
+                <TextInput
+                    name="curr_password"
+                    validations={PASSWORD}
+                    control={control}
+                    placeholder='Ingresa contraseña'
+                    secureTextEntry
+                />
+            </Row>
+            <Row size={1}>
+                <TextInput
+                    name="new_password"
+                    validations={CONFIRM_PASSWORD}
+                    control={control}
+                    placeholder='Ingresa contraseña'
+                    secureTextEntry
+                />
+            </Row>
+            <Row size={1}>
+                <TextInput
+                    name="new_password_confirmed"
+                    validations={CONFIRM_PASSWORD}
+                    control={control}
+                    placeholder='Ingresa contraseña'
+                    secureTextEntry
+                />
+            </Row>
+            <Row size={6}>
+                <Button
+                    disabled={!formState.isValid || formState.isSubmitting}
+                    isLoading={formState.isSubmitting}
+                    onPress={handleSubmit(onSubmit)}
+                    fullWidth
+                >
+                    Guardar cambios
+                </Button>
+            </Row>
         </Container>
     );
 }

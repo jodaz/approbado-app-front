@@ -1,4 +1,22 @@
-import { User } from './models';
+import { User, Trivia, Subtheme, Question } from './models';
+
+export interface IGame {
+    trivia: Trivia | null;
+    themes: [] | Subtheme[];
+    level: null | string,
+    duration: null | string,
+    type: null | string;
+    questions: [] | Question[];
+    currQuestion: number; // Pregunta actual (Jugando)
+    answers: [] | any,
+    totalPoints: number;
+    correctAnswers: number;
+}
+
+export type GameContextType = {
+    state: IGame,
+    dispatch: any
+}
 
 export interface IAuth {
     isAuth: boolean;

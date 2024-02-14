@@ -17,6 +17,7 @@ env:
   VITE_APP_GOOGLE_ID: ${{ secrets.VITE_APP_GOOGLE_ID }}
   VITE_APP_LOCATION: ${{ secrets.VITE_APP_LOCATION }}
   VITE_APP_AUTH_USER_INFO: ${{ secrets.VITE_APP_AUTH_USER_INFO }}
+  VITE_APP_SOURCE: ${{ secrets.VITE_APP_SOURCE }}
 
 jobs:
   build:
@@ -31,21 +32,26 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+
+    - name: pnpm-setup
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8.7.5
+
     - name: Install dependencies
-      run: npm i --force
+      run: pnpm i --force
 
     - name: Build admin app
-      run: npm run build:admin --if-present
+      run: pnpm run build:admin
       env:
         REACT_APP_NAME: 'admin'
 
     - name: Build Users App
-      run: npm run build:app --if-present
+      run: pnpm run build:web
       env:
-        REACT_APP_NAME: 'app'
+        REACT_APP_NAME: 'web'
 
-    - name: 📂 Deploy Admin App
+    - name: 📂 Deploy Admin frontend
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -avzr --delete
@@ -55,12 +61,12 @@ jobs:
         remote_user: ${{ secrets.SSH_USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}
 
-    - name: 📂 Deploy Users App
+    - name: 📂 Deploy Users web
       uses: burnett01/rsync-deployments@5.2.1
       with:
         switches: -avzr --delete
-        path: /packages/app/build
-        remote_path: /var/www/html/app
+        path: /packages/web/build
+        remote_path: /var/www/html/web
         remote_host: ${{ secrets.SSH_HOST }}
         remote_user: ${{ secrets.SSH_USERNAME }}
         remote_key: ${{ secrets.SSH_KEY }}

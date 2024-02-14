@@ -69,7 +69,12 @@ const InviteChat = ({ navigation }) => {
                 <Text>
                     Invitar usuario
                 </Text>
-                <Button variant='text' onPress={() => navigation.navigate(Routes.Chat)}>
+                <Button
+                    textVariant='main'
+                    textColor='error'
+                    variant="text"
+                    onPress={() => navigation.navigate(Routes.Chat)}
+                >
                     Cancelar
                 </Button>
             </Row>

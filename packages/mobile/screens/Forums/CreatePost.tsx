@@ -97,7 +97,12 @@ const CreatePost = ({ navigation }) => {
                     <Text>
                         Crear nuevo debate
                     </Text>
-                    <Button variant='text' onPress={() => navigation.navigate(Routes.Forum)}>
+                    <Button
+                        textVariant='main'
+                        textColor='error'
+                        variant="text"
+                        onPress={() => navigation.navigate(Routes.Forum)}
+                    >
                         Cancelar
                     </Button>
                 </Row>

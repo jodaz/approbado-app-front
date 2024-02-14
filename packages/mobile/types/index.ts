@@ -5,11 +5,13 @@ type ColorThemeType = 'primary' | 'secondary' | 'error' | 'text' | 'info';
 
 type VariantType = 'outlined' | 'text' | 'contained';
 
-type VariantColorType = 'primary' | 'secondary' | 'main';
+type VariantColorType = 'primary' | 'secondary' | 'main' | 'success';
 
 type TextAlignType = 'right' | 'left' | 'center';
 
 type FlexboxAlignType = 'center' | 'start' | 'end' | 'unset' | 'space-between';
+
+type TextDecorationType = 'none' | 'underline';
 
 export interface IComp {
     children: React.ReactNode
@@ -19,6 +21,8 @@ export interface IButtonProps extends PressableProps {
     onPress?: () => void;
     bgColor: ColorThemeType;
     variant?: VariantType;
+    textVariant?: string;
+    textColor?: string;
     fontWeight?: number;
     fullWidth?: boolean;
     color: ColorThemeType;
@@ -33,6 +37,8 @@ export interface ITextProps extends IComp {
     style?: StyleProp;
     align?: TextAlignType;
     variant?: VariantColorType;
+    decoration?: TextDecorationType;
+    onPress?: () => void;
 }
 
 export interface ILinkProps extends ITextProps {
@@ -66,6 +72,7 @@ export interface ICheckboxProps {
     control: any;
     name: string;
     label: string;
+    validations?: any;
 }
 
 export interface ISelectProps {

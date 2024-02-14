@@ -1,38 +1,54 @@
 import React from 'react';
 import { Controller } from 'react-hook-form';
 import { ICheckboxProps } from '../types';
+import { scaleFontSize } from '../styles/scaling';
+import { Check } from 'lucide-react-native';
 import styled from 'styled-components/native';
-import ExpoCheckbox from 'expo-checkbox';
+import Text from './Text';
 
-const CheckboxContainer = styled.View`
+const CheckboxContainer = styled.TouchableOpacity`
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 `;
 
-const CheckboxLabel = styled.Text`
-    font-size: 14px;
+const CheckboxLabel = styled(Text)`
     margin-left: 10px;
+    margin-top: 0;
+    padding-top: 0;
 `;
 
-const CheckboxStyled = styled(ExpoCheckbox)`
-    color: blue;
+const StyledCheckbox = styled.View`
+    border-radius: ${scaleFontSize(8)}px;
+    height: ${scaleFontSize(24)}px;
+    width: ${scaleFontSize(24)}px;
+    background-color: ${props => props.isPressed
+        ? props.theme.palette.info.main
+        : 'transparent'};
+    border-width: ${scaleFontSize(2)}px;
+    border-color: ${props => props.theme.palette.info.main};
+    justify-content: center;
+    align-items: center;
 `
 
-const Checkbox = ({ control, name, label } : ICheckboxProps) : JSX.Element => (
+const Checkbox = ({ control, name, label, validations } : ICheckboxProps) : JSX.Element => (
     <Controller
         control={control}
         render={({ field: { onChange, value } }) => (
-            <CheckboxContainer>
-                <CheckboxStyled
-                    value={value}
-                    onValueChange={onChange}
-                    color='#206FCA'
-                />
-                <CheckboxLabel>{label}</CheckboxLabel>
+            <CheckboxContainer onPress={() => onChange(!value)}>
+                <StyledCheckbox isPressed={value}>
+                    {value ? <Check color='#fff' size={18} /> : null}
+                </StyledCheckbox>
+                <CheckboxLabel
+                    fontSize={17}
+                    fontWeight={400}
+                >
+                    {label}
+                </CheckboxLabel>
             </CheckboxContainer>
         )}
         name={name}
         defaultValue={false}
+        rules={validations?.rules}
     />
 );
 

@@ -37,7 +37,7 @@ const InnerRadioView = styled.View`
     background: ${props => props.theme.palette.info.main};
 `
 
-const RadioButton = ({ control, name, options }) => (
+const RadioButton = ({ control, name, options, disabled }) => (
     <Controller
         control={control}
         name={name}
@@ -48,6 +48,7 @@ const RadioButton = ({ control, name, options }) => (
                         key={i}
                         onPress={() => onChange(option)}
                         isSelected={value === option}
+                        disabled={disabled}
                     >
                         <OuterRadioView isSelected={value === option}>
                             {value === option ? <InnerRadioView /> : null}
