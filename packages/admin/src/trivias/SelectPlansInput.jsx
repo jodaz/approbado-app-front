@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Close } from '@approbado/lib/icons'
-import { listPlans } from '@approbado/lib/services/plan.service'
+import { listPlans } from '@approbado/lib/services/plans.services'
 import {
     Box,
     makeStyles,
