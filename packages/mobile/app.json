@@ -29,18 +29,20 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-        [
-            "expo-image-picker",
-            {
-                "photosPermission": "Select and upload images",
-                "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-            }
-        ]
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Select and upload images",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
+      "expo-font"
     ],
     "extra": {
       "eas": {
         "projectId": "62d5a083-e875-48b2-b985-1557d5674967"
       }
-    }
+    },
+    "scheme": "approbado"
   }
 }
