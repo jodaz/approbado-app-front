@@ -95,7 +95,7 @@ const AddFriendsModal = ({ control }) => {
                                 paddingHorizontal: horizontalScale(16)
                             }}>
                                 <Row>
-                                    <Pressable onPress={() => navigation.navigate(Routes.ScheduleTrivia)}>
+                                    <Pressable onPress={() => navigation.navigate(Routes.CreateEvent)}>
                                         <Text
                                             align='left'
                                             color='info'

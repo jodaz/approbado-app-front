@@ -16,10 +16,11 @@ import { useForm } from 'react-hook-form';
 import { useGame, resetGame } from '@approbado/lib/contexts/GameContext';
 import { horizontalScale } from '../../styles/scaling';
 import { Routes } from '../routes';
+import Emoji from 'react-native-emoji';
 
 const TriviaRules = ({ navigation }) => {
     const { state, dispatch } = useGame()
-    const { formState, control, watch, handleSubmit } = useForm();
+    const { handleSubmit } = useForm();
 
     const onSubmit = async (values) => {
         navigation.navigate(Routes.Play)
@@ -42,12 +43,12 @@ const TriviaRules = ({ navigation }) => {
                     Antes de comenzar
                 </Text>
             </Row>
-            {/* <Row size={1} direction='row'>
-                <Layers size={24} color='#000' style={{ marginRight: 10 }} />
+            <Row size={1} direction='row' align='center'>
+                <Emoji name='sunglasses' style={{ marginRight: 10, fontSize: 24 }} />
                 <Text align='left' fontSize={20}>
                     Responde y demuestra lo que sabes
                 </Text>
-            </Row> */}
+            </Row>
             <Row size={1} direction='row'>
                 <Layers size={24} color='#000' style={{ marginRight: 10 }} />
                 <Text align='left' fontSize={20}>
@@ -60,12 +61,14 @@ const TriviaRules = ({ navigation }) => {
                     control={control}
                 />
             </Row> */}
-            <Row size={1} direction='row'>
-                <Clock size={24} color='#000' style={{ marginRight: 10 }} />
-                <Text align='left' fontSize={20}>
-                    Tiempo: {state.duration} minutos
-                </Text>
-            </Row>
+            {state.useTimer ? (
+                <Row size={1} direction='row'>
+                    <Clock size={24} color='#000' style={{ marginRight: 10 }} />
+                    <Text align='left' fontSize={20}>
+                        Tiempo: {state.duration} minutos
+                    </Text>
+                </Row>
+            ) : null}
             <Row size={1}>
                 <Button onPress={handleSubmit(onSubmit)}>
                     Comenzar

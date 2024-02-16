@@ -12,7 +12,8 @@ enum GameActionType {
     SET_CONFIGS = 'SET_CONFIGS',
     NEXT_QUESTION = 'NEXT_QUESTION',
     SET_ANSWER = 'SET_ANSWER',
-    SET_RESULTS = 'SET_RESULTS'
+    SET_RESULTS = 'SET_RESULTS',
+    USE_TIMER = 'USE_TIMER'
 }
 
 interface GameAction {
@@ -30,7 +31,8 @@ const initialState: IGame = {
     answers: [],
     currQuestion: 0,
     correctAnswers: 0,
-    totalPoints: 0
+    totalPoints: 0,
+    useTimer: false
 }
 
 const GameContext = React.createContext<GameContextType>({ state: initialState, dispatch: () => null })
@@ -78,6 +80,12 @@ function gameReducer(state: IGame, action: GameAction): IGame {
             return {
                 ...state,
                 questions: action.payload
+            }
+        }
+        case GameActionType.USE_TIMER: {
+            return {
+                ...state,
+                useTimer: action.payload
             }
         }
         case GameActionType.REMOVE_THEME: {
@@ -148,6 +156,13 @@ export async function addTheme(dispatch: any, theme: Subtheme) {
 export async function nextQuestion(dispatch: any) {
     dispatch({
         type: GameActionType.NEXT_QUESTION
+    })
+}
+
+export async function setTimer(dispatch: any, timer: boolean) {
+    dispatch({
+        type: GameActionType.USE_TIMER,
+        payload: timer
     })
 }
 

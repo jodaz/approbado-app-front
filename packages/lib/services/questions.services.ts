@@ -2,7 +2,7 @@ import { apiProvider, fileProvider } from "../api";
 import formDataHandler from '../utils/formDataHandler'
 import getQueryFromParams from "../utils/getQueryFromParams";
 
-export async function index(query) {
+export async function listQuestions(query) {
     try{
         const response = await apiProvider.get('/questions', {
             params: getQueryFromParams(query)

@@ -11,6 +11,7 @@ export interface IGame {
     answers: [] | any,
     totalPoints: number;
     correctAnswers: number;
+    useTimer: boolean;
 }
 
 export type GameContextType = {
