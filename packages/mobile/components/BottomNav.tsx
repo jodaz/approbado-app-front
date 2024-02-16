@@ -31,7 +31,7 @@ const TabIndicator = styled.View`
        ? props.theme.palette.primary.main
        : '#000'};
     border-bottom-width: 4px;
-    width: 20px;
+    width: 40px;
 `
 
 const TabButton = ({ children, isFocused }) => (

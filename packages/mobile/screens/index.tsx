@@ -5,6 +5,7 @@ import { useAuth, getInitialState } from '@approbado/lib/contexts/AuthContext';
 import { useNavigation } from '@react-navigation/native';
 import { HeaderBack } from '../components';
 import SettingsStack from './Settings';
+import GameStack from './Game/GameStack';
 import EditProfileInformation from './EditProfile/EditProfileInformation';
 import EditOcupation from './EditProfile/EditOcupation';
 import EditSocialProfile from './EditProfile/EditSocialProfile';
@@ -51,6 +52,11 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.Home}
                 component={BottomNav}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name={Routes.Play}
+                component={GameStack}
                 options={{ headerShown: false }}
             />
             <Stack.Screen

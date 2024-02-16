@@ -4,11 +4,6 @@ import { Routes } from '../routes';
 import ShowTrivia from './ShowTrivia';
 import SelectTrivia from './SelectTrivia';
 import TriviaRules from './TriviaRules';
-import Play from './Play';
-import CheckAnswers from './CheckAnswers';
-import WinLevel from './WinLevel';
-import LoadingTriviaTeam from './LoadingTriviaTeam';
-import LoadingResults from './LoadingResults';
 import ListTrivias from './ListTrivias';
 import TriviaHeader from './components/TriviaHeader';
 
@@ -40,26 +35,6 @@ const TriviasStack = () => (
         <Stack.Screen
             name={Routes.TriviaRules}
             component={TriviaRules}
-        />
-        <Stack.Screen
-            name={Routes.Play}
-            component={Play}
-        />
-        <Stack.Screen
-            name={Routes.CheckAnswers}
-            component={CheckAnswers}
-        />
-        <Stack.Screen
-            name={Routes.WinLevel}
-            component={WinLevel}
-        />
-        <Stack.Screen
-            name={Routes.LoadingTriviaTeam}
-            component={LoadingTriviaTeam}
-        />
-        <Stack.Screen
-            name={Routes.LoadingResults}
-            component={LoadingResults}
         />
     </Stack.Navigator>
 );

@@ -63,10 +63,7 @@ const SelectTrivia = ({ navigation }) => {
         }}>
             <Row size={1}>
                 <Text fontSize={24}>
-                    ¡Genial! Estas a punto de iniciar una trivia
-                </Text>
-                <Text fontSize={22} fontWeight={600}>
-                    Elige el nivel de dificultad
+                    ¡Genial! Estas a punto de iniciar una trivia, elige el nivel de dificultad
                 </Text>
             </Row>
             <Row size={1}>
