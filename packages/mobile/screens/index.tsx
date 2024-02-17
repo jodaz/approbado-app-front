@@ -83,22 +83,37 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.EditProfile}
                 component={EditProfileInformation}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.EditProfileContact}
                 component={EditProfileContact}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.EditProfileOcupation}
                 component={EditOcupation}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.EditProfileSocial}
                 component={EditSocialProfile}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.ShowPost}
                 component={ShowPost}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.UserChat}
@@ -110,10 +125,16 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.EditPost}
                 component={EditPost}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.ReportPost}
                 component={ReportPost}
+                options={{
+                    headerShown: false
+                }}
             />
             <Stack.Screen
                 name={Routes.InviteChat}
@@ -125,6 +146,9 @@ const MainScreen = () => {
             <Stack.Screen
                 name={Routes.CreateForum}
                 component={CreatePost}
+                options={{
+                    headerShown: false
+                }}
             />
         </Stack.Navigator>
     )

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ScrollView, Linking, Dimensions } from 'react-native';
-import { GraduationCap, Mail } from 'lucide-react-native';
+import { GraduationCap, Info, Mail } from 'lucide-react-native';
 import { Button, Text } from '../../../components';
 import { Link } from 'lucide-react-native';
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
@@ -63,7 +63,10 @@ const About = () => {
 
     return (
         <Container>
-            <Row size={1} align='center'>
+            <AboutInformationItem
+                icon={<Info />}
+                title='Biografía'
+            >
                 <Text
                     fontWeight={400}
                     fontSize={20}
@@ -72,7 +75,7 @@ const About = () => {
                 >
                     {user?.bio}
                 </Text>
-            </Row>
+            </AboutInformationItem>
             <AboutInformationItem
                 icon={<Mail />}
                 title='Email'

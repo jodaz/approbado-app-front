@@ -5,7 +5,8 @@ import {
     Button,
     Row,
     Text,
-    TextInput
+    TextInput,
+    MultiSelectInput
 } from '../../components';
 import {
     Dimensions
@@ -15,10 +16,10 @@ import { createForum } from '@approbado/lib/services/forums.services'
 import { Routes } from '../routes';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { listTrivias } from '@approbado/lib/services/trivias.services'
+import { verticalScale } from '../../styles/scaling';
 import { listCategories } from '@approbado/lib/services/categories.services'
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
 import styled from 'styled-components/native';
-import { verticalScale } from '../../styles/scaling';
 
 const { width, height } = Dimensions.get('window');
 
@@ -39,14 +40,8 @@ const CreatePost = ({ navigation }) => {
     const [themes, setThemes] = React.useState(null);
     const [categories, setCategories] = React.useState(null);
 
-    const onSubmit = async ({ trivias_ids, categories_ids, ...restValues }) => {
-        const formData = {
-            ...restValues,
-            trivias_ids: [trivias_ids],
-            categories_ids: [categories_ids]
-        }
-
-        const { success, status, data } = await createForum(formData);
+    const onSubmit = async values => {
+        const { success, status, data } = await createForum(values);
 
         if (success) {
             await openToast(
@@ -107,19 +102,6 @@ const CreatePost = ({ navigation }) => {
                     </Button>
                 </Row>
                 <Row size={1}>
-                    {themes ? (
-                        <SelectInput
-                            label='Trivia'
-                            name='trivias_ids'
-                            control={control}
-                            placeholder='Seleccione un tema'
-                            options={themes}
-                            labelField='name'
-                            valueField='id'
-                        />
-                    ) : null}
-                </Row>
-                <Row size={1}>
                     <TextInput
                         label='Título'
                         name='message'
@@ -139,15 +121,30 @@ const CreatePost = ({ navigation }) => {
                 </Row>
                 <Row size={1}>
                     {categories ? (
-                        <SelectInput
-                            label='Categoría'
-                            name='categories_ids'
-                            control={control}
-                            placeholder='Seleccione una categoría'
-                            options={categories}
-                            labelField='name'
-                            valueField='id'
-                        />
+                        <Row size={1}>
+                            <MultiSelectInput
+                                label='Categorías'
+                                control={control}
+                                name='categories_ids'
+                                options={categories}
+                                valueField='id'
+                                labelField='name'
+                            />
+                        </Row>
+                    ) : null}
+                </Row>
+                <Row size={1}>
+                    {themes ? (
+                        <Row size={1}>
+                            <MultiSelectInput
+                                label='Trivias'
+                                control={control}
+                                name='trivias_ids'
+                                options={themes}
+                                valueField='id'
+                                labelField='name'
+                            />
+                        </Row>
                     ) : null}
                 </Row>
                 <Row size={2}>
