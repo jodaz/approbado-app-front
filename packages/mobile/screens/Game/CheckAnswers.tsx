@@ -19,46 +19,6 @@ import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import Answer from './components/Answer';
 
-const question = {
-    "id": 1,
-    "num": null,
-    "description": "La respuesta a esta pregunta es la dos",
-    "explanation": "La respuesta correcta es la dos",
-    "explanation_type": false,
-    "subtheme_id": null,
-    "level_id": 1,
-    "trivia_id": null,
-    "file_id": 1,
-    "created_at": "2023-12-29T19:43:13.655Z",
-    "updated_at": null,
-    "options": [
-        {
-            "id": 1,
-            "statement": "Opcion 1",
-            "is_right": false,
-            "question_id": 1,
-            "created_at": "2023-12-29T19:43:13.676Z",
-            "updated_at": null
-        },
-        {
-            "id": 2,
-            "statement": "Opcion 2",
-            "is_right": true,
-            "question_id": 1,
-            "created_at": "2023-12-29T19:43:13.676Z",
-            "updated_at": null
-        },
-        {
-            "id": 3,
-            "statement": "Opcion 3",
-            "is_right": false,
-            "question_id": 1,
-            "created_at": "2023-12-29T19:43:13.676Z",
-            "updated_at": null
-        }
-    ]
-}
-
 const StyledPoints = styled.View`
     display: flex;
     justify-content: center;
@@ -100,6 +60,7 @@ const CheckAnswers = ({ navigation }) => {
     const [showAnswers, setShowAnswers] = React.useState(false);
 
     const toggleAnswers = () => setShowAnswers(!showAnswers)
+    console.log(JSON.stringify(responses, null, ' '))
 
     return (
         <View style={{
@@ -165,43 +126,46 @@ const CheckAnswers = ({ navigation }) => {
                 {showAnswers ? (
                     <View>
                         {responses.map((item, index) => (
-                            <Row align='left' direction='column'>
-                                <Text
-                                    fontSize={18}
-                                    fontWeight={400}
-                                >
-                                    {index+1}. {item.description}
-                                </Text>
-                            </Row>
+                            <>
+                                <Row align='left' direction='column'>
+                                    <Text
+                                        fontSize={18}
+                                        fontWeight={400}
+                                    >
+                                        {index+1}. {item.description}
+                                    </Text>
+                                </Row>
+                                {/* <Row align='center' direction='row'>
+                                    <Text
+                                        fontSize={18}
+                                        decoration='underline'
+                                        color='secondary'
+                                        variant='main'
+                                        fontWeight={400}
+                                    >
+                                        Para más detalles ver recursos
+                                    </Text>
+                                    <ExternalLink color='#000' size={16} style={{ marginLeft: 4 }} />
+                                </Row> */}
+                                <View>
+                                    <Answer isRight={item.is_right}>
+                                        {item.answer}
+                                    </Answer>
+                                </View>
+                                {item.explanation_type ? (
+                                    <Row align='left' direction='column'>
+                                        <Text
+                                            fontSize={18}
+                                            fontWeight={600}
+                                        >
+                                            Nota: {item.explanation}
+                                        </Text>
+                                    </Row>
+                                ) : null}
+                            </>
                         ))}
                     </View>
                 ) : null}
-                {/* <Answer isRight>
-                    Si, pero hasta cierto punto
-                </Answer>
-                <Answer>
-                    Si, pero hasta cierto punto
-                </Answer>
-                <Row align='left' direction='column'>
-                    <Text
-                        fontSize={18}
-                        fontWeight={600}
-                    >
-                        Respuesta correcta: No, hay limitaciones para la renuncia de ciertos derechos
-                    </Text>
-                </Row>
-                <Row align='center' direction='row'>
-                    <Text
-                        fontSize={18}
-                        decoration='underline'
-                        color='secondary'
-                        variant='main'
-                        fontWeight={400}
-                    >
-                        Para más detalles ver recursos
-                    </Text>
-                    <ExternalLink color='#000' size={16} style={{ marginLeft: 4 }} />
-                </Row> */}
                 <Row size={1}>
                     <Button onPress={() => navigation.navigate(Routes.ListTrivias)}>
                         Ver más trivias

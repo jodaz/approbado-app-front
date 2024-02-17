@@ -61,6 +61,7 @@ const Play = ({ navigation }) => {
         duration,
         type,
         themes,
+        useTimer,
         level
     }, dispatch } = useGame()
     const currQuestion = questions[current]
@@ -157,15 +158,17 @@ const Play = ({ navigation }) => {
                         <Text>
                             Pregunta {current + 1} / {questions.length}
                         </Text>
-                        <View style={{
-                            flexDirection: 'row',
-                            alignItems: 'center'
-                        }}>
-                            <Timer size={24} color='#000' />
-                            <Text align='center'>
-                                {' '} <CountdownTimer seconds={duration} />
-                            </Text>
-                        </View>
+                        {useTimer ? (
+                            <View style={{
+                                flexDirection: 'row',
+                                alignItems: 'center'
+                            }}>
+                                <Timer size={24} color='#000' />
+                                <Text align='center'>
+                                    {' '} <CountdownTimer seconds={duration} />
+                                </Text>
+                            </View>
+                        ) : null}
                     </Row>
                     <Row size={1}>
                         <Text align='left' fontSize={22} fontWeight={400}>

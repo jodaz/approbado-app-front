@@ -3,8 +3,9 @@ import {
     Row,
     Text
 } from '../../../components';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { horizontalScale, scaleFontSize, verticalScale } from '../../../styles/scaling';
+import { CheckCircle2, XCircle } from 'lucide-react-native';
 
 const StyledAnswerContainer = styled.View`
     flex: 1;
@@ -21,9 +22,28 @@ const StyledAnswerContainer = styled.View`
 `
 
 const Answer = ({ isRight, children }) => {
+    const theme = useTheme()
+
     return (
         <Row align='left' direction='column'>
             <StyledAnswerContainer isError={!isRight}>
+                {isRight ? (
+                    <CheckCircle2
+                        size={24}
+                        color={theme.palette.info.success}
+                        style={{
+                            marginRight: 10
+                        }}
+                    />
+                ) : (
+                    <XCircle
+                        size={24}
+                        color={theme.palette.error.main}
+                        style={{
+                            marginRight: 10
+                        }}
+                    />
+                )}
                 <Text
                     fontSize={18}
                     fontWeight={500}
