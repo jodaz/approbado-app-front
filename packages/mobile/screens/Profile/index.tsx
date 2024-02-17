@@ -1,16 +1,16 @@
 import * as React from 'react'
-import { Settings } from 'lucide-react-native';
+import { Edit2, Settings } from 'lucide-react-native';
 import { Routes } from '../routes';
-import { Pressable, Dimensions } from 'react-native';
+import { Pressable, Dimensions, View } from 'react-native';
 import { useAuth } from '@approbado/lib/contexts/AuthContext';
-import { Button, Text, Row, Image } from '../../components';
-import { horizontalScale, verticalScale } from '../../styles/scaling';
-import styled from 'styled-components/native';
+import { Text, Row, Image } from '../../components';
+import { verticalScale } from '../../styles/scaling';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Tabs from '../../components/Tabs';
 import About from "./components/About";
 import Achievements from "./components/Achievements";
 import Publications from "./components/Publications";
+import styled from 'styled-components/native';
 
 const profileSliders = [
     {
@@ -38,15 +38,16 @@ const profileSliders = [
 
 const { width } = Dimensions.get('window');
 
-const NavButton = ({ navigation, to } : any ) : JSX.Element => (
+const NavButton = ({ navigation, to, children } : any ) : JSX.Element => (
     <Pressable onPress={() => navigation.navigate(to)}>
-        <Settings size={24} color='#000' />
+        {React.cloneElement(children, {
+            size: 24,
+            color: '#000',
+            marginRight: 8,
+            marginLeft: 8
+        })}
     </Pressable>
 )
-
-const BioText = styled(Text)`
-    padding-horizontal: ${props => horizontalScale(props.theme.space[3])}px;
-`
 
 const Container = styled.ScrollView`
     margin: 0 auto;
@@ -67,37 +68,39 @@ const Profile = ({ navigation }) => {
                 flex: 1
             }}
         >
-            <Row size={2} align='space-between'>
-                <NavButton navigation={navigation} to={Routes.Settings} />
-            </Row>
-            <Row size={1} align='center'>
-                <Image
-                    height={100}
-                    width={100}
-                    source={user?.picture}
-                    borderRadius={50}
-                />
-            </Row>
-            <Row size={1} align='center'>
-                <Text fontSize={16}>{user?.names}</Text>
-            </Row>
-            <Row size={1} align='center'>
-                <Text fontSize={16} variant='secondary'>@{user?.user_name}</Text>
-            </Row>
-            <Row size={1} align='center'>
-                <BioText
-                    fontWeight={400}
-                    fontSize={16}
-                    align='center'
-                    variant='primary'
-                >
-                    {user?.bio}
-                </BioText>
-            </Row>
-            <Row size={2} align='center'>
-                <Button onPress={() => navigation.navigate(Routes.EditProfile)}>
-                    Editar perfil
-                </Button>
+            <Row size={2} justify='space-between' align='start' direction='row'>
+                <View style={{
+                    flexDirection: 'row',
+                    flex: 1
+                }}>
+                    <Image
+                        height={50}
+                        width={50}
+                        source={user?.picture}
+                        borderRadius={50}
+                    />
+                    <View style={{
+                        flexDirection: 'column'
+                    }}>
+                        <Text fontSize={20}>{user?.names}</Text>
+                        <Text
+                            fontSize={18}
+                            variant='secondary'
+                        >
+                            @{user?.user_name}
+                        </Text>
+                    </View>
+                </View>
+                <View style={{
+                    flexDirection: 'row'
+                }}>
+                    <NavButton navigation={navigation} to={Routes.EditProfile}>
+                        <Edit2 />
+                    </NavButton>
+                    <NavButton navigation={navigation} to={Routes.EditProfile}>
+                        <Settings />
+                    </NavButton>
+                </View>
             </Row>
             <Tab.Navigator tabBar={Tabs}>
                 {profileSliders.map(screen => <Tab.Screen {...screen} />)}

@@ -63,6 +63,16 @@ const About = () => {
 
     return (
         <Container>
+            <Row size={1} align='center'>
+                <Text
+                    fontWeight={400}
+                    fontSize={20}
+                    align='left'
+                    variant='primary'
+                >
+                    {user?.bio}
+                </Text>
+            </Row>
             <AboutInformationItem
                 icon={<Mail />}
                 title='Email'
