@@ -40,7 +40,7 @@ const Publications = () => {
         <Container>
             {posts.length ? (
                 <>
-                    {posts.map((item: Post) => <PostCard post={item} />)}
+                    {posts.map((item: Post) => <PostCard hideUserPhoto post={item} />)}
                 </>
             ) : (
                 <Row size={1} align='center'>
