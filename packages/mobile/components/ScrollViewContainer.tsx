@@ -7,7 +7,6 @@ const ScrollViewContainer = ({ children }) => {
             scrollEnabled
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
-                flex: 1,
                 paddingHorizontal: horizontalScale(20)
             }}
         >

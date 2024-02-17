@@ -24,6 +24,7 @@ const EditProfileHeader = ({ onSubmit, isSubmitting, title } : IEditProfileHeade
             align="center"
             justify="space-between"
             direction="row"
+            size={5}
         >
             <Button
                 disabled={isSubmitting}

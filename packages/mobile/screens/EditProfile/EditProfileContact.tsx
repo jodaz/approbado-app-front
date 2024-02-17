@@ -3,7 +3,7 @@ import { ScrollView, Dimensions } from "react-native";
 import { useAuth, getUser } from "@approbado/lib/contexts/AuthContext";
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { PHONE, EMAIL } from "@approbado/lib/utils/validations";
-import { TextInput, Row } from "../../components";
+import { TextInput, Row, ScrollViewContainer } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateProfile } from '@approbado/lib/services/profile.services'
 import { horizontalScale, verticalScale } from "../../styles/scaling";
@@ -59,31 +59,29 @@ const EditProfileContact = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container>
-                <EditProfileHeader
-                    isSubmitting={formState.isSubmitting}
-                    onSubmit={handleSubmit(onSubmit)}
-                    title='Datos de contacto'
+        <ScrollViewContainer>
+            <EditProfileHeader
+                isSubmitting={formState.isSubmitting}
+                onSubmit={handleSubmit(onSubmit)}
+                title='Datos de contacto'
+            />
+            <Row size={1} align="center">
+                <TextInput
+                    name="phone"
+                    control={control}
+                    label="Número de teléfono"
+                    validations={PHONE}
                 />
-                <Row size={1} align="center">
-                    <TextInput
-                        name="phone"
-                        control={control}
-                        label="Número de teléfono"
-                        validations={PHONE}
-                    />
-                </Row>
-                <Row size={1} align="center">
-                    <TextInput
-                        name="email"
-                        control={control}
-                        label="Email"
-                        validations={EMAIL}
-                    />
-                </Row>
-            </Container>
-        </ScrollView>
+            </Row>
+            <Row size={1} align="center">
+                <TextInput
+                    name="email"
+                    control={control}
+                    label="Email"
+                    validations={EMAIL}
+                />
+            </Row>
+        </ScrollViewContainer>
     );
 };
 
