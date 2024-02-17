@@ -4,6 +4,7 @@ import { getPosts } from '@approbado/lib/services/forums.services.ts';
 import { Post } from '@approbado/lib/types/models'
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
 import { horizontalScale, verticalScale } from '../../../styles/scaling';
+import { useIsFocused } from '@react-navigation/native';
 import PostCard from '../../../components/PostCard';
 import Text from '../../../components/Text';
 import Row from '../../../components/Row';
@@ -17,6 +18,7 @@ const Container = styled.ScrollView`
 `
 
 const Publications = () => {
+    const isFocused = useIsFocused();
     const { state: { user } } = useAuth();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
 
@@ -32,7 +34,7 @@ const Publications = () => {
         }
     }
 
-    React.useEffect(() => { fetchData() }, [])
+    React.useEffect(() => { fetchData() }, [isFocused])
 
     return (
         <Container>
