@@ -11,6 +11,7 @@ import { listSubthemes } from '@approbado/lib/services/subthemes.services'
 import { Routes } from '../../routes';
 import { ScrollView } from 'react-native';
 import { useForm } from 'react-hook-form';
+import { Layers, Lightbulb, Scale } from 'lucide-react-native';
 
 const StepTwo = ({ navigation }) => {
     const [trivias, setTrivias] = React.useState(null)
@@ -51,20 +52,6 @@ const StepTwo = ({ navigation }) => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <Row>
-                <TextInput
-                    control={control}
-                    name='title'
-                    placeholder='Ingresar un título'
-                />
-            </Row>
-            <Row>
-                <TextInput
-                    control={control}
-                    name='date'
-                    placeholder='DD/MM'
-                />
-            </Row>
-            <Row>
                 {trivias ? (
                     <SelectInput
                         label='Trivia'
@@ -74,19 +61,21 @@ const StepTwo = ({ navigation }) => {
                         options={trivias}
                         labelField='name'
                         valueField='id'
+                        icon={<Scale />}
                     />
                 ) : null}
             </Row>
             <Row>
                 {levels ? (
                     <SelectInput
-                        label='Trivia'
+                        label='Nivel'
                         name='levels_ids'
                         control={control}
                         placeholder='Seleccione un nivel'
                         options={levels}
                         labelField='name'
                         valueField='id'
+                        icon={<Lightbulb />}
                     />
                 ) : null}
             </Row>
@@ -100,6 +89,7 @@ const StepTwo = ({ navigation }) => {
                         options={subthemes}
                         labelField='name'
                         valueField='id'
+                        icon={<Layers />}
                     />
                 ) : null}
             </Row>

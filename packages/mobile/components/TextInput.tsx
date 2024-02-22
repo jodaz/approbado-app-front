@@ -4,6 +4,7 @@ import { ITextInputProps } from '../types';
 import Label from './Label';
 import styled from 'styled-components/native';
 import Error from './ErrorText';
+import { horizontalScale, verticalScale } from '../styles/scaling';
 
 const Input = styled.TextInput`
     width: 100%;
@@ -14,12 +15,13 @@ const Input = styled.TextInput`
 
 const InputContainer = styled.View`
     display: flex;
-    border: ${props => `1px solid ${props.theme.palette.primary.light}`};
+    border: ${props => `1px solid ${props.theme.palette.primary.dark}`};
     flexDirection: row;
     height: fit-content;
     width: 100%;
     alignItems: center;
-    padding: 10px;
+    padding-horizontal: ${horizontalScale(10)}px;
+    padding-vertical: ${verticalScale(2)}px;
     border-radius: 4px;
 `;
 
@@ -52,7 +54,8 @@ const TextInput = ({
                 ) : null}
                 <InputContainer>
                     {icon ? React.cloneElement(icon, {
-                        color: '#000'
+                        color: '#000',
+                        size: 20
                     }) : null}
                     <Input
                         placeholder={placeholder}

@@ -23,13 +23,13 @@ const StepOne = ({ navigation, ...restProps }) => {
         <ScrollView showsVerticalScrollIndicator={false}>
             <Row>
                 <TextInput
+                    label='Título de la reunión'
                     control={control}
                     name='title'
                     placeholder='Ingresar un título'
                 />
             </Row>
             <Row>
-
                 <TextInput
                     control={control}
                     name='date'
@@ -44,6 +44,7 @@ const StepOne = ({ navigation, ...restProps }) => {
                     multiline
                     numberOfLines={8}
                     editable
+                    label='Descripción'
                 />
             </Row>
             <Row>
