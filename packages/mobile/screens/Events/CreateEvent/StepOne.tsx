@@ -2,22 +2,16 @@ import * as React from 'react'
 import {
     Row,
     Button,
-    Container,
-    Text,
     TextInput
 } from '../../../components';
 import { Routes } from '../../routes';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useForm } from 'react-hook-form';
-import TitleBar from '../../../components/TitleBar';
-import { horizontalScale, verticalScale } from '../../../styles/scaling';
+import DateTimePicker from '../../../components/DateTimePicker';
+import { Calendar, Clock } from 'lucide-react-native';
 
 const StepOne = ({ navigation, ...restProps }) => {
     const { control, handleSubmit, formState } = useForm();
-    const [showPicker, setShowPicker] = React.useState(false);
-    const [date, setDate] = React.useState(new Date());
-
-    const togglePicker = () => setShowPicker(!showPicker)
 
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
@@ -29,12 +23,26 @@ const StepOne = ({ navigation, ...restProps }) => {
                     placeholder='Ingresar un título'
                 />
             </Row>
-            <Row>
-                <TextInput
-                    control={control}
-                    name='date'
-                    placeholder='DD/MM'
-                />
+            <Row direction='row'>
+                <View style={{ flex: 1 }}>
+                    <DateTimePicker
+                        label='Día'
+                        control={control}
+                        mode='date'
+                        name='date'
+                        icon={<Calendar />}
+                    />
+                </View>
+                <View style={{ marginRight: 10 }} />
+                <View style={{ flex: 1 }}>
+                    <DateTimePicker
+                        label='Hora'
+                        control={control}
+                        mode='time'
+                        name='time'
+                        icon={<Clock />}
+                    />
+                </View>
             </Row>
             <Row>
                 <TextInput
