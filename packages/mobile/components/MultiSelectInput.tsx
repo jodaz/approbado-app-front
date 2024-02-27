@@ -20,6 +20,7 @@ interface IMultiSelectProps {
     validations?: any;
     defaultValue?: any;
     valueField?: string;
+    renderItem?: any;
     labelField?: string;
 }
 
@@ -32,7 +33,8 @@ const MultiSelectInput = ({
     options = [],
     defaultValue = [],
     label,
-    placeholder = 'Seleccione'
+    placeholder = 'Seleccione',
+    ...restProps
 } : IMultiSelectProps) => {
     const [selected, setSelected] = useState(defaultValue);
 
@@ -66,6 +68,7 @@ const MultiSelectInput = ({
                             onChange(item)
                         }}
                         selectedStyle={styles.selectedStyle}
+                        {...restProps}
                     />
                     {(error && validations) ? <Error>{validations.messages[error.type]}</Error> : null}
                 </RootContainer>
@@ -80,31 +83,52 @@ const MultiSelectInput = ({
 export default MultiSelectInput;
 
 const styles = StyleSheet.create({
-  container: { padding: 16 },
   dropdown: {
     height: 50,
-    backgroundColor: 'transparent',
-    borderBottomColor: 'gray',
-    borderBottomWidth: 0.5,
+    borderWidth: 1,
+    width: 'auto',
+    borderColor: '#000',
+    padding: 10,
+    borderRadius: 6
   },
   placeholderStyle: {
     fontSize: 16,
   },
   selectedTextStyle: {
-    fontSize: 14,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
+    fontSize: 16,
   },
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
   },
-  icon: {
-    marginRight: 5,
+  item: {
+    padding: 17,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   selectedStyle: {
-    borderRadius: 12,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 14,
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    marginTop: 8,
+    marginRight: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+  textSelectedStyle: {
+    marginRight: 5,
+    fontSize: 16,
   },
 });
