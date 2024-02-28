@@ -7,6 +7,7 @@ import {
     Text,
     Image
 } from '../../../components';
+import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
 import { listTrivias } from '@approbado/lib/services/trivias.services'
 import { listUsers } from '@approbado/lib/services/users.services'
 import { listLevels } from '@approbado/lib/services/levels.services'
@@ -22,6 +23,11 @@ const StepTwo = ({ navigation }) => {
     const [levels, setLevels] = React.useState(null)
     const [subthemes, setSubthemes] = React.useState(null)
     const { control, handleSubmit, formState } = useForm();
+
+    const onSubmit = async (values) => {
+        await console.log(values)
+        return navigation.navigate(Routes.CreateEventStepThree)
+    }
 
     const renderItem = item => {
         return (
@@ -99,6 +105,7 @@ const StepTwo = ({ navigation }) => {
                         labelField='user_name'
                         valueField='id'
                         renderItem={renderItem}
+                        validations={REQUIRED_FIELD}
                     />
                 ) : null}
             </Row>
@@ -113,6 +120,7 @@ const StepTwo = ({ navigation }) => {
                         labelField='name'
                         valueField='id'
                         icon={<Scale />}
+                        validations={REQUIRED_FIELD}
                     />
                 ) : null}
             </Row>
@@ -127,6 +135,7 @@ const StepTwo = ({ navigation }) => {
                         labelField='name'
                         valueField='id'
                         icon={<Lightbulb />}
+                        validations={REQUIRED_FIELD}
                     />
                 ) : null}
             </Row>
@@ -141,11 +150,15 @@ const StepTwo = ({ navigation }) => {
                         labelField='name'
                         valueField='id'
                         icon={<Layers />}
+                        validations={REQUIRED_FIELD}
                     />
                 ) : null}
             </Row>
             <Row>
-                <Button onPress={() => navigation.navigate(Routes.CreateEventStepThree)}>
+                <Button
+                    disabled={!formState?.isValid}
+                    onPress={handleSubmit(onSubmit)}
+                >
                     Agendar una reunión
                 </Button>
             </Row>

@@ -7,8 +7,9 @@ import {
 import { Routes } from '../../routes';
 import { ScrollView, View } from 'react-native';
 import { useForm } from 'react-hook-form';
-import DateTimePicker from '../../../components/DateTimePicker';
 import { Calendar, Clock } from 'lucide-react-native';
+import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
+import DateTimePicker from '../../../components/DateTimePicker';
 
 const StepOne = ({ navigation, ...restProps }) => {
     const { control, handleSubmit, formState } = useForm();
@@ -21,6 +22,7 @@ const StepOne = ({ navigation, ...restProps }) => {
                     control={control}
                     name='title'
                     placeholder='Ingresar un título'
+                    validations={REQUIRED_FIELD}
                 />
             </Row>
             <Row direction='row'>
@@ -56,7 +58,10 @@ const StepOne = ({ navigation, ...restProps }) => {
                 />
             </Row>
             <Row>
-                <Button onPress={() => navigation.navigate(Routes.CreateEventStepTwo)}>
+                <Button
+                    disabled={!formState?.isValid}
+                    onPress={() => navigation.navigate(Routes.CreateEventStepTwo)}
+                >
                     Añadir amigos
                 </Button>
             </Row>
