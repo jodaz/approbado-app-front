@@ -16,8 +16,6 @@ import UserChat from './Chat/components/UserChat';
 import EditPost from './Forums/EditPost';
 import ReportPost from './Forums/ReportPost';
 import CreatePost from './Forums/CreatePost';
-import CreateEvent from './Events/CreateEvent';
-import CreateEventSuccess from './Events/CreateEventSuccess';
 // Stacks
 import OnboardingStack from './OnboardingStack';
 import BottomNav from '../components/BottomNav';
@@ -71,15 +69,6 @@ const MainScreen = () => {
             />
 
             {/* Incomplete views */}
-            <Stack.Screen
-                name={Routes.CreateEvent}
-                component={CreateEvent}
-                options={{ title: 'Agendar una trivia'}}
-            />
-            <Stack.Screen
-                name={Routes.CreateEventSuccess}
-                component={CreateEventSuccess}
-            />
             <Stack.Screen
                 name={Routes.EditProfile}
                 component={EditProfileInformation}

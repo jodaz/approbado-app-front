@@ -2,22 +2,15 @@ import * as React from 'react'
 import {
     Row,
     Button,
-    Container,
-    Text
+    ScrollViewContainer
 } from '../../components';
-import TitleBar from '../../components/TitleBar';
 import { Routes } from '../routes';
 import NoEvents from './components/NoEvents';
 import { View } from 'react-native';
 
-const Events = ({ navigation }) => {
+const ListEvents = ({ navigation }) => {
     return (
-        <Container>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                    Eventos
-                </Text>
-            </TitleBar>
+        <ScrollViewContainer>
             <View style={{
                 height: 300
             }}>
@@ -28,8 +21,8 @@ const Events = ({ navigation }) => {
                     Crear nuevo evento
                 </Button>
             </Row>
-        </Container>
+        </ScrollViewContainer>
     );
 }
 
-export default Events
+export default ListEvents

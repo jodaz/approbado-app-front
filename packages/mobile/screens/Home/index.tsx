@@ -1,31 +1,13 @@
 import * as React from 'react'
-import { Row } from '../../components';
 import { Routes } from '../routes';
-import { View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
 import HomeScreen from './Home';
 import HomeHeader from './components/HomeHeader';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 import Notifications from '../Notifications';
-import Events from '../Events';
 import Chat from '../Chat';
+import EventsStack from '../Events/EventsStack';
 
 const Stack = createNativeStackNavigator();
-
-const HeaderTitleM = () => {
-    const navigation = useNavigation();
-
-    return (
-        <Row size={1} align='center' direction='row'>
-            <View style={{
-                flex: 1
-            }}>
-                <Logotipo />
-            </View>
-        </Row>
-    )
-}
 
 const Home = () => (
     <Stack.Navigator
@@ -58,7 +40,7 @@ const Home = () => (
         />
         <Stack.Screen
             name={Routes.Events}
-            component={Events}
+            component={EventsStack}
             options={{
                 headerShown: false
             }}
