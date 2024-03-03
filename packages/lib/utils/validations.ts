@@ -27,6 +27,15 @@ export const USERNAME = {
     }
 }
 
+export const REQUIRED_FIELD = {
+    rules: {
+        required: true
+    },
+    messages: {
+        required: "Campo requerido.",
+    }
+}
+
 export const PHONE = {
     rules: {
         required: true,

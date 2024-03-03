@@ -2,9 +2,10 @@ import * as React from 'react'
 import { Layer } from '@approbado/lib/icons';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles'
+import { useTriviaDispatch, useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
+import { getMaxTime } from '@approbado/lib/utils'
 import Button from '@approbado/lib/components/Button'
 import Switch from '@approbado/lib/components/Switch';
-import { useTriviaDispatch, useTriviaState } from '@approbado/lib/hooks/useTriviaSelect'
 import AddFriendsModal from './AddFriendsModal';
 import { useHistory } from 'react-router-dom'
 
@@ -24,8 +25,6 @@ const useStyles = makeStyles(theme => ({
         cursor: 'pointer'
     }
 }))
-
-const getMaxTime = subthemes => subthemes.map(({ duration }) => duration).reduce((a, b) => a + b, 0)
 
 const BeforeStarting = () => {
     const { questions, selectedSubthemes, room } = useTriviaState()

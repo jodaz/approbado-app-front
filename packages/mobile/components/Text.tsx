@@ -12,6 +12,9 @@ const StyledText = styled.Text`
     letter-spacing: ${scaleFontSize(0.5)}px;
     text-decoration: ${props => props.decoration};
     font-family: ${props => props.theme.typography.fontWeight[props.fontWeight]};
+    display: flex;
+    align-items: center;
+    flex-direction: row;
 `;
 
 const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (

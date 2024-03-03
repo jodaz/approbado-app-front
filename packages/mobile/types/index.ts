@@ -5,7 +5,7 @@ type ColorThemeType = 'primary' | 'secondary' | 'error' | 'text' | 'info';
 
 type VariantType = 'outlined' | 'text' | 'contained';
 
-type VariantColorType = 'primary' | 'secondary' | 'main';
+type VariantColorType = 'primary' | 'secondary' | 'main' | 'success';
 
 type TextAlignType = 'right' | 'left' | 'center';
 
@@ -72,6 +72,7 @@ export interface ICheckboxProps {
     control: any;
     name: string;
     label: string;
+    validations?: any;
 }
 
 export interface ISelectProps {
@@ -85,4 +86,5 @@ export interface ISelectProps {
     placeholder?: string;
     validations?: any;
     defaultValue?: string;
+    icon?: any;
 }

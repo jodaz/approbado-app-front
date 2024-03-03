@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
+import { editSubtheme } from '@approbado/lib/services/subthemes.services'
 import TextInput from '@approbado/lib/components/TextInput'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import validate from './subthemeValidations'
 import SelectAwardInput from './SelectAwardInput'
-import { editSubtheme } from '@approbado/lib/services/subthemes.service'
 
 const SubthemeEdit = ({ record }) => {
     const { showNotification } = useUiDispatch();

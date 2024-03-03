@@ -25,9 +25,10 @@ const Pressable = styled.Pressable`
 interface IPostCardProps {
     post: Post;
     openDrawerMenu?: () => void;
+    hideUserPhoto?: boolean;
 }
 
-const PostCard = ({ post, openDrawerMenu } : IPostCardProps ) : JSX.Element => {
+const PostCard = ({ post, openDrawerMenu, hideUserPhoto } : IPostCardProps ) : JSX.Element => {
     const navigation = useNavigation();
 
     const handleNavigate = () => navigation.navigate(Routes.ShowPost, {
@@ -37,7 +38,7 @@ const PostCard = ({ post, openDrawerMenu } : IPostCardProps ) : JSX.Element => {
     return (
         <Pressable onPress={handleNavigate} key={post.id}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
-                <Image source={post.owner.picture} />
+                {!hideUserPhoto ? <Image source={post.owner.picture} /> : null}
                 <View style={{ flex: 1, flexDirection: 'column' }}>
                     <Text fontSize={18}>
                         {post.message}

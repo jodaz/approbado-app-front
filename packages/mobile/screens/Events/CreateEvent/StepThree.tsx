@@ -12,6 +12,7 @@ import { ScrollView } from 'react-native';
 import { useForm } from 'react-hook-form';
 import TitleBar from '../../../components/TitleBar';
 import { horizontalScale, verticalScale } from '../../../styles/scaling';
+import { Video } from 'lucide-react-native';
 
 const StepThree = ({ navigation }) => {
     const { control, handleSubmit, formState, watch } = useForm();
@@ -30,6 +31,7 @@ const StepThree = ({ navigation }) => {
                     control={control}
                     name='link'
                     placeholder='Ingresar link'
+                    icon={<Video />}
                 />
             </Row>
             <Row>

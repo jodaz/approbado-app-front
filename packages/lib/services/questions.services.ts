@@ -2,9 +2,9 @@ import { apiProvider, fileProvider } from "../api";
 import formDataHandler from '../utils/formDataHandler'
 import getQueryFromParams from "../utils/getQueryFromParams";
 
-export async function listTrivias(query) {
+export async function listQuestions(query) {
     try{
-        const response = await apiProvider.get('/trivias', {
+        const response = await apiProvider.get('/questions', {
             params: getQueryFromParams(query)
         })
 
@@ -15,7 +15,7 @@ export async function listTrivias(query) {
             data: data,
             count: count
         }
-    } catch (error){
+    }catch (error){
         return {
             success: false,
             status: error.response.status,
@@ -24,9 +24,9 @@ export async function listTrivias(query) {
     }
 }
 
-export async function createTrivia(data) {
+export async function create(data) {
     try{
-        const response = await apiProvider.post(`/trivias`, data)
+        const response = await fileProvider.post(`/questions`, data)
 
         return {
             success: true,
@@ -41,10 +41,10 @@ export async function createTrivia(data) {
     }
 }
 
-export async function editTrivia(id, data) {
+export async function upload(data) {
     try {
-        const formData = await formDataHandler(data)
-        const response = await fileProvider.put(`/trivias/${id}`, formData)
+        const formData = await formDataHandler(data, 'file')
+        const response = await fileProvider.post(`/questions`, formData)
 
         return {
             success: true,
@@ -59,9 +59,9 @@ export async function editTrivia(id, data) {
     }
 }
 
-export async function getTrivia(data) {
+export async function edit(id, data) {
     try {
-        const response = await apiProvider.get(`/trivias/${data}`)
+        const response = await fileProvider.put(`/questions/${id}`, data)
 
         return {
             success: true,
@@ -76,9 +76,26 @@ export async function getTrivia(data) {
     }
 }
 
-export async function deleteTrivia(data) {
+export async function get(id) {
     try {
-        const response = await apiProvider.delete(`/trivias/${data}`)
+        const response = await apiProvider.get(`/questions/${id}`)
+
+        return {
+            success: true,
+            data: response.data,
+        }
+    }catch (error){
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
+export async function remove(id) {
+    try {
+        const response = await apiProvider.delete(`/questions/${id}`)
 
         return {
             success: true,

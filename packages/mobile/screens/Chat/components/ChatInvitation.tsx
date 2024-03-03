@@ -139,7 +139,7 @@ const ChatInvitation = ({ item, user_id } : IChatCardProps ) : JSX.Element => {
                                 </StyledButton>
                                 <StyledButton
                                     variant='outlined'
-                                    variant='secondary'
+                                    color='secondary'
                                     disabled={disabled}
                                     onPress={onRejectInvitation}
                                 >

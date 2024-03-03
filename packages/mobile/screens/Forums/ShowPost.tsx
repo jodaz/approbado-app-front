@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { Category } from '@approbado/lib/types/models'
 import { createComment, getComments } from '@approbado/lib/services/comments.services'
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { socket } from '@approbado/lib/utils/socket'
 import CommentCard from './components/CommentCard';
 import styled from 'styled-components/native';
@@ -98,7 +98,9 @@ const ShowPost = ({ route }) => {
     }, [])
 
     const HeaderComponent = () => (
-        <Container>
+        <View style={{
+            paddingHorizontal: horizontalScale(10)
+        }}>
             <StyledContainer>
                 <Row size={1} direction='row'>
                     <TitleBar>
@@ -155,7 +157,7 @@ const ShowPost = ({ route }) => {
                 disabled={isSubmitting}
             />
             <Text>{totalComments} respuestas</Text>
-        </Container>
+        </View>
     )
 
     React.useEffect(() => { fetchData() }, [isFocused, post.id])

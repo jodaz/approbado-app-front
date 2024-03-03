@@ -1,8 +1,8 @@
 import * as React from 'react'
-import ChatHeader from './ChatHeader';
 import ChatForm from './ChatForm';
 import MessagesList from './MessagesList';
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
+import UserChatHeader from './UserChatHeader';
 
 const UserChat = ({ route }) => {
     const { state: { user } } = useAuth();
@@ -13,7 +13,7 @@ const UserChat = ({ route }) => {
 
     return (
         <>
-            <ChatHeader name={chatName} />
+            <UserChatHeader name={chatName} />
             <MessagesList chat={chat} />
             <ChatForm chat_id={chat.id} />
         </>

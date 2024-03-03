@@ -2,7 +2,7 @@ import * as React from 'react'
 import {
     Row,
     Button,
-    Container,
+    ScrollViewContainer,
     Text
 } from '../../components';
 import { FlatList, View } from 'react-native';
@@ -33,12 +33,7 @@ const Events = ({ navigation }) => {
     React.useEffect(() => { fetchSchedules() }, [])
 
     return (
-        <Container>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                    Eventos
-                </Text>
-            </TitleBar>
+        <View>
             <View>
                 {!schedules ? <NoSchedules /> : <ListEvents data={schedules} />}
             </View>
@@ -47,7 +42,7 @@ const Events = ({ navigation }) => {
                     Crear nuevo evento
                 </Button>
             </Row>
-        </Container>
+        </View>
     );
 }
 

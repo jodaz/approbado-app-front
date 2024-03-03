@@ -7,6 +7,7 @@ import { Routes } from '../../routes';
 import QuickTriviaSelector from './QuickTriviaSelector';
 import styled from "styled-components/native";
 import BroGaming from '@approbado/lib/illustrations/BroGaming.svg'
+import { useGame, setTimer } from '@approbado/lib/contexts/GameContext';
 import TriviaMode from "./TriviaMode";
 
 const Container = styled.View`
@@ -17,17 +18,17 @@ const Container = styled.View`
 const options = [
     {
         label: 'Trivia rápida',
-        value: Routes.QuickTrivia,
+        value: 'Rápida',
         icon: <Timer />
     },
     {
         label: 'Trivia por tema',
-        value: Routes.Game,
+        value: 'Tema',
         icon: <BookOpen />
     },
     {
         label: 'Trivia grupal',
-        value: Routes.ScheduleGame,
+        value: 'Grupal',
         icon: <Users />
     }
 ]
@@ -35,12 +36,25 @@ const options = [
 const QuickTrivia = () => {
     const navigation = useNavigation();
     const { control, handleSubmit, reset, formState: { isDirty } } = useForm()
+    const { dispatch } = useGame()
     const [isOpen, setIsOpen] = React.useState(false);
 
     const toggleModal = () => setIsOpen(!isOpen);
 
     const onSubmit = ({ selected }) => {
-        navigation.navigate(selected)
+        if (selected == 'Grupal') {
+            navigation.navigate(Routes.CreateEvent)
+        }
+        if (selected == 'Rápida') {
+            setTimer(dispatch, true)
+            navigation.navigate(Routes.Game, {
+                timer: true
+            })
+        }
+        if (selected == 'Tema') {
+            setTimer(dispatch, false)
+            navigation.navigate(Routes.Game)
+        }
     }
 
     React.useEffect(() => {

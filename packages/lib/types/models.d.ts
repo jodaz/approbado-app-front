@@ -233,21 +233,6 @@ export interface Schedule {
     trivia?:        Trivia;
 }
 
-export interface Notification {
-    id:            number;
-    data:          string;
-    long_data?:    string | null | undefined;
-    type:          string;
-    created_by:    number;
-    chat_id:       number;
-    post_id:       null;
-    membership_id: null;
-    created_at:    string;
-    updated_at:    null;
-    user:          User;
-    chat:          Chat;
-}
-
 export interface ChatUser {
     id:         number;
     user_id:    number;
@@ -255,4 +240,28 @@ export interface ChatUser {
     status:     Status;
     created_at: null;
     updated_at: null | string;
+}
+
+export interface Question {
+    id:               number;
+    num:              null;
+    description:      string;
+    explanation:      string;
+    explanation_type: boolean;
+    subtheme_id:      number | null;
+    level_id:         number;
+    trivia_id:        number | null;
+    file_id:          number;
+    created_at:       string;
+    updated_at:       null;
+    options:          Option[];
+}
+
+export interface Option {
+    id:          number;
+    statement:   string;
+    is_right:    boolean;
+    question_id: number;
+    created_at:  string;
+    updated_at:  null;
 }

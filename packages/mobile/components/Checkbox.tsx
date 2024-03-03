@@ -30,7 +30,7 @@ const StyledCheckbox = styled.View`
     align-items: center;
 `
 
-const Checkbox = ({ control, name, label } : ICheckboxProps) : JSX.Element => (
+const Checkbox = ({ control, name, label, validations } : ICheckboxProps) : JSX.Element => (
     <Controller
         control={control}
         render={({ field: { onChange, value } }) => (
@@ -48,6 +48,7 @@ const Checkbox = ({ control, name, label } : ICheckboxProps) : JSX.Element => (
         )}
         name={name}
         defaultValue={false}
+        rules={validations?.rules}
     />
 );
 

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { editTrivia } from '@approbado/lib/services/trivias.service'
+import { editTrivia } from '@approbado/lib/services/trivias.services'
 import { useUiDispatch } from '@approbado/lib/hooks/useUI'
 import BaseForm from '@approbado/lib/components/BaseForm'
 import InputContainer from '@approbado/lib/components/InputContainer'

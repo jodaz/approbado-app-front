@@ -17,6 +17,7 @@ env:
   VITE_APP_GOOGLE_ID: ${{ secrets.VITE_APP_GOOGLE_ID }}
   VITE_APP_LOCATION: ${{ secrets.VITE_APP_LOCATION }}
   VITE_APP_AUTH_USER_INFO: ${{ secrets.VITE_APP_AUTH_USER_INFO }}
+  VITE_APP_SOURCE: ${{ secrets.VITE_APP_SOURCE }}
 
 jobs:
   build:

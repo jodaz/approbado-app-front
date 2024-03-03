@@ -7,7 +7,7 @@ import BaseForm from '@approbado/lib/components/BaseForm'
 import SelectAwardInput from './SelectAwardInput'
 import validate from './subthemeValidations'
 import { useParams } from 'react-router-dom'
-import { createSubtheme } from '@approbado/lib/services/subthemes.service'
+import { createSubtheme } from '@approbado/lib/services/subthemes.services'
 
 const SubthemeCreate = () => {
     const { trivia_id } = useParams()

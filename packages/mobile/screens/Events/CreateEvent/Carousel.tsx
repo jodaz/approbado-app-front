@@ -10,6 +10,11 @@ const TabsCarousel = ({ state, descriptors, navigation, position }) => (
             maxHeight: verticalScale(30),
             height: verticalScale(30)
         }}
+        contentContainerStyle={{
+            flexDirection: 'row',
+            flex: 1,
+            justifyContent: 'center'
+        }}
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}

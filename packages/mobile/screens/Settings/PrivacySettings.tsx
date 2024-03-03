@@ -4,23 +4,12 @@ import { Routes } from '../routes';
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { getUser, useAuth } from '@approbado/lib/contexts/AuthContext';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import TitleBar from '../../components/TitleBar';
-import styled from 'styled-components/native';
 import {
     Row,
     Button,
-    Container,
     Checkbox,
-    Text
+    ScrollViewContainer
 } from '../../components';
-
-const FormContainer = styled.View`
-    margin-top: 40px;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-`;
 
 const PrivacySettings = ({ navigation }) => {
     const { state: { user }, dispatch } = useAuth()
@@ -49,39 +38,32 @@ const PrivacySettings = ({ navigation }) => {
     };
 
     return (
-        <Container>
-            <TitleBar>
-                <Text fontSize={18} fontWeight={600}>
-                Ajustes de privacidad
-                </Text>
-            </TitleBar>
-            <FormContainer>
-                <Row size={1}>
-                    <Checkbox
-                        control={control}
-                        label="Mostrar mi nombre cuando vean mi perfil"
-                        name="show_name"
-                    />
-                </Row>
-                <Row size={1}>
-                    <Checkbox
-                        control={control}
-                        label="Permitir que otras personas puedan ver mi perfil como público"
-                        name="public_profile"
-                    />
-                </Row>
-                <Row size={6}>
-                    <Button
-                        onPress={handleSubmit(onSubmit)}
-                        fullWidth
-                        disabled={!formState.isValid || formState.isSubmitting}
-                        isLoading={formState.isSubmitting}
-                    >
-                        Guardar cambios
-                    </Button>
-                </Row>
-            </FormContainer>
-        </Container>
+        <ScrollViewContainer>
+            <Row size={1}>
+                <Checkbox
+                    control={control}
+                    label="Mostrar mi nombre cuando vean mi perfil"
+                    name="show_name"
+                />
+            </Row>
+            <Row size={1}>
+                <Checkbox
+                    control={control}
+                    label="Permitir que otras personas puedan ver mi perfil como público"
+                    name="public_profile"
+                />
+            </Row>
+            <Row size={6}>
+                <Button
+                    onPress={handleSubmit(onSubmit)}
+                    fullWidth
+                    disabled={!formState.isValid || formState.isSubmitting}
+                    isLoading={formState.isSubmitting}
+                >
+                    Guardar cambios
+                </Button>
+            </Row>
+        </ScrollViewContainer>
     );
 };
 

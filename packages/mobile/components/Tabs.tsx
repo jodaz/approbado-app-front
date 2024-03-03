@@ -5,7 +5,13 @@ import TabIndicator from './TabIndicator';
 
 const Tabs = ({ state, descriptors, navigation, position }) => (
     <ScrollView
-        style={{ flexDirection: 'row', maxHeight: verticalScale(30), height: verticalScale(30) }}
+        style={{
+            flexDirection: 'row',
+            maxHeight: verticalScale(30),
+            height: verticalScale(30),
+            borderBottomColor: '#D1D1D1',
+            borderBottomWidth: 1
+        }}
         scrollEnabled
         horizontal
         showsHorizontalScrollIndicator={false}

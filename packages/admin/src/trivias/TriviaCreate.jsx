@@ -8,7 +8,7 @@ import SelectInput from '@approbado/lib/components/SelectInput'
 import SelectCategoryInput from './SelectCategoryInput'
 import validate from './validateTrivias'
 import SelectPlansInput from './SelectPlansInput'
-import { createTrivia } from '@approbado/lib/services/trivias.service'
+import { createTrivia } from '@approbado/lib/services/trivias.services'
 
 const ACCESS_TYPES = [
     { id: '1', name: 'Gratis' },

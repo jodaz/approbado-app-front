@@ -3,7 +3,7 @@ import { ScrollView, Dimensions } from "react-native";
 import { useAuth, getUser } from "@approbado/lib/contexts/AuthContext";
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { NAME, EMAIL, USERNAME } from "@approbado/lib/utils/validations";
-import { TextInput, Row } from "../../components";
+import { TextInput, Row, ScrollViewContainer } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { horizontalScale, verticalScale } from "../../styles/scaling";
@@ -58,22 +58,20 @@ const EditOcupation = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container>
-                <EditProfileHeader
-                    isSubmitting={formState.isSubmitting}
-                    onSubmit={handleSubmit(onSubmit)}
-                    title='Ocupación'
+        <ScrollViewContainer>
+            <EditProfileHeader
+                isSubmitting={formState.isSubmitting}
+                onSubmit={handleSubmit(onSubmit)}
+                title='Ocupación'
+            />
+            <Row size={1} align="center">
+                <TextInput
+                    name="ocupation"
+                    control={control}
+                    label="Ocupación"
                 />
-                <Row size={1} align="center">
-                    <TextInput
-                        name="ocupation"
-                        control={control}
-                        label="Ocupación"
-                    />
-                </Row>
-            </Container>
-        </ScrollView>
+            </Row>
+        </ScrollViewContainer>
     );
 };
 

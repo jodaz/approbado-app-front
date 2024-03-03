@@ -28,12 +28,9 @@ export const Routes = {
     ShowPost: 'ShowPost',
     EditPost: 'EditPost',
     ReportPost: 'ReportPost',
-    QuickTrivia: 'QuickTrivia',
-    ScheduleGame: 'ScheduleGame',
     ShowTrivia: 'ShowTrivia',
     SelectTrivia: 'SelectTrivia',
     TriviaRules: 'TriviaRules',
-    ScheduleTrivia: 'ScheduleTrivia',
     ShowCategory: 'ShowCategory',
     Events: 'Events',
     CreateEvent: 'CreateEvent',
@@ -44,5 +41,11 @@ export const Routes = {
     CreateEventStepTwo: 'CreateEventStepTwo',
     CreateEventStepThree: 'CreateEventStepThree',
     CreateEventSuccess: 'CreateEventSuccess',
-    ShowNotification: 'ShowNotification'
+    ShowNotification: 'ShowNotification',
+    Play: 'Play',
+    CheckAnswers: 'CheckAnswers',
+    LoadingResults: 'LoadingResults',
+    LoadingTriviaTeam: 'LoadingTriviaTeam',
+    WinLevel: 'WinLevel',
+    ListTrivias: 'ListTrivias'
 }

@@ -38,7 +38,7 @@ const AwardCard = ({ data, id }) => {
         <Card className={classes.root} key={id}>
             <CardHeader
                 avatar={
-                    (data.type === 'Insignia') ? (
+                    (data.type === 'insignia') ? (
                         <Avatar
                             source={data.file}
                             alt='icon'

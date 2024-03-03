@@ -2,7 +2,7 @@ import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
-import { listCategories } from '@approbado/lib/services/category.service'
+import { listCategories } from '@approbado/lib/services/categories.services'
 
 const SelectCategoryInput = ({ disabled }) => {
     const [options, setOptions] = React.useState([])

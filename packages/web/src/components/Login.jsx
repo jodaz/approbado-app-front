@@ -5,7 +5,6 @@ import {
     InputAdornment,
     Box
 } from '@material-ui/core';
-import axios from 'axios'
 import AuthLayout from './AuthLayout'
 import useStyles from '@approbado/lib/styles/formStyles'
 import { theme } from '@approbado/lib/styles';
@@ -15,6 +14,7 @@ import Button from '@approbado/lib/components/Button'
 import TextInput from '@approbado/lib/components/TextInput'
 import CONFIG_NAMES from '@approbado/lib/env';
 import { Lock, User } from '@approbado/lib/icons';
+import { loginUser } from '@approbado/lib/services/auth.services';
 
 const validate = (values) => {
     const errors = {};
@@ -34,23 +34,25 @@ const Login = () => {
     const [loading, setLoading] = React.useState(false);
     const classes = useStyles();
 
-    const handleSubmit = React.useCallback(values => {
+    const handleSubmit = React.useCallback(async values => {
         setLoading(true)
-        return axios.post(`${CONFIG_NAMES.SOURCE}/auth/login`, values)
-            .then(res => {
-                const { token } = res.data;
 
-                window.location.href =
-                    `${CONFIG_NAMES.REDIRECT_TO}/auth?token=${token}`;
+        const { success, data } = await loginUser(values);
 
-                setLoading(false);
-            }).catch(err => {
-                setLoading(false);
+        if (success) {
+            const { token } = data;
 
-                if (err.response.data.errors) {
-                    return err.response.data.errors;
-                }
-            });
+            window.location.href =
+                `${CONFIG_NAMES.REDIRECT_TO}/auth?token=${token}`;
+
+            setLoading(false);
+        } else {
+            setLoading(false);
+
+            if (data) {
+                return data;
+            }
+        }
     }, [])
 
     return (

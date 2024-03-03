@@ -2,7 +2,7 @@ import * as React from "react";
 import { ScrollView, Dimensions } from "react-native";
 import { useAuth, getUser } from "@approbado/lib/contexts/AuthContext";
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
-import { TextInput, Row } from "../../components";
+import { TextInput, Row, ScrollViewContainer } from "../../components";
 import { useForm } from "react-hook-form";
 import { updateSettings } from '@approbado/lib/services/settings.services'
 import { horizontalScale, verticalScale } from "../../styles/scaling";
@@ -58,29 +58,27 @@ const EditSocialProfile = ({ navigation }) => {
     };
 
     return (
-        <ScrollView>
-            <Container>
-                <EditProfileHeader
-                    isSubmitting={formState.isSubmitting}
-                    onSubmit={handleSubmit(onSubmit)}
-                    title='Redes sociales'
+        <ScrollViewContainer>
+            <EditProfileHeader
+                isSubmitting={formState.isSubmitting}
+                onSubmit={handleSubmit(onSubmit)}
+                title='Redes sociales'
+            />
+            <Row size={1} align="center">
+                <TextInput
+                    name="linkedin"
+                    control={control}
+                    label="Linkedin"
                 />
-                <Row size={1} align="center">
-                    <TextInput
-                        name="linkedin"
-                        control={control}
-                        label="Linkedin"
-                    />
-                </Row>
-                <Row size={1} align="center">
-                    <TextInput
-                        name="twitter"
-                        control={control}
-                        label="Twitter / X"
-                    />
-                </Row>
-            </Container>
-        </ScrollView>
+            </Row>
+            <Row size={1} align="center">
+                <TextInput
+                    name="twitter"
+                    control={control}
+                    label="Twitter / X"
+                />
+            </Row>
+        </ScrollViewContainer>
     );
 };
 
