@@ -19,6 +19,7 @@ import CreatePost from './Forums/CreatePost';
 // Stacks
 import OnboardingStack from './OnboardingStack';
 import BottomNav from '../components/BottomNav';
+import EventsStack from './Events/EventsStack';
 
 const Stack = createNativeStackNavigator();
 
@@ -47,6 +48,13 @@ const MainScreen = () => {
             }}
             initialRouteName={Routes.Onboarding}
         >
+            <Stack.Screen
+                name={Routes.Events}
+                component={EventsStack}
+                options={{
+                    headerShown: false
+                }}
+            />
             <Stack.Screen
                 name={Routes.Home}
                 component={BottomNav}

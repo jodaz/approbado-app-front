@@ -6,6 +6,7 @@ import CreateEventSuccess from './CreateEventSuccess';
 import ListEvents from './ListEvents';
 import EventsHeader from './components/EventsHeader';
 import EditSchedule from './EditSchedule';
+import ShowSchedule from './ShowSchedule';
 
 const Stack = createNativeStackNavigator()
 
@@ -35,8 +36,16 @@ const EventsStack = () => (
             component={ListEvents}
             options={{ title: 'Eventos'}}
         />
-        <Stack.Screen name={Routes.EditSchedule} component={EditSchedule} />
-        <Stack.Screen name={Routes.ShowSchedule} component={EditSchedule}  />
+        <Stack.Screen
+            name={Routes.EditSchedule}
+            component={EditSchedule}
+            options={{ title: 'Editar evento'}}
+        />
+        <Stack.Screen
+            name={Routes.ShowSchedule}
+            component={ShowSchedule}
+            options={{ title: 'Ver evento'}}
+        />
     </Stack.Navigator>
 );
 

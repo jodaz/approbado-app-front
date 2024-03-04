@@ -5,7 +5,6 @@ import HomeScreen from './Home';
 import HomeHeader from './components/HomeHeader';
 import Notifications from '../Notifications';
 import Chat from '../Chat';
-import EventsStack from '../Events/EventsStack';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,13 +36,6 @@ const Home = () => (
                 headerShown: false
             }}
             component={Chat}
-        />
-        <Stack.Screen
-            name={Routes.Events}
-            component={EventsStack}
-            options={{
-                headerShown: false
-            }}
         />
     </Stack.Navigator>
 );

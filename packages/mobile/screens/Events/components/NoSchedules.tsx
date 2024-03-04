@@ -5,7 +5,7 @@ import EmptyEvents from '@approbado/lib/illustrations/EmptyEvents.svg'
 const NoSchedules = () => (
     <Row justify='center' align='center' style={{
         width: '100%',
-        height: '100%'
+        height: '80%'
     }}>
         <EmptyEvents />
     </Row>

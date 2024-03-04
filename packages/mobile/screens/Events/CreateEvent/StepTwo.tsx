@@ -5,7 +5,8 @@ import {
     SelectInput,
     MultiSelectInput,
     Text,
-    Image
+    Image,
+    ScrollViewContainer
 } from '../../../components';
 import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
 import { listTrivias } from '@approbado/lib/services/trivias.services'
@@ -13,11 +14,8 @@ import { listUsers } from '@approbado/lib/services/users.services'
 import { listLevels } from '@approbado/lib/services/levels.services'
 import { listSubthemes } from '@approbado/lib/services/subthemes.services'
 import { Routes } from '../../routes';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { useForm } from 'react-hook-form';
-import SelectTriviaInput from '../components/SelectTriviaInput';
-import SelectLevelInput from '../components/SelectLevelInput';
-import SelectThemeInput from '../components/SelectThemeInput';
 import { Layers, Lightbulb, Scale } from 'lucide-react-native';
 
 const StepTwo = ({ navigation }) => {
@@ -96,7 +94,7 @@ const StepTwo = ({ navigation }) => {
     }, [])
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollViewContainer>
             <Row>
                 {users ? (
                     <MultiSelectInput
@@ -170,7 +168,7 @@ const StepTwo = ({ navigation }) => {
                     Regresar
                 </Button>
             </Row>
-        </ScrollView>
+        </ScrollViewContainer>
     );
 }
 

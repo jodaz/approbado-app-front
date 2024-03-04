@@ -2,29 +2,46 @@ import * as React from 'react'
 import {
     Row,
     Button,
-    Container,
-    Text,
+    ScrollViewContainer,
     TextInput,
     Checkbox
 } from '../../../components';
 import { Routes } from '../../routes';
-import { ScrollView } from 'react-native';
 import { useForm } from 'react-hook-form';
-import TitleBar from '../../../components/TitleBar';
-import { horizontalScale, verticalScale } from '../../../styles/scaling';
 import { Video } from 'lucide-react-native';
+import { format } from 'date-fns';
+import { createSchedule } from '@approbado/lib/services/schedules.services'
 
-const StepThree = ({ navigation }) => {
+const StepThree = ({ navigation, route }) => {
     const { control, handleSubmit, formState, watch } = useForm();
-    const reminder = watch('reminder')
+    const reminder = watch('notify_before')
 
     const onSubmit = async (values) => {
-        console.log(values)
-        // navigation.navigate(Routes.CreateEventSuccess)
+        const paramsData = route.params.data;
+
+        const { starts_at, time, ...restData } = paramsData
+
+        const startsAt = format(new Date(starts_at), 'dd-MM-yyyy')
+        const timeFormat = format(new Date(time), 'HH:mm')
+
+        const formData = {
+            starts_at: `${startsAt} ${timeFormat}`,
+            notify_before:  reminder ? true : false,
+            ...restData,
+            ...values
+        }
+
+        const { success, data } = await createSchedule(formData);
+
+        if (success) {
+            navigation.navigate(Routes.CreateEventSuccess)
+        } else {
+            console.log(data)
+        }
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollViewContainer>
             <Row>
                 <TextInput
                     label='Videollamada'
@@ -54,7 +71,7 @@ const StepThree = ({ navigation }) => {
                     Regresar
                 </Button>
             </Row>
-        </ScrollView>
+        </ScrollViewContainer>
     );
 }
 

@@ -4,6 +4,8 @@ import {
     SelectInput
 } from '../../../components';
 import { listSubthemes } from '@approbado/lib/services/subthemes.services'
+import { Layers } from 'lucide-react-native';
+import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
 
 const SelectThemeInput = ({ control }) => {
     const [subthemes, setSubthemes] = React.useState(null)
@@ -31,8 +33,10 @@ const SelectThemeInput = ({ control }) => {
                     options={subthemes}
                     labelField='name'
                     valueField='id'
+                    icon={<Layers />}
+                    validations={REQUIRED_FIELD}
                 />
-            ) : null}
+            ) : <></>}
         </Row>
     );
 }

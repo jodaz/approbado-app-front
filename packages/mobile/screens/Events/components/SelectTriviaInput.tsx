@@ -4,6 +4,8 @@ import {
     SelectInput
 } from '../../../components';
 import { listTrivias } from '@approbado/lib/services/trivias.services'
+import { Scale } from 'lucide-react-native';
+import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
 
 const SelectTriviaInput = ({ control }) => {
     const [trivias, setTrivias] = React.useState(null)
@@ -31,8 +33,10 @@ const SelectTriviaInput = ({ control }) => {
                     options={trivias}
                     labelField='name'
                     valueField='id'
+                    icon={<Scale />}
+                    validations={REQUIRED_FIELD}
                 />
-            ) : null}
+            ) : <></>}
         </Row>
     );
 }

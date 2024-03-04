@@ -33,6 +33,7 @@ export async function createSchedule(data) {
             data: response.data,
         }
     }catch (error){
+        console.log(error)
         return {
             success: false,
             status: error.response.status,

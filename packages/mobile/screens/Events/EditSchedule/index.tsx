@@ -1,11 +1,17 @@
 import * as React from 'react'
-import { Button, Checkbox, Container, LoadingScreen, Row, SelectInput, Text, TextInput, TitleBar } from '../../../components';
+import {
+    Button,
+    Checkbox,
+    LoadingScreen,
+    Row,
+    ScrollViewContainer,
+    TextInput
+} from '../../../components';
 import { getSchedule, editSchedule } from '@approbado/lib/services/schedules.services'
 import { Video } from 'lucide-react-native';
 import { useForm } from 'react-hook-form';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { Routes } from '../../routes';
-import { ScrollView } from 'react-native';
 import SelectTriviaInput from '../components/SelectTriviaInput';
 import SelectLevelInput from '../components/SelectLevelInput';
 import SelectThemeInput from '../components/SelectThemeInput';
@@ -19,14 +25,14 @@ const EditScheduleLayout = ({ data, navigation }) => {
             title: data.title,
             description: data.description,
             share_link: data.share_link,
-            trivia_id: data.trivia_id,
+            trivia_id: data.subtheme.trivia_id,
             subtheme_id: data.subtheme_id,
             level_id: data.level_id,
             users_ids: data.participants.map(({ id }) => id),
             notify_before: data.notify_before
         }
     })
-    console.log(JSON.stringify(data, null, ' '))
+
     const onSubmit = async ({ trivia_id, users_ids, subtheme_id, level_id, ...rest }) => {
         const formData = {
             starts_at: new Date(),
@@ -36,8 +42,6 @@ const EditScheduleLayout = ({ data, navigation }) => {
             level_id: level_id,
             ...rest
         }
-
-        console.log(JSON.stringify(formData, null, ' '))
 
         const { success, status, data: responseData } = await editSchedule(data.id, formData);
 
@@ -60,9 +64,9 @@ const EditScheduleLayout = ({ data, navigation }) => {
             }
         }
     }
-
+    console.log(JSON.stringify(data, null, ' '))
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollViewContainer>
             <Row>
                 <TextInput
                     control={control}
@@ -70,10 +74,10 @@ const EditScheduleLayout = ({ data, navigation }) => {
                     name='title'
                 />
             </Row>
-            <SelectParticipantsInput control={control} />
             <SelectTriviaInput control={control} />
-            <SelectLevelInput control={control} />
             <SelectThemeInput control={control} />
+            <SelectLevelInput control={control} />
+            <SelectParticipantsInput control={control} />
             <Row>
                 <TextInput
                     control={control}
@@ -106,12 +110,12 @@ const EditScheduleLayout = ({ data, navigation }) => {
             <Row>
                 <Button
                     onPress={handleSubmit(onSubmit)}
-                    disabled={formState.isSubmitting || !formState.isDirty}
+                    disabled={formState.isSubmitting || !formState?.isValid}
                 >
                     Guardar cambios
                 </Button>
             </Row>
-        </ScrollView>
+        </ScrollViewContainer>
     )
 }
 
@@ -132,16 +136,10 @@ const EditSchedule = ({ route, navigation }) => {
     if (!data) return <LoadingScreen />
 
     return (
-        <Container>
-            <Row>
-                <TitleBar>
-                    <Text>
-                        Editar evento
-                    </Text>
-                </TitleBar>
-            </Row>
-            <EditScheduleLayout navigation={navigation} data={data} />
-        </Container>
+        <EditScheduleLayout
+            navigation={navigation}
+            data={data}
+        />
     )
 }
 

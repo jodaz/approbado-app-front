@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { Container, LoadingScreen, Row, Text, TitleBar } from '../../../components';
+import {
+    ScrollViewContainer,
+    LoadingScreen,
+    Row,
+    Text,
+    TitleBar
+} from '../../../components';
 import { getSchedule } from '@approbado/lib/services/schedules.services'
 import { Linking } from 'react-native';
 import ScheduleCard from '../components/ScheduleCard';
@@ -16,7 +22,7 @@ const EventInfoItem = ({ title, data }) => (
     </Row>
 )
 
-const ShowNotification = ({ route }) => {
+const ShowSchedule = ({ route }) => {
     const schedule = route.params.item
     const [data, setData] = React.useState(null)
 
@@ -33,14 +39,7 @@ const ShowNotification = ({ route }) => {
     if (!data) return <LoadingScreen />
 
     return (
-        <Container>
-            <Row>
-                <TitleBar>
-                    <Text>
-                        Ver evento
-                    </Text>
-                </TitleBar>
-            </Row>
+        <ScrollViewContainer>
             <ScheduleCard
                 item={data}
                 accessTrivia
@@ -87,8 +86,8 @@ const ShowNotification = ({ route }) => {
                     </Text>
                 </Row>
             ) : null}
-        </Container>
+        </ScrollViewContainer>
     )
 }
 
-export default ShowNotification
+export default ShowSchedule
