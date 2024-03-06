@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Close, Trash2 } from '@approbado/lib/icons'
 import { makeStyles, alpha } from '@material-ui/core/styles';
 import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
-import { apiProvider as axios } from '@approbado/lib/api'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 import { deleteSchedule } from '@approbado/lib/services/schedules.services'
 import Button from '@approbado/lib/components/Button'

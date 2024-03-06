@@ -32,7 +32,7 @@ const SelectTriviaInput = ({ control }) => {
                 label='Trivia'
                 name='trivia_id'
                 control={control}
-                placeholder='Seleccione un tema'
+                placeholder='Seleccione una trivia'
                 options={trivias}
                 labelField='name'
                 valueField='id'

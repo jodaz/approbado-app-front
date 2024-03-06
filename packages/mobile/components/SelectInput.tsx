@@ -7,6 +7,7 @@ import { horizontalScale, scaleFontSize, verticalScale } from '../styles/scaling
 import styled, { useTheme } from 'styled-components/native';
 import Label from './Label';
 import Error from './ErrorText';
+import Text from './Text';
 
 const RootContainer = styled.View`
     display: flex;
@@ -17,6 +18,7 @@ const LoadingSelectInput = styled(RootContainer)`
     border: ${props => `1px solid ${props.theme.palette.secondary.main}`};
     padding-vertical: ${verticalScale(12)};
     border-radius: ${scaleFontSize(6)}px;
+    padding-horizontal: ${horizontalScale(12)};
 `;
 
 const SelectInput = ({
@@ -29,7 +31,6 @@ const SelectInput = ({
     placeholder,
     options,
     labelField,
-    loading,
     valueField
 } : ISelectProps) => {
     const theme = useTheme()
@@ -46,7 +47,7 @@ const SelectInput = ({
         })
     };
 
-    if (loading) {
+    if (!options || !options.length) {
         return (
             <RootContainer>
                 {label ? (
@@ -55,13 +56,13 @@ const SelectInput = ({
                     </Label>
                 ) : null}
                 <LoadingSelectInput>
-                    <ActivityIndicator color={theme.palette.secondary.main} />
+                    <Text fontWeight={400} fontSize={18}>
+                        Sin opciones disponibles
+                    </Text>
                 </LoadingSelectInput>
             </RootContainer>
         )
     }
-
-    if (!options) return <></>
 
     return (
         <Controller

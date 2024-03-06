@@ -13,7 +13,7 @@ import { format } from 'date-fns';
 import { createSchedule } from '@approbado/lib/services/schedules.services'
 
 const StepThree = ({ navigation, route }) => {
-    const { control, handleSubmit, watch } = useForm();
+    const { control, handleSubmit, watch, formState } = useForm();
     const reminder = watch('notify_before')
 
     const onSubmit = async (values) => {
@@ -59,7 +59,7 @@ const StepThree = ({ navigation, route }) => {
                 />
             </Row>
             <Row>
-                <Button onPress={handleSubmit(onSubmit)}>
+                <Button onPress={handleSubmit(onSubmit)} isLoading={formState?.isSubmitting}>
                     Guardar trivia
                 </Button>
             </Row>
