@@ -57,7 +57,7 @@ const ScheduleCard = ({ item, accessTrivia } : IScheduleCardProps ) : JSX.Elemen
     }
 
     const handleDelete = () => {
-        navigation.navigate(Routes.EditSchedule, {
+        navigation.navigate(Routes.DeleteEvent, {
             item: item
         })
         bottomSheet.collapse()

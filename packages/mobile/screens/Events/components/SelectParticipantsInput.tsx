@@ -12,7 +12,6 @@ import { View } from 'react-native';
 const SelectParticipantsInput = ({ control }) => {
     const [users, setUsers] = React.useState(null)
 
-
     const renderItem = item => {
         return (
             <View style={{

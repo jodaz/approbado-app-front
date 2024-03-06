@@ -77,9 +77,9 @@ export async function getSchedule(data) {
     }
 }
 
-export async function deleteSchedule(data) {
+export async function deleteSchedule(id) {
     try {
-        const response = await apiProvider.delete(`/schedules/${data}`)
+        const response = await apiProvider.delete(`/schedules/${id}`)
 
         return {
             success: true,

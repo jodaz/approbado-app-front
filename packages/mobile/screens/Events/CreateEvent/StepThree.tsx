@@ -13,10 +13,11 @@ import { format } from 'date-fns';
 import { createSchedule } from '@approbado/lib/services/schedules.services'
 
 const StepThree = ({ navigation, route }) => {
-    const { control, handleSubmit, formState, watch } = useForm();
+    const { control, handleSubmit, watch } = useForm();
     const reminder = watch('notify_before')
 
     const onSubmit = async (values) => {
+        console.log(JSON.stringify(route.params.data, null, ' '))
         const paramsData = route.params.data;
 
         const { starts_at, time, ...restData } = paramsData

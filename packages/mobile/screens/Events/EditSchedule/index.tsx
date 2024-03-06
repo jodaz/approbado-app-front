@@ -8,15 +8,18 @@ import {
     TextInput
 } from '../../../components';
 import { getSchedule, editSchedule } from '@approbado/lib/services/schedules.services'
-import { Video } from 'lucide-react-native';
+import { Calendar, Clock, Video } from 'lucide-react-native';
 import { useForm } from 'react-hook-form';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { Routes } from '../../routes';
+import { format } from 'date-fns';
+import { View } from 'react-native';
 import SelectTriviaInput from '../components/SelectTriviaInput';
 import SelectLevelInput from '../components/SelectLevelInput';
 import SelectThemeInput from '../components/SelectThemeInput';
 import SelectParticipantsInput from '../components/SelectParticipantsInput';
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
+import DateTimePicker from '../../../components/DateTimePicker';
 
 const EditScheduleLayout = ({ data, navigation }) => {
     const { dispatch } = useToast();
@@ -33,9 +36,20 @@ const EditScheduleLayout = ({ data, navigation }) => {
         }
     })
 
-    const onSubmit = async ({ trivia_id, users_ids, subtheme_id, level_id, ...rest }) => {
+    const onSubmit = async ({
+        trivia_id,
+        users_ids,
+        subtheme_id,
+        level_id,
+        starts_at,
+        time,
+        ...rest
+    }) => {
+        const startsAt = format(new Date(starts_at), 'dd-MM-yyyy')
+        const timeFormat = format(new Date(time), 'HH:mm')
+
         const formData = {
-            starts_at: new Date(),
+            starts_at: `${startsAt} ${timeFormat}`,
             trivia_id: trivia_id,
             users_ids: users_ids,
             subtheme_id: subtheme_id,
@@ -43,7 +57,10 @@ const EditScheduleLayout = ({ data, navigation }) => {
             ...rest
         }
 
-        const { success, status, data: responseData } = await editSchedule(data.id, formData);
+        const {
+            success,
+            status, data: responseData
+        } = await editSchedule(data.id, formData);
 
         if (success) {
             navigation.navigate(Routes.Events);
@@ -64,7 +81,7 @@ const EditScheduleLayout = ({ data, navigation }) => {
             }
         }
     }
-    console.log(JSON.stringify(data, null, ' '))
+
     return (
         <ScrollViewContainer>
             <Row>
@@ -73,6 +90,27 @@ const EditScheduleLayout = ({ data, navigation }) => {
                     label='Título'
                     name='title'
                 />
+            </Row>
+            <Row direction='row'>
+                <View style={{ flex: 1 }}>
+                    <DateTimePicker
+                        label='Día'
+                        control={control}
+                        mode='date'
+                        name='starts_at'
+                        icon={<Calendar />}
+                    />
+                </View>
+                <View style={{ marginRight: 10 }} />
+                <View style={{ flex: 1 }}>
+                    <DateTimePicker
+                        label='Hora'
+                        control={control}
+                        mode='time'
+                        name='time'
+                        icon={<Clock />}
+                    />
+                </View>
             </Row>
             <SelectTriviaInput control={control} />
             <SelectThemeInput control={control} />
@@ -103,7 +141,11 @@ const EditScheduleLayout = ({ data, navigation }) => {
                 />
             </Row>
             <Row>
-                <Button variant='outlined' onPress={() => navigation.goBack()}>
+                <Button
+                    variant='outlined'
+                    onPress={() => navigation.goBack()}
+                    disabled={formState.isSubmitting}
+                >
                     Descartar
                 </Button>
             </Row>

@@ -17,8 +17,12 @@ import { Routes } from '../../routes';
 import { View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Layers, Lightbulb, Scale } from 'lucide-react-native';
+import SelectLevelInput from '../components/SelectLevelInput';
+import SelectThemeInput from '../components/SelectThemeInput';
+import SelectTriviaInput from '../components/SelectTriviaInput';
+import SelectParticipantsInput from '../components/SelectParticipantsInput';
 
-const StepTwo = ({ navigation }) => {
+const StepTwo = ({ navigation, route }) => {
     const [trivias, setTrivias] = React.useState(null)
     const [users, setUsers] = React.useState(null)
     const [levels, setLevels] = React.useState(null)
@@ -26,8 +30,12 @@ const StepTwo = ({ navigation }) => {
     const { control, handleSubmit, formState } = useForm();
 
     const onSubmit = async (values) => {
-        await console.log(values)
-        return navigation.navigate(Routes.CreateEventStepThree)
+        await navigation.navigate(Routes.CreateEventStepThree, {
+            data: {
+                ...values,
+                ...route.params.data
+            }
+        })
     }
 
     const renderItem = item => {
@@ -95,66 +103,10 @@ const StepTwo = ({ navigation }) => {
 
     return (
         <ScrollViewContainer>
-            <Row>
-                {users ? (
-                    <MultiSelectInput
-                        label='Participantes'
-                        name='users_ids'
-                        control={control}
-                        placeholder='Seleccione un usuario'
-                        options={users}
-                        labelField='user_name'
-                        valueField='id'
-                        renderItem={renderItem}
-                        validations={REQUIRED_FIELD}
-                    />
-                ) : null}
-            </Row>
-            <Row>
-                {trivias ? (
-                    <SelectInput
-                        label='Trivia'
-                        name='trivias_ids'
-                        control={control}
-                        placeholder='Seleccione un tema'
-                        options={trivias}
-                        labelField='name'
-                        valueField='id'
-                        icon={<Scale />}
-                        validations={REQUIRED_FIELD}
-                    />
-                ) : null}
-            </Row>
-            <Row>
-                {levels ? (
-                    <SelectInput
-                        label='Nivel'
-                        name='levels_ids'
-                        control={control}
-                        placeholder='Seleccione un nivel'
-                        options={levels}
-                        labelField='name'
-                        valueField='id'
-                        icon={<Lightbulb />}
-                        validations={REQUIRED_FIELD}
-                    />
-                ) : null}
-            </Row>
-            <Row>
-                {subthemes ? (
-                    <SelectInput
-                        label='Tema'
-                        name='subthemes_ids'
-                        control={control}
-                        placeholder='Seleccione un tema'
-                        options={subthemes}
-                        labelField='name'
-                        valueField='id'
-                        icon={<Layers />}
-                        validations={REQUIRED_FIELD}
-                    />
-                ) : null}
-            </Row>
+            <SelectParticipantsInput control={control} />
+            <SelectTriviaInput control={control} />
+            <SelectLevelInput control={control} />
+            <SelectThemeInput control={control} />
             <Row>
                 <Button
                     disabled={!formState?.isValid}

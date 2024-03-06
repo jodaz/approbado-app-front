@@ -87,4 +87,5 @@ export interface ISelectProps {
     validations?: any;
     defaultValue?: string;
     icon?: any;
+    loading?: boolean;
 }

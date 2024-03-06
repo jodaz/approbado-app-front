@@ -9,11 +9,15 @@ import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
 
 const SelectTriviaInput = ({ control }) => {
     const [trivias, setTrivias] = React.useState(null)
+    const [loading, setLoading] = React.useState(true)
+
+    const toggleLoading = () => setLoading(!loading)
 
     const fetchTrivias = React.useCallback(async () => {
         const { success, data } = await listTrivias()
 
         if (success) {
+            toggleLoading()
             setTrivias(data);
         }
     }, []);
@@ -24,19 +28,18 @@ const SelectTriviaInput = ({ control }) => {
 
     return (
         <Row>
-            {trivias ? (
-                <SelectInput
-                    label='Trivia'
-                    name='trivia_id'
-                    control={control}
-                    placeholder='Seleccione un tema'
-                    options={trivias}
-                    labelField='name'
-                    valueField='id'
-                    icon={<Scale />}
-                    validations={REQUIRED_FIELD}
-                />
-            ) : <></>}
+            <SelectInput
+                label='Trivia'
+                name='trivia_id'
+                control={control}
+                placeholder='Seleccione un tema'
+                options={trivias}
+                labelField='name'
+                valueField='id'
+                icon={<Scale />}
+                validations={REQUIRED_FIELD}
+                loading={loading}
+            />
         </Row>
     );
 }

@@ -9,11 +9,15 @@ import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
 
 const SelectLevelInput = ({ control }) => {
     const [levels, setLevels] = React.useState(null)
+    const [loading, setLoading] = React.useState(true)
+
+    const toggleLoading = () => setLoading(!loading)
 
     const fetchLevels = React.useCallback(async () => {
         const { success, data } = await listLevels()
 
         if (success) {
+            toggleLoading()
             setLevels(data);
         }
     }, []);
@@ -22,22 +26,20 @@ const SelectLevelInput = ({ control }) => {
         fetchLevels()
     }, [])
 
-
     return (
         <Row>
-            {levels ? (
-                <SelectInput
-                    label='Nivel'
-                    name='level_id'
-                    control={control}
-                    placeholder='Seleccione un nivel'
-                    options={levels}
-                    labelField='name'
-                    valueField='id'
-                    icon={<Lightbulb />}
-                    validations={REQUIRED_FIELD}
-                />
-            ) : <></>}
+            <SelectInput
+                label='Nivel'
+                name='level_id'
+                control={control}
+                placeholder='Seleccione un nivel'
+                options={levels}
+                labelField='name'
+                valueField='id'
+                icon={<Lightbulb />}
+                validations={REQUIRED_FIELD}
+                loading={loading}
+            />
         </Row>
     );
 }
