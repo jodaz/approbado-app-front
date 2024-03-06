@@ -1,6 +1,6 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
+import { listTrivias } from '@approbado/lib/services/trivias.services'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 import {
@@ -11,12 +11,15 @@ const SelectTriviasInput = ({ submitting }) => {
     const [trivias, setTrivias] = React.useState([])
 
     const fetchTrivias = React.useCallback(async () => {
-        const { data: { data } } = await axios.get('/trivias')
-        setTrivias(data)
+        const { success, data } = await listTrivias()
+
+        if (success) {
+            setTrivias(data);
+        }
     }, []);
 
     React.useEffect(() => {
-        fetchTrivias();
+        fetchTrivias()
     }, [])
 
     if (!Object.entries(trivias).length) return null;

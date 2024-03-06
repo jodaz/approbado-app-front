@@ -2,7 +2,7 @@ import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
 import { useFormState } from 'react-final-form'
 import { Layer } from '@approbado/lib/icons';
-import { apiProvider as axios } from '@approbado/lib/api'
+import { listSubthemes } from '@approbado/lib/services/subthemes.services'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 
@@ -10,15 +10,20 @@ const SubthemesInput = ({ submitting }) => {
     const { values: { trivia_id } } = useFormState();
     const [subthemes, setSubthemes] = React.useState([])
 
-    const fetchSubthemes = React.useCallback(async (trivia) => {
-        const { data: { data } } = await axios.get(`/subthemes?filter[trivia_id]=${trivia}`)
-        setSubthemes(data)
-    }, []);
+    const fetchSubthemes = React.useCallback(async () => {
+        const { success, data } = await listSubthemes({
+            filter: {
+                trivia_id: trivia_id
+            }
+        })
+
+        if (success) {
+            setSubthemes(data);
+        }
+    }, [trivia_id]);
 
     React.useEffect(() => {
-        if (trivia_id) {
-            fetchSubthemes(trivia_id);
-        }
+        fetchSubthemes()
     }, [trivia_id])
 
     if (!trivia_id || !Object.entries(subthemes).length) return null;

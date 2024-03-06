@@ -17,7 +17,6 @@ const StepThree = ({ navigation, route }) => {
     const reminder = watch('notify_before')
 
     const onSubmit = async (values) => {
-        console.log(JSON.stringify(route.params.data, null, ' '))
         const paramsData = route.params.data;
 
         const { starts_at, time, ...restData } = paramsData

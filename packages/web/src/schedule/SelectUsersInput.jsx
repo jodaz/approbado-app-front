@@ -1,12 +1,12 @@
 import * as React from 'react'
+import { Close } from '@approbado/lib/icons'
+import { makeStyles } from '@material-ui/core'
+import { listUsers } from '@approbado/lib/services/users.services'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 import Chip from '@material-ui/core/Chip';
-import { makeStyles } from '@material-ui/core'
 import Avatar from '@approbado/lib/components/Avatar';
-import { Close } from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     userCard: {
@@ -34,12 +34,20 @@ const SelectUsersInput = ({ submitting }) => {
     const [users, setUsers] = React.useState([])
 
     const fetchUsers = React.useCallback(async () => {
-        const { data: { data } } = await axios.get('/users?filter[is_registered]=true')
-        setUsers(data)
+        const { success, data } = await listUsers({
+            filter: {
+                rol: 'user',
+                notCurrent: true
+            }
+        })
+
+        if (success) {
+            setUsers(data);
+        }
     }, []);
 
     React.useEffect(() => {
-        fetchUsers();
+        fetchUsers()
     }, [])
 
     if (!Object.entries(users).length) return null;
