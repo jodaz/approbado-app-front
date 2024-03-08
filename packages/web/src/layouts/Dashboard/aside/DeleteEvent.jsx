@@ -1,17 +1,17 @@
 import * as React from 'react';
+import { Close, Trash2 } from '@approbado/lib/icons'
+import { makeStyles, alpha } from '@material-ui/core/styles';
+import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
+import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
+import { deleteSchedule } from '@approbado/lib/services/schedules.services'
+import Button from '@approbado/lib/components/Button'
+import Box from '@material-ui/core/Box';
+import NoContent from '@approbado/lib/components/NoContent'
 import MenuItem from '@material-ui/core/MenuItem'
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
-import { Close, Trash2 } from '@approbado/lib/icons'
-import { makeStyles, alpha } from '@material-ui/core/styles';
-import Button from '@approbado/lib/components/Button'
-import Box from '@material-ui/core/Box';
-import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
-import { apiProvider as axios } from '@approbado/lib/api'
-import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -70,16 +70,14 @@ export default function({ onClick, id }) {
     }
 
     const handleDelete = React.useCallback(async () => {
-        try {
-            const { data } = await axios.delete(`/schedules/${id}`)
+        const { success, data } = await deleteSchedule(id)
 
-            if (data) {
-                await setDeleteDialog(true)
-                await unsetSchedule(data)
-                handleClose();
-            }
-        } catch (error) {
-            console.log(error)
+        if (success) {
+            await setDeleteDialog(true)
+            await unsetSchedule(data)
+            handleClose();
+        } else {
+            console.log(data)
         }
     }, []);
 

@@ -1,41 +1,47 @@
 import * as React from 'react'
-import { apiProvider as axios } from '@approbado/lib/api'
 import SuccessDialog from './SuccessDialog'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 import { useParams } from 'react-router-dom'
 import ScheduleForm from './ScheduleForm'
 import { format, parseISO } from 'date-fns'
+import { getSchedule, editSchedule } from '@approbado/lib/services/schedules.services'
 
 const ScheduleEdit = () => {
     const { id } = useParams();
     const [openDialog, setOpenDialog] = React.useState(false)
-    const { editSchedule } = useSchedulesDispatch();
+    const { editSchedule: editScheduleStore } = useSchedulesDispatch();
     const [record, setRecord] = React.useState({})
 
     const handleSubmit = React.useCallback(async (values) => {
         const { time, day, starts_at, notify_before, ...rest } = values;
 
-        try {
-            const { data } = await axios.put(`/schedules/${id}`, {
-                starts_at: `${starts_at} ${time}`,
-                notify_before:  notify_before ? true : false,
-                ...rest
-            })
+        const {
+            success,
+            status,
+            data
+        } = await editSchedule(id, {
+            starts_at: `${starts_at} ${time}`,
+            notify_before:  notify_before ? true : false,
+            ...rest
+        });
 
+        if (success) {
             formatAndSetRecord(data);
             setOpenDialog(true)
-            editSchedule(data);
-        } catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
+            editScheduleStore(data);
+        } else {
+            if (status == 422) {
+                return data;
             }
         }
     }, [id])
 
     const fetchRecord = React.useCallback(async (scheduleID) => {
-        const { data } = await axios.get(`/schedules/${scheduleID}`);
+        const { success, data } = await getSchedule(scheduleID)
 
-        formatAndSetRecord(data);
+        if (success) {
+            formatAndSetRecord(data);
+        }
     }, []);
 
     const formatAndSetRecord = data => {

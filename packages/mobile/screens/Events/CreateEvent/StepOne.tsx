@@ -2,10 +2,11 @@ import * as React from 'react'
 import {
     Row,
     Button,
-    TextInput
+    TextInput,
+    ScrollViewContainer
 } from '../../../components';
 import { Routes } from '../../routes';
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { Calendar, Clock } from 'lucide-react-native';
 import { REQUIRED_FIELD } from '@approbado/lib/utils/validations'
@@ -14,8 +15,14 @@ import DateTimePicker from '../../../components/DateTimePicker';
 const StepOne = ({ navigation, ...restProps }) => {
     const { control, handleSubmit, formState } = useForm();
 
+    const onSubmit = async values => {
+        await navigation.navigate(Routes.CreateEventStepTwo, {
+            data: values
+        })
+    }
+
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollViewContainer>
             <Row>
                 <TextInput
                     label='Título de la reunión'
@@ -31,7 +38,7 @@ const StepOne = ({ navigation, ...restProps }) => {
                         label='Día'
                         control={control}
                         mode='date'
-                        name='date'
+                        name='starts_at'
                         icon={<Calendar />}
                     />
                 </View>
@@ -60,7 +67,7 @@ const StepOne = ({ navigation, ...restProps }) => {
             <Row>
                 <Button
                     disabled={!formState?.isValid}
-                    onPress={() => navigation.navigate(Routes.CreateEventStepTwo)}
+                    onPress={handleSubmit(onSubmit)}
                 >
                     Añadir amigos
                 </Button>
@@ -70,7 +77,7 @@ const StepOne = ({ navigation, ...restProps }) => {
                     Descartar
                 </Button>
             </Row>
-        </ScrollView>
+        </ScrollViewContainer>
     );
 }
 

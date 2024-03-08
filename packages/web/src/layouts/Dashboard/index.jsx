@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Calendar } from '@approbado/lib/icons'
+import { useMediaQuery, Button } from '@material-ui/core'
+import { listSchedules } from '@approbado/lib/services/schedules.services'
+import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
+import { useUserState } from '@approbado/lib/hooks/useUserState'
+import LinkBehavior from '@approbado/lib/components/LinkBehavior';
+import Aside from './aside'
+import Default from '../Default'
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box';
-import { useMediaQuery, Button } from '@material-ui/core'
-import Aside from './aside'
-import { useUserState } from '@approbado/lib/hooks/useUserState'
-import Default from '../Default'
-import useFetch from '@approbado/lib/hooks/useFetch'
-import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
-import LinkBehavior from '@approbado/lib/components/LinkBehavior';
 
 const tags = [
     {
@@ -34,14 +34,17 @@ export default function Dashboard({ children }) {
     const isSmall = useMediaQuery(theme =>
         theme.breakpoints.down('sm')
     )
-    const { data } = useFetch(`/schedules/user/${user.id}`);
-    const { fetchSchedules } = useSchedulesDispatch();
+    const { fetchSchedules: setSchedules } = useSchedulesDispatch();
 
-    React.useEffect(() => {
-        if (data.length) {
-            fetchSchedules(data);
+    const fetchSchedules = React.useCallback(async () => {
+        const { success, data } = await listSchedules()
+
+        if (success) {
+            setSchedules(data);
         }
-    }, [data])
+    }, []);
+
+    React.useEffect(() => { fetchSchedules() }, [])
 
     return (
         <Default>

@@ -1,3 +1,8 @@
+export enum Status {
+    Accepted = "accepted",
+    Pending = "pending",
+}
+
 export interface User {
     id:            number;
     names:         string;
@@ -198,6 +203,43 @@ export interface Subtheme {
     award_id:   number;
     created_at: string;
     updated_at: string;
+}
+
+export interface Level {
+    id:         number;
+    name:       string;
+    color:      null;
+    created_at: string;
+    updated_at: string | null;
+}
+
+export interface Schedule {
+    id:            number;
+    title:         string;
+    description:   string;
+    share_link:    string | null;
+    finished:      boolean;
+    notify_before: boolean;
+    level_id:      number;
+    created_by:    number;
+    subtheme_id:   number;
+    created_at:    string;
+    updated_at:    string | null;
+    starts_at:     string;
+    participants:  Participant[];
+    subtheme?:      Subtheme;
+    level?:         Level;
+    users_ids?:     Participant[];
+    trivia?:        Trivia;
+}
+
+export interface ChatUser {
+    id:         number;
+    user_id:    number;
+    chat_id:    number;
+    status:     Status;
+    created_at: null;
+    updated_at: null | string;
 }
 
 export interface Question {

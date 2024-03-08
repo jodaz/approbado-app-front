@@ -1,6 +1,6 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
+import { listLevels } from '@approbado/lib/services/levels.services'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 import { Lightbulb } from '@approbado/lib/icons'
@@ -9,12 +9,15 @@ const SelectLevelInput = ({ submitting }) => {
     const [levels, setLevels] = React.useState([])
 
     const fetchLevels = React.useCallback(async () => {
-        const { data: { data } } = await axios.get('/configurations/levels')
-        setLevels(data)
+        const { success, data } = await listLevels()
+
+        if (success) {
+            setLevels(data);
+        }
     }, []);
 
     React.useEffect(() => {
-        fetchLevels();
+        fetchLevels()
     }, [])
 
     if (!Object.entries(levels).length) return null;

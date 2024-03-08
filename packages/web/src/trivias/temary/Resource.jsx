@@ -7,8 +7,8 @@ import { ReactComponent as PDFIcon } from '@approbado/lib/icons/PDF.svg'
 import configs from '@approbado/lib/env'
 import Link from '@material-ui/core/Link'
 import IconButton from '@material-ui/core/IconButton'
-import { downloadFile } from '@approbado/lib/services/files.services';
-import download from '@approbado/lib/utils/download';
+import { download } from '@approbado/lib/services/files.services';
+import downloadFile from '@approbado/lib/utils/download';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -30,10 +30,10 @@ export default function Resource({ id, title, size, key, file }) {
     const classes = useStyles();
 
     const handleDownload = React.useCallback(async () => {
-        const { success, data } = await downloadFile(id);
+        const { success, data } = await download(id);
 
         if (success) {
-            await download(data, `${title}.pdf`)
+            await downloadFile(data, `${title}.pdf`)
         }
     }, [id]);
 
