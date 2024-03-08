@@ -97,7 +97,7 @@ const Profile = ({ navigation }) => {
                     <NavButton navigation={navigation} to={Routes.EditProfile}>
                         <Edit2 />
                     </NavButton>
-                    <NavButton navigation={navigation} to={Routes.EditProfile}>
+                    <NavButton navigation={navigation} to={Routes.Settings}>
                         <Settings />
                     </NavButton>
                 </View>
