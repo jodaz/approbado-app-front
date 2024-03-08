@@ -1,5 +1,4 @@
 import { apiProvider, fileProvider } from "../api";
-import formDataHandler from '../utils/formDataHandler'
 import getQueryFromParams from "../utils/getQueryFromParams";
 
 export async function listSchedules(query) {

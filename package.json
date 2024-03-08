@@ -8,7 +8,8 @@
     "start:mobile": "pnpm -F @approbado/mobile run start",
     "build:web": "pnpm -F @approbado/web run build",
     "build:admin": "pnpm -F @approbado/admin run build",
-    "build:mobile": "pnpm -F @approbado/mobile run build:apk"
+    "build:mobile": "pnpm -F @approbado/mobile run build:apk",
+    "mobile": "pnpm --filter @approbado/mobile"
   },
   "nohoist": [
     "expo"

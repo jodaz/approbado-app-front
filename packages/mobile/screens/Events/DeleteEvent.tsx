@@ -62,7 +62,7 @@ const DeleteEvent = ({ navigation, route }) => {
                     onPress={handleDelete}
                     variant='contained'
                 >
-                    Continuar
+                    Si, quiero continuar
                 </Button>
             </Row>
         </ScrollViewContainer>
