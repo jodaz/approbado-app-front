@@ -64,7 +64,7 @@ const NotificationsHomeScreen = ({ route }) => {
                 </TitleBar>
             </Row>
             <View>
-                {!data
+                {!data.length
                     ? <NoNotifications />
                     : <ListNotifications data={data} refresh={deleteItem} />
                 }
