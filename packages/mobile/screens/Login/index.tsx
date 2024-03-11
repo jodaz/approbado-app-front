@@ -53,30 +53,28 @@ const Login = ({ navigation }) => {
                     Iniciar sesión
                 </Text>
             </Row>
-            <FormContainer>
-                <Row size={1}>
-                    <TextInput
-                        name="email"
-                        validations={USERNAME}
-                        control={control}
-                        placeholder='Ingresa tu usuario'
-                        icon={<User2 />}
-                    />
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        name="password"
-                        validations={PASSWORD}
-                        control={control}
-                        placeholder='Ingresa tu contraseña'
-                        icon={<LockIcon />}
-                        secureTextEntry
-                    />
-                </Row>
-                <Link to={Routes.ForgetPassword} align='right'>
-                    ¿Olvidaste tu contraseña?
-                </Link>
-            </FormContainer>
+            <Row size={1}>
+                <TextInput
+                    name="email"
+                    validations={USERNAME}
+                    control={control}
+                    placeholder='Ingresa tu usuario'
+                    icon={<User2 />}
+                />
+            </Row>
+            <Row size={1}>
+                <TextInput
+                    name="password"
+                    validations={PASSWORD}
+                    control={control}
+                    placeholder='Ingresa tu contraseña'
+                    icon={<LockIcon />}
+                    secureTextEntry
+                />
+            </Row>
+            <Link to={Routes.ForgetPassword} align='right'>
+                ¿Olvidaste tu contraseña?
+            </Link>
             <Row size={1}>
                 <Button
                     onPress={handleSubmit(onSubmit)}
@@ -88,7 +86,7 @@ const Login = ({ navigation }) => {
                 </Button>
             </Row>
             <Row size={2} align='center'>
-                <Text fontSize={14} fontWeight={400}>
+                <Text fontSize={18} fontWeight={400}>
                     Iniciar sesión con un tercero
                 </Text>
             </Row>
