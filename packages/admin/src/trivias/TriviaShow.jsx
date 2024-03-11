@@ -56,7 +56,7 @@ const OptionsMenu = props => {
 
 const TriviaShow = ({ children }) => {
     const { trivia_id } = useParams();
-    const [record, setRecord] = React.useState({})
+    const [record, setRecord] = React.useState(null)
 
     const fetchRecord = async () => {
         const { success, data } = await getTrivia(trivia_id)
@@ -70,26 +70,26 @@ const TriviaShow = ({ children }) => {
         fetchRecord();
     }, [trivia_id])
 
-    if (!Object.entries(record).length) return <Spinner />;
-
     return (
         <Admin>
-            <Box display="flex" marginTop="2rem" flexDirection='column'>
-                <Header
-                    record={record}
-                    icon={<Balance size='1.5em' />}
-                    name='Trivia'
-                    menu={<OptionsMenu record={record} />}
-                />
-                <TabbedList
-                    tags={tags(trivia_id)}
-                />
-                {React.Children.map(children, child => (
-                    React.cloneElement(child, {
-                        record: record
-                    })
-                ))}
-            </Box>
+            {!!record ? (
+                <Box display="flex" marginTop="2rem" flexDirection='column'>
+                    <Header
+                        record={record}
+                        icon={<Balance size='1.5em' />}
+                        name='Trivia'
+                        menu={<OptionsMenu record={record} />}
+                    />
+                    <TabbedList
+                        tags={tags(trivia_id)}
+                    />
+                    {React.Children.map(children, child => (
+                        React.cloneElement(child, {
+                            record: record
+                        })
+                    ))}
+                </Box>
+            ) : <Spinner />}
         </Admin>
     )
 }

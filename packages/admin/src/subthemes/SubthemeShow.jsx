@@ -8,6 +8,7 @@ import Admin from '../layouts/Admin';
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Header from '../components/Header'
 import Box from '@material-ui/core/Box'
+import Spinner from '@approbado/lib/components/Spinner'
 
 const OptionsMenu = props => {
     const history = useHistory();
@@ -55,26 +56,26 @@ const SubthemeShow = ({ children }) => {
         fetchRecord();
     }, [trivia_id, subtheme_id])
 
-    if (!record) return null;
-
     return (
         <Admin>
-            <Box marginTop='2rem'>
-                <Header
-                    record={record}
-                    icon={<Layer />}
-                    name='Subtema'
-                    menu={<OptionsMenu record={record} trivia_id={trivia_id} />}
-                />
-                <TabbedList
-                    tags={tags(record)}
-                />
-                {React.Children.map(children, child => (
-                    React.cloneElement(child, {
-                        record: record
-                    })
-                ))}
-            </Box>
+            {!!record ? (
+                <Box marginTop='2rem'>
+                    <Header
+                        record={record}
+                        icon={<Layer />}
+                        name='Subtema'
+                        menu={<OptionsMenu record={record} trivia_id={trivia_id} />}
+                    />
+                    <TabbedList
+                        tags={tags(record)}
+                    />
+                    {React.Children.map(children, child => (
+                        React.cloneElement(child, {
+                            record: record
+                        })
+                    ))}
+                </Box>
+            ) : <Spinner />}
         </Admin>
     )
 }
