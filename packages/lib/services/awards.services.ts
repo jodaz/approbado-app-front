@@ -77,6 +77,23 @@ export async function getAward(data) {
     }
 }
 
+export async function listAwardsWithSubthemes(id) {
+    try {
+        const response = await apiProvider.get(`/awards/subthemes/${id}`)
+
+        return {
+            success: true,
+            data: response.data,
+        }
+    }catch (error){
+        return {
+            success: false,
+            status: error.response.status,
+            data: error.response.data.errors
+        };
+    }
+}
+
 export async function deleteAward(data) {
     try {
         const response = await apiProvider.delete(`/awards/${data}`)

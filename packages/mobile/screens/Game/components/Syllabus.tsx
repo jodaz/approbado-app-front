@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Button, Text } from '../../../components';
 import { Award } from '@approbado/lib/types/models'
-import { listAwards } from '@approbado/lib/services/awards.services'
+import { listAwardsWithSubthemes } from '@approbado/lib/services/awards.services'
 import { Dimensions } from 'react-native';
 import { verticalScale } from '../../../styles/scaling';
 import { useIsFocused } from '@react-navigation/native';
@@ -27,12 +27,7 @@ const Syllabus = ({ navigation, route }) => {
     const [awards, setAwards] = React.useState<[] | Award[]>([])
 
     const fetchAwards = async () => {
-        const { success, data } = await listAwards({
-            filter: {
-                trivia_id: trivia.id,
-                subthemes: true
-            }
-        });
+        const { success, data } = await listAwardsWithSubthemes(trivia.id);
 
         if (success) {
             setAwards(data);
@@ -40,7 +35,7 @@ const Syllabus = ({ navigation, route }) => {
             console.log("error", data)
         }
     }
-
+    console.log(JSON.stringify(awards, null, ' '))
     const handleNavigate = () => {
         setTrivia(dispatch, trivia);
         navigation.navigate(Routes.SelectTrivia)

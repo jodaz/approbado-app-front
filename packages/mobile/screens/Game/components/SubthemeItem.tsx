@@ -37,7 +37,7 @@ const SubthemeItem = ({ subtheme }: SubthemeItem) => {
     }
 
     return (
-        <Container onPress={toggle} isSelected={isSelected}>
+        <Container disabled={subtheme.finished} onPress={toggle} isSelected={isSelected}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Text align='left'>
                     {subtheme.id}.
@@ -49,7 +49,7 @@ const SubthemeItem = ({ subtheme }: SubthemeItem) => {
                 </Text>
             </View>
             <View>
-                <CheckCircle2 size={24} color={isSelected ? '#00B94A' : '#B7B7B7'} />
+                <CheckCircle2 size={24} color={(isSelected || subtheme.finished) ? '#00B94A' : '#B7B7B7'} />
             </View>
         </Container>
     )

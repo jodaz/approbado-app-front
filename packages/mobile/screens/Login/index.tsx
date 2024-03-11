@@ -12,14 +12,6 @@ import styled from 'styled-components/native';
 import GoogleLoginButton from '../../components/GoogleLogin';
 import FacebookLoginButton from '../../components/FacebookLogin';
 
-const FormContainer = styled.View`
-    margin-top: 20px;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 20px;
-`;
-
 const Container = styled.ScrollView`
     padding-vertical: ${(props) => verticalScale(props.theme.space[2])}px;
     padding-horizontal: ${(props) => horizontalScale(props.theme.space[2])}px;
