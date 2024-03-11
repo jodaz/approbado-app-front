@@ -3,28 +3,24 @@ import { ReactComponent as RibbonIllustration } from '@approbado/lib/illustratio
 import NoContent from '@approbado/lib/components/NoContent'
 import GridList from '@approbado/lib/components/GridList';
 import { useParams } from 'react-router-dom'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
-import { apiProvider as axios } from '@approbado/lib/api'
+import { listAwards } from '@approbado/lib/services/awards.services';
 import AwardBadge from './AwardBadge'
 
 const CertificationsListView = () => {
     const { username } = useParams();
     const [error, setError] = React.useState(false)
-    const [certs, setCerts] = React.useState([])
+    const [awards, setAwards] = React.useState([]);
 
     const fetchAwards = async () => {
-        try {
-            const res = await axios({
-                method: 'GET',
-                url: '/awards',
-                params: getQueryFromParams({
-                    filter: { user_name: username }
-                 })
-            })
+        const { success, data } = await listAwards({
+            filter: { user_name: username },
+            sort: { field: 'created_at', order: 'DESC'}
+        });
 
-            setCerts(res.data.data);
-        } catch (error) {
-            setError(true)
+        if (success) {
+            setAwards(data)
+        } else {
+            setError(data)
         }
     }
 
@@ -34,7 +30,7 @@ const CertificationsListView = () => {
 
     return (
         <GridList
-            data={certs}
+            data={awards}
             component={<AwardBadge />}
             empty={
                 <NoContent

@@ -46,7 +46,7 @@ const Achievements = () => {
                 />
             </Row>
             <Row size={1}>
-                <Certificates />
+                <Certificates user={user} />
             </Row>
         </Container>
     );

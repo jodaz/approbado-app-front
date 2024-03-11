@@ -1,43 +1,54 @@
 import * as React from 'react'
 import { FlatList, View } from 'react-native';
-import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import CertificateCard from '../components/CertificateCard';
 import { Text } from '../../../components';
+import { useIsFocused } from '@react-navigation/native';
+import { Award, User } from '@approbado/lib/types/models';
+import { listAwards } from '@approbado/lib/services/awards.services';
 
-const certificates = [
-    {
-        name: 'Approbado plata',
-        title: 'Abogados',
-        image: <Stage1 />
-    },
-    {
-        name: 'Approbado bronce',
-        title: 'Divorcios',
-        image: <Stage1 />
-    },
-    {
-        name: 'Approbado oro',
-        title: 'Derecho penal',
-        image: <Stage1 />
-    },
-]
+interface ICertificatesProps {
+    user: User
+}
 
-const Certificates = () => {
+const Certificates = ({ user } : ICertificatesProps) => {
     const ref = React.useRef()
+    const isFocused = useIsFocused()
+    const [awards, setAwards] = React.useState<Award[] | []>([]);
+
+    const fetchData = async () => {
+        const { success, data } = await listAwards({
+            filter: {
+                user: user.id
+            },
+            sort: { field: 'created_at', order: 'DESC'}
+        });
+
+        if (success) {
+            setAwards(data)
+        }
+    }
+
+    React.useEffect(() => { fetchData() }, [isFocused])
 
     return (
         <View>
             <Text variant='secondary'>
                 Certificaciones
             </Text>
-            <FlatList
-                ref={ref}
-                data={certificates}
-                renderItem={({ item }) => <CertificateCard {...item} />}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                nestedScrollEnabled
-            />
+            {!awards.length ? (
+                <Text>
+                    Sin certificaciones
+                </Text>
+            ) : (
+                <FlatList
+                    ref={ref}
+                    data={awards}
+                    renderItem={({ item }) => <CertificateCard {...item} />}
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    nestedScrollEnabled
+                />
+            )}
         </View>
     );
 }
