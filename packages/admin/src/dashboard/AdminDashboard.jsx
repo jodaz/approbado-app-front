@@ -2,9 +2,10 @@ import * as React from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import CardButton from './CardButton'
-import useSpinnerStyles from '@approbado/lib/styles/useSpinnerStyles'
-import { apiProvider as axios } from '@approbado/lib/api'
 import TopUsersList from './TopUsersList'
+import { listTrivias } from '@approbado/lib/services/trivias.services'
+import { listUsers } from '@approbado/lib/services/users.services'
+import { listMemberships } from '@approbado/lib/services/memberships.services';
 
 const initialState = {
     'users': {
@@ -34,42 +35,52 @@ const AdminDashboard = () => {
     const [state, setState] = React.useState(initialState);
 
     const fetchUsers = React.useCallback(async () => {
-        const { data: { total } } = await axios.get('users?filter%5Bis_registered%5D=true')
-
-        setState(state => ({
-            ...state,
-            users: {
-                ...state.users,
-                loading: false,
-                total: total
+        const { success, count } = await listUsers({
+            filter: {
+                is_registered: true
             }
-        }));
+        })
+
+        if (success) {
+            setState(state => ({
+                ...state,
+                users: {
+                    ...state.users,
+                    loading: false,
+                    total: count
+                }
+            }));
+        }
     }, []);
 
     const fetchTrivias = React.useCallback(async () => {
-        const { data: { total } } = await axios.get('trivias');
+        const { success, count } = await listTrivias()
 
-        setState(state => ({
-            ...state,
-            trivias: {
-                ...state.trivias,
-                loading: false,
-                total: total
-            }
-        }));
+        if (success) {
+            setState(state => ({
+                ...state,
+                trivias: {
+                    ...state.trivias,
+                    loading: false,
+                    total: count
+                }
+            }));
+        }
     }, []);
 
     const fetchMemberships = React.useCallback(async () => {
-        const { data: { total } } = await axios.get('memberships')
+        const { success, count } = await listMemberships()
 
-        setState(state => ({
-            ...state,
-            memberships: {
-                ...state.memberships,
-                loading: false,
-                total: total
-            }
-        }));
+        if (success) {
+            setState(state => ({
+                ...state,
+                memberships: {
+                    ...state.memberships,
+                    loading: false,
+                    total: count
+                }
+            }));
+        }
     }, []);
 
     React.useEffect(() => {

@@ -8,12 +8,12 @@ export async function listUsers(query) {
             params: getQueryFromParams(query)
         })
 
-        const { data, count } = response.data
+        const { data, total } = response.data
 
         return {
             success: true,
             data: data,
-            count: count
+            count: total
         }
     } catch (error){
         return {
