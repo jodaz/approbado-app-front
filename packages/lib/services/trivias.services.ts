@@ -32,7 +32,7 @@ export async function createTrivia(data) {
             success: true,
             data: response.data,
         }
-    }catch (error){
+    } catch (error){
         return {
             success: false,
             status: error.response.status,

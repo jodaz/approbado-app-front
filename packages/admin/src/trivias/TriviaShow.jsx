@@ -3,14 +3,14 @@ import {
     Balance,
     MoreHorizontal
 } from '@approbado/lib/icons'
+import { useHistory, useParams } from 'react-router-dom'
+import { getTrivia } from '@approbado/lib/services/trivias.services';
 import TabbedList from '@approbado/lib/components/TabbedList'
 import Box from '@material-ui/core/Box';
 import Header from '../components/Header'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import Admin from '../layouts/Admin';
-import { axios } from '@approbado/lib/providers';
-import { useHistory, useParams } from 'react-router-dom'
 import Spinner from '@approbado/lib/components/Spinner'
 
 const tags = id => ([
@@ -58,15 +58,17 @@ const TriviaShow = ({ children }) => {
     const { trivia_id } = useParams();
     const [record, setRecord] = React.useState({})
 
-    const fetchRecord = React.useCallback(async () => {
-        const { data } = await axios.get(`/trivias/${trivia_id}`)
+    const fetchRecord = async () => {
+        const { success, data } = await getTrivia(trivia_id)
 
-        setRecord(data)
-    }, [])
+        if (success) {
+            setRecord(data)
+        }
+    }
 
     React.useEffect(() => {
         fetchRecord();
-    }, [])
+    }, [trivia_id])
 
     if (!Object.entries(record).length) return <Spinner />;
 

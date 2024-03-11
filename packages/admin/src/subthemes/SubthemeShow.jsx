@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { MoreHorizontal, Layer } from '@approbado/lib/icons'
-import { axios } from '@approbado/lib/providers';
+import { getSubtheme } from '@approbado/lib/services/subthemes.services';
 import { useHistory, useParams } from 'react-router-dom'
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
@@ -43,15 +43,17 @@ const SubthemeShow = ({ children }) => {
     const { subtheme_id, trivia_id } = useParams();
     const [record, setRecord] = React.useState(null)
 
-    const fetchRecord = React.useCallback(async () => {
-        const { data } = await axios.get(`/subthemes/${subtheme_id}`);
+    const fetchRecord = async () => {
+        const { success, data } = await getSubtheme(subtheme_id)
 
-        setRecord(data);
-    }, []);
+        if (success) {
+            setRecord(data)
+        }
+    }
 
     React.useEffect(() => {
         fetchRecord();
-    }, [])
+    }, [trivia_id, subtheme_id])
 
     if (!record) return null;
 
