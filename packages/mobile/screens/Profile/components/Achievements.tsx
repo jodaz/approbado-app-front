@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Dimensions } from 'react-native';
 import { horizontalScale, verticalScale } from '../../../styles/scaling';
 import { useAuth } from '@approbado/lib/contexts/AuthContext'
-import { Row } from '../../../components';
+import { Row, ScrollViewContainer } from '../../../components';
 import ProfileInformationCard from '../components/ProfileInformationCard';
 import Stage1 from '@approbado/lib/illustrations/Stage1.svg'
 import Forum from '@approbado/lib/illustrations/Forum.svg'
@@ -13,7 +13,7 @@ import Certificates from './Certificates';
 
 const { width } = Dimensions.get('window');
 
-const Container = styled.ScrollView`
+const Container = styled.View`
     padding-top: ${(props) => verticalScale(props.theme.space[2])};
     width: ${width - horizontalScale(40)}px;
 `
@@ -22,7 +22,7 @@ const Achievements = () => {
     const { state: { user } } = useAuth();
 
     return (
-        <Container>
+        <ScrollViewContainer>
             <Row size={1} align='center'>
                 <ProfileInformationCard
                     image={<Stage1 />}
@@ -48,7 +48,7 @@ const Achievements = () => {
             <Row size={1}>
                 <Certificates user={user} />
             </Row>
-        </Container>
+        </ScrollViewContainer>
     );
 }
 
