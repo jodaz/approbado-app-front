@@ -5,12 +5,16 @@ import { listTrivias } from '@approbado/lib/services/trivias.services'
 import { FlatList } from 'react-native';
 import { ArrowRight } from 'lucide-react-native';
 
-const RecentTrivias = () => {
+const PopularTrivias = () => {
     const ref = React.useRef()
     const [trivias, setTrivias] = React.useState<[] | Trivia[]>([])
 
     const fetchTrivias = async () => {
-        const { success, data } = await listTrivias();
+        const { success, data } = await listTrivias({
+            filter: {
+                top: true
+            }
+        });
 
         if (success) {
             setTrivias(data);
@@ -25,7 +29,7 @@ const RecentTrivias = () => {
         <Row>
             <Row justify='space-between' direction='row'>
                 <Text variant='primary' fontSize={22}>
-                    Pruebas recientes
+                    Pruebas populares
                 </Text>
                 <ArrowRight color='#000' size={24} />
             </Row>
@@ -41,4 +45,4 @@ const RecentTrivias = () => {
     );
 }
 
-export default RecentTrivias
+export default PopularTrivias

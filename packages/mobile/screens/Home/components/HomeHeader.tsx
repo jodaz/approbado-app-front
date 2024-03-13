@@ -25,13 +25,22 @@ const HomeHeader = () => {
             }}>
                 <Logotipo />
             </View>
-            <IconButton variant='text' onPress={() => navigation.navigate(Routes.Chat)}>
+            <IconButton
+                variant='text'
+                onPress={() => navigation.navigate(Routes.Chat)}
+            >
                 <Mail size={24} color='#000' />
             </IconButton>
-            <IconButton variant='text' onPress={() => navigation.navigate(Routes.Events)}>
+            <IconButton
+                variant='text'
+                onPress={() => navigation.navigate(Routes.Events)}
+            >
                 <Calendar size={24} color='#000' />
             </IconButton>
-            <IconButton variant='text' onPress={() => navigation.navigate(Routes.Notifications)}>
+            <IconButton
+                variant='text'
+                onPress={() => navigation.navigate(Routes.Notifications)}
+            >
                 <Bell size={24} color='#000' />
             </IconButton>
         </Row>

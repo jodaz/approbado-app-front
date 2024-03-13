@@ -1,18 +1,22 @@
 import * as React from 'react'
-import { Row } from '../../components';
-import { ScrollView } from 'react-native';
+import { Row, ScrollViewContainer } from '../../components';
 import QuickTrivia from './components/QuickTrivia';
 import RecentTrivias from './components/RecentTrivias';
+import PopularTrivias from './components/PopularTrivias';
 
 const HomeScreen = () => {
     return (
-        <ScrollView contentContainerStyle={{
-            paddingHorizontal: 20
-        }} >
+        <ScrollViewContainer>
             <Row size={1}>
                 <QuickTrivia />
             </Row>
-        </ScrollView>
+            <Row size={1}>
+                <RecentTrivias />
+            </Row>
+            <Row size={1}>
+                <PopularTrivias />
+            </Row>
+        </ScrollViewContainer>
     );
 }
 

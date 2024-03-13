@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import { apiProvider as axios } from '@approbado/lib/api'
+import { listTrivias } from '@approbado/lib/services/trivias.services'
 // Components
 import TestCard from './TestCard'
 
@@ -16,16 +16,25 @@ const TestList = () => {
     const [newTrivias, setNewTrivias] = React.useState(initialState)
 
     const fetchTrivias = React.useCallback(async () => {
-        const { data } = await axios.get('/trivias/plans')
+        const { success, data } = await listTrivias()
 
-        setNewTrivias({...data, loaded: true })
-    }, [])
+        if (success) {
+
+            setNewTrivias({...data, loaded: true })
+        }
+    }, []);
 
     const fetchPopularTrivias = React.useCallback(async () => {
-        const { data } = await axios.get('/trivias/plans?filter%5Btop%5D=true')
+        const { success, data } = await listTrivias({
+            filter: {
+                top: true
+            }
+        })
 
-        setPopularTrivias({...data, loaded: true })
-    }, [])
+        if (success) {
+            setPopularTrivias({...data, loaded: true })
+        }
+    }, []);
 
     const renderer = ({ data }) => (
         <Box margin='1rem 0'>

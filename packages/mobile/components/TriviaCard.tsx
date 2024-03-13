@@ -13,7 +13,7 @@ const Pressable = styled.Pressable`
     padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
     padding-horizontal: ${props => horizontalScale(props.theme.space[4])}px;
     margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
-    width: 100%;
+    margin-horizontal: ${props => verticalScale(props.theme.space[1])}px;
     height: ${verticalScale(100)}px;
     background-color: #FBBC08;
     border-radius: ${scaleFontSize(12)}px;
