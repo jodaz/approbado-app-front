@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Container, Text, CategoryCard } from '../../../components';
+import { Row, Text, CategoryCard } from '../../../components';
 import { Category } from '@approbado/lib/types/models'
 import { listCategories } from '@approbado/lib/services/categories.services'
-import { ScrollView } from 'react-native';
+import { FlatList } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 
 const Categories = () => {
@@ -23,20 +23,19 @@ const Categories = () => {
 
     if (!categories.length) {
         return (
-            <Container>
+            <Row>
                 <Text>
-                    Sin categories
+                    Sin categorías
                 </Text>
-            </Container>
+            </Row>
         )
     }
 
     return (
-        <ScrollView>
-            {categories.map((item: Category) => (
-                <CategoryCard category={item} />
-            ))}
-        </ScrollView>
+        <FlatList
+            data={categories}
+            renderItem={({ item }) => <CategoryCard category={item} />}
+        />
     );
 }
 

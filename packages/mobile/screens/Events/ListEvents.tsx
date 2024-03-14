@@ -16,6 +16,7 @@ const ListEvents = ({ data }) => (
     <FlatList
         data={data}
         renderItem={({ item }) => <ScheduleCard item={item} />}
+        showsVerticalScrollIndicator={false}
     />
 )
 

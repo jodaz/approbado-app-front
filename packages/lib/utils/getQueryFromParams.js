@@ -23,7 +23,7 @@ const getQueryFromParams = props => {
     // Add sort parameter
     if (sort && sort.field) {
         query.sort = sort.field;
-        query.order = sort.order === 'ASC' ? 'asc' : 'desc';
+        query.order = sort.order.toLowerCase() === 'asc' ? 'asc' : 'desc';
     }
 
     if (type) {

@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Container, Row } from '../../components';
-import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
+import { View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+import { horizontalScale } from '../../styles/scaling';
 import Tabs from '../../components/Tabs';
 import RecentTrivias from './components/RecentTrivias';
 import Categories from './components/Categories';
+import TopUsers from './components/TopUsers';
 
 const screens = [
     {
@@ -25,15 +27,20 @@ const screens = [
 
 const ListTrivias = () => {
     const Tab = createMaterialTopTabNavigator();
+    const theme = useTheme()
 
     return (
-        <Container>
+        <View style={{
+            paddingHorizontal: horizontalScale(theme.space[4]),
+            flex: 1
+        }}>
+            <TopUsers />
             <Tab.Navigator initialRouteName="Trivias" tabBar={Tabs} screenOptions={{
                 tabBarScrollEnabled: true
             }}>
                 {screens.map(screen => <Tab.Screen {...screen} />)}
             </Tab.Navigator>
-        </Container>
+        </View>
     );
 }
 

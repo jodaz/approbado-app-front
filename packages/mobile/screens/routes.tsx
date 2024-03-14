@@ -1,5 +1,6 @@
 export const Routes = {
     Onboarding: 'Onboarding',
+    TopUsers: 'TopUsers',
     Presentation: 'Presentation',
     Login: 'Login',
     SignUp: 'SignUp',

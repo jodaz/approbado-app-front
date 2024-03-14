@@ -1,22 +1,26 @@
 import * as React from 'react';
+import { listUsers } from '@approbado/lib/services/users.services'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import UserCard from './UserCard'
-import useFetch from '@approbado/lib/hooks/useFetch'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 import Box from '@material-ui/core/Box'
 
 const TopUsersList = () => {
-    const {
-        total,
-        data,
-        error
-    } = useFetch('/users', {
-        perPage: 9,
-        page: 0,
-        sort: { field: 'points', order: 'DESC'},
-        filter: { is_registered: true }
-    })
+    const [users, setUsers] = React.useState([])
+
+    const fetchTopUsers = async () => {
+        const { success, data } = await listUsers({
+            sort: { field: 'points', order: 'DESC'},
+            filter: { is_registered: true }
+        })
+
+        if (success) {
+            setUsers(data)
+        }
+    }
+
+    React.useEffect(() => { fetchTopUsers() }, [])
 
     return (
         <Grid container>
@@ -32,9 +36,9 @@ const TopUsersList = () => {
                 width: '100%',
                 paddingTop: '1rem'
             }}>
-                {(total) ? (
+                {(users.length) ? (
                     <Grid container>
-                        {data.map((user, i) =>
+                        {users.map((user, i) =>
                             <Grid item xs={12} sm={6} md={4}>
                                 <UserCard data={user} index={i} />
                             </Grid>

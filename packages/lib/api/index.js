@@ -12,7 +12,7 @@ const blobInstance = defaultAxios.create({
     withCredentials: false,
     responseType: 'blob'
 });
-
+console.log(ENV.API)
 // Request interceptor
 const interceptorsFunc = async (config) => {
     // const token = localStorage.getItem();

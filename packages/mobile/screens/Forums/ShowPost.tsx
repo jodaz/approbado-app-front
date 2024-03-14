@@ -163,6 +163,7 @@ const ShowPost = ({ route }) => {
             style={{
                 paddingHorizontal: horizontalScale(theme.space[2])
             }}
+            showsVerticalScrollIndicator={false}
         />
     );
 }
