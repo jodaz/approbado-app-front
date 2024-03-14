@@ -4,7 +4,6 @@ import Tabs from '../../components/Tabs';
 import PopularPosts from './components/PopularPosts';
 import UnansweredPosts from './components/UnansweredPosts';
 import NewPosts from './components/NewPosts';
-import ForumSearchbox from './components/ForumSearchbox';
 import CreatePostWarning from './components/CreatePostWarning';
 import styled from 'styled-components/native';
 import { horizontalScale, verticalScale } from '../../styles/scaling';
@@ -45,7 +44,6 @@ const ListPosts = () => {
 
     return (
         <Container>
-            <ForumSearchbox />
             <Tab.Navigator initialRouteName="New" tabBar={Tabs}>
                 {screens.map(screen => <Tab.Screen {...screen} />)}
             </Tab.Navigator>

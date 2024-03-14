@@ -11,6 +11,8 @@ import Profile from '../screens/Profile';
 import TriviasStack from '../screens/Game/TriviasStack';
 import styled from 'styled-components/native';
 import ListPosts from '../screens/Forums/ListPosts';
+import ForumSearchbox from '../screens/Forums/components/ForumSearchbox';
+import AppHeaderWithTitle from './AppHeaderWithTitle';
 
 const Tab = createBottomTabNavigator();
 
@@ -85,7 +87,6 @@ const BottomNav = () => (
                         )
                 }
             },
-            headerShown: false,
             tabBarStyle: {
                 paddingVertical: 10,
                 height: 90,
@@ -96,10 +97,17 @@ const BottomNav = () => (
             tabBarLabel: () => null
         })}
     >
-        <Tab.Screen name={Routes.Home} component={Home} />
-        <Tab.Screen name={Routes.Game} component={TriviasStack} />
-        <Tab.Screen name={Routes.ListPosts} component={ListPosts} />
-        <Tab.Screen name={Routes.Profile} component={Profile} />
+        <Tab.Screen name={Routes.Home} component={Home} options={{ headerShown: false }} />
+        <Tab.Screen name={Routes.Game} component={TriviasStack} options={{ headerShown: false }} />
+        <Tab.Screen
+            name={Routes.ListPosts}
+            component={ListPosts}
+            options={{
+                header: props => <ForumSearchbox />,
+                title: "holaMundo"
+            }}
+        />
+        <Tab.Screen name={Routes.Profile} component={Profile} options={{ headerShown: false }}  />
     </Tab.Navigator>
 )
 

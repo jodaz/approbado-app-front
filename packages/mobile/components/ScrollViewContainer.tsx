@@ -10,7 +10,7 @@ const ScrollViewContainer = ({ children }) => {
             scrollEnabled
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
-                paddingHorizontal: horizontalScale(theme.space[3])
+                paddingHorizontal: horizontalScale(theme.space[1])
             }}
         >
             {children}

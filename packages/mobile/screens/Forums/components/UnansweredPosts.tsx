@@ -51,6 +51,7 @@ const UnansweredPosts = () => {
                     onDeletePost={onDeletePost}
                 />
             )}
+            showsVerticalScrollIndicator={false}
         />
     )
 }

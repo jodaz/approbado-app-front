@@ -51,6 +51,7 @@ const PopularPosts = () => {
                     onDeletePost={onDeletePost}
                 />
             )}
+            showsVerticalScrollIndicator={false}
         />
     )
 }

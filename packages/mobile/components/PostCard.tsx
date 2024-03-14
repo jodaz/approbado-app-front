@@ -24,7 +24,7 @@ const Pressable = styled.Pressable`
     display: flex;
     justify-content: space-between;
     flex-direction: row;
-    padding-vertical: ${props => verticalScale(props.theme.space[2])}px;
+    padding-vertical: ${props => verticalScale(props.theme.space[1])}px;
     margin-vertical: ${props => verticalScale(props.theme.space[1])}px;
 `
 

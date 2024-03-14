@@ -51,6 +51,7 @@ const NewPosts = () => {
                     onDeletePost={onDeletePost}
                 />
             )}
+            showsVerticalScrollIndicator={false}
         />
     )
 }

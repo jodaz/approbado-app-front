@@ -10,7 +10,7 @@ import Tabs from '../../components/Tabs';
 import About from "./components/About";
 import Achievements from "./components/Achievements";
 import Publications from "./components/Publications";
-import styled from 'styled-components/native';
+import styled, { useTheme } from 'styled-components/native';
 
 const profileSliders = [
     {
@@ -49,10 +49,10 @@ const NavButton = ({ navigation, to, children } : any ) : JSX.Element => (
     </Pressable>
 )
 
-const Container = styled.ScrollView`
+const Container = styled.View`
     margin: 0 auto;
-    padding-top: ${(props) => verticalScale(props.theme.space[6])}px;
-    width: ${width * .9}px;
+    padding-top: ${(props) => verticalScale(props.theme.space[4])}px;
+    width: ${width * .95}px;
     height: 100%;
     flex: 1;
 `
@@ -60,14 +60,10 @@ const Container = styled.ScrollView`
 const Profile = ({ navigation }) => {
     const { state: { user } } = useAuth();
     const Tab = createMaterialTopTabNavigator()
+    const theme = useTheme();
 
     return (
-        <Container
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-                flex: 1
-            }}
-        >
+        <Container>
             <Row size={2} justify='space-between' align='start' direction='row'>
                 <View style={{
                     flexDirection: 'row',

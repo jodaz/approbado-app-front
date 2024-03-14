@@ -55,6 +55,7 @@ const Publications = () => {
                     onDeletePost={onDeletePost}
                 />
             )}
+            showsVerticalScrollIndicator={false}
         />
     )
 }
