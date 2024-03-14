@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Heart } from '../../icons';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import { apiProvider as axios } from '@approbado/lib/api'
+import { likePost } from '@approbado/lib/services/likes.services'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -24,16 +24,11 @@ const LikeButton = ({ id, likeUser }) => {
     const handleClick = React.useCallback(async () => {
         setLoading(true)
 
-        try {
-            const res = await axios.put(`/like-posts/${id}`, {})
+        const { success, data } = await likePost(id)
 
-            console.log(res)
-        }  catch (error) {
-            if (error.response.data.errors) {
-                return error.response.data.errors;
-            }
+        if (success) {
+            setLoading(false)
         }
-        setLoading(false)
     }, [id]);
 
     return (

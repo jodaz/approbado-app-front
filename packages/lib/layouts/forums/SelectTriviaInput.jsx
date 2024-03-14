@@ -1,19 +1,22 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
+import { listTrivias } from '@approbado/lib/services/trivias.services'
 
 const SelectTriviaInput = ({ disabled }) => {
     const [options, setOptions] = React.useState([])
 
-    const fetchOptions = React.useCallback(async () => {
-        const { data: { data } } = await axios.get(`trivias`)
-        setOptions(data)
+    const fetchTrivias = React.useCallback(async () => {
+        const { success, data } = await listTrivias()
+
+        if (success) {
+            setOptions(data);
+        }
     }, []);
 
     React.useEffect(() => {
-        fetchOptions();
+        fetchTrivias()
     }, [])
 
     return (

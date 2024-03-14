@@ -10,8 +10,8 @@ import TextInput from '@approbado/lib/components/TextInput'
 import { useHistory } from 'react-router-dom'
 import SelectCategoriesInput from './SelectCategoriesInput';
 import SelectTriviaInput from './SelectTriviaInput'
-import { apiProvider as axios } from '@approbado/lib/api'
 import validateForum from './validate';
+import { createForum } from '@approbado/lib/services/forums.services'
 
 const ForumCreate = () => {
     const { status } = useDialogState('forums.create');
@@ -20,18 +20,23 @@ const ForumCreate = () => {
     const history = useHistory()
 
     const save = async (values) => {
-        try {
-            const { data } = await axios.post('/forums', values)
+        const { success, status, data } = await createForum(values);
 
-            if (data) {
-                history.push(`/forums/${data.id}`);
-                unsetDialog();
-                await showNotification('¡Ha realizado una publicación!');
-            }
-        } catch (error) {
-            console.log(error)
-            if (error.response.data.errors) {
-                return error.response.data.errors;
+        if (success) {
+            history.push(`/forums/${data.id}`);
+            unsetDialog();
+            await showNotification('¡Ha realizado una publicación!');
+        } else {
+            if (status == 422) {
+                return data;
+                // setFormErrors(setError, data)
+            } else {
+                console.log(data)
+                // await openToast(
+                //     dispatch,
+                //     'error',
+                //     'Ha ocurrido un error.'
+                // )
             }
         }
     };

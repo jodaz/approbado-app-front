@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { listUsers } from '@approbado/lib/services/users.services'
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types'
 import Box from '@material-ui/core/Box';
@@ -6,11 +7,8 @@ import Emoji from '@approbado/lib/components/Emoji'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import Avatar from '@material-ui/core/Avatar';
-import configs from '@approbado/lib/env'
 import ReplyIcon from '@approbado/lib/icons/ReplyIcon';
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
-import { apiProvider as axios } from '@approbado/lib/api'
 
 const payload = {
     pagination: { page: 1, perPage: 5 },
@@ -57,10 +55,10 @@ const TopContributors = ({ isXSmall }) => {
     const fetchUsers = async () => {
         setLoading(true)
 
-        const res = await axios.get('/users', { params: getQueryFromParams(payload) })
+        const { success, data } = await listUsers(payload)
 
-        if (res.status >= 200 && res.status < 300) {
-            setData(res.data.data)
+        if (success) {
+            setData(data)
         } else {
             setError(true)
         }

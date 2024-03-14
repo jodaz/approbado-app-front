@@ -1,19 +1,22 @@
 import * as React from 'react'
 import InputContainer from '@approbado/lib/components/InputContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
+import { listCategories } from '@approbado/lib/services/categories.services'
 import SelectInput from '@approbado/lib/components/SelectInput'
 import Box from '@material-ui/core/Box'
 
 const SelectCategoriesInput = ({ disabled }) => {
     const [options, setOptions] = React.useState([])
 
-    const fetchOptions = React.useCallback(async () => {
-        const { data: { data } } = await axios.get(`configurations/categories`)
-        setOptions(data)
+    const fetchCategories = React.useCallback(async () => {
+        const { success, data } = await listCategories()
+
+        if (success) {
+            setOptions(data);
+        }
     }, []);
 
     React.useEffect(() => {
-        fetchOptions();
+        fetchCategories();
     }, [])
 
     return (
