@@ -12,7 +12,6 @@ import TriviasStack from '../screens/Game/TriviasStack';
 import styled from 'styled-components/native';
 import ListPosts from '../screens/Forums/ListPosts';
 import ForumSearchbox from '../screens/Forums/components/ForumSearchbox';
-import AppHeaderWithTitle from './AppHeaderWithTitle';
 
 const Tab = createBottomTabNavigator();
 
