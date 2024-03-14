@@ -39,7 +39,7 @@ export default function TemaryList({ id }) {
         </Box>
     )
 
-    if (!data.length) return (
+    if (!awards.length) return (
         <Box variant="subtitle1">
             Esta trivia aún no posee subtemas
         </Box>

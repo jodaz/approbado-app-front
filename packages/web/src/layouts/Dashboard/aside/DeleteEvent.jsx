@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Close, Trash2 } from '@approbado/lib/icons'
 import { makeStyles, alpha } from '@material-ui/core/styles';
-import { ReactComponent as QuizIllustration } from '@approbado/lib/illustrations/Quiz.svg'
+import QuizIllustration from '@approbado/lib/illustrations/Quiz.svg'
 import { useSchedulesDispatch } from '@approbado/lib/hooks/useSchedules'
 import { deleteSchedule } from '@approbado/lib/services/schedules.services'
 import Button from '@approbado/lib/components/Button'
@@ -106,7 +106,7 @@ export default function({ onClick, id }) {
                 <DialogContent className={classes.content}>
                     <Box width='20rem' display='flex' justifyContent="center" flexDirection='column'>
                         <NoContent
-                            icon={<QuizIllustration />}
+                            icon={QuizIllustration}
                             title={
                                 <Box textAlign='center'>
                                     <Box sx={{ fontWeight: 600 }}>

@@ -3,7 +3,7 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import ForumCard from './ForumCard'
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as ForumIllustration } from '@approbado/lib/illustrations/Forum.svg'
+import ForumIllustration from '@approbado/lib/illustrations/Forum.svg'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
 import Spinner from '../../components/Spinner'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
@@ -63,7 +63,7 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
     if (!total) {
         return (
             <NoContent
-                icon={<ForumIllustration />}
+                icon={ForumIllustration}
                 title='Aún no hay debates publicados'
             />
         );
@@ -85,7 +85,7 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
                 }
             }) : (
                 <ErrorMessage>
-                    No tiene notificaciones disponibles.
+                    No tiene posts disponibles.
                 </ErrorMessage>
             )}
             <Box sx={{

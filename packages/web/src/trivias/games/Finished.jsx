@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import Box from '@material-ui/core/Box'
 import Emoji from '@approbado/lib/components/Emoji'
 import { useGetResponses } from '@approbado/lib/hooks/useGetResponses'
-import { ReactComponent as StateIllustration } from '@approbado/lib/illustrations/Stage1.svg'
+import StateIllustration from '@approbado/lib/illustrations/Stage1.svg'
 import Button from '@approbado/lib/components/Button'
 import Checkbox from '../components/Checkbox'
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -120,7 +120,7 @@ export default function() {
             <Box className={classes.header}>
                 <Box className={classes.congratulations}>
                     <Box sx={{ paddingRight: '2rem' }}>
-                        <StateIllustration />
+                        <img src={StateIllustration} alt='finished' />
                     </Box>
                     <Box>
                         <Box fontSize="1.6rem" fontWeight="600">

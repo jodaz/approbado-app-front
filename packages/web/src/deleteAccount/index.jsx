@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import { alpha } from '@material-ui/core/styles/colorManipulator';
-import { ReactComponent as DeleteIllustration } from '@approbado/lib/illustrations/delete.svg';
+import DeleteIllustration from '@approbado/lib/illustrations/delete.svg';
 import Confirm from '@approbado/lib/layouts/Confirm';
 import Button from '@material-ui/core/Button';
 import { apiProvider as axios } from '@approbado/lib/api'
@@ -67,7 +67,7 @@ const DeleteAccount = () => {
                 title='Eliminar cuenta'
                 content={
                     <Box width='20rem' textAlign='center' padding='1rem 0'>
-                        <DeleteIllustration />
+                        <img src={DeleteIllustration} alt="trash" />
                         <Typography variant="subtitle1">
                             {'¿Estás seguro de eliminar tu cuenta?'}
                         </Typography>

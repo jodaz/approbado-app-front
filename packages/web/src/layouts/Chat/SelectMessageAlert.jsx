@@ -1,6 +1,6 @@
 import Box from '@material-ui/core/Box'
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as MessageIllustration } from '@approbado/lib/illustrations/Messages.svg'
+import MessageIllustration from '@approbado/lib/illustrations/Messages.svg'
 
 const SelectMessageBanner = () => (
     <Box sx={{
@@ -11,7 +11,7 @@ const SelectMessageBanner = () => (
         height: '100%'
     }}>
         <NoContent
-            icon={<MessageIllustration />}
+            icon={MessageIllustration}
             title={
                 <Box sx={{ textAlign: 'center' }}>
                     Selecciona un mensaje

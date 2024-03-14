@@ -24,19 +24,19 @@ const OptionsMenu = props => (
     </OptionsCardMenu>
 );
 
-const SubthemeCard = ({ data, id }) => {
+const SubthemeCard = ({ data }) => {
     const classes = cardStyles();
     const history = useHistory();
 
     const handleRedirect = () => history.push(`/trivias/${data.trivia_id}/subthemes/${data.id}`)
 
     return (
-        <Card className={classes.root} key={id} onClick={handleRedirect}>
+        <Card className={classes.root} key={data.id} onClick={handleRedirect}>
             <CardHeader
                 action={<OptionsMenu record={data} />}
                 title={
                     <Typography variant="subtitle1" component="h1">
-                        {`${id}. ${data.name}`}
+                        {`${data.id}. ${data.name}`}
                     </Typography>
                 }
                 subheader={

@@ -1,5 +1,5 @@
 
-import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
+import Certificate from '@approbado/lib/icons/Certificate.svg'
 import Box from '@material-ui/core/Box'
 import { alpha } from '@material-ui/core/styles'
 import Avatar from '@approbado/lib/components/Avatar';
@@ -36,7 +36,7 @@ const AwardBadge = ({
                 alt='icon'
             />
         ) : (
-            <Certificate />
+            <img src={Certificate} alt="certificate" />
         )}
         <Box padding='1rem'>
             {title}

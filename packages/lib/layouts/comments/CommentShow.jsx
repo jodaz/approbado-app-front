@@ -5,7 +5,7 @@ import CommentShowLayout from './CommentShowLayout'
 import CommentList from '@approbado/lib/layouts/comments/CommentList'
 import Box from '@material-ui/core/Box'
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as ForumIllustration } from '@approbado/lib/illustrations/Forum.svg'
+import ForumIllustration from '@approbado/lib/illustrations/Forum.svg'
 import { useMediaQuery, makeStyles } from '@material-ui/core'
 import CommentInput from '@approbado/lib/layouts/comments/CommentInput'
 import { useUserState } from '@approbado/lib/hooks/useUserState'
@@ -64,7 +64,7 @@ const CommentShow = () => {
                     {(user.is_registered) && <CommentInput />}
                     {(record.commentsCount == 0) ? (
                         <NoContent
-                            icon={<ForumIllustration />}
+                            icon={ForumIllustration}
                             title={emptyTitle(user)}
                         />
                     ) : (

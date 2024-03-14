@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useMediaQuery } from '@material-ui/core'
-import { listUsers } from '@approbado/lib/services/user.services';
+import { listUsers } from '@approbado/lib/services/users.services';
 import RestrictedUserCard from './RestrictedUserCard'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'

@@ -22,7 +22,7 @@ const SubthemeCreate = () => {
 
         if (response.success) {
             history.push(`/trivias/${trivia_id}/subthemes`)
-            showNotification(`¡Ha registrado el subtema "${values.title}" exitosamente!`)
+            showNotification(`¡Ha registrado el subtema "${values.name}" exitosamente!`)
         } else {
             return response.data;
         }

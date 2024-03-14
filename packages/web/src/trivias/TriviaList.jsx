@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useMediaQuery, makeStyles  } from '@material-ui/core'
-import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg'
 import { ChevronLeft } from '@approbado/lib/icons'
 import TriviaCard from './TriviaCard'
 import GridList from '@approbado/lib/components/GridList'
@@ -16,6 +15,7 @@ import useDetectOutsideClick from '@approbado/lib/hooks/useDetectOutsideClick'
 import { apiProvider as axios } from '@approbado/lib/api'
 import TextField from '@material-ui/core/TextField'
 import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
+import BannerIllustration from '@approbado/lib/illustrations/Banner.svg';
 
 const drawerWidth = 300
 
@@ -60,7 +60,7 @@ const TriviaList = () => {
     const renderSelectedTriviaContent = () => (
         <Box padding='0 1rem' width={isSmall ? 'unset' : '20%'} display={!selected && 'none'}>
             {(!trivia.is_free && isFreeMembership) ? (
-                <BannerIllustration />
+                <img src={BannerIllustration} alt='banner' />
             ) : (
                 <Temary {...trivia} />
             )}

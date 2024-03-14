@@ -11,7 +11,7 @@ const NoContent = ({ icon, title }) => (
         justifyContent: 'center',
         minHeight: 'inherit'
     }}>
-        {React.cloneElement(icon, {})}
+        <img src={icon} title={title} />
         <Box>
             {title}
         </Box>

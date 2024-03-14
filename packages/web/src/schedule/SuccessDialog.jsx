@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as QuizzIllustration } from '@approbado/lib/illustrations/Quiz.svg'
+import QuizzIllustration from '@approbado/lib/illustrations/Quiz.svg'
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import { Close } from '@approbado/lib/icons'
@@ -28,7 +28,7 @@ const SuccessDialog = ({ open, handleClose, title, ...rest }) => (
         </Box>
         <DialogContent>
             <NoContent
-                icon={<QuizzIllustration />}
+                icon={QuizzIllustration}
                 title={
                     <Box sx={{
                         textAlign: 'center',
