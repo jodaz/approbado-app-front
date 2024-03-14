@@ -6,7 +6,7 @@ import { listTrivias } from '@approbado/lib/services/trivias.services'
 import TestCard from './TestCard'
 
 const initialState = {
-    data: {},
+    data: [],
     total: 0,
     loaded: false
 }
@@ -19,8 +19,8 @@ const TestList = () => {
         const { success, data } = await listTrivias()
 
         if (success) {
-
-            setNewTrivias({...data, loaded: true })
+            console.log(data)
+            setNewTrivias({ data: data, loaded: true })
         }
     }, []);
 
@@ -32,7 +32,7 @@ const TestList = () => {
         })
 
         if (success) {
-            setPopularTrivias({...data, loaded: true })
+            setPopularTrivias({ data: data, loaded: true })
         }
     }, []);
 
@@ -59,7 +59,7 @@ const TestList = () => {
                 <Box component='strong'>
                     Continúa con tu prueba
                 </Box>
-                {(newTrivias.total) ? (
+                {(newTrivias.loaded) ? (
                     <Box>
                         {renderer(newTrivias)}
                     </Box>
@@ -73,7 +73,7 @@ const TestList = () => {
                 <Box component='strong'>
                 Pruebas populares - Estas listo? 🔥
                 </Box>
-                {(popularTrivias.total) ? (
+                {(popularTrivias.loaded) ? (
                     <Box>
                         {renderer(popularTrivias)}
                     </Box>

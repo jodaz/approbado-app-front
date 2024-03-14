@@ -1,11 +1,10 @@
 import * as React from 'react';
+import { useMediaQuery } from '@material-ui/core'
+import { listAwards } from '@approbado/lib/services/awards.services'
 import AwardsCard from './AwardsCard'
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
-import { useMediaQuery } from '@material-ui/core'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import CreateButton from '../components/CreateButton'
 import GridList from '@approbado/lib/components/GridList';
 
@@ -18,13 +17,13 @@ const AwardsList = ({ record }) => {
     const [awards, setAwards] = React.useState([])
 
     const fetchAwards = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/awards',
-            params: getQueryFromParams({ filter })
+        const { success, data } = await listAwards({
+            filter: filter
         })
 
-        setAwards(res.data.data);
+        if (success) {
+            setAwards(data)
+        }
     }
 
     const handleOnChange = (e) => {

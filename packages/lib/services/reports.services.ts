@@ -1,24 +1,20 @@
 import { apiProvider } from "../api";
 import getQueryFromParams from "../utils/getQueryFromParams";
 
-const defaultParams = {
-    filter: {},
-    perPage: 10,
-    page: 0
-}
-
 export async function listReports(query = {}) {
-    try {
-        const { status, data } = await apiProvider.get('/reports', {
-            params: getQueryFromParams({ ...defaultParams, ...query })
+    try{
+        const response = await apiProvider.get('/reports', {
+            params: getQueryFromParams(query)
         })
+
+        const { data, total } = response.data
 
         return {
             success: true,
-            status: status,
-            data: data.data,
+            data: data,
+            count: total
         }
-    }catch (error){
+    } catch (error){
         return {
             success: false,
             status: error.response.status,
@@ -28,17 +24,19 @@ export async function listReports(query = {}) {
 }
 
 export async function listReportReasons(query = {}) {
-    try {
-        const { status, data } = await apiProvider.get('/report-reasons', {
-            params: getQueryFromParams({ ...defaultParams, ...query })
+    try{
+        const response = await apiProvider.get('/report-reasons', {
+            params: getQueryFromParams(query)
         })
+
+        const { data, total } = response.data
 
         return {
             success: true,
-            status: status,
-            data: data.data,
+            data: data,
+            count: total
         }
-    }catch (error){
+    } catch (error){
         return {
             success: false,
             status: error.response.status,

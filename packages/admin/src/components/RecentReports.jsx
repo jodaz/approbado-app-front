@@ -1,12 +1,11 @@
 import * as React from 'react'
+import { useMediaQuery } from '@material-ui/core'
+import { listReports } from '@approbado/lib/services/reports.services'
 import ReportCard from './ReportCard'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import GridList from '@approbado/lib/components/GridList';
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
-import { useMediaQuery } from '@material-ui/core'
 
 const initialFilter = { in_blacklist: true };
 
@@ -18,13 +17,13 @@ const RecentReports = () => {
     const [reports, setReports] = React.useState([])
 
     const fetchReports = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/reports',
-            params: getQueryFromParams({ filter })
+        const { success, data } = await listReports({
+            filter: filter
         })
 
-        setReports(res.data.data);
+        if (success) {
+            setReports(data)
+        }
     }
 
     const handleOnChange = (e) => {

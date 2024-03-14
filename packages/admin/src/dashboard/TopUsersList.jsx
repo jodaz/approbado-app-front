@@ -49,12 +49,6 @@ const TopUsersList = () => {
                         Aún no tenemos usuarios destacados.
                     </ErrorMessage>
                 )}
-
-                {(error) && (
-                    <ErrorMessage>
-                        Ha ocurrido un error en su solicitud.
-                    </ErrorMessage>
-                )}
             </Box>
         </Grid>
     )

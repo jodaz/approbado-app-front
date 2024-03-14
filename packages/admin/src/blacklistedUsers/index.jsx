@@ -1,12 +1,11 @@
 import * as React from 'react'
+import { listUsers } from '@approbado/lib/services/users.services'
+import { useMediaQuery } from '@material-ui/core'
 import BlacklistedUserCard from './BlacklistedUserCard'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import GridList from '@approbado/lib/components/GridList';
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
-import { useMediaQuery } from '@material-ui/core'
 
 const initialFilter = { in_blacklist: false };
 
@@ -18,13 +17,13 @@ const BlacklistedUsersList = () => {
     const [users, setUsers] = React.useState([])
 
     const fetchReports = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/users',
-            params: getQueryFromParams({ filter })
+        const { success, data } = await listUsers({
+            filter: filter
         })
 
-        setUsers(res.data.data);
+        if (success) {
+            setUsers(data)
+        }
     }
 
     const handleOnChange = (e) => {

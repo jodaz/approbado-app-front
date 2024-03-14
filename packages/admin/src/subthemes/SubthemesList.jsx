@@ -1,11 +1,10 @@
 import * as React from 'react';
+import { listSubthemes } from '@approbado/lib/services/subthemes.services';
 import SubthemeCard from './SubthemeCard'
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
 import { useMediaQuery } from '@material-ui/core'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import CreateButton from '../components/CreateButton'
 import GridList from '@approbado/lib/components/GridList'
 
@@ -18,13 +17,13 @@ const FileList = ({ record }) => {
     const [subthemes, setSubthemes] = React.useState([])
 
     const fetchSubthemes = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/subthemes',
-            params: getQueryFromParams({ filter })
+        const { success, data } = await listSubthemes({
+            filter: filter
         })
 
-        setSubthemes(res.data.data);
+        if (success) {
+            setSubthemes(data)
+        }
     }
 
     const handleOnChange = (e) => {

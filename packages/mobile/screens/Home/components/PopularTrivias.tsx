@@ -40,6 +40,13 @@ const PopularTrivias = () => {
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 nestedScrollEnabled
+                ListEmptyComponent={
+                    <Row>
+                        <Text fontSize={18} fontWeight={400}>
+                            No hay pruebas disponibles
+                        </Text>
+                    </Row>
+                }
             />
         </Row>
     );

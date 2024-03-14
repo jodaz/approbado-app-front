@@ -1,13 +1,12 @@
 import * as React from 'react';
+import { listQuestions } from '@approbado/lib/services/questions.services'
+import { useParams } from 'react-router-dom'
+import { useMediaQuery } from '@material-ui/core'
 import Box from '@material-ui/core/Box'
 import GridList from '@approbado/lib/components/GridList';
 import QuestionCard from './QuestionCard'
-import { useParams } from 'react-router-dom'
 import AddQuestionsDialog from './AddQuestionsDialog'
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
-import { useMediaQuery } from '@material-ui/core'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import TextField from '@material-ui/core/TextField'
 
 const QuestionList = () => {
@@ -25,13 +24,13 @@ const QuestionList = () => {
     const [questions, setQuestions] = React.useState([])
 
     const fetchQuestions = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/questions',
-            params: getQueryFromParams({ filter })
-        })
+        const { success, data } = await listQuestions({
+            filter: filter
+        });
 
-        setQuestions(res.data.data);
+        if (success) {
+            setQuestions(data);
+        }
     }
 
     const handleOnChange = (e) => {

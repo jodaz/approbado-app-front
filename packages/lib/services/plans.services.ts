@@ -2,19 +2,19 @@ import { apiProvider } from "../api";
 import getQueryFromParams from "../utils/getQueryFromParams";
 
 export async function listPlans(query) {
-    try {
+    try{
         const response = await apiProvider.get('/memberships/plans', {
             params: getQueryFromParams(query)
         })
 
-        const { data, count } = response.data
+        const { data, total } = response.data
 
         return {
             success: true,
             data: data,
-            count: count
+            count: total
         }
-    }catch (error) {
+    } catch (error){
         return {
             success: false,
             status: error.response.status,

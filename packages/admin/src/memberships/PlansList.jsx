@@ -1,11 +1,10 @@
 import * as React from 'react';
+import { listPlans } from '@approbado/lib/services/plans.services';
+import { useMediaQuery } from '@material-ui/core'
 import MembershipCard from './MembershipCard'
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
-import { useMediaQuery } from '@material-ui/core'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import CreateButton from '../components/CreateButton'
 import GridList from '@approbado/lib/components/GridList'
 
@@ -14,16 +13,16 @@ const PlansList = () => {
         theme.breakpoints.down('sm')
     )
     const [filter, setFilter] = React.useState({})
-    const [files, setFiles] = React.useState([])
+    const [plans, setPlans] = React.useState([])
 
     const fetchPlans = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: 'memberships/plans',
-            params: getQueryFromParams({ filter })
+        const { success, data } = await listPlans({
+            filter: filter
         })
 
-        setFiles(res.data.data);
+        if (success) {
+            setPlans(data)
+        }
     }
 
     const handleOnChange = (e) => {
@@ -62,7 +61,7 @@ const PlansList = () => {
             }
             list={
                 <GridList
-                    data={files}
+                    data={plans}
                     component={<MembershipCard />}
                 />
             }

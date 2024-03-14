@@ -1,11 +1,10 @@
 import * as React from 'react';
+import { listFiles } from '@approbado/lib/services/files.services'
+import { useMediaQuery } from '@material-ui/core'
 import FileCard from './FileCard'
 import ListContainer from '../components/ListContainer'
-import { apiProvider as axios } from '@approbado/lib/api'
 import Box from '@material-ui/core/Box'
 import TextField from '@material-ui/core/TextField'
-import { useMediaQuery } from '@material-ui/core'
-import getQueryFromParams from '@approbado/lib/utils/getQueryFromParams'
 import CreateButton from '../components/CreateButton'
 import GridList from '@approbado/lib/components/GridList'
 
@@ -18,13 +17,13 @@ const FileList = ({ record }) => {
     const [files, setFiles] = React.useState([])
 
     const fetchFiles = async () => {
-        const res = await axios({
-            method: 'GET',
-            url: '/files',
-            params: getQueryFromParams({ filter })
+        const { success, data } = await listFiles({
+            filter: filter
         })
 
-        setFiles(res.data.data);
+        if (success) {
+            setFiles(data)
+        }
     }
 
     const handleOnChange = (e) => {
