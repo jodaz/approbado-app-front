@@ -1,38 +1,20 @@
 import * as React from 'react'
 import { useForm } from 'react-hook-form';
 import {
-    SelectInput,
     Button,
     Row,
-    Text,
     TextInput,
-    MultiSelectInput
+    MultiSelectInput,
+    ScrollViewContainer
 } from '../../components';
-import {
-    Dimensions
-} from 'react-native';
 import { TITLE } from '@approbado/lib/utils/validations'
 import { createForum } from '@approbado/lib/services/forums.services'
 import { Routes } from '../routes';
 import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { listTrivias } from '@approbado/lib/services/trivias.services'
-import { verticalScale } from '../../styles/scaling';
 import { listCategories } from '@approbado/lib/services/categories.services'
+
 import setFormErrors from '@approbado/lib/utils/setFormErrors'
-import styled from 'styled-components/native';
-
-const { width, height } = Dimensions.get('window');
-
-const Container = styled.ScrollView`
-    height: ${height}px;
-    padding-top: ${(props) => verticalScale(props.theme.space[2])}px;
-    width: ${width}px;
-`
-
-const InnerContainer = styled.ScrollView`
-    width: ${width * .9}px;
-    margin: 0 auto;
-`
 
 const CreatePost = ({ navigation }) => {
     const { control, handleSubmit, setError, formState } = useForm();
@@ -49,7 +31,7 @@ const CreatePost = ({ navigation }) => {
                 'success',
                 '¡Publicación realizada!'
             )
-            navigation.navigate(Routes.Forum)
+            navigation.navigate(Routes.ListPosts)
         } else {
             if (status == 422) {
                 setFormErrors(setError, data)
@@ -86,78 +68,63 @@ const CreatePost = ({ navigation }) => {
     }, [])
 
     return (
-        <Container>
-            <InnerContainer>
-                <Row align='center' direction='row' justify='space-between' size={2}>
-                    <Text>
-                        Crear nuevo debate
-                    </Text>
-                    <Button
-                        textVariant='main'
-                        textColor='error'
-                        variant="text"
-                        onPress={() => navigation.navigate(Routes.Forum)}
-                    >
-                        Cancelar
-                    </Button>
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        label='Título'
-                        name='message'
-                        control={control}
-                        placeholder='Ingresa un título de foro'
-                        validations={TITLE}
-                    />
-                </Row>
-                <Row size={1}>
-                    <TextInput
-                        label='Descripción'
-                        name='summary'
-                        control={control}
-                        placeholder='Ingresa una descripción (opcional)'
-                        multiline
-                    />
-                </Row>
-                <Row size={1}>
-                    {categories ? (
-                        <Row size={1}>
-                            <MultiSelectInput
-                                label='Categorías'
-                                control={control}
-                                name='categories_ids'
-                                options={categories}
-                                valueField='id'
-                                labelField='name'
-                            />
-                        </Row>
-                    ) : null}
-                </Row>
-                <Row size={1}>
-                    {themes ? (
-                        <Row size={1}>
-                            <MultiSelectInput
-                                label='Trivias'
-                                control={control}
-                                name='trivias_ids'
-                                options={themes}
-                                valueField='id'
-                                labelField='name'
-                            />
-                        </Row>
-                    ) : null}
-                </Row>
-                <Row size={2}>
-                    <Button
-                        isLoading={formState.isSubmitting}
-                        fullWidth
-                        onPress={handleSubmit(onSubmit)}
-                    >
-                        Publicar
-                    </Button>
-                </Row>
-            </InnerContainer>
-        </Container>
+        <ScrollViewContainer>
+            <Row size={1}>
+                <TextInput
+                    label='Título'
+                    name='message'
+                    control={control}
+                    placeholder='Ingresa un título de foro'
+                    validations={TITLE}
+                />
+            </Row>
+            <Row size={1}>
+                <TextInput
+                    label='Descripción'
+                    name='summary'
+                    control={control}
+                    placeholder='Ingresa una descripción (opcional)'
+                    multiline
+                />
+            </Row>
+            <Row size={1}>
+                {categories ? (
+                    <Row size={1}>
+                        <MultiSelectInput
+                            label='Categorías'
+                            control={control}
+                            name='categories_ids'
+                            options={categories}
+                            valueField='id'
+                            labelField='name'
+                        />
+                    </Row>
+                ) : null}
+            </Row>
+            <Row size={1}>
+                {themes ? (
+                    <Row size={1}>
+                        <MultiSelectInput
+                            label='Trivias'
+                            control={control}
+                            name='trivias_ids'
+                            options={themes}
+                            valueField='id'
+                            labelField='name'
+                        />
+                    </Row>
+                ) : null}
+            </Row>
+            <Row size={2}>
+                <Button
+                    isLoading={formState.isSubmitting}
+                    fullWidth
+                    onPress={handleSubmit(onSubmit)}
+                >
+                    Publicar
+                </Button>
+            </Row>
+        </ScrollViewContainer>
     );
 }
 

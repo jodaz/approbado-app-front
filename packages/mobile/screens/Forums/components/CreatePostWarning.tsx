@@ -27,7 +27,9 @@ const CreatePostWarning = () => {
     const toggleModal = () => setIsOpen(!isOpen)
 
     const onPress = () => {
-        navigation.navigate(Routes.CreateForum)
+        navigation.navigate(Routes.Posts, {
+            screen: Routes.CreateForum
+        })
         toggleModal()
     };
 

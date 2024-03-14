@@ -1,6 +1,5 @@
 import * as React from 'react'
 import {
-    Container,
     Text,
     Row,
     Image,
@@ -16,7 +15,7 @@ import { openToast, useToast } from '@approbado/lib/contexts/ToastContext';
 import { FlatList, View } from 'react-native';
 import { socket } from '@approbado/lib/utils/socket'
 import CommentCard from './components/CommentCard';
-import styled from 'styled-components/native';
+import styled, { useTheme } from 'styled-components/native';
 import PostDescription from './../../components/PostDescription';
 import CommentInput from './components/CommentInput';
 import { useIsFocused } from '@react-navigation/native';
@@ -29,6 +28,7 @@ const StyledContainer = styled.View`
 
 const ShowPost = ({ route }) => {
     const post = route.params.post;
+    const theme = useTheme()
     const { control, handleSubmit, reset, formState: { isSubmitting } } = useForm()
     const { dispatch } = useToast();
     const [comments, setComments] = React.useState<any>([])
@@ -97,18 +97,9 @@ const ShowPost = ({ route }) => {
         }
     }, [])
 
-    const HeaderComponent = () => (
-        <View style={{
-            paddingHorizontal: horizontalScale(10)
-        }}>
+    const PostHeader = () => (
+        <View>
             <StyledContainer>
-                <Row size={1} direction='row'>
-                    <TitleBar>
-                        <Text fontSize={18}>
-                            Ver post
-                        </Text>
-                    </TitleBar>
-                </Row>
                 <Row size={1} direction='row'>
                     <Image source={post.owner.picture} />
                     {post?.type == 'Comentario' ? (
@@ -164,11 +155,14 @@ const ShowPost = ({ route }) => {
 
     return (
         <FlatList
-            ListHeaderComponent={HeaderComponent}
+            ListHeaderComponent={PostHeader}
             renderItem={({ item }) => <CommentCard comment={item} />}
             data={comments}
             refreshing={false}
             onRefresh={fetchData}
+            style={{
+                paddingHorizontal: horizontalScale(theme.space[2])
+            }}
         />
     );
 }

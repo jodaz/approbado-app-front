@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Dimensions, View } from 'react-native'
-import { horizontalScale } from '../../../styles/scaling';
-import { Text } from '../../../components';
+import { horizontalScale } from '../styles/scaling';
+import Text from './Text';
 
 const { width: screenWidth } = Dimensions.get('screen')
 
-const EventsHeader = ({ children }) => {
+const AppHeaderWithTitle = ({ children }) => {
     const [width, setWidth] = React.useState(0);
     const ref = React.useRef()
 
@@ -26,4 +26,4 @@ const EventsHeader = ({ children }) => {
     )
 }
 
-export default EventsHeader
+export default AppHeaderWithTitle

@@ -8,7 +8,7 @@ interface CustomBottomSheet extends BottomSheetProps {
 }
 
 const DEFAULT_OPTIONS = {
-    snapPoints: ['25%', '50%'],
+    snapPoints: ['25%'],
     index: -1,
     renderContent: () => null,
 };
@@ -49,15 +49,27 @@ export const BottomSheetProvider = ({ children }: IComp) => {
         }),
         [collapseBottomSheet],
     );
-        console.log(options)
+
+	const renderBackdrop = React.useCallback(
+		(props) => (
+			<BottomSheetBackdrop
+				{...props}
+				disappearsOnIndex={-1}
+				appearsOnIndex={0}
+                BackdropPressBehavior='close'
+			/>
+		),
+		[]
+	);
+
     return (
       <BottomSheetContext.Provider value={bottomSheetContext}>
-          {children}
+            {children}
             <BottomSheet
                 index={-1}
                 snapPoints={options.snapPoints}
                 ref={bottomSheetRef}
-                backdropComponent={BottomSheetBackdrop}
+                backdropComponent={renderBackdrop}
             >
                 {options.renderContent()}
             </BottomSheet>

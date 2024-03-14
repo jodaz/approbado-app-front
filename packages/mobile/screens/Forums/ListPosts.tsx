@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { Container } from '../../components';
 import Tabs from '../../components/Tabs';
 import PopularPosts from './components/PopularPosts';
 import UnansweredPosts from './components/UnansweredPosts';
 import NewPosts from './components/NewPosts';
 import ForumSearchbox from './components/ForumSearchbox';
 import CreatePostWarning from './components/CreatePostWarning';
+import styled from 'styled-components/native';
+import { horizontalScale, verticalScale } from '../../styles/scaling';
 
 const screens = [
     {
@@ -32,7 +33,14 @@ const screens = [
     }
 ];
 
-const ListPosts = ({ navigation }) => {
+const Container = styled.View`
+    padding-vertical: ${(props) => verticalScale(props.theme.space[1])}px;
+    padding-horizontal: ${(props) => horizontalScale(props.theme.space[1])}px;
+    position: relative;
+    flex: 1;
+`
+
+const ListPosts = () => {
     const Tab = createMaterialTopTabNavigator();
 
     return (

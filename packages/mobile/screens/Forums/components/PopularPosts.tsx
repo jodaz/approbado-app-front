@@ -2,37 +2,23 @@ import * as React from 'react'
 import { getPosts } from '@approbado/lib/services/forums.services.ts';
 import { Post } from '@approbado/lib/types/models'
 import {
-    BottomDrawer,
-    DrawerButton,
     PostCard,
-    Container,
-    Text
+    Text,
+    Row
 } from '../../../components';
-import { ScrollView } from 'react-native';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { Routes } from '../../routes';
-import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
+import { useIsFocused } from '@react-navigation/native';
+import { FlatList } from 'react-native';
 
 const PopularPosts = () => {
     const isFocused = useIsFocused();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
-    const navigation = useNavigation();
-
     // This state would determine if the drawer sheet is visible or not
-    const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
-    const [selectedPost, setSelectedPost] = React.useState<null | Post>(null)
 
-    // Function to open the bottom sheet
-    const handleOpenBottomSheet = (post: Post) => {
-        setSelectedPost(post)
-        setIsBottomSheetOpen(true);
-    };
+    const onDeletePost = postID => {
+        const newPosts = posts.filter(({ id }) => id != postID)
 
-    // Function to close the bottom sheet
-    const handleCloseBottomSheet = () => {
-        setSelectedPost(null);
-        setIsBottomSheetOpen(false);
-    };
+        setPosts(newPosts);
+    }
 
     const fetchData = async () => {
         const { success, data } = await getPosts({
@@ -48,59 +34,25 @@ const PopularPosts = () => {
 
     if (!posts.length) {
         return (
-            <Container>
+            <Row size={2}>
                 <Text>
                     Sin publicaciones
                 </Text>
-            </Container>
+            </Row>
         )
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            {posts.map((post: Post, index: number) => (
+        <FlatList
+            data={posts}
+            renderItem={({ item }) => (
                 <PostCard
-                    openDrawerMenu={handleOpenBottomSheet}
-                    post={post}
+                    post={item}
+                    onDeletePost={onDeletePost}
                 />
-            ))}
-            <BottomDrawer
-                isOpen={isBottomSheetOpen}
-                handleClose={handleCloseBottomSheet}
-            >
-                <DrawerButton
-                    icon={<Edit2 />}
-                    onPress={() => {
-                        navigation.navigate(Routes.EditPost, {
-                            post: selectedPost
-                        });
-                        handleCloseBottomSheet()
-                    }}
-                >
-                    Editar
-                </DrawerButton>
-                <DrawerButton
-                    icon={<Trash2 />}
-                    onPress={() => {
-                        handleCloseBottomSheet()
-                    }}
-                >
-                    Eliminar
-                </DrawerButton>
-                <DrawerButton
-                    icon={<AlertTriangle />}
-                    onPress={() => {
-                        navigation.navigate(Routes.ReportPost, {
-                            post: selectedPost
-                        })
-                        handleCloseBottomSheet()
-                    }}
-                >
-                    Reportar
-                </DrawerButton>
-            </BottomDrawer>
-        </ScrollView>
-    );
+            )}
+        />
+    )
 }
 
 export default PopularPosts

@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Button, Text } from '../../../components';
+import { Button, Row, ScrollViewContainer, Text } from '../../../components';
 import { Award } from '@approbado/lib/types/models'
 import { listAwardsWithSubthemes } from '@approbado/lib/services/awards.services'
-import { Dimensions } from 'react-native';
+import { Dimensions, FlatList } from 'react-native';
 import { verticalScale } from '../../../styles/scaling';
 import { useIsFocused } from '@react-navigation/native';
 import { Routes } from '../../routes';
@@ -35,7 +35,7 @@ const Syllabus = ({ navigation, route }) => {
             console.log("error", data)
         }
     }
-    console.log(JSON.stringify(awards, null, ' '))
+
     const handleNavigate = () => {
         setTrivia(dispatch, trivia);
         navigation.navigate(Routes.SelectTrivia)
@@ -45,29 +45,31 @@ const Syllabus = ({ navigation, route }) => {
 
     if (!awards.length) {
         return (
-            <Container>
-                <Text>
-                    Sin recursos
-                </Text>
-            </Container>
+            <ScrollViewContainer>
+                <Row>
+                    <Text>
+                        Sin temas
+                    </Text>
+                </Row>
+            </ScrollViewContainer>
         )
     }
 
     return (
-        <Container
-            showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-                flex: 1
-            }}
-        >
-            {awards.map((award: Award) => <AwardListItem award={award} />)}
-            <Button
-                onPress={handleNavigate}
-                disabled={!state.themes.length}
-            >
-                Iniciar trivia
-            </Button>
-        </Container>
+        <FlatList
+            data={awards}
+            renderItem={({ item }) => <AwardListItem award={item} />}
+            ListFooterComponent={() => (
+                <Row>
+                    <Button
+                        onPress={handleNavigate}
+                        disabled={!state.themes.length}
+                    >
+                        Iniciar trivia
+                    </Button>
+                </Row>
+            )}
+        />
     );
 }
 

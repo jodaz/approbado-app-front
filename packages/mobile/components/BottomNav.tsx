@@ -8,9 +8,9 @@ import {
 } from 'lucide-react-native';
 import Home from '../screens/Home';
 import Profile from '../screens/Profile';
-import Forum from '../screens/Forums';
 import TriviasStack from '../screens/Game/TriviasStack';
 import styled from 'styled-components/native';
+import ListPosts from '../screens/Forums/ListPosts';
 
 const Tab = createBottomTabNavigator();
 
@@ -65,7 +65,7 @@ const BottomNav = () => (
                                 <Scale color="#FFE835" size={24} />
                             </TabButton>
                         )
-                    case Routes.Forum:
+                    case Routes.ListPosts:
                         return (
                             <TabButton isFocused={focused}>
                                 <LampDesk color="#FFE835" size={24} />
@@ -79,7 +79,7 @@ const BottomNav = () => (
                         )
                     default:
                         return (
-                            <TabButton>
+                            <TabButton isFocused={focused}>
                                 <HomeIcon color="#FFE835" size={24} />
                             </TabButton>
                         )
@@ -98,7 +98,7 @@ const BottomNav = () => (
     >
         <Tab.Screen name={Routes.Home} component={Home} />
         <Tab.Screen name={Routes.Game} component={TriviasStack} />
-        <Tab.Screen name={Routes.Forum} component={Forum} />
+        <Tab.Screen name={Routes.ListPosts} component={ListPosts} />
         <Tab.Screen name={Routes.Profile} component={Profile} />
     </Tab.Navigator>
 )

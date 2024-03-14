@@ -3,28 +3,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from "./routes";
 import { useAuth, getInitialState } from '@approbado/lib/contexts/AuthContext';
 import { useNavigation } from '@react-navigation/native';
-import { HeaderBack } from '../components';
-import SettingsStack from './Settings';
-import GameStack from './Game/GameStack';
 import EditProfileInformation from './EditProfile/EditProfileInformation';
 import EditOcupation from './EditProfile/EditOcupation';
 import EditSocialProfile from './EditProfile/EditSocialProfile';
 import EditProfileContact from './EditProfile/EditProfileContact';
-import ShowPost from './Forums/ShowPost';
 import InviteChat from './Chat/components/InviteChat';
 import UserChat from './Chat/components/UserChat';
-import EditPost from './Forums/EditPost';
-import ReportPost from './Forums/ReportPost';
-import CreatePost from './Forums/CreatePost';
 // Stacks
 import OnboardingStack from './OnboardingStack';
 import BottomNav from '../components/BottomNav';
 import EventsStack from './Events/EventsStack';
+import SettingsStack from './Settings';
+import GameStack from './Game/GameStack';
+import PostStack from './Forums/PostStack';
 
 const Stack = createNativeStackNavigator();
 
 const MainScreen = () => {
-    const { state, dispatch: authDispatch } = useAuth()
+    const { dispatch: authDispatch } = useAuth()
     const navigation = useNavigation()
 
     const handleAuthentication = async () => {
@@ -44,7 +40,7 @@ const MainScreen = () => {
                     backgroundColor: '#f0f0f0'
                 },
                 headerShadowVisible: false,
-                headerLeft: props => <HeaderBack {...props} />
+                headerLeft: () => <></>
             }}
             initialRouteName={Routes.Onboarding}
         >
@@ -106,29 +102,8 @@ const MainScreen = () => {
                 }}
             />
             <Stack.Screen
-                name={Routes.ShowPost}
-                component={ShowPost}
-                options={{
-                    headerShown: false
-                }}
-            />
-            <Stack.Screen
                 name={Routes.UserChat}
                 component={UserChat}
-                options={{
-                    headerShown: false
-                }}
-            />
-            <Stack.Screen
-                name={Routes.EditPost}
-                component={EditPost}
-                options={{
-                    headerShown: false
-                }}
-            />
-            <Stack.Screen
-                name={Routes.ReportPost}
-                component={ReportPost}
                 options={{
                     headerShown: false
                 }}
@@ -141,8 +116,8 @@ const MainScreen = () => {
                 }}
             />
             <Stack.Screen
-                name={Routes.CreateForum}
-                component={CreatePost}
+                name={Routes.Posts}
+                component={PostStack}
                 options={{
                     headerShown: false
                 }}

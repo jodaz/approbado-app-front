@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Routes } from '../routes';
+import AppHeaderWithTitle from '../../components/AppHeaderWithTitle';
 import CreateEvent from './CreateEvent';
 import CreateEventSuccess from './CreateEventSuccess';
 import ListEvents from './ListEvents';
-import EventsHeader from './components/EventsHeader';
 import EditSchedule from './EditSchedule';
 import ShowSchedule from './ShowSchedule';
 import DeleteEvent from './DeleteEvent';
@@ -18,7 +18,7 @@ const EventsStack = () => (
                 backgroundColor: '#f0f0f0'
             },
             headerShadowVisible: false,
-            headerTitle: props => <EventsHeader {...props} />
+            headerTitle: props => <AppHeaderWithTitle {...props} />
         }}
         initialRouteName={Routes.Events}
     >

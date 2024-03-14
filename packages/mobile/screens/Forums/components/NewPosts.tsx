@@ -2,47 +2,23 @@ import * as React from 'react'
 import { getPosts } from '@approbado/lib/services/forums.services.ts';
 import { Post } from '@approbado/lib/types/models'
 import {
-    BottomDrawer,
-    DrawerButton,
     PostCard,
-    Container,
-    Text
+    Text,
+    Row
 } from '../../../components';
-import { ScrollView } from 'react-native';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { Routes } from '../../routes';
-import { AlertTriangle, Edit2, Trash2 } from 'lucide-react-native';
-import { useAuth } from '@approbado/lib/contexts/AuthContext';
-import DeletePost from './DeletePost';
+import { useIsFocused } from '@react-navigation/native';
+import { FlatList } from 'react-native';
 
 const NewPosts = () => {
     const isFocused = useIsFocused();
     const [posts, setPosts] = React.useState<Post[] | []>([]);
-    const navigation = useNavigation();
     // This state would determine if the drawer sheet is visible or not
-    const { state: { user } } = useAuth()
-    const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
-    const [selectedPost, setSelectedPost] = React.useState<null | Post>(null)
-    const [openDelete, setOpenDelete] = React.useState<boolean | number>(false);
 
     const onDeletePost = postID => {
         const newPosts = posts.filter(({ id }) => id != postID)
 
         setPosts(newPosts);
     }
-
-    const toggleDelete = (value = false) => setOpenDelete(value);
-    // Function to open the bottom sheet
-    const handleOpenBottomSheet = (post: Post) => {
-        setSelectedPost(post)
-        setIsBottomSheetOpen(true);
-    };
-
-    // Function to close the bottom sheet
-    const handleCloseBottomSheet = () => {
-        setSelectedPost(null);
-        setIsBottomSheetOpen(false);
-    };
 
     const fetchData = async () => {
         const { success, data } = await getPosts({
@@ -58,75 +34,25 @@ const NewPosts = () => {
 
     if (!posts.length) {
         return (
-            <Container>
+            <Row size={2}>
                 <Text>
                     Sin publicaciones
                 </Text>
-            </Container>
+            </Row>
         )
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false}>
-            {posts.map((post: Post, index: number) => (
+        <FlatList
+            data={posts}
+            renderItem={({ item }) => (
                 <PostCard
-                    openDrawerMenu={handleOpenBottomSheet}
-                    post={post}
+                    post={item}
+                    onDeletePost={onDeletePost}
                 />
-            ))}
-            {selectedPost ? (
-                <>
-                    <BottomDrawer
-                        isOpen={isBottomSheetOpen}
-                        handleClose={handleCloseBottomSheet}
-                    >
-                        {(selectedPost.owner.id == user.id) ? (
-                            <DrawerButton
-                                icon={<Edit2 />}
-                                onPress={() => {
-                                    navigation.navigate(Routes.EditPost, {
-                                        post: selectedPost
-                                    });
-                                    handleCloseBottomSheet()
-                                }}
-                            >
-                                Editar
-                            </DrawerButton>
-                        ) : null}
-                        {(selectedPost.owner.id == user.id) ? (
-                            <DrawerButton
-                                icon={<Trash2 />}
-                                onPress={() => {
-                                    toggleDelete(selectedPost.id)
-                                    handleCloseBottomSheet()
-                                }}
-                            >
-                                Eliminar
-                            </DrawerButton>
-                        ) : null}
-                        {(selectedPost.owner.id != user.id) ? (
-                            <DrawerButton
-                                icon={<AlertTriangle />}
-                                onPress={() => {
-                                    navigation.navigate(Routes.ReportPost, {
-                                        post: selectedPost
-                                    })
-                                    handleCloseBottomSheet()
-                                }}
-                            >
-                                Reportar
-                            </DrawerButton>
-                        ) : null}
-                    </BottomDrawer>
-                </>
-            ) : null}
-            <DeletePost
-                isOpen={openDelete}
-                toggleModal={toggleDelete}
-                onDeletePost={onDeletePost}
-            />
-        </ScrollView>
-    );
+            )}
+        />
+    )
 }
 
 export default NewPosts
