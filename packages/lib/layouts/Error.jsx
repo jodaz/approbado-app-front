@@ -4,6 +4,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { theme } from '@approbado/lib/styles';
 import { Card, Box, Typography, CardContent } from '@material-ui/core'
 import { alpha } from '@material-ui/core/styles/colorManipulator';
+import Logotipo from '@approbado/lib/illustrations/Logotipo.svg'
 
 const useStyles = makeStyles(theme => ({
     outer: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: 'center',
         width: '100%',
         zIndex: '-1',
-        background: theme.palette.primary.main,
+        background: 'transparent',
         height: '100vh',
         '&::after': {
             content: "''",
@@ -51,7 +52,7 @@ const ErrorLayout = () => {
         <Box component='div' className={classes.outer}>
             <Card className={classes.card}>
                 <Box className={classes.cardHeader}>
-                    <img src={`/logotipo.png`} alt='approbado_logotipo' height="50px" width="200px" />
+                    <img src={Logotipo} alt='approbado_logotipo' height="50px" width="200px" />
                 </Box>
                 <CardContent>
                     <Typography variant="h5">

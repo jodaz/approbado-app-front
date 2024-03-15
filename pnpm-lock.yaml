@@ -21,10 +21,10 @@ importers:
         version: 1.1.5
       '@material-ui/lab':
         specifier: ^4.0.0-alpha.61
-        version: 4.0.0-alpha.61(@material-ui/core@4.12.4)(react-dom@17.0.2)(react@17.0.2)
+        version: 4.0.0-alpha.61(@material-ui/core@4.12.4)(react-dom@18.2.0)(react@18.2.0)
       '@material-ui/pickers':
         specifier: ^3.3.10
-        version: 3.3.11(@date-io/core@1.3.13)(@material-ui/core@4.12.4)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2)
+        version: 3.3.11(@date-io/core@1.3.13)(@material-ui/core@4.12.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
       '@vitejs/plugin-react':
         specifier: ^4.0.4
         version: 4.2.1(vite@5.0.10)
@@ -53,29 +53,29 @@ importers:
         specifier: ^7.0.1
         version: 7.1.3
       react:
-        specifier: ^17.0.2
-        version: 17.0.2
+        specifier: 18.2.0
+        version: 18.2.0
       react-admin:
         specifier: ^3.17.2
-        version: 3.19.12(history@4.10.1)(react-dom@17.0.2)(react@17.0.2)
+        version: 3.19.12(history@4.10.1)(react-dom@18.2.0)(react@18.2.0)
       react-admin-color-input:
         specifier: ^3.0.0-beta.0
-        version: 3.0.0-beta.0(prop-types@15.8.1)(ra-core@3.19.12)(react-dom@17.0.2)(react@17.0.2)
+        version: 3.0.0-beta.0(prop-types@15.8.1)(ra-core@3.19.12)(react-dom@18.2.0)(react@18.2.0)
       react-dom:
-        specifier: ^17.0.2
-        version: 17.0.2(react@17.0.2)
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
       react-facebook-login:
         specifier: ^4.1.1
-        version: 4.1.1(react@17.0.2)
+        version: 4.1.1(react@18.2.0)
       react-final-form-listeners:
         specifier: ^1.0.3
-        version: 1.0.3(final-form@4.20.10)(prop-types@15.8.1)(react-final-form@6.5.9)(react@17.0.2)
+        version: 1.0.3(final-form@4.20.10)(prop-types@15.8.1)(react-final-form@6.5.9)(react@18.2.0)
       react-google-login:
         specifier: ^5.2.2
-        version: 5.2.2(react-dom@17.0.2)(react@17.0.2)
+        version: 5.2.2(react-dom@18.2.0)(react@18.2.0)
       react-icons:
         specifier: ^4.10.1
-        version: 4.12.0(react@17.0.2)
+        version: 4.12.0(react@18.2.0)
       socket.io-client:
         specifier: ^4.2.0
         version: 4.7.2
@@ -216,7 +216,7 @@ importers:
         version: 3.5.2(react-native-pager-view@6.2.0)(react-native@0.72.6)(react@18.2.0)
       styled-components:
         specifier: ^6.0.9
-        version: 6.1.6(react-dom@17.0.2)(react@18.2.0)
+        version: 6.1.6(react-dom@18.2.0)(react@18.2.0)
     devDependencies:
       '@babel/core':
         specifier: ^7.20.0
@@ -2756,12 +2756,12 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: false
 
-  /@icons/material@0.2.4(react@17.0.2):
+  /@icons/material@0.2.4(react@18.2.0):
     resolution: {integrity: sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==}
     peerDependencies:
       react: '*'
     dependencies:
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /@isaacs/cliui@8.0.2:
@@ -2903,7 +2903,7 @@ packages:
       react-native: 0.72.6(@babel/core@7.23.7)(react@18.2.0)
     dev: false
 
-  /@material-ui/core@4.12.4(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/core@4.12.4(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-tr7xekNlM9LjA6pagJmL8QCgZXaubWUwkJnoYcMKd4gw/t4XiyvnTkjdGrUVicyB2BsdaAv1tvow45bPM4sSwQ==}
     engines: {node: '>=8.0.0'}
     deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
@@ -2916,22 +2916,22 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.7
-      '@material-ui/styles': 4.11.5(react-dom@17.0.2)(react@17.0.2)
-      '@material-ui/system': 4.12.2(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/styles': 4.11.5(react-dom@18.2.0)(react@18.2.0)
+      '@material-ui/system': 4.12.2(react-dom@18.2.0)(react@18.2.0)
       '@material-ui/types': 5.1.0
-      '@material-ui/utils': 4.11.3(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/utils': 4.11.3(react-dom@18.2.0)(react@18.2.0)
       '@types/react-transition-group': 4.4.10
       clsx: 1.2.1
       hoist-non-react-statics: 3.3.2
       popper.js: 1.16.1-lts
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-is: 17.0.2
-      react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
-  /@material-ui/icons@4.11.3(@material-ui/core@4.12.4)(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/icons@4.11.3(@material-ui/core@4.12.4)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-IKHlyx6LDh8n19vzwH5RtHIOHl9Tu90aAAxcbWME6kp4dmvODM3UvOHJeMIDzUbd4muuJKHmlNoBN+mDY4XkBA==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -2944,12 +2944,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.7
-      '@material-ui/core': 4.12.4(react-dom@17.0.2)(react@17.0.2)
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      '@material-ui/core': 4.12.4(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@material-ui/lab@4.0.0-alpha.61(@material-ui/core@4.12.4)(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/lab@4.0.0-alpha.61(@material-ui/core@4.12.4)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-rSzm+XKiNUjKegj8bzt5+pygZeckNLOr+IjykH8sYdVk7dE9y2ZuUSofiMV2bJk3qU+JHwexmw+q0RyNZB9ugg==}
     engines: {node: '>=8.0.0'}
     deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
@@ -2963,16 +2963,16 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.7
-      '@material-ui/core': 4.12.4(react-dom@17.0.2)(react@17.0.2)
-      '@material-ui/utils': 4.11.3(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/core': 4.12.4(react-dom@18.2.0)(react@18.2.0)
+      '@material-ui/utils': 4.11.3(react-dom@18.2.0)(react@18.2.0)
       clsx: 1.2.1
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-is: 17.0.2
     dev: false
 
-  /@material-ui/pickers@3.3.11(@date-io/core@1.3.13)(@material-ui/core@4.12.4)(prop-types@15.8.1)(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/pickers@3.3.11(@date-io/core@1.3.13)(@material-ui/core@4.12.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-pDYjbjUeabapijS2FpSwK/ruJdk7IGeAshpLbKDa3PRRKRy7Nv6sXxAvUg2F+lID/NwUKgBmCYS5bzrl7Xxqzw==}
     deprecated: This package no longer supported. It has been relaced by @mui/x-date-pickers
     peerDependencies:
@@ -2984,17 +2984,17 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.7
       '@date-io/core': 1.3.13
-      '@material-ui/core': 4.12.4(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/core': 4.12.4(react-dom@18.2.0)(react@18.2.0)
       '@types/styled-jsx': 2.2.9
       clsx: 1.2.1
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
-      rifm: 0.7.0(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
+      rifm: 0.7.0(react@18.2.0)
     dev: false
 
-  /@material-ui/styles@4.11.5(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/styles@4.11.5(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-o/41ot5JJiUsIETME9wVLAJrmIWL3j0R0Bj2kCOLbSfqEkKf0fmaPt+5vtblUh5eXr2S+J/8J3DaCb10+CzPGA==}
     engines: {node: '>=8.0.0'}
     deprecated: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.
@@ -3009,7 +3009,7 @@ packages:
       '@babel/runtime': 7.23.7
       '@emotion/hash': 0.8.0
       '@material-ui/types': 5.1.0
-      '@material-ui/utils': 4.11.3(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/utils': 4.11.3(react-dom@18.2.0)(react@18.2.0)
       clsx: 1.2.1
       csstype: 2.6.21
       hoist-non-react-statics: 3.3.2
@@ -3022,11 +3022,11 @@ packages:
       jss-plugin-rule-value-function: 10.10.0
       jss-plugin-vendor-prefixer: 10.10.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@material-ui/system@4.12.2(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/system@4.12.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-6CSKu2MtmiJgcCGf6nBQpM8fLkuB9F55EKfbdTC80NND5wpTmKzwdhLYLH3zL4cLlK0gVaaltW7/wMuyTnN0Lw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -3038,11 +3038,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.23.7
-      '@material-ui/utils': 4.11.3(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/utils': 4.11.3(react-dom@18.2.0)(react@18.2.0)
       csstype: 2.6.21
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@material-ui/types@5.1.0:
@@ -3054,7 +3054,7 @@ packages:
         optional: true
     dev: false
 
-  /@material-ui/utils@4.11.3(react-dom@17.0.2)(react@17.0.2):
+  /@material-ui/utils@4.11.3(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ZuQPV4rBK/V1j2dIkSSEcH5uT6AaHuKWFfotADHsC0wVL1NLd2WkFCm4ZZbX33iO4ydl6V0GPngKm8HZQ2oujg==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
@@ -3063,8 +3063,8 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.7
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-is: 17.0.2
     dev: false
 
@@ -4944,7 +4944,7 @@ packages:
       - supports-color
     dev: false
 
-  /connected-react-router@6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@17.0.2)(redux@4.2.1):
+  /connected-react-router@6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-4ThxysOiv/R2Dc4Cke1eJwjKwH1Y51VDwlOrOfs1LjpdYOVvCNjNkZDayo7+sx42EeGJPQUNchWkjAIJdXGIOQ==}
     peerDependencies:
       history: ^4.7.2
@@ -4956,9 +4956,9 @@ packages:
       history: 4.10.1
       lodash.isequalwith: 4.4.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-redux: 7.2.9(react-dom@17.0.2)(react@17.0.2)
-      react-router: 5.3.4(react@17.0.2)
+      react: 18.2.0
+      react-redux: 7.2.9(react-dom@18.2.0)(react@18.2.0)
+      react-router: 5.3.4(react@18.2.0)
       redux: 4.2.1
     optionalDependencies:
       immutable: 4.3.4
@@ -5378,7 +5378,7 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
-  /downshift@3.2.7(react@17.0.2):
+  /downshift@3.2.7(react@18.2.0):
     resolution: {integrity: sha512-mbUO9ZFhMGtksIeVWRFFjNOPN237VsUqZSEYi0VS0Wj38XNLzpgOBTUcUjdjFeB8KVgmrcRa6GGFkTbACpG6FA==}
     peerDependencies:
       react: '>=0.14.9'
@@ -5386,7 +5386,7 @@ packages:
       '@babel/runtime': 7.23.7
       compute-scroll-into-view: 1.0.20
       prop-types: 15.8.1
-      react: 17.0.2
+      react: 18.2.0
       react-is: 16.13.1
     dev: false
 
@@ -8589,7 +8589,7 @@ packages:
       inherits: 2.0.4
     dev: false
 
-  /ra-core@3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1):
+  /ra-core@3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1):
     resolution: {integrity: sha512-E0cM6OjEUtccaR+dR5mL1MLiVVYML0Yf7aPhpLEq4iue73X3+CKcLztInoBhWgeevPbFQwgAtsXhlpedeyrNNg==}
     peerDependencies:
       connected-react-router: ^6.5.2
@@ -8605,7 +8605,7 @@ packages:
       redux-saga: ^1.0.0
     dependencies:
       classnames: 2.3.3
-      connected-react-router: 6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@17.0.2)(redux@4.2.1)
+      connected-react-router: 6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@18.2.0)(redux@4.2.1)
       date-fns: 1.30.1
       eventemitter3: 3.1.2
       final-form: 4.20.10
@@ -8614,22 +8614,22 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       query-string: 5.1.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-final-form: 6.5.9(final-form@4.20.10)(react@17.0.2)
-      react-redux: 7.2.9(react-dom@17.0.2)(react@17.0.2)
-      react-router: 5.3.4(react@17.0.2)
-      react-router-dom: 5.3.4(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
+      react-redux: 7.2.9(react-dom@18.2.0)(react@18.2.0)
+      react-router: 5.3.4(react@18.2.0)
+      react-router-dom: 5.3.4(react@18.2.0)
       redux: 4.2.1
       redux-saga: 1.3.0
       reselect: 3.0.1
     dev: false
 
-  /ra-i18n-polyglot@3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1):
+  /ra-i18n-polyglot@3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1):
     resolution: {integrity: sha512-7VkNybY+RYVL5aDf8MdefYpRMkaELOjSXx7rrRY7PzVwmQzVe5ESoKBcH4Cob2M8a52pAlXY32dwmA3dZ91l/Q==}
     dependencies:
       node-polyglot: 2.5.0
-      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
+      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
     transitivePeerDependencies:
       - connected-react-router
       - final-form
@@ -8644,10 +8644,10 @@ packages:
       - redux-saga
     dev: false
 
-  /ra-language-english@3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1):
+  /ra-language-english@3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1):
     resolution: {integrity: sha512-aYY0ma74eXLuflPT9iXEQtVEDZxebw1NiQZ5pPGiBCpsq+hoiDWuzerLU13OdBHbySD5FHLuk89SkyAdfMtUaQ==}
     dependencies:
-      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
+      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
     transitivePeerDependencies:
       - connected-react-router
       - final-form
@@ -8662,7 +8662,7 @@ packages:
       - redux-saga
     dev: false
 
-  /ra-ui-materialui@3.19.12(@material-ui/core@4.12.4)(@material-ui/icons@4.11.3)(@material-ui/styles@4.11.5)(final-form-arrays@3.1.0)(final-form@4.20.10)(history@4.10.1)(ra-core@3.19.12)(react-dom@17.0.2)(react-final-form-arrays@3.1.4)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux@4.2.1):
+  /ra-ui-materialui@3.19.12(@material-ui/core@4.12.4)(@material-ui/icons@4.11.3)(@material-ui/styles@4.11.5)(final-form-arrays@3.1.0)(final-form@4.20.10)(history@4.10.1)(ra-core@3.19.12)(react-dom@18.2.0)(react-final-form-arrays@3.1.4)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux@4.2.1):
     resolution: {integrity: sha512-8Zz88r5yprmUxOw9/F0A/kjjVmFMb2n+sjpel8fuOWtS6y++JWonDsvTwo4yIuSF9mC0fht3f/hd2KEHQdmj6Q==}
     peerDependencies:
       '@material-ui/core': ^4.12.1
@@ -8680,15 +8680,15 @@ packages:
       react-router-dom: ^5.1.0
       redux: ^3.7.2 || ^4.0.3
     dependencies:
-      '@material-ui/core': 4.12.4(react-dom@17.0.2)(react@17.0.2)
-      '@material-ui/icons': 4.11.3(@material-ui/core@4.12.4)(react-dom@17.0.2)(react@17.0.2)
-      '@material-ui/styles': 4.11.5(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/core': 4.12.4(react-dom@18.2.0)(react@18.2.0)
+      '@material-ui/icons': 4.11.3(@material-ui/core@4.12.4)(react-dom@18.2.0)(react@18.2.0)
+      '@material-ui/styles': 4.11.5(react-dom@18.2.0)(react@18.2.0)
       autosuggest-highlight: 3.3.4
       classnames: 2.2.6
-      connected-react-router: 6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@17.0.2)(redux@4.2.1)
+      connected-react-router: 6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@18.2.0)(redux@4.2.1)
       css-mediaquery: 0.1.2
       dompurify: 2.4.7
-      downshift: 3.2.7(react@17.0.2)
+      downshift: 3.2.7(react@18.2.0)
       final-form: 4.20.10
       final-form-arrays: 3.1.0(final-form@4.20.10)
       inflection: 1.13.4
@@ -8696,16 +8696,16 @@ packages:
       lodash: 4.17.21
       prop-types: 15.8.1
       query-string: 5.1.1
-      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-dropzone: 10.2.2(react@17.0.2)
-      react-final-form: 6.5.9(final-form@4.20.10)(react@17.0.2)
-      react-final-form-arrays: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@17.0.2)
-      react-redux: 7.2.9(react-dom@17.0.2)(react@17.0.2)
-      react-router: 5.3.4(react@17.0.2)
-      react-router-dom: 5.3.4(react@17.0.2)
-      react-transition-group: 4.4.5(react-dom@17.0.2)(react@17.0.2)
+      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-dropzone: 10.2.2(react@18.2.0)
+      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
+      react-final-form-arrays: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@18.2.0)
+      react-redux: 7.2.9(react-dom@18.2.0)(react@18.2.0)
+      react-router: 5.3.4(react@18.2.0)
+      react-router-dom: 5.3.4(react@18.2.0)
+      react-transition-group: 4.4.5(react-dom@18.2.0)(react@18.2.0)
       redux: 4.2.1
     transitivePeerDependencies:
       - history
@@ -8744,49 +8744,49 @@ packages:
       strip-json-comments: 2.0.1
     dev: false
 
-  /react-admin-color-input@3.0.0-beta.0(prop-types@15.8.1)(ra-core@3.19.12)(react-dom@17.0.2)(react@17.0.2):
+  /react-admin-color-input@3.0.0-beta.0(prop-types@15.8.1)(ra-core@3.19.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-bjX+IQH9e7iviVntr7adJwSbWFSn5oxYCp8bfZeU36kq6POQk7CagLl4zGa4+HtBMdsIGH3BemMAYPNLfOwkDw==}
     peerDependencies:
       prop-types: ^15.7.2
       ra-core: ^3.0.0-beta.3
       react: ^16.10.2
     dependencies:
-      '@material-ui/core': 4.12.4(react-dom@17.0.2)(react@17.0.2)
+      '@material-ui/core': 4.12.4(react-dom@18.2.0)(react@18.2.0)
       inflection: 1.13.4
       lodash.get: 4.4.2
       prop-types: 15.8.1
-      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
-      react: 17.0.2
-      react-color: 2.19.3(react@17.0.2)
-      recompose: 0.30.0(react@17.0.2)
+      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
+      react: 18.2.0
+      react-color: 2.19.3(react@18.2.0)
+      recompose: 0.30.0(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
       - react-dom
     dev: false
 
-  /react-admin@3.19.12(history@4.10.1)(react-dom@17.0.2)(react@17.0.2):
+  /react-admin@3.19.12(history@4.10.1)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-LanWS3Yjie7n5GZI8v7oP73DSvQyCeZD0dpkC65IC0+UOhkInxa1zedJc8CyD3+ZwlgVC+CGqi6jQ1fo73Cdqw==}
     peerDependencies:
       react: ^16.9.0 || ^17.0.0
       react-dom: ^16.9.0 || ^17.0.0
     dependencies:
-      '@material-ui/core': 4.12.4(react-dom@17.0.2)(react@17.0.2)
-      '@material-ui/icons': 4.11.3(@material-ui/core@4.12.4)(react-dom@17.0.2)(react@17.0.2)
-      '@material-ui/styles': 4.11.5(react-dom@17.0.2)(react@17.0.2)
-      connected-react-router: 6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@17.0.2)(redux@4.2.1)
+      '@material-ui/core': 4.12.4(react-dom@18.2.0)(react@18.2.0)
+      '@material-ui/icons': 4.11.3(@material-ui/core@4.12.4)(react-dom@18.2.0)(react@18.2.0)
+      '@material-ui/styles': 4.11.5(react-dom@18.2.0)(react@18.2.0)
+      connected-react-router: 6.9.3(history@4.10.1)(react-redux@7.2.9)(react-router@5.3.4)(react@18.2.0)(redux@4.2.1)
       final-form: 4.20.10
       final-form-arrays: 3.1.0(final-form@4.20.10)
-      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
-      ra-i18n-polyglot: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
-      ra-language-english: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@17.0.2)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux-saga@1.3.0)(redux@4.2.1)
-      ra-ui-materialui: 3.19.12(@material-ui/core@4.12.4)(@material-ui/icons@4.11.3)(@material-ui/styles@4.11.5)(final-form-arrays@3.1.0)(final-form@4.20.10)(history@4.10.1)(ra-core@3.19.12)(react-dom@17.0.2)(react-final-form-arrays@3.1.4)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@17.0.2)(redux@4.2.1)
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-      react-final-form: 6.5.9(final-form@4.20.10)(react@17.0.2)
-      react-final-form-arrays: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@17.0.2)
-      react-redux: 7.2.9(react-dom@17.0.2)(react@17.0.2)
-      react-router: 5.3.4(react@17.0.2)
-      react-router-dom: 5.3.4(react@17.0.2)
+      ra-core: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
+      ra-i18n-polyglot: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
+      ra-language-english: 3.19.12(connected-react-router@6.9.3)(final-form@4.20.10)(history@4.10.1)(react-dom@18.2.0)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux-saga@1.3.0)(redux@4.2.1)
+      ra-ui-materialui: 3.19.12(@material-ui/core@4.12.4)(@material-ui/icons@4.11.3)(@material-ui/styles@4.11.5)(final-form-arrays@3.1.0)(final-form@4.20.10)(history@4.10.1)(ra-core@3.19.12)(react-dom@18.2.0)(react-final-form-arrays@3.1.4)(react-final-form@6.5.9)(react-redux@7.2.9)(react-router-dom@5.3.4)(react-router@5.3.4)(react@18.2.0)(redux@4.2.1)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
+      react-final-form-arrays: 3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@18.2.0)
+      react-redux: 7.2.9(react-dom@18.2.0)(react@18.2.0)
+      react-router: 5.3.4(react@18.2.0)
+      react-router-dom: 5.3.4(react@18.2.0)
       redux: 4.2.1
       redux-saga: 1.3.0
     transitivePeerDependencies:
@@ -8795,18 +8795,18 @@ packages:
       - react-native
     dev: false
 
-  /react-color@2.19.3(react@17.0.2):
+  /react-color@2.19.3(react@18.2.0):
     resolution: {integrity: sha512-LEeGE/ZzNLIsFWa1TMe8y5VYqr7bibneWmvJwm1pCn/eNmrabWDh659JSPn9BuaMpEfU83WTOJfnCcjDZwNQTA==}
     peerDependencies:
       react: '*'
     dependencies:
-      '@icons/material': 0.2.4(react@17.0.2)
+      '@icons/material': 0.2.4(react@18.2.0)
       lodash: 4.17.21
       lodash-es: 4.17.21
       material-colors: 1.2.6
       prop-types: 15.8.1
-      react: 17.0.2
-      reactcss: 1.2.3(react@17.0.2)
+      react: 18.2.0
+      reactcss: 1.2.3(react@18.2.0)
       tinycolor2: 1.6.0
     dev: false
 
@@ -8820,29 +8820,17 @@ packages:
       - utf-8-validate
     dev: false
 
-  /react-dom@17.0.2(react@17.0.2):
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
+  /react-dom@18.2.0(react@18.2.0):
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
-      react: 17.0.2
+      react: ^18.2.0
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
-      react: 17.0.2
-      scheduler: 0.20.2
-    dev: false
-
-  /react-dom@17.0.2(react@18.2.0):
-    resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==}
-    peerDependencies:
-      react: 17.0.2
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
       react: 18.2.0
-      scheduler: 0.20.2
+      scheduler: 0.23.0
     dev: false
 
-  /react-dropzone@10.2.2(react@17.0.2):
+  /react-dropzone@10.2.2(react@18.2.0):
     resolution: {integrity: sha512-U5EKckXVt6IrEyhMMsgmHQiWTGLudhajPPG77KFSvgsMqNEHSyGpqWvOMc5+DhEah/vH4E1n+J5weBNLd5VtyA==}
     engines: {node: '>= 8'}
     peerDependencies:
@@ -8851,18 +8839,18 @@ packages:
       attr-accept: 2.2.2
       file-selector: 0.1.19
       prop-types: 15.8.1
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
-  /react-facebook-login@4.1.1(react@17.0.2):
+  /react-facebook-login@4.1.1(react@18.2.0):
     resolution: {integrity: sha512-COnHEHlYGTKipz4963safFAK9PaNTcCiXfPXMS/yxo8El+/AJL5ye8kMJf23lKSSGGPgqFQuInskIHVqGqTvSw==}
     peerDependencies:
       react: ^16.0.0
     dependencies:
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
-  /react-final-form-arrays@3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@17.0.2):
+  /react-final-form-arrays@3.1.4(final-form-arrays@3.1.0)(final-form@4.20.10)(react-final-form@6.5.9)(react@18.2.0):
     resolution: {integrity: sha512-siVFAolUAe29rMR6u8VwepoysUcUdh6MLV2OWnCtKpsPRUdT9VUgECjAPaVMAH2GROZNiVB9On1H9MMrm9gdpg==}
     peerDependencies:
       final-form: ^4.15.0
@@ -8873,11 +8861,11 @@ packages:
       '@babel/runtime': 7.23.7
       final-form: 4.20.10
       final-form-arrays: 3.1.0(final-form@4.20.10)
-      react: 17.0.2
-      react-final-form: 6.5.9(final-form@4.20.10)(react@17.0.2)
+      react: 18.2.0
+      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
     dev: false
 
-  /react-final-form-listeners@1.0.3(final-form@4.20.10)(prop-types@15.8.1)(react-final-form@6.5.9)(react@17.0.2):
+  /react-final-form-listeners@1.0.3(final-form@4.20.10)(prop-types@15.8.1)(react-final-form@6.5.9)(react@18.2.0):
     resolution: {integrity: sha512-OrdCNxSS4JQS/EXD+R530kZKFqaPfa+WcXPgVro/h4BpaBDF/Ja+BtHyCzDezCIb5rWaGGdOJIj+tN2YdtvrXg==}
     peerDependencies:
       final-form: '>=4.0.0'
@@ -8888,11 +8876,11 @@ packages:
       '@babel/runtime': 7.23.7
       final-form: 4.20.10
       prop-types: 15.8.1
-      react: 17.0.2
-      react-final-form: 6.5.9(final-form@4.20.10)(react@17.0.2)
+      react: 18.2.0
+      react-final-form: 6.5.9(final-form@4.20.10)(react@18.2.0)
     dev: false
 
-  /react-final-form@6.5.9(final-form@4.20.10)(react@17.0.2):
+  /react-final-form@6.5.9(final-form@4.20.10)(react@18.2.0):
     resolution: {integrity: sha512-x3XYvozolECp3nIjly+4QqxdjSSWfcnpGEL5K8OBT6xmGrq5kBqbA6+/tOqoom9NwqIPPbxPNsOViFlbKgowbA==}
     peerDependencies:
       final-form: ^4.20.4
@@ -8900,7 +8888,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.7
       final-form: 4.20.10
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /react-freeze@1.0.3(react@18.2.0):
@@ -8912,7 +8900,7 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-google-login@5.2.2(react-dom@17.0.2)(react@17.0.2):
+  /react-google-login@5.2.2(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-JUngfvaSMcOuV0lFff7+SzJ2qviuNMQdqlsDJkUM145xkGPVIfqWXq9Ui+2Dr6jdJWH5KYdynz9+4CzKjI5u6g==}
     deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     peerDependencies:
@@ -8921,8 +8909,8 @@ packages:
     dependencies:
       '@types/react': 18.2.46
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-hook-form@7.49.2(react@18.2.0):
@@ -8934,12 +8922,12 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-icons@4.12.0(react@17.0.2):
+  /react-icons@4.12.0(react@18.2.0):
     resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
     peerDependencies:
       react: '*'
     dependencies:
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /react-is@16.13.1:
@@ -9183,7 +9171,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /react-redux@7.2.9(react-dom@17.0.2)(react@17.0.2):
+  /react-redux@7.2.9(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-Gx4L3uM182jEEayZfRbI/G11ZpYdNAnBs70lFVMNdHJI76XYtR+7m0MN+eAs7UHBPhWXcnFPaS+9owSCJQHNpQ==}
     peerDependencies:
       react: ^16.8.3 || ^17 || ^18
@@ -9200,8 +9188,8 @@ packages:
       hoist-non-react-statics: 3.3.2
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
       react-is: 17.0.2
     dev: false
 
@@ -9215,7 +9203,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /react-router-dom@5.3.4(react@17.0.2):
+  /react-router-dom@5.3.4(react@18.2.0):
     resolution: {integrity: sha512-m4EqFMHv/Ih4kpcBCONHbkT68KoAeHN4p3lAGoNryfHi0dMy0kCzEZakiKRsvg5wHZ/JLrLW8o8KomWiz/qbYQ==}
     peerDependencies:
       react: '>=15'
@@ -9224,13 +9212,13 @@ packages:
       history: 4.10.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-router: 5.3.4(react@17.0.2)
+      react: 18.2.0
+      react-router: 5.3.4(react@18.2.0)
       tiny-invariant: 1.3.1
       tiny-warning: 1.0.3
     dev: false
 
-  /react-router@5.3.4(react@17.0.2):
+  /react-router@5.3.4(react@18.2.0):
     resolution: {integrity: sha512-Ys9K+ppnJah3QuaRiLxk+jDWOR1MekYQrlytiXxC1RyfbdsZkS5pvKAzCCr031xHixZwpnsYNT5xysdFHQaYsA==}
     peerDependencies:
       react: '>=15'
@@ -9241,7 +9229,7 @@ packages:
       loose-envify: 1.4.0
       path-to-regexp: 1.8.0
       prop-types: 15.8.1
-      react: 17.0.2
+      react: 18.2.0
       react-is: 16.13.1
       tiny-invariant: 1.3.1
       tiny-warning: 1.0.3
@@ -9257,7 +9245,7 @@ packages:
       react-is: 18.2.0
     dev: false
 
-  /react-transition-group@4.4.5(react-dom@17.0.2)(react@17.0.2):
+  /react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
       react: '>=16.6.0'
@@ -9267,16 +9255,8 @@ packages:
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2(react@17.0.2)
-    dev: false
-
-  /react@17.0.2:
-    resolution: {integrity: sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
-      object-assign: 4.1.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react@18.2.0:
@@ -9286,13 +9266,13 @@ packages:
       loose-envify: 1.4.0
     dev: false
 
-  /reactcss@1.2.3(react@17.0.2):
+  /reactcss@1.2.3(react@18.2.0):
     resolution: {integrity: sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==}
     peerDependencies:
       react: '*'
     dependencies:
       lodash: 4.17.21
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /readable-stream@2.3.8:
@@ -9330,7 +9310,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /recompose@0.30.0(react@17.0.2):
+  /recompose@0.30.0(react@18.2.0):
     resolution: {integrity: sha512-ZTrzzUDa9AqUIhRk4KmVFihH0rapdCSMFXjhHbNrjAWxBuUD/guYlyysMnuHjlZC/KRiOKRtB4jf96yYSkKE8w==}
     peerDependencies:
       react: ^0.14.0 || ^15.0.0 || ^16.0.0
@@ -9339,7 +9319,7 @@ packages:
       change-emitter: 0.1.6
       fbjs: 0.8.18
       hoist-non-react-statics: 2.5.5
-      react: 17.0.2
+      react: 18.2.0
       react-lifecycles-compat: 3.0.4
       symbol-observable: 1.2.0
     dev: false
@@ -9507,13 +9487,13 @@ packages:
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
     dev: false
 
-  /rifm@0.7.0(react@17.0.2):
+  /rifm@0.7.0(react@18.2.0):
     resolution: {integrity: sha512-DSOJTWHD67860I5ojetXdEQRIBvF6YcpNe53j0vn1vp9EUb9N80EiZTxgP+FkDKorWC8PZw052kTF4C1GOivCQ==}
     peerDependencies:
       react: '>=16.8'
     dependencies:
       '@babel/runtime': 7.23.7
-      react: 17.0.2
+      react: 18.2.0
     dev: false
 
   /rimraf@2.4.5:
@@ -9613,11 +9593,10 @@ packages:
     resolution: {integrity: sha512-0s+oAmw9zLl1V1cS9BtZN7JAd0cW5e0QH4W3LWEK6a4LaLEA2OTpGYWDY+6XasBLtz6wkm3u1xRw95mRuJ59WA==}
     dev: false
 
-  /scheduler@0.20.2:
-    resolution: {integrity: sha512-2eWfGgAqqWFGqtdMmcL5zCMK1U8KlXv8SQFGglL3CEtd0aDVDWgeF/YoCmvln55m5zSk3J/20hTaSBeSObsQDQ==}
+  /scheduler@0.23.0:
+    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-      object-assign: 4.1.1
     dev: false
 
   /scheduler@0.24.0-canary-efb381bbf-20230505:
@@ -10069,7 +10048,7 @@ packages:
     resolution: {integrity: sha512-0MP/Cxx5SzeeZ10p/bZI0S6MpgD+yxAhi1BOQ34jgnMXsCq3j1t6tQnZu+KdlL7dvJTLT3g9xN8tl10TqgFMcg==}
     dev: false
 
-  /styled-components@6.1.6(react-dom@17.0.2)(react@18.2.0):
+  /styled-components@6.1.6(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-DgTLULSC29xpabJ24bbn1+hulU6vvGFQf4RPwBOJrm8WJFnN42yXpo5voBt3jDSJBa5tBd1L6PqswJjQ0wRKdg==}
     engines: {node: '>= 16'}
     peerDependencies:
@@ -10083,7 +10062,7 @@ packages:
       csstype: 3.1.2
       postcss: 8.4.31
       react: 18.2.0
-      react-dom: 17.0.2(react@18.2.0)
+      react-dom: 18.2.0(react@18.2.0)
       shallowequal: 1.1.0
       stylis: 4.3.1
       tslib: 2.5.0
