@@ -56,10 +56,6 @@ export interface ITextInputProps extends TextInputProps {
     label?: string;
 }
 
-export interface ITitleBarProps {
-    component: any;
-}
-
 export interface IRowProps extends IComp {
     size?: number;
     align?: FlexboxAlignType;

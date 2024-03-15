@@ -32,9 +32,7 @@ const PostStack = ({ navigation }) => (
         <Stack.Screen
             name={Routes.ReportPost}
             component={ReportPost}
-            options={{
-                headerShown: false
-            }}
+            options={{ title: 'Reportar post'}}
         />
         <Stack.Screen
             name={Routes.CreateForum}

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Container, LoadingScreen, Row, Text, TitleBar } from '../../../components';
+import { Container, LoadingScreen } from '../../../components';
 import { listNotifications } from '@approbado/lib/services/notifications.services'
 import { FlatList, View } from 'react-native';
 import NoNotifications from '../components/NoNotifications';
@@ -56,13 +56,6 @@ const NotificationsHomeScreen = ({ route }) => {
 
     return (
         <Container>
-            <Row>
-                <TitleBar>
-                    <Text>
-                        Notificaciones
-                    </Text>
-                </TitleBar>
-            </Row>
             <View>
                 {!data.length
                     ? <NoNotifications />

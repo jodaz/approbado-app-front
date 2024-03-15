@@ -3,8 +3,7 @@ import {
     Text,
     Row,
     Image,
-    CategoryPill,
-    TitleBar
+    CategoryPill
 } from './../../components';
 import { Post } from '@approbado/lib/types/models'
 import { horizontalScale } from './../../styles/scaling';

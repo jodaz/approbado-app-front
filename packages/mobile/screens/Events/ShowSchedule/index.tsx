@@ -3,8 +3,7 @@ import {
     ScrollViewContainer,
     LoadingScreen,
     Row,
-    Text,
-    TitleBar
+    Text
 } from '../../../components';
 import { getSchedule } from '@approbado/lib/services/schedules.services'
 import { Linking } from 'react-native';

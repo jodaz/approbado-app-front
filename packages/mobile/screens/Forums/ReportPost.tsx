@@ -7,7 +7,6 @@ import {
     Button,
     Row,
     Text,
-    TitleBar,
     RadioButton
 } from '../../components';
 import { createReport, listReportReasons } from '@approbado/lib/services/reports.services'
@@ -64,13 +63,7 @@ const ReportPost = ({ route, navigation }) => {
 
     return (
         <Container>
-            <TitleBar>
-                <Image
-                    source={require('../../assets/Logo.png')}
-                    style={{ height: 25, width: 150 }}
-                />
-            </TitleBar>
-            <Row size={4}>
+            <Row size={1}>
                 <Text align='center'>
                     Reportar una publicación
                 </Text>
@@ -80,7 +73,7 @@ const ReportPost = ({ route, navigation }) => {
                     Ayúdanos a entender el problema
                 </Text>
             </Row>
-            <Row size={6}>
+            <Row size={1}>
                 {!reasons
                     ? <ActivityIndicator size={48} color='#000' />
                     : (

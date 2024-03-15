@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Button, Container, Image, LoadingScreen, Row, Text, TitleBar } from '../../../components';
+import { Button, ScrollViewContainer, Image, LoadingScreen, Row } from '../../../components';
 import { getNotification } from '@approbado/lib/services/notifications.services'
 import { Notification } from '@approbado/lib/types/models'
 import RenderHTML from 'react-native-render-html';
@@ -22,14 +22,7 @@ const ShowNotification = ({ route }) => {
     if (!data) return <LoadingScreen />
 
     return (
-        <Container>
-            <Row>
-                <TitleBar>
-                    <Text>
-                        Ver notificación
-                    </Text>
-                </TitleBar>
-            </Row>
+        <ScrollViewContainer>
             <Row size={4} align='center'>
                 <Image source={notification.user.picture} />
             </Row>
@@ -54,7 +47,7 @@ const ShowNotification = ({ route }) => {
                     Rechazar
                 </Button>
             </Row>
-        </Container>
+        </ScrollViewContainer>
     )
 }
 
