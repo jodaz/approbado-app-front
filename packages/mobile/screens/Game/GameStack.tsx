@@ -17,7 +17,8 @@ const GameStack = () => (
             headerStyle: {
                 backgroundColor: '#f0f0f0'
             },
-            headerShadowVisible: false
+            headerShadowVisible: false,
+            headerLeft: () => <></>
         }}
         initialRouteName={Routes.Play}
     >

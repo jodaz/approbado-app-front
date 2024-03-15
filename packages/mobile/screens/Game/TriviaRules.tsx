@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
     Button,
     Row,
+    ScrollViewContainer,
     Text
 } from '../../components';
 import {
@@ -10,11 +11,9 @@ import {
     PlusCircle
 } from 'lucide-react-native';
 import ClockIllustration from '@approbado/lib/illustrations/Clock.svg'
-import { ScrollView } from 'react-native'
 import AddFriendsModal from './components/AddFriendsModal';
 import { useForm } from 'react-hook-form';
 import { useGame, resetGame } from '@approbado/lib/contexts/GameContext';
-import { horizontalScale } from '../../styles/scaling';
 import { Routes } from '../routes';
 import Emoji from 'react-native-emoji';
 
@@ -32,9 +31,7 @@ const TriviaRules = ({ navigation }) => {
     }
 
     return (
-        <ScrollView contentContainerStyle={{
-            paddingHorizontal: horizontalScale(16)
-        }}>
+        <ScrollViewContainer>
             <Row size={3} align='center' direction='row' justify='center'>
                 <ClockIllustration />
             </Row>
@@ -79,7 +76,7 @@ const TriviaRules = ({ navigation }) => {
                     Salir
                 </Button>
             </Row>
-        </ScrollView>
+        </ScrollViewContainer>
     )
 }
 

@@ -26,6 +26,10 @@ const PopularTrivias = () => {
         }
     }
 
+    const handleNavigate = () => navigation.navigate(Routes.Game, {
+        screen: Routes.ListTrivias
+    })
+
     React.useEffect(() => { fetchTrivias() }, [])
 
     return (
@@ -35,7 +39,7 @@ const PopularTrivias = () => {
                     Pruebas populares
                 </Text>
                 {trivias.length ? (
-                    <TouchableOpacity onPress={() => navigation.navigate(Routes.ListTrivias)}>
+                    <TouchableOpacity onPress={handleNavigate}>
                         <ArrowRight
                             color='#000'
                             size={24}

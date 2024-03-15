@@ -39,8 +39,7 @@ const MainScreen = () => {
                 headerStyle: {
                     backgroundColor: '#f0f0f0'
                 },
-                headerShadowVisible: false,
-                headerLeft: () => <></>
+                headerShadowVisible: false
             }}
             initialRouteName={Routes.Onboarding}
         >
