@@ -1,14 +1,10 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Row, TriviaCard, MainHeader } from '../../components';
+import { Row, TriviaCard } from '../../components';
 import { View } from 'react-native';
-import { Routes } from '../routes';
 import Tabs from '../../components/Tabs';
 import Resources from './components/Files';
 import Syllabus from './components/Syllabus';
-
-const Stack = createNativeStackNavigator()
 
 const screens = [
     {
@@ -27,7 +23,7 @@ const screens = [
     }
 ];
 
-const TriviasContainer = ({ route }) => {
+const ShowTrivia = ({ route }) => {
     const trivia = route.params.trivia;
     const Tab = createMaterialTopTabNavigator();
 
@@ -45,19 +41,6 @@ const TriviasContainer = ({ route }) => {
                 ))}
             </Tab.Navigator>
         </View>
-    );
-}
-
-const ShowTrivia = props => {
-    return (
-        <Stack.Navigator initialRouteName={Routes.ShowTrivia}>
-            <Stack.Screen
-                name={Routes.ShowTrivia}
-                component={TriviasContainer}
-                initialParams={props.route.params}
-                options={{ headerShown: false }}
-            />
-        </Stack.Navigator>
     )
 };
 

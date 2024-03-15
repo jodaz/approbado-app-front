@@ -20,10 +20,11 @@ const Container = styled.TouchableOpacity`
 `
 
 interface SubthemeItem {
-    subtheme: Subtheme
+    index: number;
+    subtheme: Subtheme;
 }
 
-const SubthemeItem = ({ subtheme }: SubthemeItem) => {
+const SubthemeItem = ({ index, subtheme }: SubthemeItem) => {
     const [isSelected, setIsSelected] = React.useState(false);
     const { dispatch } = useGame()
 
@@ -40,7 +41,7 @@ const SubthemeItem = ({ subtheme }: SubthemeItem) => {
         <Container disabled={subtheme.finished} onPress={toggle} isSelected={isSelected}>
             <View style={{ flex: 1, flexDirection: 'row' }}>
                 <Text align='left'>
-                    {subtheme.id}.
+                    {index}.
                 </Text>
                 <Text align='left' style={{
                     marginLeft: 10

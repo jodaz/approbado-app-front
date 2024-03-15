@@ -26,9 +26,10 @@ const AwardListItem = ({ award }: AwardListItem) : JSX.Element => {
 
     const toggleOpen = () => setOpen(!open);
 
-    const renderSubthemesList = () => award.subthemes.map((subtheme: Subtheme) => (
+    const renderSubthemesList = () => award.subthemes.map((subtheme: Subtheme, index) => (
         <SubthemeItem
             subtheme={subtheme}
+            index={index + 1}
         />
     ))
 

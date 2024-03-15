@@ -26,16 +26,16 @@ const OptionsMenu = props => (
     </OptionsCardMenu>
 );
 
-const QuestionCard = ({ data, id }) => {
+const QuestionCard = ({ data, index }) => {
     const classes = cardStyles();
 
     return (
-        <Card className={classes.root} key={id}>
+        <Card className={classes.root} key={index}>
             <CardHeader
                 action={<OptionsMenu record={data} />}
                 title={
                     <Typography variant="subtitle1" component="h1">
-                        {`${id}. ${data.description}`}
+                        {`${index + 1}. ${data.description}`}
                     </Typography>
                 }
                 subheader={

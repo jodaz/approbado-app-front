@@ -2,12 +2,15 @@ import * as React from 'react'
 import { Row, Text, TriviaCard } from '../../../components';
 import { Trivia } from '@approbado/lib/types/models'
 import { listTrivias } from '@approbado/lib/services/trivias.services'
-import { FlatList } from 'react-native';
+import { FlatList, TouchableOpacity } from 'react-native';
 import { ArrowRight } from 'lucide-react-native';
+import { Routes } from '../../routes';
+import { useNavigation } from '@react-navigation/native';
 
 const RecentTrivias = () => {
     const ref = React.useRef()
     const [trivias, setTrivias] = React.useState<[] | Trivia[]>([])
+    const navigation = useNavigation()
 
     const fetchTrivias = async () => {
         const { success, data } = await listTrivias();
@@ -27,7 +30,14 @@ const RecentTrivias = () => {
                 <Text variant='primary' fontSize={22}>
                     Pruebas recientes
                 </Text>
-                <ArrowRight color='#000' size={24} />
+                {trivias.length ? (
+                    <TouchableOpacity onPress={() => navigation.navigate(Routes.ListTrivias)}>
+                        <ArrowRight
+                            color='#000'
+                            size={24}
+                        />
+                    </TouchableOpacity>
+                ) : null}
             </Row>
             <FlatList
                 ref={ref}
