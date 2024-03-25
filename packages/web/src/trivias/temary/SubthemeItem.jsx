@@ -1,10 +1,10 @@
 import * as React from 'react';
+import { useSubthemesDispatch, useSubthemeState } from '@approbado/lib/hooks/useSubthemeSelect';
+import { CheckCircle } from '@approbado/lib/icons'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { useSubthemesDispatch, useSubthemeState } from '@approbado/lib/hooks/useSubthemeSelect';
-import { CheckCircle } from '@approbado/lib/icons'
 
 export default function SubthemeItem(props) {
     const { id, name, finished } = props;
@@ -19,7 +19,7 @@ export default function SubthemeItem(props) {
             unsetSubtheme(id)
         }
     };
-    console.log(finished)
+
     return (
         <ListItem key={id} button onClick={handleToggle(id)} disabled={finished}>
             <ListItemText id={id} primary={name} />

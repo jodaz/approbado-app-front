@@ -3,7 +3,6 @@ import { apiProvider } from "../api";
 export async function sendAnswer(data) {
     try{
         const response = await apiProvider.post(`/answers`, data)
-        console.log("options ", response.data)
 
         return {
             success: true,

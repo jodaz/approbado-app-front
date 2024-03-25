@@ -44,7 +44,7 @@ export async function create(data) {
 export async function upload(data) {
     try {
         const formData = await formDataHandler(data, 'file')
-        const response = await fileProvider.post(`/questions`, formData)
+        const response = await fileProvider.post(`/questions/upload`, formData)
 
         return {
             success: true,

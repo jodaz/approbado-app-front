@@ -2,21 +2,19 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, alpha } from '@material-ui/core'
+import {
+    Balance
+} from '@approbado/lib/icons'
+import { listQuestions } from '@approbado/lib/services/questions.services'
+import { listLevels } from '@approbado/lib/services/levels.services'
+import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
+import { useHistory } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import Sidebar from './Sidebar'
 import Grid from '@material-ui/core/Grid';
 import Divider from '@material-ui/core/Divider';
 import clsx from 'clsx';
-import { useTriviaState, useTriviaDispatch } from '@approbado/lib/hooks/useTriviaSelect'
-import { useHistory } from 'react-router-dom'
-import { apiProvider as axios } from '@approbado/lib/api'
-import { stringify } from 'qs';
-// Icons
 import ItemCollection from '@approbado/lib/components/ItemCollection';
-import useFetch from '@approbado/lib/hooks/useFetch'
-import {
-    Balance
-} from '@approbado/lib/icons'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -71,19 +69,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const StartTrivia = () => {
+    const [levels, setLevels] = React.useState([])
     const classes = useStyles();
     const { setQuestions, setConfigs } = useTriviaDispatch();
     const state = useTriviaState()
     const { selectedSubthemes, trivia } = state
-    const {
-        loading,
-        data,
-        error
-    } = useFetch('/configurations/levels', {
-        perPage: 5,
-        page: 0,
-        sort: { field: 'created_at', order: 'DESC' }
-    })
     const { configs: { level } } = state;
     const history = useHistory();
 
@@ -93,30 +83,34 @@ const StartTrivia = () => {
         }
     }, [state])
 
-    React.useEffect(async () => {
-        if (level) {
-            const query = stringify({
-                'filter[subthemes_ids]': selectedSubthemes.map(({ id }) => id),
-            }, { arrayFormat: 'brackets' });
+    const fetchLevels = async () => {
+        const { success, data } = await listLevels()
 
-            try {
-                const res = await axios.get(`/questions?filter[options]=true&filter[level_id]=${level}&${query}`)
-                const { data } = res.data
-
-                setQuestions(data)
-            } catch (error) {
-                console.log(error)
-            }
+        if (success) {
+            setLevels(data);
         }
+    };
+
+    const fetchQuestions = async () => {
+        const { success, data } = await listQuestions({
+            filter: {
+                options: true,
+                level_id: level,
+                subthemes_ids: selectedSubthemes.map(({ id }) => id)
+            }
+        });
+
+        if (success) {
+            setQuestions(data);
+        }
+    }
+
+    React.useEffect(() => {
+        fetchQuestions()
+        fetchLevels()
     }, [level, selectedSubthemes])
 
-    if (error) return (
-        <Box fontWeight={700}>
-            Ha ocurrido un error en su solicitud.
-        </Box>
-    )
-
-    if (loading) return null;
+    if (!levels.length) return null;
 
     return (
         <Box sx={{ padding: '2rem' }}>
@@ -147,7 +141,7 @@ const StartTrivia = () => {
                                 Selecciona un nivel
                             </Box>
                             <Box className={classes.buttonContainer}>
-                                {data.map(item =>
+                                {levels.map(item =>
                                     <Button
                                         className={clsx(classes.button, (item.id == state.configs.level) && classes.selectedButton)}
                                         onClick={e => setConfigs({

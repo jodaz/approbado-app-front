@@ -70,6 +70,7 @@ export default function() {
     }
 
     React.useEffect(() => {
+        console.log(currQuestion, answers)
         const answer = getRightAnswer(currQuestion, answers)
 
         if (answer) {
