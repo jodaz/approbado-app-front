@@ -4,32 +4,27 @@ const path = require('path');
 // Find the project and workspace directories
 const projectRoot = __dirname;
 // This can be replaced with `find-yarn-workspace-root`
-const workspaceRoot = path.resolve(projectRoot, '../..');
+const monorepoRoot = path.resolve(projectRoot, '../..');
 
-module.exports = (async () => {
-    const {
-      resolver: {sourceExts, assetExts},
-    } = await getDefaultConfig(projectRoot);
+const config = getDefaultConfig(__dirname);
 
-    return {
-        transformer: {
-            babelTransformerPath: require.resolve('react-native-svg-transformer'),
-            getTransformOptions: async () => ({
-                transform: {
-                    experimentalImportSupport: false,
-                    inlineRequires: true,
-                },
-            }),
-        },
-        watchFolders: [workspaceRoot],
-        resolver: {
-            nodeModulesPaths: [
-                path.resolve(projectRoot, 'node_modules'),
-                path.resolve(workspaceRoot, 'node_modules'),
-            ],
-            disableHierarchicalLookup: true,
-            assetExts: assetExts.filter(ext => ext !== 'svg'),
-            sourceExts: [...sourceExts, 'svg'],
-        },
-    };
-})();
+const { transformer, resolver } = config;
+
+config.transformer = {
+    ...transformer,
+    babelTransformerPath: require.resolve("react-native-svg-transformer"),
+}
+
+config.watchFolders = [monorepoRoot];
+
+config.resolver = {
+    ...resolver,
+    assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
+    sourceExts: [...resolver.sourceExts, "svg"],
+    nodeModulesPaths: [
+        path.resolve(projectRoot, 'node_modules'),
+        path.resolve(monorepoRoot, 'node_modules'),
+    ]
+};
+
+module.exports = config;

@@ -32,8 +32,6 @@ export default function App() {
         }
     }, [fontsLoaded, fontError]);
 
-    React.useEffect
-
     if (!fontsLoaded && !fontError) {
         return null;
     }

@@ -29,13 +29,14 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-        [
-            "expo-image-picker",
-            {
-                "photosPermission": "Select and upload images",
-                "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
-            }
-        ]
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Select and upload images",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ],
+      "expo-font"
     ],
     "extra": {
       "eas": {
