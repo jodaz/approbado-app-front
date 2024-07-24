@@ -21,7 +21,7 @@ const StyledAnswerContainer = styled.View`
        : props.theme.palette.info.success};
 `
 
-const Answer = ({ isRight, children }) => {
+const Answer = ({ isRight = false, children }) => {
     const theme = useTheme()
 
     return (
@@ -55,10 +55,6 @@ const Answer = ({ isRight, children }) => {
             </StyledAnswerContainer>
         </Row>
     )
-}
-
-Answer.defaultProps = {
-    isRight: false
 }
 
 export default Answer

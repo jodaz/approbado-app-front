@@ -45,11 +45,4 @@ const MembershipCard = () : JSX.Element => (
     </Container>
 );
 
-MembershipCard.defaultProps = {
-    size: 1,
-    align: 'unset',
-    direction: 'column',
-    justify: 'unset'
-}
-
 export default MembershipCard

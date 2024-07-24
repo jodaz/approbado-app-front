@@ -25,7 +25,7 @@ const RootContainer = styled.View`
     flexDirection: column;
 `
 
-const DateTimePicker = ({ control, label, name, mode, icon }) => {
+const DateTimePicker = ({ control, label, name, mode = 'date', icon }) => {
     const defaultDate = new Date();
     const [showPicker, setShowPicker] = useState(false);
 
@@ -82,9 +82,5 @@ const DateTimePicker = ({ control, label, name, mode, icon }) => {
         />
     );
 };
-
-DateTimePicker.defaultProps = {
-    mode: 'date'
-}
 
 export default DateTimePicker;

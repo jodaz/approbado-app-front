@@ -29,9 +29,9 @@ const SelectInput = ({
     validations,
     defaultValue,
     placeholder,
-    options,
-    labelField,
-    valueField
+    options = [],
+    labelField = 'label',
+    valueField = 'value'
 } : ISelectProps) => {
     const theme = useTheme()
 
@@ -106,13 +106,6 @@ const SelectInput = ({
         />
     );
 };
-
-SelectInput.defaultProps = {
-    labelField: 'label',
-    valueField: 'value',
-    icon: null,
-    options: []
-}
 
 export default SelectInput;
 

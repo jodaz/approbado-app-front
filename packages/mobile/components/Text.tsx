@@ -17,19 +17,37 @@ const StyledText = styled.Text`
     flex-direction: row;
 `;
 
-const Text = ({ children, ...restProps }: ITextProps) : JSX.Element => (
-    <StyledText {...restProps}>
-        {children}
-    </StyledText>
-);
 
-Text.defaultProps = {
+const defaultProps = {
     fontSize: 20,
     fontWeight: 600,
     color: 'text',
     decoration: 'none',
     variant: 'primary',
     align: 'left'
+}
+
+const Text = ({
+    children,
+    fontSize = 20,
+    fontWeight = 600,
+    color = 'text',
+    decoration = 'none',
+    variant = 'primary',
+    align = 'left'
+ }: ITextProps) : JSX.Element => {
+    return (
+        <StyledText
+            fontSize={fontSize}
+            fontWeight={fontWeight}
+            color={color}
+            decoration={decoration}
+            variant={variant}
+            align={align}
+        >
+            {children}
+        </StyledText>
+    );
 }
 
 export default Text

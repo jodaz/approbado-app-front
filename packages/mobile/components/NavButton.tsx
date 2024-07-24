@@ -17,7 +17,7 @@ const StyledNavButton = styled.TouchableOpacity`
     flex-direction: row;
 `
 
-const NavButton = ({ children, to, spacing } : INavButtonProps ) : JSX.Element => {
+const NavButton = ({ children, to, spacing = 2 } : INavButtonProps ) : JSX.Element => {
     const navigation = useNavigation();
 
     return (
@@ -30,10 +30,6 @@ const NavButton = ({ children, to, spacing } : INavButtonProps ) : JSX.Element =
             </StyledNavButton>
         </Row>
     )
-}
-
-NavButton.defaultProps = {
-    spacing: 2
 }
 
 export default NavButton;

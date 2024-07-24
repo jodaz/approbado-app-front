@@ -35,6 +35,15 @@ const ButtonText = styled(Text)`
     display: flex;
 `;
 
+
+const defaultProps = {
+    bgColor: 'primary',
+    variant: 'contained',
+    fontWeight: 600,
+    color: 'secondary',
+    textVariant: 'main'
+}
+
 const Button = ({
     children,
     fontWeight,
@@ -45,7 +54,7 @@ const Button = ({
     icon,
     ...rest
 } : IButtonProps) : JSX.Element => (
-    <ButtonContainer disabled={disabled} {...rest}>
+    <ButtonContainer {...defaultProps} disabled={disabled} {...rest}>
         {icon ? (
             <>
                 {React.cloneElement(icon, {
@@ -57,6 +66,7 @@ const Button = ({
         ) : null}
         {!isLoading ? (
             <ButtonText
+                {...defaultProps}
                 color={textColor}
                 variant={textVariant}
                 fontWeight={fontWeight}
@@ -66,13 +76,5 @@ const Button = ({
         ) : <ActivityIndicator color={'#000'} size={scaleFontSize(24)} />}
     </ButtonContainer>
 )
-
-Button.defaultProps = {
-    bgColor: 'primary',
-    variant: 'contained',
-    fontWeight: 600,
-    color: 'secondary',
-    textVariant: 'main'
-}
 
 export default Button

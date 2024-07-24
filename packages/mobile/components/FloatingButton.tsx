@@ -26,6 +26,13 @@ const ButtonContainer = styled.TouchableOpacity`
     width: ${props => props.fullWidth ? '100%' : 'unset'}
 `;
 
+const defaultProps = {
+    bgColor: 'primary',
+    variant: 'contained',
+    fontWeight: 600,
+    color: 'secondary'
+}
+
 const FloatingButton = ({
     children,
     fontWeight,
@@ -34,7 +41,7 @@ const FloatingButton = ({
     disabled,
     ...rest
 } : IButtonProps) : JSX.Element => (
-    <ButtonContainer disabled={disabled} {...rest}>
+    <ButtonContainer {...defaultProps} disabled={disabled} {...rest}>
         {!isLoading ? (
             React.cloneElement(icon, {
                 color: '#000',
@@ -43,12 +50,5 @@ const FloatingButton = ({
         ) : <ActivityIndicator color='#fff' />}
     </ButtonContainer>
 )
-
-FloatingButton.defaultProps = {
-    bgColor: 'primary',
-    variant: 'contained',
-    fontWeight: 600,
-    color: 'secondary'
-}
 
 export default FloatingButton

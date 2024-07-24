@@ -2,6 +2,13 @@ import styled from 'styled-components/native';
 import { IRowProps } from '../types';
 import { verticalScale } from '../styles/scaling';
 
+const defaultProps = {
+    size: 1,
+    align: 'unset',
+    direction: 'column',
+    justify: 'unset'
+}
+
 const StyledRow = styled.View`
     margin-vertical: ${props => verticalScale(props.theme.space[props.size])}px;
     align-items: ${props => props.align};
@@ -10,16 +17,9 @@ const StyledRow = styled.View`
 `
 
 const Row = ({ children, ...restProps }: IRowProps) : JSX.Element => (
-    <StyledRow {...restProps}>
+    <StyledRow {...defaultProps} {...restProps}>
         {children}
     </StyledRow>
 );
-
-Row.defaultProps = {
-    size: 1,
-    align: 'unset',
-    direction: 'column',
-    justify: 'unset'
-}
 
 export default Row

@@ -9,7 +9,9 @@
     "build:web": "pnpm -F @approbado/web run build",
     "build:admin": "pnpm -F @approbado/admin run build",
     "build:mobile": "pnpm -F @approbado/mobile run build:apk",
-    "mobile": "pnpm --filter @approbado/mobile"
+    "mobile": "pnpm --filter @approbado/mobile",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "nohoist": [
     "expo"
@@ -22,5 +24,10 @@
         "typescript"
       ]
     }
+  },
+  "dependencies": {
+    "expo": "~51.0.22",
+    "react": "18.2.0",
+    "react-native": "0.74.3"
   }
 }

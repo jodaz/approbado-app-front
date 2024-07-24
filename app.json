@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "@approbado/monorepo",
+    "slug": "@approbadomonorepo",
+    "version": "1.0.0",
+    "sdkVersion": "51.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "android": {
+      "package": "com.approbado.approbado"
+    }
+  }
+}

@@ -16,6 +16,11 @@ const StyledText = styled.Text`
     text-align: ${props => props.align};
 `
 
+const defaultProps = {
+    fontSize: 20,
+    align: 'left'
+}
+
 const Link = ({ to, children, ...restTextProps } : ILinkProps) : JSX.Element => {
     const navigation = useNavigation();
 
@@ -25,14 +30,14 @@ const Link = ({ to, children, ...restTextProps } : ILinkProps) : JSX.Element => 
 
     return (
         <StyledLink onPress={handlePress}>
-            <StyledText {...restTextProps}>{children}</StyledText>
+            <StyledText
+                {...defaultProps}
+                {...restTextProps}
+            >
+                {children}
+            </StyledText>
         </StyledLink>
     );
 };
-
-Link.defaultProps = {
-    fontSize: 20,
-    align: 'left'
-}
 
 export default Link;
