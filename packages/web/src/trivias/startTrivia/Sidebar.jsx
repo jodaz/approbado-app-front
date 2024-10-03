@@ -2,7 +2,7 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box';
 import makeStyles from '@material-ui/styles/makeStyles'
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as SelectionIllustration } from '@approbado/lib/illustrations/Selection.svg';
+import SelectionIllustration from '@approbado/lib/illustrations/Selection.svg';
 import BeforeStarting from './BeforeStarting'
 
 const useStyles = makeStyles(() => ({

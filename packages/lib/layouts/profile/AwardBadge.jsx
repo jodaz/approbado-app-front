@@ -1,6 +1,5 @@
 
-import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
-import Box from '@material-ui/core/Box'
+import Certificate from '@approbado/lib/icons/Certificate.svg';import Box from '@material-ui/core/Box'
 import { alpha } from '@material-ui/core/styles'
 import Avatar from '@approbado/lib/components/Avatar';
 

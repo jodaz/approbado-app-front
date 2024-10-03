@@ -1,6 +1,5 @@
 import GoogleLogin from 'react-google-login';
-import { ReactComponent as GoogleIcon } from "@approbado/lib/icons/GoogleIcon.svg"
-import { useHistory } from 'react-router-dom'
+import GoogleIcon from "@approbado/lib/icons/GoogleIcon.svg";import { useHistory } from 'react-router-dom'
 import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import { apiProvider } from '@approbado/lib/api';
 

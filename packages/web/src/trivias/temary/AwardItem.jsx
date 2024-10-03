@@ -1,8 +1,7 @@
 import * as React from 'react';
 import Avatar from '@approbado/lib/components/Avatar';
 import ListItem from '@material-ui/core/ListItem';
-import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
-import Box from '@material-ui/core/Box';
+import Certificate from '@approbado/lib/icons/Certificate.svg';import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import SubthemeItem from './SubthemeItem'
 import List from '@material-ui/core/List';

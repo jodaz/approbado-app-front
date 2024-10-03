@@ -1,9 +1,10 @@
 import { apiProvider } from "../api";
 
 export async function loginUser(values) {
+    console.log(values)
     try {
         const response = await apiProvider.post(`/auth/login`, values)
-
+        
         const { data } = response
 
         return {
@@ -22,6 +23,7 @@ export async function loginUser(values) {
 
 export async function loginAdmin(values) {
     try {
+        console.log(values)
         const response = await apiProvider.post(`/auth/admin-login`, values)
 
         const { data } = response

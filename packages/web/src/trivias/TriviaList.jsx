@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { useMediaQuery, makeStyles  } from '@material-ui/core'
-import { ReactComponent as BannerIllustration } from '@approbado/lib/illustrations/Banner.svg'
-import { ChevronLeft } from '@approbado/lib/icons'
+import BannerIllustration from '@approbado/lib/illustrations/Banner.svg';import { ChevronLeft } from '@approbado/lib/icons'
 import TriviaCard from './TriviaCard'
 import GridList from '@approbado/lib/components/GridList'
 import Drawer from '@material-ui/core/Drawer'

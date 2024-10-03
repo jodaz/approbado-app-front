@@ -1,6 +1,5 @@
 import Box from '@material-ui/core/Box';
-import { ReactComponent as EventIllustration} from '@approbado/lib/illustrations/Event.svg'
-import NoContent from '@approbado/lib/components/NoContent'
+import EventIllustration from '@approbado/lib/illustrations/Event.svg';import NoContent from '@approbado/lib/components/NoContent'
 import Link from '@material-ui/core/Link'
 import DefaultLinkBehavior from '@approbado/lib/components/LinkBehavior';
 import { styled, alpha } from '@material-ui/core';

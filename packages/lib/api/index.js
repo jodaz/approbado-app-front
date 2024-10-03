@@ -1,7 +1,7 @@
 import defaultAxios from 'axios';
 import ENV from '../env'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+console.log(ENV)
 const jsonInstance = defaultAxios.create({
     baseURL: ENV.API,
     withCredentials: false
@@ -12,7 +12,7 @@ const blobInstance = defaultAxios.create({
     withCredentials: false,
     responseType: 'blob'
 });
-console.log(ENV.API)
+
 // Request interceptor
 const interceptorsFunc = async (config) => {
     // const token = localStorage.getItem();

@@ -1,6 +1,5 @@
 import * as React from 'react'
-import { ReactComponent as RibbonIllustration } from '@approbado/lib/illustrations/Ribbon.svg'
-import NoContent from '@approbado/lib/components/NoContent'
+import RibbonIllustration from '@approbado/lib/illustrations/Ribbon.svg';import NoContent from '@approbado/lib/components/NoContent'
 import GridList from '@approbado/lib/components/GridList';
 import { useParams } from 'react-router-dom'
 import { listAwards } from '@approbado/lib/services/awards.services';

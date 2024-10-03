@@ -12,8 +12,7 @@ import OptionsCardMenu from '@approbado/lib/components/OptionsCardMenu';
 import DeleteButton from '@approbado/lib/components/DeleteButton'
 import cardStyles from '@approbado/lib/styles/cardStyles'
 import Dot from '@approbado/lib/components/Dot';
-import { ReactComponent as Certificate } from '@approbado/lib/icons/Certificate.svg'
-import LinkButton from '@approbado/lib/components/LinkButton'
+import Certificate from '@approbado/lib/icons/Certificate.svg';import LinkButton from '@approbado/lib/components/LinkButton'
 
 const OptionsMenu = props => (
     <OptionsCardMenu icon={<MoreHorizontal />}>

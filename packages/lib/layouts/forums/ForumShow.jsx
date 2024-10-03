@@ -8,8 +8,7 @@ import PopularPosts from '@approbado/lib/layouts/forums/PopularPosts'
 import PostDescription from './PostDescription'
 import Avatar from '@approbado/lib/components/Avatar';
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as ForumIllustration } from '@approbado/lib/illustrations/Forum.svg'
-import Link from '@material-ui/core/Link';
+import ForumIllustration from '@approbado/lib/illustrations/Forum.svg';import Link from '@material-ui/core/Link';
 import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import CommentInput from '@approbado/lib/layouts/comments/CommentInput'
 import CommentList from '@approbado/lib/layouts/comments/CommentList'

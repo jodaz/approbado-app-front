@@ -1,6 +1,5 @@
 import FacebookLogin from 'react-facebook-login'
-import { ReactComponent as FacebookIcon } from "@approbado/lib/icons/FacebookIconOutline.svg"
-import { useHistory } from 'react-router-dom'
+import FacebookIcon from "@approbado/lib/icons/FacebookIconOutline.svg";import { useHistory } from 'react-router-dom'
 import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import { apiProvider } from '@approbado/lib/api'
 

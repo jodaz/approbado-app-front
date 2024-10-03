@@ -9,11 +9,7 @@ import ProfilePhotoInput from '@approbado/lib/components/ProfilePhotoInput'
 import { useLocation } from 'react-router-dom'
 
 // Illustrations
-import { ReactComponent as Stage1 } from '@approbado/lib/illustrations/Stage1.svg'
-import { ReactComponent as Forum } from '@approbado/lib/illustrations/Forum.svg'
-import { ReactComponent as Forum2 } from '@approbado/lib/illustrations/Forum2.svg'
-import { ReactComponent as Ribbon } from '@approbado/lib/illustrations/Ribbon.svg'
-import LinkBehavior from '@approbado/lib/components/LinkBehavior'
+import Stage1 from '@approbado/lib/illustrations/Stage1.svg';import Forum from '@approbado/lib/illustrations/Forum.svg';import Forum2 from '@approbado/lib/illustrations/Forum2.svg';import Ribbon from '@approbado/lib/illustrations/Ribbon.svg';import LinkBehavior from '@approbado/lib/components/LinkBehavior'
 import Avatar from '../../components/Avatar';
 
 const Spacer = () => <span style={{ height: 0, width: '100%', borderBottom: '0.1rem solid rgba(0, 0, 0, 0.2)' }} />;

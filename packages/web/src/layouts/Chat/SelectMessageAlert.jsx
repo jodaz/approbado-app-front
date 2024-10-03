@@ -1,8 +1,6 @@
 import Box from '@material-ui/core/Box'
 import NoContent from '@approbado/lib/components/NoContent'
-import { ReactComponent as MessageIllustration } from '@approbado/lib/illustrations/Messages.svg'
-
-const SelectMessageBanner = () => (
+import MessageIllustration from '@approbado/lib/illustrations/Messages.svg';const SelectMessageBanner = () => (
     <Box sx={{
         display: 'flex',
         justifyContent: 'center',
