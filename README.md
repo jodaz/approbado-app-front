@@ -3,8 +3,8 @@
 ## Requerimientos
 
 - `postgres ^12`
-- `node.js ^14`
-- `sshpass` para utilizar el script de deployment
+- `node.js ^18`
+- `pnpm 8.7.1`
 
 ## Documentación
 
