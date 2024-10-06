@@ -1,5 +1,6 @@
 import FacebookLogin from 'react-facebook-login'
-import FacebookIcon from "@approbado/lib/icons/FacebookIconOutline.svg";import { useHistory } from 'react-router-dom'
+import FacebookIcon from "@approbado/lib/icons/FacebookIconOutline.svg";
+import { useHistory } from 'react-router-dom'
 import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import { apiProvider } from '@approbado/lib/api'
 
@@ -40,7 +41,7 @@ const FBLoginButton = ({ className }) => {
             autoload={true}
             fields='name,email'
             callback={processResponse}
-            icon={<FacebookIcon style={{ marginRight: '0.5rem' }} />}
+            icon={<img src={FacebookIcon} style={{ marginRight: '0.5rem' }} />}
             textButton='Facebook'
             cssClass={className}
         />

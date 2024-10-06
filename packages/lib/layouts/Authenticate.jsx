@@ -16,13 +16,15 @@ const Authenticate = () => {
     const { fetchUser } = useUserDispatch();
     const history = useHistory();
 
-    React.useEffect(async () => {
+    const fetchUserRequest = async () => {
         if (token) {
             await localStorage.setItem(CONFIG_NAMES.AUTH_TOKEN, token);
             await fetchUser();
             history.push('/')
         }
-    }, [token])
+    }
+
+    React.useEffect(() => fetchUserRequest(), [token])
 
     return <Spinner />;
 };

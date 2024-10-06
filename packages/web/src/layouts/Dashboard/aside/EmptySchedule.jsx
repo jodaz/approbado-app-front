@@ -1,5 +1,6 @@
 import Box from '@material-ui/core/Box';
-import EventIllustration from '@approbado/lib/illustrations/Event.svg';import NoContent from '@approbado/lib/components/NoContent'
+import EventIllustration from '@approbado/lib/illustrations/Event.svg';
+import NoContent from '@approbado/lib/components/NoContent'
 import Link from '@material-ui/core/Link'
 import DefaultLinkBehavior from '@approbado/lib/components/LinkBehavior';
 import { styled, alpha } from '@material-ui/core';
@@ -22,7 +23,7 @@ const EmptySchedule = () => (
         height: '30rem',
         flexDirection: 'column'
     }}>
-        <NoContent icon={<EventIllustration />} title='No tiene eventos.' />
+        <NoContent icon={<img src={EventIllustration} />} title='No tiene eventos.' />
         <Link to='/?tab=calendar' component={LinkBehavior}>Crear uno</Link>
     </Box>
 );

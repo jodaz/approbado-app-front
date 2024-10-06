@@ -1,5 +1,6 @@
 import GoogleLogin from 'react-google-login';
-import GoogleIcon from "@approbado/lib/icons/GoogleIcon.svg";import { useHistory } from 'react-router-dom'
+import GoogleIcon from "@approbado/lib/icons/GoogleIcon.svg";
+import { useHistory } from 'react-router-dom'
 import { useFormAuthDispatch } from '@approbado/lib/hooks/useFormAuth'
 import { apiProvider } from '@approbado/lib/api';
 
@@ -43,7 +44,7 @@ const GoogleLoginButton = ({ className }) => {
                     disabled={renderProps.disabled}
                     className={className}
                 >
-                    <GoogleIcon style={{ marginRight: '0.5rem' }} />
+                    <img src={GoogleIcon} style={{ marginRight: '0.5rem' }} />
                     Google
                 </button>
             )}
