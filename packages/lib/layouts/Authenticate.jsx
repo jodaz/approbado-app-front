@@ -24,7 +24,7 @@ const Authenticate = () => {
         }
     }
 
-    React.useEffect(() => fetchUserRequest(), [token])
+    React.useEffect(() => { fetchUserRequest() }, [token])
 
     return <Spinner />;
 };
