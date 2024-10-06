@@ -22,7 +22,7 @@ const UserProfile = ({ children }) => {
 
     React.useEffect(() => {
         fetchRecord();
-    }, [])
+    }, [username])
 
     if (loading && !record) return <Spinner />;
 

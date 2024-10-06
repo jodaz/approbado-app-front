@@ -59,7 +59,7 @@ const TriviaEdit = ({ record }) => {
                         source="file"
                         loading={loading}
                         accept='image/svg+xml,image/png'
-                        preview={(record.cover) && `${process.env.REACT_APP_API_DOMAIN}/${record.cover}`}
+                        preview={record.cover}
                         hasPreview={!!record.cover}
                     />
                     <Box width='16rem'>

@@ -1,7 +1,7 @@
 import defaultAxios from 'axios';
 import ENV from '../env'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-console.log(ENV)
+
 const jsonInstance = defaultAxios.create({
     baseURL: ENV.API,
     withCredentials: false

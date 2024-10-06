@@ -61,6 +61,7 @@ import QuestionsList from './questions/QuestionsList'
 import ForumList from '@approbado/lib/layouts/forums/ForumList';
 import Overview from './reports/Overview';
 import Analytics from './reports/Analytics';
+import Publications from '@approbado/lib/layouts/profile/Publications';
 
 const App = () => {
     return (
@@ -177,8 +178,17 @@ const App = () => {
                 <ProtectedRoute
                     layout={Layout}
                     exact
-                    path="/users/:id/show"
+                    path="/:username"
                     component={() => <UserProfile />}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/:username/publications"
+                    component={() => (
+                        <UserProfile>
+                            <Publications />
+                        </UserProfile>
+                    )}
                 />
                 <ProtectedRoute
                     layout={Layout}

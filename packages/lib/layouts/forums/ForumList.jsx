@@ -3,7 +3,8 @@ import * as React from 'react'
 import Box from '@material-ui/core/Box'
 import ForumCard from './ForumCard'
 import NoContent from '@approbado/lib/components/NoContent'
-import ForumIllustration from '@approbado/lib/illustrations/Forum.svg';import { useUserState } from '@approbado/lib/hooks/useUserState'
+import ForumIllustration from '@approbado/lib/illustrations/Forum.svg';
+import { useUserState } from '@approbado/lib/hooks/useUserState'
 import Spinner from '../../components/Spinner'
 import ErrorMessage from '@approbado/lib/components/ErrorMessage'
 import useFetch from '../../hooks/useFetch'
@@ -62,7 +63,7 @@ const ForumListView = ({ sort = {}, filter = {} }) => {
     if (!total) {
         return (
             <NoContent
-                icon={<ForumIllustration />}
+                icon={<img src={ForumIllustration} alt='icon' />}
                 title='Aún no hay debates publicados'
             />
         );

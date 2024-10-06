@@ -39,9 +39,7 @@ const ProfileExtraInfoCard = ({ Image, amount, text }) => {
     return (
         <Box className={classes.root}>
             <Box className={classes.imageContainer}>
-                {React.cloneElement(Image, {
-                    className: classes.image
-                })}
+                <img src={Image} alt='icon' />
             </Box>
             <Box className={classes.content}>
                 <Typography variant='h6' className={classes.amount}>

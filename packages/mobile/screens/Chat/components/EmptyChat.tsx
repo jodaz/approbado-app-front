@@ -10,7 +10,7 @@ interface IEmptyChatProps {
 const EmptyChat = ({ title, subtitle } : IEmptyChatProps) => (
     <>
         <Row size={4} justify='center' align='center'>
-            <Messages />
+            <img src={Messages} alt='icon' />
         </Row>
         <Row size={1} justify='center' align='center'>
             <Text variant="primary" fontSize={20} fontWeight={600}>

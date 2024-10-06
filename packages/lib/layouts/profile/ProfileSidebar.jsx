@@ -9,7 +9,12 @@ import ProfilePhotoInput from '@approbado/lib/components/ProfilePhotoInput'
 import { useLocation } from 'react-router-dom'
 
 // Illustrations
-import Stage1 from '@approbado/lib/illustrations/Stage1.svg';import Forum from '@approbado/lib/illustrations/Forum.svg';import Forum2 from '@approbado/lib/illustrations/Forum2.svg';import Ribbon from '@approbado/lib/illustrations/Ribbon.svg';import LinkBehavior from '@approbado/lib/components/LinkBehavior'
+import Stage1 from '@approbado/lib/illustrations/Stage1.svg';
+import Forum from '@approbado/lib/illustrations/Forum.svg';
+import Forum2 from '@approbado/lib/illustrations/Forum2.svg';
+import Ribbon from '@approbado/lib/illustrations/Ribbon.svg';
+import LinkBehavior from '@approbado/lib/components/LinkBehavior'
+
 import Avatar from '../../components/Avatar';
 
 const Spacer = () => <span style={{ height: 0, width: '100%', borderBottom: '0.1rem solid rgba(0, 0, 0, 0.2)' }} />;
@@ -93,25 +98,25 @@ const ProfileSidebar = ({
             </Box>
             <Box display='flex' flexDirection='column' justifyContent='flex-start' width='100%'>
                 <ProfileExtraInfoCard
-                    Image={<Stage1 />}
+                    Image={Stage1}
                     text='Puntos acumulados'
                     amount={numberFormat(profile.points)}
                 />
                 <Spacer />
                 <ProfileExtraInfoCard
-                    Image={<Forum />}
+                    Image={Forum}
                     text='Debates respondidos'
                     amount={numberFormat(comments.length)}
                 />
                 <Spacer />
                 <ProfileExtraInfoCard
-                    Image={<Forum2 />}
+                    Image={Forum2}
                     text='Debates iniciados'
                     amount={numberFormat(discussion.length)}
                 />
                 <Spacer />
                 <ProfileExtraInfoCard
-                    Image={<Ribbon />}
+                    Image={Ribbon}
                     text='Certificaciones'
                     amount={numberFormat(awards.length)}
                 />
