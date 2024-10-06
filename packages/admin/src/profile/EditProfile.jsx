@@ -32,7 +32,7 @@ const UpdateProfile = () => {
     const save = React.useCallback(async ({ file, ...restValues }) => {
         setLoading(true)
         const values = {
-            file: file.rawFile,
+            file: file,
             ...restValues
         };
 
@@ -61,10 +61,10 @@ const UpdateProfile = () => {
                         <Grid item md='3' xs='12'>
                             <Box width='100%' display='flex' justifyContent="center">
                                 <ProfilePhotoInput
-                                    source='file'
+                                    name='file'
                                     preview={user.picture}
                                     disabled={loading}
-                                    accept='image/jpeg, image/png'
+                                    accept='image/*'
                                 />
                             </Box>
                         </Grid>
