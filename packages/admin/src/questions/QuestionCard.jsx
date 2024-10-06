@@ -35,12 +35,12 @@ const QuestionCard = ({ data, id }) => {
                 action={<OptionsMenu record={data} />}
                 title={
                     <Typography variant="subtitle1" component="h1">
-                        {`${id}. ${data.description}`}
+                        {`${id}. ${data?.description}`}
                     </Typography>
                 }
                 subheader={
                     <Box marginTop='1rem'>
-                        {data.options[0].statement}
+                        {data?.options[0]?.statement}
                     </Box>
                 }
             />

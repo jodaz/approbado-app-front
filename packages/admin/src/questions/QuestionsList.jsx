@@ -15,7 +15,6 @@ const QuestionList = () => {
     )
     const { trivia_id, subtheme_id } = useParams();
     const initialValues = {
-        onlyTrueOptions: true,
         options: true,
         trivia_id: trivia_id,
         ...(!isNaN(subtheme_id) && { subtheme_id: subtheme_id })
