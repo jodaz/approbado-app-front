@@ -35,7 +35,7 @@ const AwardBadge = ({
                 alt='icon'
             />
         ) : (
-            <Certificate />
+            <img src={Certificate} alt="My Icon" />
         )}
         <Box padding='1rem'>
             {title}

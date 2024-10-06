@@ -60,7 +60,7 @@ export default function AwardItem(props) {
                                 alt='icon'
                             />
                         ) : (
-                            <Certificate />
+                            <img src={Certificate} alt="My Icon" />
                         )}
                     </Box>
                     <Box sx={{
